@@ -1,5 +1,4 @@
 -- MySQL Workbench Forward Engineering
-
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -39,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`albums` (
   `ArtistId` INT NOT NULL,
   `AlbumTracklistUrl` VARCHAR(45) NULL,
   PRIMARY KEY (`AlbumId`),
-  INDEX `album_artist_relation_idx` (`ArtistId` ASC) VISIBLE,
+  INDEX `album_artist_relation_idx` (`ArtistId` ASC),
   CONSTRAINT `album_artist_relation`
     FOREIGN KEY (`ArtistId`)
     REFERENCES `playlist_generator_db`.`artists` (`ArtistId`)
@@ -76,8 +75,8 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`tracks` (
   `Link` VARCHAR(300) NOT NULL,
   `GenreId` INT NOT NULL,
   PRIMARY KEY (`TrackId`),
-  INDEX `track_album_relation_idx` (`AlbumId` ASC) VISIBLE,
-  INDEX `track_genre_relation_idx` (`GenreId` ASC) VISIBLE,
+  INDEX `track_album_relation_idx` (`AlbumId` ASC),
+  INDEX `track_genre_relation_idx` (`GenreId` ASC),
   CONSTRAINT `track_album_relation`
     FOREIGN KEY (`AlbumId`)
     REFERENCES `playlist_generator_db`.`albums` (`AlbumId`)
@@ -101,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`users` (
   `password` VARCHAR(45) NOT NULL,
   `enabled` TINYINT(1) NULL,
   PRIMARY KEY (`username`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
 
 
@@ -119,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`user_details` (
   `Avatar` LONGBLOB NULL,
   `IsDeleted` TINYINT(1) NULL,
   PRIMARY KEY (`UserDetailId`),
-  INDEX `user_details_user_relation_idx` (`UserName` ASC) VISIBLE,
+  INDEX `user_details_user_relation_idx` (`UserName` ASC),
   CONSTRAINT `user_details_user_relation`
     FOREIGN KEY (`UserName`)
     REFERENCES `playlist_generator_db`.`users` (`username`)
@@ -139,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`playlists` (
   `UserId` INT NOT NULL,
   `IsDeleted` TINYINT(1) NULL,
   PRIMARY KEY (`PlaylistId`),
-  INDEX `user_playlist_relation_idx` (`UserId` ASC) VISIBLE,
+  INDEX `user_playlist_relation_idx` (`UserId` ASC),
   CONSTRAINT `user_playlist_relation`
     FOREIGN KEY (`UserId`)
     REFERENCES `playlist_generator_db`.`user_details` (`UserDetailId`)
@@ -159,8 +158,8 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`genre_playlist_relations` (
   `GenreId` INT NOT NULL,
   `IsDeleted` TINYINT(1) NULL,
   PRIMARY KEY (`GenrePlaylistRelationId`),
-  INDEX `genre_playlist_relation_idx` (`GenreId` ASC) VISIBLE,
-  INDEX `playlist_genre_ralation_idx` (`PlaylistId` ASC) VISIBLE,
+  INDEX `genre_playlist_relation_idx` (`GenreId` ASC),
+  INDEX `playlist_genre_ralation_idx` (`PlaylistId` ASC),
   CONSTRAINT `genre_playlist_relation`
     FOREIGN KEY (`GenreId`)
     REFERENCES `playlist_generator_db`.`genres` (`GenreId`)
@@ -185,8 +184,8 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`playlist_track_relations` (
   `TrackId` INT NOT NULL,
   `IsDeleted` TINYINT(1) NULL,
   PRIMARY KEY (`PlaylistTrackRelationId`),
-  INDEX `playlist_track_relation_idx` (`PlaylistId` ASC) VISIBLE,
-  INDEX `track_playlist_relation_idx` (`TrackId` ASC) VISIBLE,
+  INDEX `playlist_track_relation_idx` (`PlaylistId` ASC),
+  INDEX `track_playlist_relation_idx` (`TrackId` ASC),
   CONSTRAINT `playlist_track_relation`
     FOREIGN KEY (`PlaylistId`)
     REFERENCES `playlist_generator_db`.`playlists` (`PlaylistId`)
@@ -209,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`authority` (
   `username` VARCHAR(45) NOT NULL,
   `role_type` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`username`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   CONSTRAINT `user_authority_relation`
     FOREIGN KEY (`username`)
     REFERENCES `playlist_generator_db`.`users` (`username`)
