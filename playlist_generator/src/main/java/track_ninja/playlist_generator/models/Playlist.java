@@ -17,13 +17,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Playlist {
-    private static final String PLAYLIST_ID = "PlaylistId";
+    private static final String PLAYLIST_ID = "playlist_id";
     private static final int TITLE_MIN_LENGTH = 3;
     private static final int TITLE_MAX_LENGTH = 20;
     private static final String TITLE_LENGTH_ERROR_MESSAGE = "Title length must be at least 3 and at most 20 characters long!";
-    private static final String TITLE = "Title";
-    private static final String USER_ID = "UserId";
-    private static final String IS_DELETED = "IsDeleted";
+    private static final String TITLE = "title";
+    private static final String USER_ID = "user_id";
+    private static final String IS_DELETED = "is_deleted";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,8 +44,8 @@ public class Playlist {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "playlist_track_relations",
-            joinColumns = {@JoinColumn(name = "PlaylistId", referencedColumnName = "PlaylistId")},
-            inverseJoinColumns = {@JoinColumn(name = "TrackId", referencedColumnName = "TrackId")})
+            joinColumns = {@JoinColumn(name = "playlist_id", referencedColumnName = "playlist_id")},
+            inverseJoinColumns = {@JoinColumn(name = "track_id", referencedColumnName = "track_id")})
     private List<Track> tracks;
 
     @JsonIgnore

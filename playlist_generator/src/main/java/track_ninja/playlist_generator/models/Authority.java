@@ -18,17 +18,25 @@ import java.util.List;
 @NoArgsConstructor
 public class Authority {
 
+    private static final String AUTHORITY_ID = "authority_id";
+    private static final String NAME = "name";
+    static final String AUTHORITIES = "authorities";
+
     @Id
-    @Column(name = "AuthorityId")
+    @Column(name = AUTHORITY_ID)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "Name")
+    @Column(name = NAME)
     @NotNull
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "authorities")
+    @ManyToMany(mappedBy = AUTHORITIES)
     private List<User> users;
+
+    public AuthorityName getName() {
+        return name;
+    }
 }

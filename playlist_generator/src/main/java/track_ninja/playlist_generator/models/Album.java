@@ -16,10 +16,10 @@ import java.util.Set;
 @NoArgsConstructor
 public class Album {
 
-    private static final String ALBUM_ID = "AlbumId";
-    private static final String TITLE = "Title";
-    private static final String ARTIST_ID = "ArtistId";
-    private static final String ALBUM_TRACK_LIST_URL = "AlbumTracklistUrl";
+    private static final String ALBUM_ID = "album_id";
+    private static final String TITLE = "title";
+    private static final String ARTIST_ID = "artist_id";
+    private static final String ALBUM_TRACK_LIST_URL = "album_tracklist_Url";
     private static final String ALBUM = "album";
 
     @Id

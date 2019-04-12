@@ -16,9 +16,9 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Genre {
-    private static final String GENRE_ID = "GenreId";
-    private static final String NAME = "Name";
-    private static final String IMAGE_URL = "ImageUrl";
+    private static final String GENRE_ID = "genre_id";
+    private static final String NAME = "name";
+    private static final String IMAGE_URL = "image_url";
     private static final String GENRE = "genre";
 
     @Id
@@ -38,7 +38,7 @@ public class Genre {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "genre_playlist_relations",
-            joinColumns = {@JoinColumn(name = "GenreId", referencedColumnName = "GenreId")},
-            inverseJoinColumns = {@JoinColumn(name = "PlaylistId", referencedColumnName = "PlaylistId")})
+            joinColumns = {@JoinColumn(name = "genre_id", referencedColumnName = "genre_id")},
+            inverseJoinColumns = {@JoinColumn(name = "playlist_id", referencedColumnName = "playlist_id")})
     private List<Playlist> playlists;
 }

@@ -16,9 +16,9 @@ import java.util.Set;
 @NoArgsConstructor
 public class Artist {
 
-    private static final String ARTIST_ID = "ArtistId";
-    private static final String ARTIST_NAME = "Name";
-    private static final String TRACK_LIST_URL = "ArtistsTrackListUrl";
+    private static final String ARTIST_ID = "artist_id";
+    private static final String ARTIST_NAME = "name";
+    private static final String TRACK_LIST_URL = "artists_tracklist_url";
     private static final String ARTIST = "artist";
 
     @Id

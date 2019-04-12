@@ -17,11 +17,14 @@ import java.util.List;
 @NoArgsConstructor
 public class Track {
 
-    private static final String TRACK_ID = "TrackId";
-    private static final String TITLE = "Title";
-    private static final String PREVIEW_URL = "PreviewUrl";
-    private static final String DURATION = "Duration";
-    private static final String RANK = "Rank";
+    private static final String TRACK_ID = "track_id";
+    private static final String TITLE = "title";
+    private static final String PREVIEW_URL = "preview_url";
+    private static final String DURATION = "duration";
+    private static final String RANK = "rank";
+    private static final String ALBUM_ID = "album_id";
+    private static final String GENRE_ID = "genre_id";
+    private static final String TRACKS = "tracks";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,14 +44,14 @@ public class Track {
     private int rank;
 
     @ManyToOne
-    @JoinColumn(name = "AlbumId")
+    @JoinColumn(name = ALBUM_ID)
     private Album album;
 
     @ManyToOne
-    @JoinColumn(name = "GenreId")
+    @JoinColumn(name = GENRE_ID)
     private Genre genre;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "tracks")
+    @ManyToMany(mappedBy = TRACKS)
     private List<Playlist> playlists;
 }

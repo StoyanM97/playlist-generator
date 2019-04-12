@@ -15,6 +15,16 @@ DROP SCHEMA IF EXISTS `playlist_generator_db` ;
 CREATE SCHEMA IF NOT EXISTS `playlist_generator_db` DEFAULT CHARACTER SET utf8 ;
 USE `playlist_generator_db` ;
 
+-- -----------------------------------------------------
+-- Table `playlist_generator_db`.`Track`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `playlist_generator_db`.`Track` ;
+
+CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`Track` (
+  `T` INT NOT NULL,
+  PRIMARY KEY (`T`))
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `playlist_generator_db`.`artists`
@@ -22,10 +32,10 @@ USE `playlist_generator_db` ;
 DROP TABLE IF EXISTS `playlist_generator_db`.`artists` ;
 
 CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`artists` (
-  `ArtistId` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(45) NOT NULL,
-  `ArtistTrackListUrl` VARCHAR(45) NULL,
-  PRIMARY KEY (`ArtistId`))
+  `artist_id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `artist_tracklist_url` VARCHAR(45) NULL,
+  PRIMARY KEY (`artist_id`))
 ENGINE = InnoDB;
 
 
@@ -35,15 +45,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `playlist_generator_db`.`albums` ;
 
 CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`albums` (
-  `AlbumId` INT NOT NULL AUTO_INCREMENT,
-  `Title` VARCHAR(45) NOT NULL,
-  `ArtistId` INT NOT NULL,
-  `AlbumTracklistUrl` VARCHAR(45) NULL,
-  PRIMARY KEY (`AlbumId`),
-  INDEX `album_artist_relation_idx` (`ArtistId` ASC) VISIBLE,
+  `album_id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(45) NOT NULL,
+  `artist_id` INT NOT NULL,
+  `album_tracklist_url` VARCHAR(45) NULL,
+  PRIMARY KEY (`album_id`),
+  INDEX `album_artist_relation_idx` (`artist_id` ASC),
   CONSTRAINT `album_artist_relation`
-    FOREIGN KEY (`ArtistId`)
-    REFERENCES `playlist_generator_db`.`artists` (`ArtistId`)
+    FOREIGN KEY (`artist_id`)
+    REFERENCES `playlist_generator_db`.`artists` (`artist_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -68,32 +78,32 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `playlist_generator_db`.`tracks` ;
 
 CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`tracks` (
-  `TrackId` INT NOT NULL AUTO_INCREMENT,
-  `Title` VARCHAR(45) NOT NULL,
-  `PreviewUrl` VARCHAR(300) NULL,
-  `Duration` INT NOT NULL,
-  `Rank` INT NOT NULL,
-  `Link` VARCHAR(300) NOT NULL,
-  `GenreId` INT NOT NULL,
-  `ArtistId` INT NOT NULL,
-  `AlbumId` INT NOT NULL,
-  PRIMARY KEY (`TrackId`),
-  INDEX `track_album_relation_idx` (`AlbumId` ASC) VISIBLE,
-  INDEX `track_genre_relation_idx` (`GenreId` ASC) VISIBLE,
-  INDEX `track_artist_relation_idx` (`ArtistId` ASC) VISIBLE,
+  `track_id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(45) NOT NULL,
+  `preview_url` VARCHAR(300) NULL,
+  `duration` INT NOT NULL,
+  `rank` INT NOT NULL,
+  `link` VARCHAR(300) NOT NULL,
+  `genre_id` INT NOT NULL,
+  `artist_id` INT NOT NULL,
+  `album_id` INT NOT NULL,
+  PRIMARY KEY (`track_id`),
+  INDEX `track_album_relation_idx` (`album_id` ASC) ,
+  INDEX `track_genre_relation_idx` (`genre_id` ASC) ,
+  INDEX `track_artist_relation_idx` (`artist_id` ASC) ,
   CONSTRAINT `track_album_relation`
-    FOREIGN KEY (`AlbumId`)
-    REFERENCES `playlist_generator_db`.`albums` (`AlbumId`)
+    FOREIGN KEY (`album_id`)
+    REFERENCES `playlist_generator_db`.`albums` (`album_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `track_genre_relation`
-    FOREIGN KEY (`GenreId`)
+    FOREIGN KEY (`genre_id`)
     REFERENCES `playlist_generator_db`.`genres` (`genre_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `track_artist_relation`
-    FOREIGN KEY (`ArtistId`)
-    REFERENCES `playlist_generator_db`.`artists` (`ArtistId`)
+    FOREIGN KEY (`artist_id`)
+    REFERENCES `playlist_generator_db`.`artists` (`artist_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -109,27 +119,27 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`users` (
   `password` VARCHAR(45) NOT NULL,
   `enabled` TINYINT(1) NULL,
   PRIMARY KEY (`username`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `playlist_generator_db`.`user_details`
+-- Table `playlist_generator_db`.`user-details`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `playlist_generator_db`.`user_details` ;
+DROP TABLE IF EXISTS `playlist_generator_db`.`user-details` ;
 
-CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`user_details` (
-  `UserDetailId` INT NOT NULL AUTO_INCREMENT,
-  `UserName` VARCHAR(45) NOT NULL,
-  `Email` VARCHAR(45) NOT NULL,
-  `FirstName` VARCHAR(45) NOT NULL,
-  `LastName` VARCHAR(45) NOT NULL,
-  `Avatar` LONGBLOB NULL,
-  `IsDeleted` TINYINT(1) NULL,
-  PRIMARY KEY (`UserDetailId`),
-  INDEX `user_details_user_relation_idx` (`UserName` ASC) VISIBLE,
+CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`user-details` (
+  `user_details_id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `avatar` LONGBLOB NULL,
+  `is_deleted` TINYINT(1) NULL,
+  PRIMARY KEY (`user_details_id`),
+  INDEX `user_details_user_relation_idx` (`username` ASC) ,
   CONSTRAINT `user_details_user_relation`
-    FOREIGN KEY (`UserName`)
+    FOREIGN KEY (`username`)
     REFERENCES `playlist_generator_db`.`users` (`username`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -142,15 +152,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `playlist_generator_db`.`playlists` ;
 
 CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`playlists` (
-  `PlaylistId` INT NOT NULL AUTO_INCREMENT,
-  `Title` VARCHAR(45) NOT NULL,
-  `UserId` INT NOT NULL,
-  `IsDeleted` TINYINT(1) NULL,
-  PRIMARY KEY (`PlaylistId`),
-  INDEX `user_playlist_relation_idx` (`UserId` ASC) VISIBLE,
+  `playlist_id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(45) NOT NULL,
+  `user_id` INT NOT NULL,
+  `is_deleted` TINYINT(1) NULL,
+  PRIMARY KEY (`playlist_id`),
+  INDEX `user_playlist_relation_idx` (`user_id` ASC) ,
   CONSTRAINT `user_playlist_relation`
-    FOREIGN KEY (`UserId`)
-    REFERENCES `playlist_generator_db`.`user_details` (`UserDetailId`)
+    FOREIGN KEY (`user_id`)
+    REFERENCES `playlist_generator_db`.`user-details` (`user_details_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -162,21 +172,21 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `playlist_generator_db`.`genre_playlist_relations` ;
 
 CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`genre_playlist_relations` (
-  `GenrePlaylistRelationId` INT NOT NULL AUTO_INCREMENT,
-  `PlaylistId` INT NOT NULL,
-  `GenreId` INT NOT NULL,
-  `IsDeleted` TINYINT(1) NULL,
-  PRIMARY KEY (`GenrePlaylistRelationId`),
-  INDEX `genre_playlist_relation_idx` (`GenreId` ASC) VISIBLE,
-  INDEX `playlist_genre_ralation_idx` (`PlaylistId` ASC) VISIBLE,
+  `genre_laylist_relation_Id` INT NOT NULL AUTO_INCREMENT,
+  `playlist_id` INT NOT NULL,
+  `genre_id` INT NOT NULL,
+  `is_deleted` TINYINT(1) NULL,
+  PRIMARY KEY (`genre_laylist_relation_Id`),
+  INDEX `genre_playlist_relation_idx` (`genre_id` ASC) ,
+  INDEX `playlist_genre_ralation_idx` (`playlist_id` ASC) ,
   CONSTRAINT `genre_playlist_relation`
-    FOREIGN KEY (`GenreId`)
+    FOREIGN KEY (`genre_id`)
     REFERENCES `playlist_generator_db`.`genres` (`genre_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `playlist_genre_ralation`
-    FOREIGN KEY (`PlaylistId`)
-    REFERENCES `playlist_generator_db`.`playlists` (`PlaylistId`)
+    FOREIGN KEY (`playlist_id`)
+    REFERENCES `playlist_generator_db`.`playlists` (`playlist_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -188,21 +198,21 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `playlist_generator_db`.`playlist_track_relations` ;
 
 CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`playlist_track_relations` (
-  `PlaylistTrackRelationId` INT NOT NULL AUTO_INCREMENT,
-  `PlaylistId` INT NOT NULL,
-  `TrackId` INT NOT NULL,
-  `IsDeleted` TINYINT(1) NULL,
-  PRIMARY KEY (`PlaylistTrackRelationId`),
-  INDEX `playlist_track_relation_idx` (`PlaylistId` ASC) VISIBLE,
-  INDEX `track_playlist_relation_idx` (`TrackId` ASC) VISIBLE,
+  `playlist_track_relation_id` INT NOT NULL AUTO_INCREMENT,
+  `playlist_id` INT NOT NULL,
+  `track_id` INT NOT NULL,
+  `is_deleted` TINYINT(1) NULL,
+  PRIMARY KEY (`playlist_track_relation_id`),
+  INDEX `playlist_track_relation_idx` (`playlist_id` ASC) ,
+  INDEX `track_playlist_relation_idx` (`track_id` ASC) ,
   CONSTRAINT `playlist_track_relation`
-    FOREIGN KEY (`PlaylistId`)
-    REFERENCES `playlist_generator_db`.`playlists` (`PlaylistId`)
+    FOREIGN KEY (`playlist_id`)
+    REFERENCES `playlist_generator_db`.`playlists` (`playlist_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `track_playlist_relation`
-    FOREIGN KEY (`TrackId`)
-    REFERENCES `playlist_generator_db`.`tracks` (`TrackId`)
+    FOREIGN KEY (`track_id`)
+    REFERENCES `playlist_generator_db`.`tracks` (`track_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -217,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`authority` (
   `username` VARCHAR(45) NOT NULL,
   `role_type` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`username`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) ,
   CONSTRAINT `user_authority_relation`
     FOREIGN KEY (`username`)
     REFERENCES `playlist_generator_db`.`users` (`username`)
