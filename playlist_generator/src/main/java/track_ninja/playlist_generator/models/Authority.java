@@ -10,32 +10,33 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "authorities")
+@Table(name = "authority")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Authority implements GrantedAuthority {
 
-    private static final String AUTHORITY_ID = "authority_id";
-    private static final String NAME = "name";
-    static final String AUTHORITIES = "authorities";
+//    private static final String AUTHORITY_ID = "authority_id";
+    private static final String ROLE_TYPE = "role_type";
+//    static final String AUTHORITIES = "authorities";
+    private static final String USERNAME = "username";
 
     @Id
-    @Column(name = AUTHORITY_ID)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = USERNAME)
+    private String username;
 
-    @Column(name = NAME)
+    @Column(name = ROLE_TYPE)
     @NotNull
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = AUTHORITIES)
-    private List<User> users;
+    @OneToMany(mappedBy = USERNAME)
+    private Set<User> users;
 
     public AuthorityName getName() {
         return name;

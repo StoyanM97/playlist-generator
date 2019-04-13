@@ -69,16 +69,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(securityDataSource)
                 .usersByUsernameQuery(
-                        "select username,password, enabled  from users where username=? COLLATE latin1_general_cs")
+                        "select username,password, enabled  from users where username=?")
                 .authoritiesByUsernameQuery(
                         "select\n" +
                                 "\n" +
-                                "a.Username,\n" +
-                                "b.name as role\n" +
+                                "a.username,\n" +
+                                "b.role_type as role\n" +
                                 "\n" +
                                 "from users as a\n" +
                                 "inner join roles as b\n" +
-                                "on a.roleId = b.roleId where username=?");
+                                "on a.username = b.username where username=?");
     }
 
     @Override
