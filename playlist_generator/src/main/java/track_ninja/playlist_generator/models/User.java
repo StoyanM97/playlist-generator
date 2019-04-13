@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -19,7 +20,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements UserDetails {
     private static final String FIRST_NAME_LENGTH_ERROR_MESSAGE = "First name must be at least 2 characters and at most 15 characters long!";
     private static final String LAST_NAME_LENGTH_ERROR_MESSAGE = "Last name must be at least 2 characters and at most 15 characters long!";
     private static final int NAME_MIN_LENGTH = 2;
@@ -79,6 +80,8 @@ public class User {
     @Column(name = IS_USER_DELETED)
     private boolean isDeleted;
 
+    private boolean isFirstLogin;
+
     @OneToMany(mappedBy = USER)
     private Set<Playlist> playLists;
 
@@ -93,11 +96,48 @@ public class User {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return isDeleted;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public List<Authority> getAuthorities() {
         return authorities;
+    }
+
+    public boolean isFirstLogin() {
+        return isFirstLogin;
+    }
+
+    public void setFirstLogin(boolean firstLogin) {
+        isFirstLogin = firstLogin;
+    }
+
+    public Authority getAuthority() {
+        if (authorities.stream().map(Authority::getName)
+                .anyMatch(authorityName -> authorityName.equals(AuthorityName.ROLE_ADMIN))){
+            return authorities.get(1);
+        } else {
+            return authorities.get(0);
+        }
     }
 }

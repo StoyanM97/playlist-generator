@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,7 +17,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Authority {
+public class Authority implements GrantedAuthority {
 
     private static final String AUTHORITY_ID = "authority_id";
     private static final String NAME = "name";
@@ -38,5 +39,10 @@ public class Authority {
 
     public AuthorityName getName() {
         return name;
+    }
+
+    @Override
+    public String getAuthority() {
+        return name.toString();
     }
 }
