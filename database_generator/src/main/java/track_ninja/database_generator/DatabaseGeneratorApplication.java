@@ -7,17 +7,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import track_ninja.database_generator.exeption_handlers.RestTemplateResponseErrorHandler;
 import track_ninja.database_generator.services.DatabaseGeneratorService;
-
 
 @SpringBootApplication
 public class DatabaseGeneratorApplication {
 
     private DatabaseGeneratorService service;
+    private RestTemplateResponseErrorHandler restTemplateResponseErrorHandler;
 
     @Autowired
-    public DatabaseGeneratorApplication(DatabaseGeneratorService service) {
+    public DatabaseGeneratorApplication(DatabaseGeneratorService service, RestTemplateResponseErrorHandler restTemplateResponseErrorHandler) {
         this.service = service;
+        this.restTemplateResponseErrorHandler = restTemplateResponseErrorHandler;
     }
 
     public static void main(String[] args) {
@@ -27,15 +29,14 @@ public class DatabaseGeneratorApplication {
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.build();
+        return builder.errorHandler(restTemplateResponseErrorHandler).build();
     }
 
     @Bean
-    public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
-
+    public CommandLineRunner run(RestTemplate restTemplate){
         return args -> {
             service.saveGenres(restTemplate);
-            service.saveTracks(restTemplate);
+            service.getTracks(restTemplate);
         };
     }
 

@@ -16,25 +16,14 @@ CREATE SCHEMA IF NOT EXISTS `playlist_generator_db` DEFAULT CHARACTER SET utf8 ;
 USE `playlist_generator_db` ;
 
 -- -----------------------------------------------------
--- Table `playlist_generator_db`.`Track`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `playlist_generator_db`.`Track` ;
-
-CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`Track` (
-  `T` INT NOT NULL,
-  PRIMARY KEY (`T`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `playlist_generator_db`.`artists`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `playlist_generator_db`.`artists` ;
 
 CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`artists` (
   `artist_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `artist_tracklist_url` VARCHAR(45) NULL,
+  `name` VARCHAR(200) NOT NULL,
+  `artist_tracklist_url` VARCHAR(300) NULL,
   PRIMARY KEY (`artist_id`))
 ENGINE = InnoDB;
 
@@ -46,9 +35,9 @@ DROP TABLE IF EXISTS `playlist_generator_db`.`albums` ;
 
 CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`albums` (
   `album_id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(200) NOT NULL,
   `artist_id` INT NOT NULL,
-  `album_tracklist_url` VARCHAR(45) NULL,
+  `album_tracklist_url` VARCHAR(300) NULL,
   PRIMARY KEY (`album_id`),
   INDEX `album_artist_relation_idx` (`artist_id` ASC),
   CONSTRAINT `album_artist_relation`
@@ -66,7 +55,7 @@ DROP TABLE IF EXISTS `playlist_generator_db`.`genres` ;
 
 CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`genres` (
   `genre_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(200) NOT NULL,
   `image_url` VARCHAR(300) NULL,
   PRIMARY KEY (`genre_id`))
 ENGINE = InnoDB;
@@ -79,7 +68,7 @@ DROP TABLE IF EXISTS `playlist_generator_db`.`tracks` ;
 
 CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`tracks` (
   `track_id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(200) NOT NULL,
   `preview_url` VARCHAR(300) NULL,
   `duration` INT NOT NULL,
   `rank` INT NOT NULL,
@@ -153,7 +142,7 @@ DROP TABLE IF EXISTS `playlist_generator_db`.`playlists` ;
 
 CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`playlists` (
   `playlist_id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(200) NOT NULL,
   `user_id` INT NOT NULL,
   `is_deleted` TINYINT(1) NULL,
   PRIMARY KEY (`playlist_id`),

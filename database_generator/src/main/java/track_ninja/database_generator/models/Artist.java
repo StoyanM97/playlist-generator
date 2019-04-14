@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 
@@ -14,19 +15,32 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name="Artist")
+@Table(name = "artists")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ArtistId")
-    int id;
+    @Column(name = "artist_id")
+    private int artistId;
 
-    @Column(name = "Name")
-    String name;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "ArtistTrackListUrl")
-    String tracklist;
+    @Column(name = "artist_tracklist_url")
+    private String tracklist;
 
+    @Transient
+    long id;
+
+    @Override
+    public String toString() {
+        return "Artist{" +
+                "artistId=" + artistId +
+                ", name='" + name + '\'' +
+                ", tracklist='" + tracklist + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

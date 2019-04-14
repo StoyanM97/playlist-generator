@@ -1,49 +1,194 @@
 package track_ninja.database_generator.services;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-import track_ninja.database_generator.models.Genre;
-import track_ninja.database_generator.models.GenreList;
-import track_ninja.database_generator.models.Track;
-import track_ninja.database_generator.models.TrackList;
+import track_ninja.database_generator.common.GenreStyle;
+import track_ninja.database_generator.models.*;
+import track_ninja.database_generator.repositories.AlbumRepository;
+import track_ninja.database_generator.repositories.ArtistRepository;
 import track_ninja.database_generator.repositories.GenreRepository;
+import track_ninja.database_generator.repositories.TrackRepository;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 
 @Service
+@Transactional
 public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
 
-    // private static final Logger log = LoggerFactory.getLogger(DatabaseGeneratorApplication.class);
+    private static final String TRACK_INDEX = "?index=0&limit=100";
+    private static final String TRACK_NEXT_INDEX = "&index=25";
+    private static final String URL_PLAYLIST = "https://api.deezer.com/search/playlist?q=";
+    private static final String URL_GENRE = "https://api.deezer.com/genre";
+    private static final String GENRES_WERE_LOADED = "Genres were loaded";
+    private static final String UNABLE_TO_LOAD_GENRES = "Unable to load Genres";
+    private static final String TRACKS_SAVING_FINISHED = "Saving tracts to database finished";
+    private static final String PLAYLISTS_FROM_DEEZER_API = "Downloaded first 25 Playlists from Deezer Api for Genre ";
+    private static final String PLAYLISTS_FROM_DEEZER_API_NEXT_25 = "Downloaded next 25 Playlists from Deezer Api for Genre ";
+    private static final String NO_TRACKS_DOWNLOADED = "No Tracks downloaded";
+    private static final String TRACKS_WERE_DOWNLOADED = "Tracks were downloaded for Genre ";
+    private static final String THREAD_SLEEP_INTERRUPTED_ERROR = "Thread sleep interrupted error ";
 
-    private GenreRepository repository;
+
+    private GenreRepository genreRepository;
+    private TrackRepository trackRepository;
+    private ArtistRepository artistRepository;
+    private AlbumRepository albumRepository;
+
+    private static final Logger log = LoggerFactory.getLogger(DatabaseGeneratorService.class);
 
     @Autowired
-    public DatabaseGeneratorServiceImpl(GenreRepository repository) {
-        this.repository = repository;
+    public DatabaseGeneratorServiceImpl(GenreRepository genreRepository, TrackRepository trackRepository,
+                                        ArtistRepository artistRepository, AlbumRepository albumRepository) {
+        this.genreRepository = genreRepository;
+        this.trackRepository = trackRepository;
+        this.artistRepository = artistRepository;
+        this.albumRepository = albumRepository;
     }
 
     @Override
     public void saveGenres(RestTemplate restTemplate) {
 
-        GenreList result = restTemplate.getForObject("https://api.deezer.com/genre", GenreList.class);
-        List<Genre> genres = result.getGenres();
-        System.out.println(genres);
-        repository.saveAll(genres);
+        GenreList result = restTemplate.getForObject(URL_GENRE, GenreList.class);
+
+        if(result!=null){
+            List<Genre> genres = result.getGenres();
+            List<Genre> genresToSave = new ArrayList<>();
+
+            genres.forEach(genre -> {
+                if(!genreRepository.existsByName(genre.getName())){
+                    genresToSave.add(genre);
+                }
+            });
+
+            genreRepository.saveAll(genresToSave);
+
+            log.info(GENRES_WERE_LOADED);
+        }
+        else{
+            log.error(UNABLE_TO_LOAD_GENRES);
+        }
+
     }
 
     @Override
-    public void saveTracks(RestTemplate restTemplate) {
+    public void getTracks(RestTemplate restTemplate) {
 
-        TrackList result = restTemplate.getForObject("https://api.deezer.com/playlist/1677006641/tracks", TrackList.class);
-        List<Track> tracks = result.getTracks();
+        Set<Track> tracks = new HashSet<>();
 
-        System.out.println(tracks.get(0).getTitle());
-        System.out.println(tracks.get(0).getId());
-        System.out.println(tracks.get(0).getArtist().getName());
-        System.out.println(tracks.get(0).getAlbum().getTitle());
-        System.out.println(tracks.size());
+        for (GenreStyle style: GenreStyle.values()) {
+
+            List<Playlist> playlists = getPlaylists(restTemplate, style.getStyle());
+
+            System.out.println(playlists.size());
+            System.out.println(playlists.get(0).getTracklist());
+
+            List<Track> trackList = getTracklist(restTemplate, playlists, style.getStyle());
+
+            System.out.println(trackList.size());
+
+            removeDuplicateTracks(tracks, trackList, style.getStyle());
+
+            System.out.println(tracks.size());
+
+            try{
+                Thread.sleep(5000);
+            }
+            catch (InterruptedException e){
+
+                log.error(THREAD_SLEEP_INTERRUPTED_ERROR + e.getMessage());
+
+            }
+
+        }
+
+        saveTracks(tracks);
 
     }
+
+    private void saveTracks(Set<Track> tracks) {
+
+        tracks.forEach(track -> {
+
+            Genre genre = track.getGenre();
+            if(genreRepository.existsByName(genre.getName())){
+                genre = genreRepository.getByName(genre.getName());
+                track.setGenre(genre);
+            }
+
+            Album album = track.getAlbum();
+            if(albumRepository.existsByTitleAndTracklist(album.getTitle(),album.getTracklist())){
+                album = albumRepository.getByTitleAndTracklist(album.getTitle(),album.getTracklist());
+                track.setAlbum(album);
+
+            }
+
+            Artist artist = track.getArtist();
+            if(artistRepository.existsByNameAndTracklist(artist.getName(), artist.getTracklist())){
+                artist = artistRepository.getByNameAndTracklist(artist.getName(), artist.getTracklist());
+                track.setArtist(artist);
+                track.getAlbum().setArtist(artist);
+            }
+
+            trackRepository.save(track);
+
+        });
+
+       log.info(TRACKS_SAVING_FINISHED);
+    }
+
+
+
+    private List<Playlist> getPlaylists(RestTemplate restTemplate, String style){
+
+        List<Playlist> playlists = new ArrayList<>();
+
+        PlaylistList result = restTemplate.getForObject(URL_PLAYLIST + style, PlaylistList.class);
+        if(result!=null){
+            playlists.addAll(result.getPlaylists());
+            log.info(PLAYLISTS_FROM_DEEZER_API + style);
+        }
+        PlaylistList resultNext = restTemplate.getForObject(URL_PLAYLIST +style + TRACK_NEXT_INDEX, PlaylistList.class);
+        if(resultNext!=null){
+            playlists.addAll(resultNext.getPlaylists());
+            log.info(PLAYLISTS_FROM_DEEZER_API_NEXT_25 + style);
+        }
+        return playlists;
+    }
+
+    private List<Track> getTracklist(RestTemplate restTemplate, List<Playlist> playlists, String style ){
+
+        List<Track> trackList = new ArrayList<>();
+        for (Playlist p: playlists) {
+            TrackList trackListResult = restTemplate.getForObject(p.getTracklist()+ TRACK_INDEX, TrackList.class);
+            if(trackListResult!=null){
+                trackList.addAll(trackListResult.getTracks());
+
+            }
+        }
+        log.info(trackList.isEmpty()? NO_TRACKS_DOWNLOADED : TRACKS_WERE_DOWNLOADED + style);
+        return trackList;
+    }
+
+    private void removeDuplicateTracks(Set<Track> tracks, List<Track> trackList, String style){
+
+        trackList.forEach(track -> {
+
+            track.getAlbum().setArtist(track.getArtist());
+            Genre genre = new Genre();
+            genre.setName(style);
+            track.setGenre(genre);
+            tracks.add(track);
+
+        });
+    }
+
 }
