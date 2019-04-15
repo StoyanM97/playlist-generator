@@ -13,6 +13,7 @@ public class LoginUser implements Serializable {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public LoginUser() {
+
     }
 
     public LoginUser(String username, String password) {

@@ -77,18 +77,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                                 "b.role_type as role\n" +
                                 "\n" +
                                 "from users as a\n" +
-                                "inner join roles as b\n" +
-                                "on a.username = b.username where username=?");
+                                "inner join authority as b\n" +
+                                "on a.username = b.username where a.username=?");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
+                .antMatchers("/api").permitAll()
                 .antMatchers("/api/login").permitAll()
-                .antMatchers("/api/client/**").hasRole("USER")
-                .antMatchers("/client/**").hasRole("USER")
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/register").permitAll()
+                .antMatchers("/api/user/**").hasRole("USER")
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
