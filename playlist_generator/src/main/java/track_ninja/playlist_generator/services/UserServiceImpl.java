@@ -19,8 +19,8 @@ import java.util.List;
 @Service("UserServiceImpl")
 public class UserServiceImpl implements UserService, UserDetailsService {
     private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
     private AuthorityRepository authorityRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
@@ -56,6 +56,5 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         authority.setUsername(loginUser.getUsername());
         authority.setName(AuthorityName.ROLE_USER);
         authorityRepository.save(authority);
-        System.out.println("Registered!");
     }
 }
