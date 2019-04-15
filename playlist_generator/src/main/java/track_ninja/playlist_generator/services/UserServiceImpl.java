@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import track_ninja.playlist_generator.models.User;
 import track_ninja.playlist_generator.repositories.UserRepository;
 
+import java.util.List;
+
 @Service("UserServiceImpl")
 public class UserServiceImpl implements UserService, UserDetailsService {
     private UserRepository userRepository;
@@ -23,7 +25,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public Iterable<User> getAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
     public User getByUsername(String usernameFromToken) {
-        return null;
+        return userRepository.findByUsername(usernameFromToken);
     }
 }
