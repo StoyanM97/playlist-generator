@@ -77,8 +77,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                                 "b.role_type as role\n" +
                                 "\n" +
                                 "from users as a\n" +
-                                "inner join roles as b\n" +
-                                "on a.username = b.username where username=?");
+                                "inner join authority as b\n" +
+                                "on a.username = b.username where a.username=?");
     }
 
     @Override
