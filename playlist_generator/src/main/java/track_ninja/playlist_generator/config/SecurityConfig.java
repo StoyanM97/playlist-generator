@@ -85,10 +85,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
+                .antMatchers("/api").permitAll()
                 .antMatchers("/api/login").permitAll()
-                .antMatchers("/api/client/**").hasRole("USER")
-                .antMatchers("/client/**").hasRole("USER")
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/register").permitAll()
+                .antMatchers("/api/user/**").hasRole("USER")
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

@@ -22,19 +22,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api")
 public class AuthenticationController {
     private AuthenticationManager authenticationManager;
     private JwtTokenUtil jwtTokenUtil;
     private UserService userService;
-    private TokenService<HttpServletRequest> tokenService;
+//    private TokenService<HttpServletRequest> tokenService;
 
     @Autowired
     public AuthenticationController(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, UserService userService, TokenService<HttpServletRequest> tokenService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.userService = userService;
-        this.tokenService = tokenService;
+//        this.tokenService = tokenService;
     }
     @PostMapping("/login")
     public ResponseEntity register(@RequestBody LoginUser loginUser, HttpServletResponse res) throws AuthenticationException {
