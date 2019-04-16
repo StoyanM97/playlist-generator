@@ -1,4 +1,4 @@
-package track_ninja.database_generator.exeption_handlers;
+package track_ninja.location_generator.exeption_handlers;
 
 
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class RestTemplateResponseErrorHandler implements ResponseErrorHandler {
 
     @Override
     public boolean hasError(ClientHttpResponse response) throws IOException {
-        //TODO throw http status error
+
         return response.getStatusCode() != HttpStatus.OK;
     }
 

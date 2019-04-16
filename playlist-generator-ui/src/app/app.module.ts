@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BingmapServiceDashboardComponent } from './bingmap-service-dashboard/bingmap-service-dashboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BingmapServiceDashboardComponent
   ],
   imports: [
     BrowserModule,

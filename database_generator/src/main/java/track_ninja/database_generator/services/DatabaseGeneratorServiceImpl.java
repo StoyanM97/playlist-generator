@@ -36,26 +36,36 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
     private static final String NO_TRACKS_DOWNLOADED = "No Tracks downloaded";
     private static final String TRACKS_WERE_DOWNLOADED = "Tracks were downloaded for Genre ";
     private static final String THREAD_SLEEP_INTERRUPTED_ERROR = "Thread sleep interrupted error ";
+    private static final String NUMBER_OF_TRACKS_DOWNLOADED_FOR_GENRE = "Number of tracks downloaded for genre ";
+    private static final String TOTAL_PLAYLISTS_FOR_GENRE = "Total playlists for genre ";
+    private static final String DELIMITER = ": ";
+    private static final String TOTAL_TRACKS = "Total tracks after removing the duplicate tracks: ";
 
 
     private GenreRepository genreRepository;
     private TrackRepository trackRepository;
     private ArtistRepository artistRepository;
     private AlbumRepository albumRepository;
+    private RestTemplate restTemplate;
+
 
     private static final Logger log = LoggerFactory.getLogger(DatabaseGeneratorService.class);
 
     @Autowired
     public DatabaseGeneratorServiceImpl(GenreRepository genreRepository, TrackRepository trackRepository,
-                                        ArtistRepository artistRepository, AlbumRepository albumRepository) {
+                                        ArtistRepository artistRepository, AlbumRepository albumRepository,
+                                        RestTemplate restTemplate) {
         this.genreRepository = genreRepository;
         this.trackRepository = trackRepository;
         this.artistRepository = artistRepository;
         this.albumRepository = albumRepository;
+        this.restTemplate = restTemplate;
+
+
     }
 
     @Override
-    public void saveGenres(RestTemplate restTemplate) {
+    public boolean saveGenres() {
 
         GenreList result = restTemplate.getForObject(URL_GENRE, GenreList.class);
 
@@ -72,49 +82,23 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
             genreRepository.saveAll(genresToSave);
 
             log.info(GENRES_WERE_LOADED);
+            return true;
         }
         else{
             log.error(UNABLE_TO_LOAD_GENRES);
+            return false;
         }
 
     }
 
     @Override
-    public void getTracks(RestTemplate restTemplate) {
+    public boolean saveTracks() {
 
-        Set<Track> tracks = new HashSet<>();
+        Set<Track> tracks = getTracks();
 
-        for (GenreStyle style: GenreStyle.values()) {
-
-            List<Playlist> playlists = getPlaylists(restTemplate, style.getStyle());
-
-            System.out.println(playlists.size());
-            System.out.println(playlists.get(0).getTracklist());
-
-            List<Track> trackList = getTracklist(restTemplate, playlists, style.getStyle());
-
-            System.out.println(trackList.size());
-
-            removeDuplicateTracks(tracks, trackList, style.getStyle());
-
-            System.out.println(tracks.size());
-
-            try{
-                Thread.sleep(5000);
-            }
-            catch (InterruptedException e){
-
-                log.error(THREAD_SLEEP_INTERRUPTED_ERROR + e.getMessage());
-
-            }
-
+        if(tracks.isEmpty()){
+            return false;
         }
-
-        saveTracks(tracks);
-
-    }
-
-    private void saveTracks(Set<Track> tracks) {
 
         tracks.forEach(track -> {
 
@@ -142,9 +126,42 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
 
         });
 
-       log.info(TRACKS_SAVING_FINISHED);
+        log.info(TRACKS_SAVING_FINISHED);
+
+        return true;
     }
 
+
+    private Set<Track> getTracks() {
+
+        Set<Track> tracks = new HashSet<>();
+
+        for (GenreStyle style: GenreStyle.values()) {
+
+            List<Playlist> playlists = getPlaylists(restTemplate, style.getStyle());
+            log.info(TOTAL_PLAYLISTS_FOR_GENRE + style.getStyle()+ DELIMITER + playlists.size());
+
+            List<Track> trackList = getTracklist(restTemplate, playlists, style.getStyle());
+            log.info(NUMBER_OF_TRACKS_DOWNLOADED_FOR_GENRE + style.getStyle()+ DELIMITER + tracks.size());
+
+            removeDuplicateTracks(tracks, trackList, style.getStyle());
+
+            try{
+                Thread.sleep(5000);
+            }
+            catch (InterruptedException e){
+
+                log.error(THREAD_SLEEP_INTERRUPTED_ERROR + e.getMessage());
+
+            }
+
+        }
+
+        log.info(TOTAL_TRACKS + tracks.size());
+
+        return tracks;
+
+    }
 
 
     private List<Playlist> getPlaylists(RestTemplate restTemplate, String style){
