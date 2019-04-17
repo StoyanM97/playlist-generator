@@ -25,11 +25,13 @@ public class Track {
     private static final String ALBUM_ID = "album_id";
     private static final String GENRE_ID = "genre_id";
     private static final String TRACKS = "tracks";
+    private static final String ARTIST_ID = "artist_id";
+    private static final String LINK = "link";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = TRACK_ID)
-    private int trackId;
+    private Long trackId;
 
     @Column(name = TITLE)
     private String title;
@@ -43,15 +45,21 @@ public class Track {
     @Column(name = RANK)
     private int rank;
 
+    @Column(name = LINK)
+    private String link;
+
     @ManyToOne
     @JoinColumn(name = ALBUM_ID)
     private Album album;
 
     @ManyToOne
+    @JoinColumn(name = ARTIST_ID)
+    private Artist artist;
+
+    @ManyToOne
     @JoinColumn(name = GENRE_ID)
     private Genre genre;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = TRACKS)
     private List<Playlist> playlists;
 }
