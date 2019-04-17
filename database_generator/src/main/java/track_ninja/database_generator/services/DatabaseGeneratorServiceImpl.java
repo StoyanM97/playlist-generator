@@ -41,13 +41,11 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
     private static final String DELIMITER = ": ";
     private static final String TOTAL_TRACKS = "Total tracks after removing the duplicate tracks: ";
 
-
     private GenreRepository genreRepository;
     private TrackRepository trackRepository;
     private ArtistRepository artistRepository;
     private AlbumRepository albumRepository;
     private RestTemplate restTemplate;
-
 
     private static final Logger log = LoggerFactory.getLogger(DatabaseGeneratorService.class);
 

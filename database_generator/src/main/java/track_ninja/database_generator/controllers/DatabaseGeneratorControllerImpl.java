@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import track_ninja.database_generator.services.DatabaseGeneratorService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:8080","http://localhost:4200" })
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/download")
 public class DatabaseGeneratorControllerImpl {
 
     private DatabaseGeneratorService service;
@@ -20,13 +20,13 @@ public class DatabaseGeneratorControllerImpl {
         this.service = service;
     }
 
-    @GetMapping("/download/genres")
+    @GetMapping("/genres")
     public boolean downloadGenres() {
         return service.saveGenres();
     }
 
 
-    @GetMapping("/download/tracks")
+    @GetMapping("/tracks")
     public boolean downloadTracks() {
         return service.saveTracks();
     }
