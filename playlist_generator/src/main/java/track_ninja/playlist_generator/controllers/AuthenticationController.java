@@ -44,7 +44,6 @@ public class AuthenticationController {
                         loginUser.getPassword()
                 )
         );
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final User user = userService.getByUsername(loginUser.getUsername());
         final String token = jwtTokenUtil.generateToken(user);

@@ -1,14 +1,13 @@
 package track_ninja.playlist_generator.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import track_ninja.playlist_generator.models.Track;
+import track_ninja.playlist_generator.models.dtos.PlaylistGenerationDTO;
 import track_ninja.playlist_generator.services.PlaylistGenerationService;
 
 import java.util.Deque;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user/generatePlaylist")
@@ -20,8 +19,8 @@ public class PlaylistGenerationController {
         this.playlistGenerationService = playlistGenerationService;
     }
 
-    @GetMapping
-    public Deque<Track> findRandomByGenre(@RequestParam String genre){
-        return playlistGenerationService.generatePlaylist(genre, 1000L, "firstPlaylist");
+    @PostMapping
+    public Iterable<Track> findRandomByGenre(@RequestParam long duration, @RequestBody PlaylistGenerationDTO playlistGenerationDTO){
+        return playlistGenerationService.generatePlaylist(duration, playlistGenerationDTO);
     }
 }
