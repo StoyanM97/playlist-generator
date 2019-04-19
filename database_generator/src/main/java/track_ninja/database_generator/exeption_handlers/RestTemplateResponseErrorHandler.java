@@ -21,13 +21,12 @@ public class RestTemplateResponseErrorHandler implements ResponseErrorHandler {
 
     @Override
     public boolean hasError(ClientHttpResponse response) throws IOException {
-        //TODO throw http status error
         return response.getStatusCode() != HttpStatus.OK;
     }
 
     @Override
     public void handleError(ClientHttpResponse response) throws IOException {
 
-        log.error(RESPONSE_ERROR, response.getStatusCode(), response.getStatusText());
+        log.error(RESPONSE_ERROR + response.getStatusCode());
     }
 }
