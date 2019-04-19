@@ -28,7 +28,7 @@ public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = PLAYLIST_ID)
-    private int albumId;
+    private int playlistId;
 
     @Size(min = TITLE_MIN_LENGTH, max = TITLE_MAX_LENGTH, message = TITLE_LENGTH_ERROR_MESSAGE)
     @Column(name = TITLE)

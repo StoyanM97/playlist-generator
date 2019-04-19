@@ -1,5 +1,6 @@
 package track_ninja.playlist_generator.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public class Artist {
 
     private static final String ARTIST_ID = "artist_id";
     private static final String ARTIST_NAME = "name";
-    private static final String TRACK_LIST_URL = "artists_tracklist_url";
+    private static final String TRACK_LIST_URL = "artist_tracklist_url";
     private static final String ARTIST = "artist";
 
     @Id
@@ -32,6 +33,7 @@ public class Artist {
     @Column(name = TRACK_LIST_URL)
     private String trackListUrl;
 
+    @JsonIgnore
     @OneToMany(mappedBy = ARTIST)
     private Set<Album> albums;
 }

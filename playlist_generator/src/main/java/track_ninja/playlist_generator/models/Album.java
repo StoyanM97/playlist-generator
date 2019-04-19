@@ -1,5 +1,6 @@
 package track_ninja.playlist_generator.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,5 +39,6 @@ public class Album {
     private String albumTrackListUrl;
 
     @OneToMany(mappedBy= ALBUM)
+    @JsonIgnore
     private Set<Track> tracks;
 }
