@@ -77,8 +77,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                                 "b.role_type as role\n" +
                                 "\n" +
                                 "from users as a\n" +
-                                "inner join authority as b\n" +
-                                "on a.username = b.username where a.username=?");
+                                "join authorities as b\n" +
+                                "on a.authority_id = b.authority_id where a.username=?");
     }
 
     @Override
@@ -88,6 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                 .antMatchers("/api").permitAll()
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/register").permitAll()
+                .antMatchers("/api/filter/**").permitAll()
                 .antMatchers("/api/user/**").hasRole("USER")
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()

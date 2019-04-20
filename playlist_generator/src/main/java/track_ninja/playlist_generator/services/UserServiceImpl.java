@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User getByUsername(String usernameFromToken) {
-        return userRepository.findByUsername(usernameFromToken);
+    public User getByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     @Override
@@ -49,12 +49,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User user = new User();
         user.setUsername(loginUser.getUsername());
         user.setPassword(passwordEncoder.encode(loginUser.getPassword()));
+        user.setAuthority(authorityRepository.findById(1L).orElse(null));
         user.setEnabled(true);
         user.setFirstLogin(true);
         userRepository.save(user);
-        Authority authority = new Authority();
-        authority.setUsername(loginUser.getUsername());
-        authority.setName(AuthorityName.ROLE_USER);
-        authorityRepository.save(authority);
+    }
+
+    @Override
+    public void delete(String username) {
+        User user = userRepository.findByUsername(username);
+        user.setEnabled(false);
+        userRepository.save(user);
     }
 }

@@ -6,9 +6,11 @@ import track_ninja.playlist_generator.security.models.LoginUser;
 import java.util.List;
 
 public interface UserService {
-    User getByUsername(String usernameFromToken);
+    User getByUsername(String username);
 
     Iterable<User> getAll();
 
     void register(LoginUser loginUser);
+
+    void delete(String username);
 }

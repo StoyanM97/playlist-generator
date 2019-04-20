@@ -9,4 +9,8 @@ import java.util.List;
 @Repository
 public interface PlaylistRepository extends CrudRepository<Playlist, Long> {
     List<Playlist> findPlaylistsByGenres_name(String genre);
+
+    List<Playlist> findAllByUser_username(String username);
+
+    List<Playlist> findAllByTitle(String title);
 }

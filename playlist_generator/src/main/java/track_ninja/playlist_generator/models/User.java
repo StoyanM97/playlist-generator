@@ -22,7 +22,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
-//    private static final String FIRST_NAME_LENGTH_ERROR_MESSAGE = "First name must be at least 2 characters and at most 15 characters long!";
+    //    private static final String FIRST_NAME_LENGTH_ERROR_MESSAGE = "First name must be at least 2 characters and at most 15 characters long!";
 //    private static final String LAST_NAME_LENGTH_ERROR_MESSAGE = "Last name must be at least 2 characters and at most 15 characters long!";
 //    private static final int NAME_MIN_LENGTH = 2;
 //    private static final int NAME_MAX_LENGTH = 15;
@@ -46,6 +46,7 @@ public class User implements UserDetails {
     private static final String USER = "user";
     private static final String ENABLED = "enabled";
     static final String USERNAME = "username";
+    private static final String AUTHORITY_ID = "authority_id";
 
 
     @Id
@@ -66,7 +67,7 @@ public class User implements UserDetails {
     private boolean isFirstLogin;
 
     @ManyToOne
-    @JoinColumn(name = USERNAME, insertable = false, updatable = false)
+    @JoinColumn(name = AUTHORITY_ID, insertable = false, updatable = false)
     private Authority authority;
 
     public String getUsername() {

@@ -103,12 +103,21 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `playlist_generator_db`.`users` ;
 
+
 CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`users` (
   `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `authority_id` INT NOT NULL,
   `enabled` TINYINT(1) NULL,
+  `is_first_login` TINYINT(1) NULL,
   PRIMARY KEY (`username`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) )
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC), 
+  INDEX `user_authority_relation_idx` (`authority_id` ASC) ,
+  CONSTRAINT `user_authority_relation`
+    FOREIGN KEY (`authority_id`)
+    REFERENCES `playlist_generator_db`.`authority` (`authority_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -205,23 +214,16 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`playlist_track_relations` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `playlist_generator_db`.`authority`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `playlist_generator_db`.`authorities` ;
 DROP TABLE IF EXISTS `playlist_generator_db`.`authority` ;
 
-CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`authority` (
-  `username` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`authorities` (
+  `authority_id` INT NOT NULL AUTO_INCREMENT,
   `role_type` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`username`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) ,
-  CONSTRAINT `user_authority_relation`
-    FOREIGN KEY (`username`)
-    REFERENCES `playlist_generator_db`.`users` (`username`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`authority_id`))
 ENGINE = InnoDB;
 
 
