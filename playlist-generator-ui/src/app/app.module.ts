@@ -8,13 +8,17 @@ import { RegistrationComponentComponent } from './registration-component/registr
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserComponent } from './user/user.component';
+import { PlaylistComponent } from './playlist/playlist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponentComponent,
     LoginComponentComponent,
-    DashboardComponent
+    DashboardComponent,
+    UserComponent,
+    PlaylistComponent
   ],
   imports: [
     BrowserModule,
