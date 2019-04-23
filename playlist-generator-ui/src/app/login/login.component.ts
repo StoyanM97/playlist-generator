@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from '../services/authentication.service';
+import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login-component',
@@ -13,13 +16,16 @@ export class LoginComponent implements OnInit {
   error = '';
   loading = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
   });
+
+   // reset login status
+   this.authenticationService.logout();
   }
 
   // convenience getter for easy access to form fields
@@ -30,11 +36,20 @@ export class LoginComponent implements OnInit {
        if (this.registerForm.invalid) {
            return;
        }
-       this.loading = true;;
+       this.loading = true;
        console.log(event.value.username);
        console.log(event.value.password);
-
-       alert('SUCCESS!');
+       this.authenticationService.login(event.value.username, event.value.password)
+            .pipe()
+            .subscribe(
+                data => {
+                    alert('SUCCESS!');
+                    this.router.navigate(['/dashboard']);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
    }
 
 }

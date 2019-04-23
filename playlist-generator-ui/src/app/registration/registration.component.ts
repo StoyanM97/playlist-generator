@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 // import custom validator to validate that password and confirm password fields match
-import { MustMatch } from './helpers/must-match.validator';
+import { MustMatch } from '../helpers/must-match.validator';
+import { Router } from '@angular/router';
+import { RegistrationService } from '../services/registration.service';
 
 @Component({
   selector: 'registration-component',
@@ -13,7 +15,7 @@ export class RegistrationComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private registrationService: RegistrationService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -41,7 +43,13 @@ export class RegistrationComponent implements OnInit {
       console.log(event.value.email);
       console.log(event.value.username);
       console.log(event.value.password);
-      alert('SUCCESS!');
+      this.registrationService.registerUser(event.value.username,event.value.password).subscribe(
+        data=>{},
+        error=>{},
+        ()=>{
+          alert('SUCCESS!');
+          this.router.navigate(['/login-component']);
+        });
   }
 
 }
