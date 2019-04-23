@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h3>Please Fill In The Registration Form</h3>
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit(register)" #register="ngForm">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" formControlName="firstName" class="form-control" 
+                        [ngClass]="{ 'is-invalid': field.firstName.errors &&
+                        (field.firstName.touched || field.firstName.dirty)}" />
+                        <div *ngIf="field.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="field.firstName.errors.required">First Name is required</div>
+                            <div *ngIf="field.firstName.errors.minlength || field.firstName.errors.maxlength">
+                                    First Name must be at least 2 characters and maximum 15 characters long
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" formControlName="lastName" class="form-control" 
+                        [ngClass]="{ 'is-invalid': field.lastName.errors &&
+                         (field.lastName.touched || field.lastName.dirty)}" />
+                        <div *ngIf="field.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="field.lastName.errors.required">Last Name is required</div>
+                            <div *ngIf="field.lastName.errors.minlength || field.lastName.errors.maxlength">
+                                    Last Name must be at least 2 characters and maximum 15 characters long
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" formControlName="email" class="form-control" 
+                        [ngClass]="{ 'is-invalid': field.email.errors &&
+                         (field.email.touched || field.email.dirty)}" />
+                        <div *ngIf="field.email.errors" class="invalid-feedback">
+                            <div *ngIf="field.email.errors.required">Email is required</div>
+                            <div *ngIf="field.email.errors.email">Email must be a valid email address</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" formControlName="username" class="form-control" 
+                            [ngClass]="{ 'is-invalid': field.username.errors && 
+                            (field.username.touched || field.username.dirty)}"/>
+                            <div *ngIf="field.username.errors" class="invalid-feedback">
+                                <div *ngIf="field.username.errors.required">Username is required</div>
+                                <div *ngIf="field.username.errors.minlength || field.username.errors.maxlength">
+                                    Username must be at least 5 characters and maximum 10 characters long
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" formControlName="password" class="form-control" 
+                            [ngClass]="{ 'is-invalid': field.password.errors && 
+                            (field.password.touched || field.password.dirty)}" />
+                            <div *ngIf="field.password.errors" class="invalid-feedback">
+                                <div *ngIf="field.password.errors.required">Password is required</div>
+                                <div *ngIf="field.password.errors.pattern">
+                                    Password must be at least 8 characters and maximum 16 characters long, must have UpperCase, LowerCase and Number
+                                </div>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" formControlName="confirmPassword" class="form-control" 
+                        [ngClass]="{ 'is-invalid': field.confirmPassword.errors &&
+                        (field.confirmPassword.touched || field.confirmPassword.dirty)}" />
+                        <div *ngIf="field.confirmPassword.errors" class="invalid-feedback">
+                            <div *ngIf="field.confirmPassword.errors.required">Confirm Password is required</div>
+                            <div *ngIf="field.confirmPassword.errors.mustMatch">Passwords must match</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
