@@ -61,5 +61,6 @@ public class Track {
     private Genre genre;
 
     @ManyToMany(mappedBy = TRACKS)
+    @JsonIgnore
     private List<Playlist> playlists;
 }

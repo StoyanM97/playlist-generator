@@ -8,5 +8,5 @@ import java.util.List;
 import java.util.Set;
 
 public interface PlaylistGenerationService {
-    Iterable<Track> generatePlaylist(long playlistDurationSeconds, PlaylistGenerationDTO playlistGenerationDTO);
+    Iterable<Track> generatePlaylist(long playlistDurationSeconds, String username, PlaylistGenerationDTO playlistGenerationDTO);
 }

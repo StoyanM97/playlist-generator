@@ -20,7 +20,7 @@ public class PlaylistGenerationController {
     }
 
     @PostMapping
-    public Iterable<Track> findRandomByGenre(@RequestParam long duration, @RequestBody PlaylistGenerationDTO playlistGenerationDTO){
-        return playlistGenerationService.generatePlaylist(duration, playlistGenerationDTO);
+    public Iterable<Track> findRandomByGenre(@RequestParam long duration, @RequestParam String username, @RequestBody PlaylistGenerationDTO playlistGenerationDTO){
+        return playlistGenerationService.generatePlaylist(duration, username, playlistGenerationDTO);
     }
 }

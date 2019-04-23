@@ -50,6 +50,10 @@ public class User implements UserDetails {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private int userId;
+
     @Size(min = USER_NAME_MIN_LENGTH, max = USER_NAME_MAX_LENGTH, message = USER_NAME_LENGTH_ERROR_MESSAGE)
     @Column(name = USER_NAME)
     private String username;
@@ -63,6 +67,9 @@ public class User implements UserDetails {
 
     @Column(name = ENABLED)
     private boolean enabled;
+
+    @OneToOne(mappedBy = "user")
+    private track_ninja.playlist_generator.models.UserDetails userDetail;
 
     private boolean isFirstLogin;
 
