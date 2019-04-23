@@ -5,11 +5,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from './helpers/must-match.validator';
 
 @Component({
-  selector: 'app-registration-component',
-  templateUrl: './registration-component.component.html',
-  styleUrls: ['./registration-component.component.scss']
+  selector: 'registration-component',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponentComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
 
   registerForm: FormGroup;
 

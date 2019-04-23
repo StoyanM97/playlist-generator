@@ -9,7 +9,7 @@
     <ul class="navbar-nav">
 
       <li *ngIf = "!isLogged" class="nav-item">
-        <a class="nav-link" routerLink="/app-login-component" >Login</a>
+        <a class="nav-link" routerLink="/login-component" >Login</a>
       </li>
     
     <li *ngIf = "isLogged" class="nav-item">
@@ -17,8 +17,17 @@
     </li>
 
       <li *ngIf = "!isLogged" class="nav-item">
-        <a class="nav-link" routerLink="/app-registration-component">Register</a>
-      </li>   
+        <a class="nav-link" routerLink="/registration-component">Register</a>
+      </li>
+
+      <li *ngIf = "!isLogged" class="nav-item">
+        <a class="nav-link" routerLink="/user-component">User</a>
+      </li>
+
+      <li *ngIf = "!isLogged" class="nav-item">
+        <a class="nav-link" routerLink="/playlist-component">Create Playlist</a>
+      </li>
+
     </ul>
   </div> 
 </nav>  

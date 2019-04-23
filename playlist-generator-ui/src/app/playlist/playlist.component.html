@@ -1,3 +1,36 @@
-<p>
-  playlist works!
-</p>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit(login)" #login="ngForm">
+                    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                    <div class="form-group">
+                        <label>Travel From</label>
+                        <input type="text" formControlName="fromPoint" class="form-control" 
+                        [ngClass]="{ 'is-invalid': field.fromPoint.errors && 
+                        (field.fromPoint.touched || field.fromPoint.dirty)}"/>
+                        <div *ngIf="field.fromPoint.errors" class="invalid-feedback">
+                            <div *ngIf="field.fromPoint.errors.required">Travel from is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <label>Travel To</label>
+                            <input type="text" formControlName="toPoint" class="form-control" 
+                            [ngClass]="{ 'is-invalid': field.toPoint.errors && 
+                            (field.toPoint.touched || field.toPoint.dirty)}" />
+                            <div *ngIf="field.toPoint.errors" class="invalid-feedback">
+                                <div *ngIf="field.toPoint.errors.required">Travel to is required</div>
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="button" onclick="cancel()">Cancel</button>
+                        <button class="btn btn-primary">Generate</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
