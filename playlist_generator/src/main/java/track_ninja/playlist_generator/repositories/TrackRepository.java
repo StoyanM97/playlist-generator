@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
-public interface TrackRepository extends CrudRepository<Track, Long> {
+public interface TrackRepository extends CrudRepository<Track, Integer> {
     @Query(value = "select * from tracks join genres g on tracks.genre_id = g.genre_id where g.name = ?1 order by RAND() LIMIT 1", nativeQuery = true)
     Track findRandomTrackByGenre(String genre);
 

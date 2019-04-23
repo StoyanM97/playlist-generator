@@ -5,6 +5,11 @@ public class AuthToken {
     private String role;
     private boolean firstLogin;
 
+//    firstName: string;
+//    lastName: string;
+//    email: string;
+//    avatar: string;
+
     public AuthToken(String token, String role, boolean firstLogin) {
         this.token = token;
         this.role = role;

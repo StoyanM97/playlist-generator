@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import track_ninja.playlist_generator.models.Authority;
 
 @Repository
-public interface AuthorityRepository extends CrudRepository<Authority, Long> {
+public interface AuthorityRepository extends CrudRepository<Authority, Integer> {
 }

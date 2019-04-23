@@ -36,7 +36,7 @@ public class Playlist {
 
     @ManyToOne
     @JoinColumn(name= USER_ID, nullable=false)
-    private UserDetails user;
+    private UserDetailsModel user;
 
     @Column(name = IS_DELETED)
     private boolean isDeleted;

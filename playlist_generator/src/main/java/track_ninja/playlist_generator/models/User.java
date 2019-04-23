@@ -7,13 +7,9 @@ import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -69,7 +65,7 @@ public class User implements UserDetails {
     private boolean enabled;
 
     @OneToOne(mappedBy = "user")
-    private track_ninja.playlist_generator.models.UserDetails userDetail;
+    private UserDetailsModel userDetail;
 
     private boolean isFirstLogin;
 

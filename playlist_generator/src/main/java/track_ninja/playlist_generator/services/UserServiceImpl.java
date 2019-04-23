@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User user = new User();
         user.setUsername(loginUser.getUsername());
         user.setPassword(passwordEncoder.encode(loginUser.getPassword()));
-        user.setAuthority(authorityRepository.findById(1L).orElse(null));
+        user.setAuthority(authorityRepository.findById(1).orElse(null));
         user.setEnabled(true);
         user.setFirstLogin(true);
         userRepository.save(user);
