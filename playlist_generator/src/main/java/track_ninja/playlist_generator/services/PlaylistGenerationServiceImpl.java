@@ -2,10 +2,11 @@ package track_ninja.playlist_generator.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import track_ninja.playlist_generator.models.Track;
+import track_ninja.playlist_generator.models.*;
 import track_ninja.playlist_generator.models.dtos.PlaylistGenerationDTO;
 import track_ninja.playlist_generator.repositories.PlaylistRepository;
 import track_ninja.playlist_generator.repositories.TrackRepository;
+import track_ninja.playlist_generator.repositories.UserDetailsRepository;
 import track_ninja.playlist_generator.repositories.UserRepository;
 
 import java.util.*;
@@ -14,18 +15,24 @@ import java.util.*;
 public class PlaylistGenerationServiceImpl implements PlaylistGenerationService {
     private TrackRepository trackRepository;
     private PlaylistRepository playlistRepository;
-    private UserRepository userRepository;
+    private UserDetailsRepository userDetailsRepository;
 
     @Autowired
-    public PlaylistGenerationServiceImpl(TrackRepository trackRepository, PlaylistRepository playlistRepository, UserRepository userRepository) {
+    public PlaylistGenerationServiceImpl(TrackRepository trackRepository, PlaylistRepository playlistRepository, UserDetailsRepository userDetailsRepository) {
         this.trackRepository = trackRepository;
         this.playlistRepository = playlistRepository;
-        this.userRepository = userRepository;
+        this.userDetailsRepository = userDetailsRepository;
     }
 
     @Override
-    public Iterable<Track> generatePlaylist(long playlistDurationSeconds, PlaylistGenerationDTO playlistGenerationDTO) {
+    public Iterable<Track> generatePlaylist(long playlistDurationSeconds, String username, PlaylistGenerationDTO playlistGenerationDTO) {
         Deque<Track> playlist = new ArrayDeque<>();
+        Playlist generatedPlaylist = new Playlist();
+        generatedPlaylist.setTitle(playlistGenerationDTO.getTitle());
+        generatedPlaylist.setUser(userDetailsRepository.findByUser_Username(username));
+        generatedPlaylist.setDeleted(false);
+        generatedPlaylist.setGenres(new ArrayList<>());
+
         if (playlistGenerationDTO.isAllowSameArtists()){
             if (playlistGenerationDTO.isUseTopTracks()) {
                 if (playlistGenerationDTO.getSecondGenre() != null) {
@@ -52,7 +59,9 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
                     while (secondDurationSeconds < playlistDurationSeconds * secondGenrePercentage - 150) {
                         secondDurationSeconds = addTrackInLoopAllowSameArtistAndTracks(playlist, secondTrackIds, secondDurationSeconds, playlistGenerationDTO.getSecondGenre());
                     }
-                    return shuffleTracks(playlist);
+                    generatedPlaylist.setTracks(shuffleTracks(playlist));
+                    playlistRepository.save(generatedPlaylist);
+                    return playlist;
                 }
                 Deque<Long> trackIds = new ArrayDeque<>();
                 long durationSeconds = 0L;
@@ -64,8 +73,9 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
                 while (durationSeconds < playlistDurationSeconds -300) {
                     durationSeconds = addTrackInLoopAllowSameArtistAndTracks(playlist, trackIds, durationSeconds, playlistGenerationDTO.getFirstGenre());
                 }
-                return shuffleTracks(playlist);
-
+                generatedPlaylist.setTracks(shuffleTracks(playlist));
+                playlistRepository.save(generatedPlaylist);
+                return playlist;
             }
             if (playlistGenerationDTO.getSecondGenre() != null) {
                 Deque<Long> firstTrackIds = new ArrayDeque<>();
@@ -91,7 +101,9 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
                 while (secondDurationSeconds < playlistDurationSeconds * secondGenrePercentage - 150) {
                     secondDurationSeconds = addTrackInLoopAllowSameArtist(playlist, secondTrackIds, secondDurationSeconds, playlistGenerationDTO.getSecondGenre());
                 }
-                return shuffleTracks(playlist);
+                generatedPlaylist.setTracks(shuffleTracks(playlist));
+                playlistRepository.save(generatedPlaylist);
+                return playlist;
             }
             Deque<Long> trackIds = new ArrayDeque<>();
             long currentDurationSeconds = 0L;
@@ -103,6 +115,8 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
             while (currentDurationSeconds < playlistDurationSeconds - 300) {
                 currentDurationSeconds = addTrackInLoopAllowSameArtist(playlist, trackIds, currentDurationSeconds, playlistGenerationDTO.getFirstGenre());
             }
+            generatedPlaylist.setTracks(new ArrayList<>(playlist));
+            playlistRepository.save(generatedPlaylist);
             return playlist;
         }
         Deque<Integer> artistIds = new ArrayDeque<>();
@@ -131,7 +145,9 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
                 while (secondDurationSeconds < playlistDurationSeconds * secondGenrePercentage - 150) {
                     secondDurationSeconds = addTrackInLoopUseTopTracks(playlist, secondArtistIds, secondDurationSeconds, playlistGenerationDTO.getSecondGenre());
                 }
-                return shuffleTracks(playlist);
+                generatedPlaylist.setTracks(shuffleTracks(playlist));
+                playlistRepository.save(generatedPlaylist);
+                return playlist;
             }
             long currentDurationSeconds = 0L;
             Track firstTrack = trackRepository.findTopTrackByGenre(playlistGenerationDTO.getFirstGenre());
@@ -141,6 +157,8 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
             while (currentDurationSeconds < playlistDurationSeconds - 300) {
                 currentDurationSeconds = addTrackInLoopUseTopTracks(playlist, artistIds, currentDurationSeconds, playlistGenerationDTO.getFirstGenre());
             }
+            generatedPlaylist.setTracks(new ArrayList<>(playlist));
+            playlistRepository.save(generatedPlaylist);
             return playlist;
         }if (playlistGenerationDTO.getSecondGenre() != null) {
             Deque<Integer> firstArtistIds = new ArrayDeque<>();
@@ -166,7 +184,9 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
             while (secondDurationSeconds < playlistDurationSeconds * secondGenrePercentage - 150) {
                 secondDurationSeconds = addTrackInLoopRandom(playlist, secondArtistIds, secondDurationSeconds, playlistGenerationDTO.getSecondGenre());
             }
-            return shuffleTracks(playlist);
+            generatedPlaylist.setTracks(shuffleTracks(playlist));
+            playlistRepository.save(generatedPlaylist);
+            return playlist;
         }
         long currentDurationSeconds = 0L;
         Track firstTrack = trackRepository.findRandomTrackByGenre(playlistGenerationDTO.getFirstGenre());
@@ -177,18 +197,12 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
         while (currentDurationSeconds < playlistDurationSeconds - 300) {
             currentDurationSeconds = addTrackInLoopRandom(playlist, artistIds, currentDurationSeconds, playlistGenerationDTO.getFirstGenre());
         }
+        generatedPlaylist.setTracks(new ArrayList<>(playlist));
+        playlistRepository.save(generatedPlaylist);
         return playlist;
-//        Playlist generatedPlaylist = new Playlist();
-//        generatedPlaylist.setTitle(title);
-//        generatedPlaylist.setUser(userRepository.findByUsername("ivanivanov"));
-//        generatedPlaylist.setDeleted(false);
-//        generatedPlaylist.setGenres(new ArrayList<>());
-//        generatedPlaylist.setTracks(new ArrayList<>(playlist));
-//        playlistRepository.save(generatedPlaylist);
-
     }
 
-    private Iterable<Track> shuffleTracks(Deque<Track> playlist) {
+    private List<Track> shuffleTracks(Deque<Track> playlist) {
         List<Track> result = new ArrayList<>(playlist);
         Collections.shuffle(result);
         return result;

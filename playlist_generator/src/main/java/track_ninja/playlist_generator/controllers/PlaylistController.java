@@ -30,10 +30,10 @@ public class PlaylistController {
         return playlistService.getByGenre(genre);
     }
 
-    @GetMapping("/filter/user")
-    public Iterable<Playlist> getByUser(@RequestParam String username) {
-        return playlistService.getByUser(username);
-    }
+//    @GetMapping("/filter/user")
+//    public Iterable<Playlist> getByUser(@RequestParam String username) {
+//        return playlistService.getByUser(username);
+//    }
 
     @GetMapping("/filter/title")
     public Iterable<Playlist> getByTitle(@RequestParam String title) {
