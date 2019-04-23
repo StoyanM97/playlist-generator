@@ -9,6 +9,7 @@ import track_ninja.playlist_generator.services.PlaylistGenerationService;
 import java.util.Deque;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/user/generatePlaylist")
 public class PlaylistGenerationController {
