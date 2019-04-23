@@ -74,7 +74,7 @@ public class User implements UserDetails {
     private boolean isFirstLogin;
 
     @ManyToOne
-    @JoinColumn(name = AUTHORITY_ID, insertable = false, updatable = false)
+    @JoinColumn(name = AUTHORITY_ID)
     private Authority authority;
 
     public String getUsername() {
