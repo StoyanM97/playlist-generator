@@ -64,10 +64,8 @@ public class User implements UserDetails {
     @Column(name = ENABLED)
     private boolean enabled;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserDetailsModel userDetail;
-
-    private boolean isFirstLogin;
 
     @ManyToOne
     @JoinColumn(name = AUTHORITY_ID)
@@ -115,21 +113,5 @@ public class User implements UserDetails {
 
     public List<Authority> getAuthorities() {
         return Collections.singletonList(authority);
-    }
-
-    public boolean isFirstLogin() {
-        return isFirstLogin;
-    }
-
-    public void setFirstLogin(boolean firstLogin) {
-        isFirstLogin = firstLogin;
-    }
-
-    public Authority getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(Authority authority) {
-        this.authority = authority;
     }
 }

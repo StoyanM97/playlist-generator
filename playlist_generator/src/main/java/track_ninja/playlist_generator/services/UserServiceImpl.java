@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import track_ninja.playlist_generator.models.Authority;
 import track_ninja.playlist_generator.models.AuthorityName;
 import track_ninja.playlist_generator.models.User;
+import track_ninja.playlist_generator.models.UserDetailsModel;
+import track_ninja.playlist_generator.models.dtos.RegistrationDTO;
 import track_ninja.playlist_generator.repositories.AuthorityRepository;
 import track_ninja.playlist_generator.repositories.UserRepository;
 import track_ninja.playlist_generator.security.models.LoginUser;
@@ -23,7 +25,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder,
+                           AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
@@ -45,13 +48,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void register(LoginUser loginUser) {
+    public void register(RegistrationDTO registrationUser) {
         User user = new User();
-        user.setUsername(loginUser.getUsername());
-        user.setPassword(passwordEncoder.encode(loginUser.getPassword()));
+        user.setUsername(registrationUser.getUsername());
+        user.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
         user.setAuthority(authorityRepository.findById(1).orElse(null));
         user.setEnabled(true);
-        user.setFirstLogin(true);
+        UserDetailsModel userDetailsModel = new UserDetailsModel();
+        userDetailsModel.setEmail(registrationUser.getEmail());
+        userDetailsModel.setFirstName(registrationUser.getFirstName());
+        userDetailsModel.setLastName(registrationUser.getLastName());
+        userDetailsModel.setUser(user);
+        user.setUserDetail(userDetailsModel);
         userRepository.save(user);
     }
 

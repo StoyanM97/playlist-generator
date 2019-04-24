@@ -22,7 +22,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import track_ninja.playlist_generator.security.FirstLoginInterceptor;
+//import track_ninja.playlist_generator.security.FirstLoginInterceptor;
 import track_ninja.playlist_generator.security.models.JwtAuthenticationFilter;
 
 import javax.annotation.Resource;
@@ -45,10 +45,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public FirstLoginInterceptor firstLoginInterceptor2(){
-        return new FirstLoginInterceptor();
-    }
+//    @Bean
+//    public FirstLoginInterceptor firstLoginInterceptor2(){
+//        return new FirstLoginInterceptor();
+//    }
 
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
@@ -125,11 +125,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
         return source;
     }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(firstLoginInterceptor2()).addPathPatterns("/api/admin/**");
-
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry){
+//        registry.addInterceptor(firstLoginInterceptor2()).addPathPatterns("/api/admin/**");
+//
+//    }
 
 //    @Override
 //    public void configure(WebSecurity web) throws Exception {

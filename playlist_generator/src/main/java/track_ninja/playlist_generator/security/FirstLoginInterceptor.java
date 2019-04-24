@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
-public class FirstLoginInterceptor implements HandlerInterceptor {
-    @Autowired
-    private TokenService tokenService;
-    @Autowired
-    private UserService userService;
-
-    @Override
-    public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws IOException {
-        User user = userService.getByUsername(tokenService.getUsernameFromToken(req));
-        return !user.isFirstLogin();
-    }
-}
+//@Component
+//public class FirstLoginInterceptor implements HandlerInterceptor {
+//    @Autowired
+//    private TokenService tokenService;
+//    @Autowired
+//    private UserService userService;
+//
+//    @Override
+//    public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws IOException {
+//        User user = userService.getByUsername(tokenService.getUsernameFromToken(req));
+//        return !user.isFirstLogin();
+//    }
+//}
