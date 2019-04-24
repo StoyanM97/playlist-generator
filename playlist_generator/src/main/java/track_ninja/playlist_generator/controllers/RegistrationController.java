@@ -2,6 +2,7 @@ package track_ninja.playlist_generator.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import track_ninja.playlist_generator.models.dtos.RegistrationDTO;
 import track_ninja.playlist_generator.security.models.LoginUser;
 import track_ninja.playlist_generator.services.UserService;
 
@@ -19,7 +20,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public void register(@RequestBody LoginUser loginUser) {
-        userService.register(loginUser);
+    public void register(@RequestBody RegistrationDTO registrationUser) {
+        userService.register(registrationUser);
     }
 }

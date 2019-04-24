@@ -64,7 +64,7 @@ public class User implements UserDetails {
     @Column(name = ENABLED)
     private boolean enabled;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserDetailsModel userDetail;
 
     @ManyToOne

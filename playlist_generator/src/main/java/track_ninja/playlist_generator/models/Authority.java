@@ -30,7 +30,7 @@ public class Authority implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = AUTHORITY_ID)
-    private long authorityId;
+    private int authorityId;
 
     @Column(name = ROLE_TYPE)
     @NotNull
