@@ -6,7 +6,6 @@ import track_ninja.playlist_generator.models.User;
 import track_ninja.playlist_generator.services.UserService;
 
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {

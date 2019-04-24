@@ -6,7 +6,7 @@ import track_ninja.playlist_generator.security.models.LoginUser;
 import track_ninja.playlist_generator.services.UserService;
 
 
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping("/api/register")
 public class RegistrationController {
@@ -20,6 +20,7 @@ public class RegistrationController {
 
     @PostMapping
     public void register(@RequestBody LoginUser loginUser) {
+        System.out.println(loginUser.getUsername() + loginUser.getPassword());
         userService.register(loginUser);
     }
 }

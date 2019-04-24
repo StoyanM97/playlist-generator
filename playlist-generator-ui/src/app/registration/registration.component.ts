@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { RegistrationService } from '../services/registration.service';
 
 @Component({
-  selector: 'registration-component',
+  selector: 'registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
@@ -43,10 +43,27 @@ export class RegistrationComponent implements OnInit {
       console.log(event.value.email);
       console.log(event.value.username);
       console.log(event.value.password);
+
+    //   this.registrationService.getUser().subscribe(data => {
+    //     console.log(data);
+    // },error => {
+    //     console.log(error);
+    //     console.log(error.status + "  " + error.error.error);
+    //   },
+    //   () => {
+    //     // No errors, route to new page
+    //   }
+    //     );
+
       this.registrationService.registerUser(event.value.username,event.value.password).subscribe(
-        data=>{},
-        error=>{},
+        data=>{
+           console.log(data);
+        },
+        error=>{
+          console.log("This is the error " + error);
+        },
         ()=>{
+          console.log("No errors");
           alert('SUCCESS!');
           this.router.navigate(['/login-component']);
         });

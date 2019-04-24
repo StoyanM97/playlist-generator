@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import track_ninja.playlist_generator.models.Playlist;
 import track_ninja.playlist_generator.services.PlaylistService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping("/api")
 public class PlaylistController {
