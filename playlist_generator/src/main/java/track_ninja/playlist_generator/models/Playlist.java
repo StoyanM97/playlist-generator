@@ -51,4 +51,6 @@ public class Playlist {
     @JsonIgnore
     @ManyToMany(mappedBy = "playlists")
     private List<Genre> genres;
+
+    private Long duration;
 }

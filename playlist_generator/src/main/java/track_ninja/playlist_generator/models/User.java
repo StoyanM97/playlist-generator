@@ -28,8 +28,7 @@ public class User implements UserDetails {
 //    private static final String USER_ID = "user_id";
 //    private static final String FIRST_NAME = "first_name";
 //    private static final String LAST_NAME = "last_name";
-//    private static final String EMAIL_ADDRESS = "email";
-//    private static final String AVATAR = "avatar";
+//    private static final String EMAIL_ADDRESS = "email"
 //    private static final String IS_USER_DELETED = "is_deleted";
     private static final int USER_NAME_MIN_LENGTH = 5;
     private static final int USER_NAME_MAX_LENGTH = 10;
@@ -57,9 +56,6 @@ public class User implements UserDetails {
 //    @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH, message = PASSWORD_LENGTH_ERROR_MESSAGE)
     @Column(name = PASSWORD)
     private String password;
-
-//    @Column(name = AVATAR)
-//    private byte[] avatar;
 
     @Column(name = ENABLED)
     private boolean enabled;
