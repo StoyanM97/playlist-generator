@@ -2,30 +2,38 @@ package track_ninja.playlist_generator.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import track_ninja.playlist_generator.duration.generator.services.LocationService;
 import track_ninja.playlist_generator.models.*;
+import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistGenerationDTO;
 import track_ninja.playlist_generator.repositories.PlaylistRepository;
 import track_ninja.playlist_generator.repositories.TrackRepository;
 import track_ninja.playlist_generator.repositories.UserDetailsRepository;
-import track_ninja.playlist_generator.repositories.UserRepository;
 
 import java.util.*;
 
 @Service
 public class PlaylistGenerationServiceImpl implements PlaylistGenerationService {
+
     private TrackRepository trackRepository;
     private PlaylistRepository playlistRepository;
     private UserDetailsRepository userDetailsRepository;
+    private LocationService locationService;
 
     @Autowired
-    public PlaylistGenerationServiceImpl(TrackRepository trackRepository, PlaylistRepository playlistRepository, UserDetailsRepository userDetailsRepository) {
+    public PlaylistGenerationServiceImpl(TrackRepository trackRepository, PlaylistRepository playlistRepository,
+                                         UserDetailsRepository userDetailsRepository, LocationService locationService) {
         this.trackRepository = trackRepository;
         this.playlistRepository = playlistRepository;
         this.userDetailsRepository = userDetailsRepository;
+        this.locationService = locationService;
     }
 
     @Override
-    public Iterable<Track> generatePlaylist(long playlistDurationSeconds, String username, PlaylistGenerationDTO playlistGenerationDTO) {
+    public PlaylistDTO generatePlaylist(PlaylistGenerationDTO playlistGenerationDTO) {
+
+        long totalDuration = locationService.getTravelDuration(playlistGenerationDTO.getTravelFrom(), playlistGenerationDTO.getTravelTo())*60;
+
         Deque<Track> playlist = new ArrayDeque<>();
         Playlist generatedPlaylist = new Playlist();
         generatedPlaylist.setTitle(playlistGenerationDTO.getTitle());

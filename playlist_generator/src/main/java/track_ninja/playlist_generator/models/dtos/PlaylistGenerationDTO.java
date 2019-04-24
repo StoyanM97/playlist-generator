@@ -5,22 +5,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Map;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlaylistGenerationDTO {
+
     private String title;
 
-    private String firstGenre;
+    private String travelFrom;
 
-    private String secondGenre;
+    private String travelTo;
 
-    private int firstGenrePercentage;
-
-    private int secondGenrePercentage;
+    private Map<String, Integer> genres;
 
     private boolean allowSameArtists;
 
     private boolean useTopTracks;
+
+    private String username;
 }

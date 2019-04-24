@@ -22,7 +22,7 @@ public class JwtTokenUtil implements Serializable {
         return getAllClaimsFromToken(token).getSubject();
     }
 
-    public Date getExpirationDateFromToken(String token) {
+    private Date getExpirationDateFromToken(String token) {
         return getAllClaimsFromToken(token).getExpiration();
     }
 

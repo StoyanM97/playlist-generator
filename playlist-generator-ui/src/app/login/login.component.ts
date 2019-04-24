@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'login-component',
+  selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
             .pipe()
             .subscribe(
                 data => {
+                    console.log(data);
                     alert('SUCCESS!');
                     this.router.navigate(['/dashboard']);
                 },

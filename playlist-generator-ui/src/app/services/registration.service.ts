@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
+import { EmailValidator } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class RegistrationService {
@@ -16,12 +17,14 @@ export class RegistrationService {
 
     constructor(private httpClient: HttpClient){}
 
-    registerUser(username: string, password: string): Observable<User>{
+    registerUser(username: string, password: string, email: string, firstName: string, lastName: string): Observable<User>{
     
-        console.log(username+" "+ password);
      const registerUserObject = {
          username: username,
-         password: password
+         password: password,
+         email: email,
+         firstName: firstName,
+         lastName: lastName
      }
      
     return this.httpClient.post<User>(this.REGISTER_URL, registerUserObject, this.httpOptions);

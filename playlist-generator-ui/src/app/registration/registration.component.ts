@@ -38,24 +38,9 @@ export class RegistrationComponent implements OnInit {
       if (this.registerForm.invalid) {
           return;
       }
-      console.log(event.value.firstName);
-      console.log(event.value.lastName);
-      console.log(event.value.email);
-      console.log(event.value.username);
-      console.log(event.value.password);
-
-    //   this.registrationService.getUser().subscribe(data => {
-    //     console.log(data);
-    // },error => {
-    //     console.log(error);
-    //     console.log(error.status + "  " + error.error.error);
-    //   },
-    //   () => {
-    //     // No errors, route to new page
-    //   }
-    //     );
-
-      this.registrationService.registerUser(event.value.username,event.value.password).subscribe(
+       
+      this.registrationService.registerUser(event.value.username,event.value.password, 
+        event.value.email, event.value.firstName, event.value.lastName).subscribe(
         data=>{
            console.log(data);
         },
@@ -65,7 +50,7 @@ export class RegistrationComponent implements OnInit {
         ()=>{
           console.log("No errors");
           alert('SUCCESS!');
-          this.router.navigate(['/login-component']);
+          this.router.navigate(['/login']);
         });
   }
 

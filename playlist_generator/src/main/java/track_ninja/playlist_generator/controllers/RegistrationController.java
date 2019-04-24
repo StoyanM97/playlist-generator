@@ -20,7 +20,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public void register(@RequestBody RegistrationDTO registrationUser) {
-        userService.register(registrationUser);
+    public boolean register(@RequestBody RegistrationDTO registrationUser) {
+       return userService.register(registrationUser);
     }
 }

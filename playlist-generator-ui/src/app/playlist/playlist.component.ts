@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'playlist-component',
+  selector: 'playlist',
   templateUrl: './playlist.component.html',
   styleUrls: ['./playlist.component.scss']
 })
