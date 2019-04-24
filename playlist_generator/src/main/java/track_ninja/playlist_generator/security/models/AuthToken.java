@@ -2,18 +2,25 @@ package track_ninja.playlist_generator.security.models;
 
 public class AuthToken {
     private String token;
+    private String username;
+    private String email;
+    private String firstName;
+    private String lastName;
     private String role;
-    private boolean firstLogin;
 
 //    firstName: string;
 //    lastName: string;
 //    email: string;
 //    avatar: string;
 
-    public AuthToken(String token, String role, boolean firstLogin) {
+
+    public AuthToken(String token,String username, String email, String firstName, String lastName, String role) {
         this.token = token;
+        this.email = email;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.role = role;
-        this.firstLogin = firstLogin;
     }
 
     public String getToken() {
@@ -24,19 +31,43 @@ public class AuthToken {
         this.token = token;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public String getRole() {
         return role;
     }
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public boolean isFirstLogin() {
-        return firstLogin;
-    }
-
-    public void setFirstLogin(boolean firstLogin) {
-        this.firstLogin = firstLogin;
     }
 }

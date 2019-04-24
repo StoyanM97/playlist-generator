@@ -67,8 +67,6 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user")
     private UserDetailsModel userDetail;
 
-    private boolean isFirstLogin;
-
     @ManyToOne
     @JoinColumn(name = AUTHORITY_ID)
     private Authority authority;
@@ -115,21 +113,5 @@ public class User implements UserDetails {
 
     public List<Authority> getAuthorities() {
         return Collections.singletonList(authority);
-    }
-
-    public boolean isFirstLogin() {
-        return isFirstLogin;
-    }
-
-    public void setFirstLogin(boolean firstLogin) {
-        isFirstLogin = firstLogin;
-    }
-
-    public Authority getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(Authority authority) {
-        this.authority = authority;
     }
 }
