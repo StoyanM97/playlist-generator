@@ -27,7 +27,7 @@ public class UserDetailsModel {
     private static final String LAST_NAME_LENGTH_ERROR_MESSAGE = "Last name must be between 2 and 20 characters long!";
     private static final int NAME_MIN_LENGTH = 2;
     private static final int NAME_MAX_LENGTH = 20;
-//    private static final String USERNAME = "username";
+    private static final String USER_ID = "user_id";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,7 @@ public class UserDetailsModel {
     private int id;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = USER_ID)
     private User user;
 
     @Email

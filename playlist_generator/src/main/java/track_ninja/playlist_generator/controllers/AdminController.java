@@ -3,6 +3,7 @@ package track_ninja.playlist_generator.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import track_ninja.playlist_generator.models.User;
+import track_ninja.playlist_generator.models.dtos.CreateEditUserByAdminDTO;
 import track_ninja.playlist_generator.services.UserService;
 
 
@@ -27,7 +28,18 @@ public class AdminController {
         return userService.getByUsername(username);
     }
 
-    @DeleteMapping("/user/delete")
-    private void deleteUser(@RequestParam long userId) {
+    @PostMapping("/create/user/")
+    private boolean createUser(@RequestBody CreateEditUserByAdminDTO createEditUserByAdminDTO){
+        return userService.createUser(createEditUserByAdminDTO);
+    }
+
+    @PutMapping("/edit/user")
+    private boolean editUserByAdmin(@RequestBody CreateEditUserByAdminDTO createEditUserByAdminDTO){
+        return userService.editUserByAdmin(createEditUserByAdminDTO);
+    }
+
+    @DeleteMapping("/delete/user")
+    private boolean deleteUser(@RequestParam String username) {
+        return userService.deleteUser(username);
     }
 }

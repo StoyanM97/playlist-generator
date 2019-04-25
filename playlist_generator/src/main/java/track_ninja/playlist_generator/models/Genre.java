@@ -21,6 +21,8 @@ public class Genre {
     private static final String NAME = "name";
     private static final String IMAGE_URL = "image_url";
     private static final String GENRE = "genre";
+    private static final String PLAYLIST_ID = "playlist_id";
+    private static final String GENRE_PLAYLIST_RELATIONS = "genre_playlist_relations";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,8 +41,8 @@ public class Genre {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "genre_playlist_relations",
-            joinColumns = {@JoinColumn(name = "genre_id", referencedColumnName = "genre_id")},
-            inverseJoinColumns = {@JoinColumn(name = "playlist_id", referencedColumnName = "playlist_id")})
+            name = GENRE_PLAYLIST_RELATIONS,
+            joinColumns = {@JoinColumn(name = GENRE_ID, referencedColumnName = GENRE_ID)},
+            inverseJoinColumns = {@JoinColumn(name = PLAYLIST_ID, referencedColumnName = PLAYLIST_ID)})
     private List<Playlist> playlists;
 }

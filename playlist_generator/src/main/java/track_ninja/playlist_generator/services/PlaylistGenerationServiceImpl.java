@@ -6,6 +6,7 @@ import track_ninja.playlist_generator.duration.generator.services.LocationServic
 import track_ninja.playlist_generator.models.*;
 import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistGeneratorDTO;
+import track_ninja.playlist_generator.models.mappers.ModelMapper;
 import track_ninja.playlist_generator.repositories.GenreRepository;
 import track_ninja.playlist_generator.repositories.PlaylistRepository;
 import track_ninja.playlist_generator.repositories.TrackRepository;

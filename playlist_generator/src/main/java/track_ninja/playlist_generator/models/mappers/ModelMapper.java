@@ -1,5 +1,8 @@
-package track_ninja.playlist_generator.models;
+package track_ninja.playlist_generator.models.mappers;
 
+import track_ninja.playlist_generator.models.Genre;
+import track_ninja.playlist_generator.models.Playlist;
+import track_ninja.playlist_generator.models.Track;
 import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.models.dtos.TrackDTO;
 

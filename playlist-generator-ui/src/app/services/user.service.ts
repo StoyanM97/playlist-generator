@@ -10,26 +10,28 @@ export class UserService {
     private readonly HOST = 'http://localhost:8080';
     private readonly USER_URL = this.HOST + '/api/user';
     private readonly ADMIN_URL = this.HOST + '/api/admin';
+
     private readonly EDIT_USER = this.USER_URL + '/edit';
     private readonly UPLOAD_AVATAR = this.USER_URL + '/upload/avatar';
+
+    private readonly GET_USERS = this.ADMIN_URL + '/users';
     private readonly DELETE_USER = this.ADMIN_URL + '/delete/user';
     private readonly EDIT_USER_BY_ADMIN = this.ADMIN_URL + '/edit/user';
-    private readonly CREATE_USER_BY_ADMIN = this.ADMIN_URL + '/create';
+    private readonly CREATE_USER_BY_ADMIN = this.ADMIN_URL + '/create/user';
     
     httpOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
 
     constructor(private httpClient: HttpClient){}
-
-    getUsers(): Observable<User[]>{
-      return;
-    }
-
+    
+    getUsers(): Observable<User[]> {
+      return this.httpClient.get<User[]>(this.GET_USERS);
+  }
     uploadAvatar(username: string, avatar: File): Observable<{}>{
         const formdata: FormData = new FormData();
         formdata.append('file', avatar);
-        formdata.append('username', String(username));
+        formdata.append('username', username);
      
         return this.httpClient.post(this.UPLOAD_AVATAR, formdata);
     }
@@ -49,7 +51,7 @@ export class UserService {
         return this.httpClient.delete(url, this.httpOptions);
     }
   
-    editUserByAdmin(user: User): Observable<any>{
+    editUserByAdmin(user: User): Observable<{}>{
       const editUser = 
      {   username: user.username,
          firstName: user.firstName,
@@ -60,7 +62,7 @@ export class UserService {
    return this.httpClient.put<User>(this.EDIT_USER_BY_ADMIN, editUser, this.httpOptions);
   }
 
-  createUserByAdmin(username: string, password: string, firstName: string, lastName: string, email: string, userRole: string,): Observable<User>{
+  createUserByAdmin(username: string, password: string, firstName: string, lastName: string, email: string, userRole: string,): Observable<{}>{
     const createUser = 
     { username: username, password: password, firstName: firstName, lastName: lastName, email: email, role: userRole };
   return this.httpClient.post<User>(this.CREATE_USER_BY_ADMIN, createUser, this.httpOptions); 

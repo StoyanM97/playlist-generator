@@ -3,17 +3,15 @@ package track_ninja.playlist_generator.services;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import track_ninja.playlist_generator.models.User;
 import track_ninja.playlist_generator.models.UserDetailsModel;
+import track_ninja.playlist_generator.models.dtos.CreateEditUserByAdminDTO;
 import track_ninja.playlist_generator.models.dtos.LoginUserDTO;
 import track_ninja.playlist_generator.models.dtos.RegistrationDTO;
 import track_ninja.playlist_generator.repositories.AuthorityRepository;
@@ -81,10 +79,31 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void delete(String username) {
+    public boolean deleteUser(String username) {
         User user = userRepository.findByUsername(username);
         user.setEnabled(false);
-        userRepository.save(user);
+       return userRepository.save(user) != null;
+
+    }
+
+    @Override
+    public boolean createUser(CreateEditUserByAdminDTO createEditUserByAdminDTO) {
+        return false;
+    }
+
+    @Override
+    public boolean editUserByAdmin(CreateEditUserByAdminDTO createEditUserByAdminDTO) {
+        return false;
+    }
+
+    @Override
+    public boolean editUser(RegistrationDTO registrationDTO) {
+        return false;
+    }
+
+    @Override
+    public boolean avatarUpload(MultipartFile file, String username) {
+        return false;
     }
 
     private String getAvatar(User user){

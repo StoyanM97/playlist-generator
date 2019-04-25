@@ -6,10 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import track_ninja.playlist_generator.models.commons.AuthorityName;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,10 +20,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Authority implements GrantedAuthority {
 
-    //    private static final String AUTHORITY_ID = "authority_id";
     private static final String ROLE_TYPE = "role_type";
-//    static final String AUTHORITIES = "authorities";
-    private static final String USERNAME = "username";
     private static final String AUTHORITY_ID = "authority_id";
     private static final String AUTHORITY = "authority";
 

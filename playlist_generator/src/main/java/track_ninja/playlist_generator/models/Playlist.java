@@ -24,6 +24,9 @@ public class Playlist {
     private static final String TITLE = "title";
     private static final String USER_ID = "user_id";
     private static final String IS_DELETED = "is_deleted";
+    private static final String TRACK_ID = "track_id";
+    private static final String PLAYLIST_TRACK_RELATIONS = "playlist_track_relations";
+    private static final String PLAYLISTS = "playlists";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,13 +46,13 @@ public class Playlist {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "playlist_track_relations",
-            joinColumns = {@JoinColumn(name = "playlist_id", referencedColumnName = "playlist_id")},
-            inverseJoinColumns = {@JoinColumn(name = "track_id", referencedColumnName = "track_id")})
+            name = PLAYLIST_TRACK_RELATIONS,
+            joinColumns = {@JoinColumn(name = PLAYLIST_ID, referencedColumnName = PLAYLIST_ID)},
+            inverseJoinColumns = {@JoinColumn(name = TRACK_ID, referencedColumnName = TRACK_ID)})
     private List<Track> tracks;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "playlists")
+    @ManyToMany(mappedBy = PLAYLISTS)
     private List<Genre> genres;
 
     private Long duration;
