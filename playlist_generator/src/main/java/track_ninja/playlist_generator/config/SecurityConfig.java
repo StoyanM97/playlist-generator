@@ -3,6 +3,7 @@ package track_ninja.playlist_generator.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -91,10 +92,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                 .antMatchers("/api").permitAll()
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/register").permitAll()
-                .antMatchers("/api/filter/**").permitAll()
+                .regexMatchers(HttpMethod.GET, "\\/api\\/filter\\/genre\\?genre=[A-z]+").permitAll()
+                .regexMatchers(HttpMethod.GET, "\\/api\\/filter\\title\\?title=[A-Za-z0-9]+").permitAll()
                 .antMatchers("/api/user/**").hasRole("USER")
-                .antMatchers("/api/admin/**").hasRole("USER")
+                .antMatchers("/api/user/**").hasRole("ADMIN")
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
+                .regexMatchers(HttpMethod.GET, "\\/api\\/admin\\/users\\/filter\\?username=[A-Za-z0-9]+").hasRole("ADMIN")
+                .regexMatchers(HttpMethod.DELETE, "\\/api\\/admin\\/delete\\/user\\?username=[A-Za-z0-9]+").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
