@@ -9,5 +9,5 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     boolean existsByUsername(String name);
 
-    User findByUsername(String username);
+    User findByUsernameAndEnabledTrue(String username);
 }

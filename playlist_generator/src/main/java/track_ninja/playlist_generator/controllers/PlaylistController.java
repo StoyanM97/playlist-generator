@@ -23,17 +23,17 @@ public class PlaylistController {
     }
 
     @GetMapping("/filter/genre")
-    public Iterable<Playlist> getByGenre(@RequestParam String genre) {
+    public Iterable<Playlist> getByGenre(@RequestBody String genre) {
         return playlistService.getByGenre(genre);
     }
 
-//    @GetMapping("/filter/user")
-//    public Iterable<Playlist> getByUser(@RequestParam String username) {
-//        return playlistService.getByUser(username);
-//    }
+    @GetMapping("/filter/user")
+    public Iterable<Playlist> getByUser(@RequestBody String username) {
+        return playlistService.getByUser(username);
+    }
 
     @GetMapping("/filter/title")
-    public Iterable<Playlist> getByTitle(@RequestParam String title) {
+    public Iterable<Playlist> getByTitle(@RequestBody String title) {
         return playlistService.getByTitle(title);
     }
 }

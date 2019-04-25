@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import track_ninja.playlist_generator.models.UserDetailsModel;
 
 public interface UserDetailsRepository extends CrudRepository<UserDetailsModel, Integer> {
-    UserDetailsModel findByUser_Username(String username);
+    UserDetailsModel findByDeletedFalseAndUser_Username(String username);
 }

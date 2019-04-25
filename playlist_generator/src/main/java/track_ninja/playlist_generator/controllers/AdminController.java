@@ -27,7 +27,7 @@ public class AdminController {
     }
 
     @GetMapping("/users/filter")
-    private UserDTO getUser(@RequestParam String username){
+    private UserDTO getUser(@RequestBody String username){
         return userService.getUser(username);
     }
 
@@ -42,7 +42,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/user")
-    private boolean deleteUser(@RequestParam String username) {
+    private boolean deleteUser(@RequestBody String username) {
 
         return userService.deleteUser(username);
     }

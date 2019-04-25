@@ -8,9 +8,9 @@ import java.util.List;
 
 @Repository
 public interface PlaylistRepository extends CrudRepository<Playlist, Integer> {
-    List<Playlist> findPlaylistsByGenres_name(String genre);
+    List<Playlist> findPlaylistsByDeletedFalseAndGenresContaining_Name(String genre);
 
-    List<Playlist> findAllByUser_User_Username(String username);
+    List<Playlist> findAllByDeletedFalseAndUser_User_Username(String username);
 
-    List<Playlist> findAllByTitle(String title);
+    List<Playlist> findAllByDeletedFalseAndTitle(String title);
 }

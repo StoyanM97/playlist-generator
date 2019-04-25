@@ -7,7 +7,7 @@ public interface PlaylistService {
 
     Iterable<Playlist> getByGenre(String genre);
 
-//    Iterable<Playlist> getByUser(String username);
+    Iterable<Playlist> getByUser(String username);
 
     Iterable<Playlist> getByTitle(String title);
 }
