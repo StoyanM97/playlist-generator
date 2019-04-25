@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
-import { EmailValidator } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class RegistrationService {

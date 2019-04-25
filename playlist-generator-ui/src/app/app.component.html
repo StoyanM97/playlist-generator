@@ -21,8 +21,12 @@
       </li>
 
       <li *ngIf = "loggedUser" class="nav-item">
-        <a class="nav-link" routerLink="/user">User</a>
+        <a class="nav-link" routerLink="/user">{{loggedUser.firstName}} {{loggedUser.lastName}}</a>
       </li>
+
+      <li *ngIf = "loggedUser" class="nav-item">
+          <a class="nav-link" routerLink="/users">Users</a>
+        </li>
 
       <li *ngIf = "loggedUser" class="nav-item">
         <a class="nav-link" routerLink="/playlist">Create Playlist</a>

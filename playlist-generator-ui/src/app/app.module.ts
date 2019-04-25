@@ -13,6 +13,7 @@ import { UserComponent } from './user/user.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     LoginComponent,
     DashboardComponent,
     UserComponent,
-    PlaylistComponent
+    PlaylistComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

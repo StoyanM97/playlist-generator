@@ -154,6 +154,7 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`playlists` (
   `playlist_id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(200) NOT NULL,
   `user_id` INT NOT NULL,
+  `duration` INT NOT NULL,
   `is_deleted` TINYINT(1) NULL,
   PRIMARY KEY (`playlist_id`),
   INDEX `user_playlist_relation_idx` (`user_id` ASC) ,
