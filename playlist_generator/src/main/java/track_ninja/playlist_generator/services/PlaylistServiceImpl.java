@@ -21,18 +21,18 @@ public class PlaylistServiceImpl implements PlaylistService{
         return playlistRepository.findAll();
     }
 
-    @Override
-    public Iterable<Playlist> getByGenre(String genre) {
-        return playlistRepository.findPlaylistsByDeletedFalseAndGenresContaining_Name(genre);
-    }
+//    @Override
+//    public Iterable<Playlist> getByGenre(String genre) {
+//        return playlistRepository.findPlaylistsByIsDeletedFalseAndGenresContaining_Name(genre);
+//    }
 
     @Override
     public Iterable<Playlist> getByUser(String username) {
-        return playlistRepository.findAllByDeletedFalseAndUser_User_Username(username);
+        return playlistRepository.findAllByIsDeletedFalseAndUser_User_Username(username);
     }
 
     @Override
     public Iterable<Playlist> getByTitle(String title) {
-        return playlistRepository.findAllByDeletedFalseAndTitle(title);
+        return playlistRepository.findAllByIsDeletedFalseAndTitle(title);
     }
 }

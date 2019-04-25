@@ -108,7 +108,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public boolean editUserByAdmin(CreateEditUserByAdminDTO createEditUserByAdminDTO) {
-        UserDetailsModel userDetails = userDetailsRepository.findByDeletedFalseAndUser_Username(createEditUserByAdminDTO.getUsername());
+        UserDetailsModel userDetails = userDetailsRepository.findByIsDeletedFalseAndUser_Username(createEditUserByAdminDTO.getUsername());
         mapCreateEditAdminDTOtoUserDetails(createEditUserByAdminDTO, userDetails);
         User user = getByUsername(createEditUserByAdminDTO.getUsername());
         mapCreateEditUserByAdminDTOtoUser(createEditUserByAdminDTO, userDetails, user);
@@ -119,7 +119,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean editUser(RegistrationDTO registrationDTO) {
         User user = userRepository.findByUsernameAndEnabledTrue(registrationDTO.getUsername());
         mapRegistrationDTOToUser(registrationDTO, user);
-        UserDetailsModel userDetailsModel =userDetailsRepository.findByDeletedFalseAndUser_Username(registrationDTO.getUsername());
+        UserDetailsModel userDetailsModel =userDetailsRepository.findByIsDeletedFalseAndUser_Username(registrationDTO.getUsername());
         mapRegistrationDTOToUserDetails(registrationDTO, user, userDetailsModel);
         return userRepository.save(user) != null;
     }

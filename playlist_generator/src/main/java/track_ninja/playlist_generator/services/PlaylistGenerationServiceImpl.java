@@ -42,7 +42,7 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
         Deque<Track> playlist = new ArrayDeque<>();
         Playlist generatedPlaylist = new Playlist();
         generatedPlaylist.setTitle(playlistGeneratorDTO.getTitle());
-        generatedPlaylist.setUser(userDetailsRepository.findByDeletedFalseAndUser_Username(playlistGeneratorDTO.getUsername()));
+        generatedPlaylist.setUser(userDetailsRepository.findByIsDeletedFalseAndUser_Username(playlistGeneratorDTO.getUsername()));
         generatedPlaylist.setDeleted(false);
         generatedPlaylist.setDuration(0L);
         List<Genre> genres = new ArrayList<>();

@@ -22,10 +22,10 @@ public class PlaylistController {
         return playlistService.getAll();
     }
 
-    @GetMapping("/filter/genre")
-    public Iterable<Playlist> getByGenre(@RequestBody String genre) {
-        return playlistService.getByGenre(genre);
-    }
+//    @GetMapping("/filter/genre")
+//    public Iterable<Playlist> getByGenre(@RequestBody String genre) {
+//        return playlistService.getByGenre(genre);
+//    }
 
     @GetMapping("/filter/user")
     public Iterable<Playlist> getByUser(@RequestBody String username) {
