@@ -58,7 +58,7 @@
                  #role>
               </td>
               <td>
-                <button class="btn btn-primary" (click)= "editMode(user)" >{{edditing}}? Edit : Done</button>
+                <button class="btn btn-primary" (click)= "editMode(user)" >{{edditing? "Done" : "Edit"}}</button>
               </td>
               <td>
                   <button class="btn btn-primary" (click)= "delete(user)" >Delete</button>
