@@ -17,6 +17,7 @@ import track_ninja.playlist_generator.models.dtos.RegistrationDTO;
 import track_ninja.playlist_generator.models.dtos.UserDTO;
 import track_ninja.playlist_generator.models.mappers.ModelMapper;
 import track_ninja.playlist_generator.repositories.AuthorityRepository;
+import track_ninja.playlist_generator.repositories.UserDetailsRepository;
 import track_ninja.playlist_generator.repositories.UserRepository;
 import track_ninja.playlist_generator.security.models.JwtTokenUtil;
 import track_ninja.playlist_generator.security.models.LoginUser;
@@ -31,14 +32,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private AuthorityRepository authorityRepository;
     private PasswordEncoder passwordEncoder;
     private JwtTokenUtil jwtTokenUtil;
+    private UserDetailsRepository userDetailsRepository;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                           AuthorityRepository authorityRepository, JwtTokenUtil jwtTokenUtil) {
+                           AuthorityRepository authorityRepository, JwtTokenUtil jwtTokenUtil,
+                           UserDetailsRepository userDetailsRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.jwtTokenUtil = jwtTokenUtil;
+        this.userDetailsRepository = userDetailsRepository;
     }
 
     @Override
@@ -102,13 +106,29 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public boolean createUser(CreateEditUserByAdminDTO createEditUserByAdminDTO) {
-        //he can set the user role. The dto has field UserRole. Should be valid
-        return false;
+        UserDetailsModel userDetails = new UserDetailsModel();
+        userDetails.setFirstName(createEditUserByAdminDTO.getFirstName());
+        userDetails.setLastName(createEditUserByAdminDTO.getLastName());
+        userDetails.setEmail(createEditUserByAdminDTO.getEmail());
+        userDetails.setDeleted(false);
+        User user = new User();
+        user.setUsername(createEditUserByAdminDTO.getUsername());
+        user.setPassword(createEditUserByAdminDTO.getPassword());
+        user.setUserDetail(userDetails);
+        user.setAuthority(authorityRepository.findByName(createEditUserByAdminDTO.getRole()));
+        user.setEnabled(true);
+        return userRepository.save(user) != null;
     }
 
     @Override
     public boolean editUserByAdmin(CreateEditUserByAdminDTO createEditUserByAdminDTO) {
-        //he can edit the user role. The dto has field UserRole. Should be valid
+        UserDetailsModel userDetails = userDetailsRepository.findByUser_Username(createEditUserByAdminDTO.getUsername());
+        User user = getByUsername(createEditUserByAdminDTO.getUsername());
+        user.setUsername(createEditUserByAdminDTO.getUsername());
+        user.setPassword(createEditUserByAdminDTO.getPassword());
+        user.setUserDetail(userDetails);
+        user.setAuthority(authorityRepository.findByName(createEditUserByAdminDTO.getRole()));
+        user.setEnabled(true);
         return false;
     }
 
