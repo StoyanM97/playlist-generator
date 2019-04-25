@@ -19,7 +19,7 @@ import track_ninja.playlist_generator.repositories.UserRepository;
 import track_ninja.playlist_generator.security.models.JwtTokenUtil;
 import track_ninja.playlist_generator.security.models.LoginUser;
 
-@Service
+@Service("UserServiceImpl")
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private UserRepository userRepository;
