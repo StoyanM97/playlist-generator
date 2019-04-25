@@ -2,11 +2,12 @@ package track_ninja.playlist_generator.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import track_ninja.playlist_generator.models.User;
 import track_ninja.playlist_generator.models.dtos.CreateEditUserByAdminDTO;
+import track_ninja.playlist_generator.models.dtos.UserDTO;
 import track_ninja.playlist_generator.services.UserService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -21,13 +22,13 @@ public class AdminController {
     }
 
     @GetMapping("/users")
-    private Iterable<User> getAll(){
+    private List<UserDTO> getAll(){
         return userService.getAll();
     }
 
     @GetMapping("/users/filter")
-    private User getByUsername(@RequestParam String username){
-        return userService.getByUsername(username);
+    private UserDTO getUser(@RequestParam String username){
+        return userService.getUser(username);
     }
 
     @PostMapping("/create/user/")
@@ -42,6 +43,7 @@ public class AdminController {
 
     @DeleteMapping("/delete/user")
     private boolean deleteUser(@RequestParam String username) {
+
         return userService.deleteUser(username);
     }
 }

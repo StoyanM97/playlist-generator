@@ -31,7 +31,10 @@ export class UsersComponent implements OnInit{
        if(this.edditing){
         this.user = user;
        }
-       this.handleEdit(user);     
+       else{
+        this.handleEdit(user);  
+       }
+          
     }
 
     delete(event){
@@ -40,7 +43,6 @@ export class UsersComponent implements OnInit{
         console.log(data);
     },error => {
         console.log(error);
-        console.log(error.status + "  " + error.error.error);
       },
       () => {
         // No errors, route to new page

@@ -1,5 +1,6 @@
 package track_ninja.playlist_generator.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,10 +31,10 @@ public class UserDetailsModel {
     @Column(name = USER_DETAILS_ID)
     private int id;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = USER_ID)
     private User user;
-
 
     @Column(name = EMAIL)
     private String email;

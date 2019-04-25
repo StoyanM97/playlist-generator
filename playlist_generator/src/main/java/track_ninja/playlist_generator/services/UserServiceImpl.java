@@ -14,10 +14,15 @@ import track_ninja.playlist_generator.models.UserDetailsModel;
 import track_ninja.playlist_generator.models.dtos.CreateEditUserByAdminDTO;
 import track_ninja.playlist_generator.models.dtos.LoginUserDTO;
 import track_ninja.playlist_generator.models.dtos.RegistrationDTO;
+import track_ninja.playlist_generator.models.dtos.UserDTO;
+import track_ninja.playlist_generator.models.mappers.ModelMapper;
 import track_ninja.playlist_generator.repositories.AuthorityRepository;
 import track_ninja.playlist_generator.repositories.UserRepository;
 import track_ninja.playlist_generator.security.models.JwtTokenUtil;
 import track_ninja.playlist_generator.security.models.LoginUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service("UserServiceImpl")
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -42,20 +47,27 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public Iterable<User> getAll() {
-        return userRepository.findAll();
+    public List<UserDTO> getAll() {
+        List<UserDTO> userDTOS = new ArrayList<>();
+        Iterable<User> users = userRepository.findAll();
+        users.forEach(user -> userDTOS.add(ModelMapper.userToDTO(user)));
+        return userDTOS;
+    }
+
+    @Override
+    public UserDTO getUser(String username) {
+        return ModelMapper.userToDTO(userRepository.findByUsername(username));
     }
 
     @Override
     public User getByUsername(String username) {
-
         return userRepository.findByUsername(username);
     }
 
     @Override
     public ResponseEntity getLoggedUser(LoginUser loginUser){
 
-        final User user = getByUsername(loginUser.getUsername());
+        final User user = userRepository.findByUsername((loginUser.getUsername()));
         final String token = jwtTokenUtil.generateToken(user);
         return ResponseEntity.ok(new LoginUserDTO(user.getUsername(),user.getAuthority().getName().toString(),
                 user.getUserDetail().getFirstName(), user.getUserDetail().getLastName(), user.getUserDetail().getEmail(),
@@ -80,9 +92,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public boolean deleteUser(String username) {
+        System.out.println(username);
         User user = userRepository.findByUsername(username);
         user.setEnabled(false);
-       return userRepository.save(user) != null;
+
+        return userRepository.save(user) != null;
 
     }
 
@@ -109,6 +123,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     private String getAvatar(User user){
-        return user.getUserDetail().getAvatar()==null? "" : new String(Base64.encodeBase64(user.getUserDetail().getAvatar()));
+        return user.getUserDetail().getAvatar()==null? null : new String(Base64.encodeBase64(user.getUserDetail().getAvatar()));
     }
 }
