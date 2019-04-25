@@ -1,5 +1,7 @@
 package track_ninja.playlist_generator.security.models;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,10 +41,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 username = jwtTokenUtil.getUsernameFromToken(authToken);
             } catch (IllegalArgumentException e) {
                 logger.error("An error occurred while getting username from token.", e);
-//            } catch (ExpiredJwtException e) {
-//                logger.warn("The token is expired and not valid anymore", e);
-//            } catch (SignatureException e) {
-//                logger.error("Authentication failed. Username or password not valid.");
+           } catch (ExpiredJwtException e) {
+                logger.warn("The token is expired and not valid anymore", e);
+            } catch (SignatureException e) {
+               logger.error("Authentication failed. Username or password not valid.");
             }
         } else {
             logger.warn("Couldn't find bearer string, will ignore the header.");

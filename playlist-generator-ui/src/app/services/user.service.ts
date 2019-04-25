@@ -36,12 +36,13 @@ export class UserService {
         return this.httpClient.post(this.UPLOAD_AVATAR, formdata);
     }
 
-    editUser(user: User): Observable<{}>{
+    editUser(user: User, oldUsername: string): Observable<{}>{
         const editUser = 
         {   username: user.username, 
             firstName: user.firstName,
             lastName: user.lastName,
-            email: user.email
+            email: user.email,
+            oldUsername: oldUsername
         };
       return this.httpClient.put<User>(this.EDIT_USER, editUser, this.httpOptions);
     }
@@ -51,13 +52,14 @@ export class UserService {
         return this.httpClient.delete(url, this.httpOptions);
     }
   
-    editUserByAdmin(user: User): Observable<{}>{
+    editUserByAdmin(user: User, oldUsername: string): Observable<{}>{
       const editUser = 
      {   username: user.username,
          firstName: user.firstName,
          lastName: user.lastName,
          email: user.email,
-         role: user.role
+         role: user.role,
+         oldUsername: oldUsername
      };
    return this.httpClient.put<User>(this.EDIT_USER_BY_ADMIN, editUser, this.httpOptions);
   }

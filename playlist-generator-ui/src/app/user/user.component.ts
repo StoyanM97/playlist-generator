@@ -14,6 +14,7 @@ export class UserComponent implements OnInit {
   user: User;
   
   selectedFile: File = null;
+  oldUsername: string;
   edditing: boolean = false;
   hasImage: boolean = false;
 
@@ -23,9 +24,10 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.user = this.authenticationService.currentUserValue;
-
+    
+    this.authenticationService.currentUser.subscribe(currentUser => this.user = currentUser);
+    console.log(this.user.username);
+    this.oldUsername = this.user.username;
     if(this.user.avatar !== undefined && this.user.avatar !== null){
       console.log(" has image");
       this.hasImage = true;
@@ -51,6 +53,7 @@ export class UserComponent implements OnInit {
 
 onUsernameChange(value: string){
   this.user.username = value;
+  
 }
 onFirstNameChange(value: string){
   this.user.firstName = value;
@@ -67,15 +70,15 @@ onEmailChange(value: string){
 doneEditting(){
     if(this.edditing){
       
-    this.userService.editUser(this.user).subscribe(data => {
+    this.userService.editUser(this.user, this.oldUsername).subscribe(data => {
         console.log(data);
     },error => {
         console.log(error);
-        console.log(error.status + "  " + error.error.error);
       },
       () => {
         // No errors, route to new page
-
+        this.authenticationService.saveEditUser(this.user);
+        //this.authenticationService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
       }
         );
     

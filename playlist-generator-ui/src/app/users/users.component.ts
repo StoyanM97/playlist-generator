@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from "@angular/core";
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({ 
     selector: 'users',
@@ -13,22 +14,24 @@ export class UsersComponent implements OnInit{
     
     user: User;
     users: User[];
+    oldUsername: string;
     edditing: boolean = false;
 
-    constructor(private userService: UserService){
+    constructor(private userService: UserService, private authenticationService: AuthenticationService){
      
     }
      
-    ngOnInit(){     
+    ngOnInit(){
          this.userService.getUsers().subscribe(data => {
                     console.log('this is the object ', data);
-                    this.users = data;
+                    this.users = data.filter((user: User) => user.username !== this.authenticationService.currentUserValue.username );;
         });  
     }
 
     editMode(user){
        this.edditing = !this.edditing;
        if(this.edditing){
+        this.oldUsername = this.user.username;
         this.user = user;
        }
        else{
@@ -58,7 +61,7 @@ export class UsersComponent implements OnInit{
           return u;
       });
 
-      this.userService.editUserByAdmin(this.user).subscribe(data => {
+      this.userService.editUserByAdmin(this.user, this.oldUsername).subscribe(data => {
             console.log(data);
         },error => {
             console.log(error);
@@ -66,6 +69,7 @@ export class UsersComponent implements OnInit{
           },
           () => {
             // No errors, route to new page
+            this.authenticationService.saveEditUser(this.user);
           }
             );
     }

@@ -3,12 +3,10 @@ package track_ninja.playlist_generator.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -16,14 +14,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.firewall.HttpFirewall;
-import org.springframework.security.web.firewall.StrictHttpFirewall;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-//import track_ninja.playlist_generator.security.FirstLoginInterceptor;
 import track_ninja.playlist_generator.security.models.JwtAuthenticationFilter;
 
 import javax.annotation.Resource;
@@ -36,20 +30,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     @Resource(name = "UserServiceImpl")
     private UserDetailsService userDetailsService;
 
-    // Config security datasource from AppConfig
+
     @Autowired
     private DataSource securityDataSource;
 
-    // Config password encoder (bcrypt)
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-//    @Bean
-//    public FirstLoginInterceptor firstLoginInterceptor2(){
-//        return new FirstLoginInterceptor();
-//    }
 
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
@@ -67,8 +57,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
         return super.authenticationManagerBean();
     }
 
-    // Config how to check username, password, whether user is enabled (1) and username's role (in db role should be kept as "ROLE_USER", "ROLE_ADMIN", etc. for this to work properly)
-    // If enabled = 0 => can't pass login
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(securityDataSource)
@@ -92,13 +80,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                 .antMatchers("/api").permitAll()
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/register").permitAll()
-                .regexMatchers(HttpMethod.GET, "\\/api\\/filter\\/genre\\?genre=[A-z]+").permitAll()
-                .regexMatchers(HttpMethod.GET, "\\/api\\/filter\\title\\?title=[A-Za-z0-9]+").permitAll()
-                .antMatchers("/api/user/**").hasRole("USER")
-                .antMatchers("/api/user/**").hasRole("ADMIN")
-                .antMatchers("/api/admin/**").hasRole("ADMIN")
-                .regexMatchers(HttpMethod.GET, "\\/api\\/admin\\/users\\/filter\\?username=[A-Za-z0-9]+").hasRole("ADMIN")
-                .regexMatchers(HttpMethod.DELETE, "\\/api\\/admin\\/delete\\/user\\?username=[A-Za-z0-9]+").hasRole("ADMIN")
+                .antMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/api/admin/**").hasAnyRole("USER", "ADMIN")
+                //.regexMatchers(HttpMethod.DELETE, "\\/api\\/admin\\/delete\\/user\\?username=[A-Za-z0-9]+").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -129,24 +113,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
         return source;
     }
 
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry){
-//        registry.addInterceptor(firstLoginInterceptor2()).addPathPatterns("/api/admin/**");
-//
-//    }
-
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        super.configure(web);
-//        web.httpFirewall(allowUrlEncodedSlashHttpFirewall());
-//
-//    }
-//
-//    @Bean
-//    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
-//        StrictHttpFirewall firewall = new StrictHttpFirewall();
-//        firewall.setAllowUrlEncodedSlash(true);
-//        firewall.setAllowSemicolon(true);
-//        return firewall;
-//    }
 }

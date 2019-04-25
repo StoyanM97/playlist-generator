@@ -7,7 +7,7 @@ import track_ninja.playlist_generator.models.Track;
 import track_ninja.playlist_generator.models.User;
 import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.models.dtos.TrackDTO;
-import track_ninja.playlist_generator.models.dtos.UserDTO;
+import track_ninja.playlist_generator.models.dtos.UserDisplayDTO;
 
 import java.util.stream.Collectors;
 
@@ -41,16 +41,16 @@ public class ModelMapper {
         return playlistDTO;
     }
 
-    public static UserDTO userToDTO(User user) {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setUsername(user.getUsername());
-        userDTO.setRole(user.getAuthority().getName().toString());
-        userDTO.setFirstName(user.getUserDetail().getFirstName());
-        userDTO.setLastName(user.getUserDetail().getLastName());
-        userDTO.setEmail(user.getUserDetail().getEmail());
+    public static UserDisplayDTO userToDTO(User user) {
+        UserDisplayDTO userDisplayDTO = new UserDisplayDTO();
+        userDisplayDTO.setUsername(user.getUsername());
+        userDisplayDTO.setRole(user.getAuthority().getName().toString());
+        userDisplayDTO.setFirstName(user.getUserDetail().getFirstName());
+        userDisplayDTO.setLastName(user.getUserDetail().getLastName());
+        userDisplayDTO.setEmail(user.getUserDetail().getEmail());
         if(user.getUserDetail().getAvatar() != null){
-            userDTO.setAvatar(new String(Base64.encodeBase64(user.getUserDetail().getAvatar())));
+            userDisplayDTO.setAvatar(new String(Base64.encodeBase64(user.getUserDetail().getAvatar())));
         }
-        return userDTO;
+        return userDisplayDTO;
     }
 }

@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import track_ninja.playlist_generator.models.User;
 import track_ninja.playlist_generator.models.UserDetailsModel;
-import track_ninja.playlist_generator.models.dtos.CreateEditUserByAdminDTO;
-import track_ninja.playlist_generator.models.dtos.LoginUserDTO;
-import track_ninja.playlist_generator.models.dtos.RegistrationDTO;
-import track_ninja.playlist_generator.models.dtos.UserDTO;
+import track_ninja.playlist_generator.models.dtos.*;
 import track_ninja.playlist_generator.models.mappers.ModelMapper;
 import track_ninja.playlist_generator.repositories.AuthorityRepository;
 import track_ninja.playlist_generator.repositories.UserDetailsRepository;
@@ -51,15 +48,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<UserDTO> getAll() {
-        List<UserDTO> userDTOS = new ArrayList<>();
+    public List<UserDisplayDTO> getAll() {
+        List<UserDisplayDTO> userDisplayDTOS = new ArrayList<>();
         Iterable<User> users = userRepository.findAll();
-        users.forEach(user -> userDTOS.add(ModelMapper.userToDTO(user)));
-        return userDTOS;
+        users.forEach(user -> userDisplayDTOS.add(ModelMapper.userToDTO(user)));
+        return userDisplayDTOS;
     }
 
     @Override
-    public UserDTO getUser(String username) {
+    public UserDisplayDTO getUser(String username) {
         return ModelMapper.userToDTO(userRepository.findByUsername(username));
     }
 
@@ -73,13 +70,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         final User user = userRepository.findByUsername((loginUser.getUsername()));
         final String token = jwtTokenUtil.generateToken(user);
-        return ResponseEntity.ok(new LoginUserDTO(user.getUsername(),user.getAuthority().getName().toString(),
-                user.getUserDetail().getFirstName(), user.getUserDetail().getLastName(), user.getUserDetail().getEmail(),
-                getAvatar(user),token));
+        UserLoginDTO loginDTO = new UserLoginDTO();
+        loginDTO.setUsername(user.getUsername());
+        loginDTO.setRole(user.getAuthority().getName().toString());
+        loginDTO.setFirstName(user.getUserDetail().getFirstName());
+        loginDTO.setLastName(user.getUserDetail().getLastName());
+        loginDTO.setEmail(user.getUserDetail().getEmail());
+        loginDTO.setAvatar(getAvatar(user));
+        loginDTO.setToken(token);
+
+        return ResponseEntity.ok(loginDTO);
     }
 
     @Override
-    public boolean register(RegistrationDTO registrationUser) {
+    public boolean register(UserRegistrationDTO registrationUser) {
         User user = new User();
         user.setUsername(registrationUser.getUsername());
         user.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
@@ -105,36 +109,57 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public boolean createUser(CreateEditUserByAdminDTO createEditUserByAdminDTO) {
+    public boolean createUser(UserRegistrationDTO userRegistrationDTO) {
+
         UserDetailsModel userDetails = new UserDetailsModel();
-        userDetails.setFirstName(createEditUserByAdminDTO.getFirstName());
-        userDetails.setLastName(createEditUserByAdminDTO.getLastName());
-        userDetails.setEmail(createEditUserByAdminDTO.getEmail());
+        userDetails.setFirstName(userRegistrationDTO.getFirstName());
+        userDetails.setLastName(userRegistrationDTO.getLastName());
+        userDetails.setEmail(userRegistrationDTO.getEmail());
         userDetails.setDeleted(false);
         User user = new User();
-        user.setUsername(createEditUserByAdminDTO.getUsername());
-        user.setPassword(createEditUserByAdminDTO.getPassword());
+        user.setUsername(userRegistrationDTO.getUsername());
+        user.setPassword(userRegistrationDTO.getPassword());
         user.setUserDetail(userDetails);
-        user.setAuthority(authorityRepository.findByName(createEditUserByAdminDTO.getRole()));
+        user.setAuthority(authorityRepository.findByName(userRegistrationDTO.getRole()));
         user.setEnabled(true);
+
         return userRepository.save(user) != null;
     }
 
     @Override
-    public boolean editUserByAdmin(CreateEditUserByAdminDTO createEditUserByAdminDTO) {
-        UserDetailsModel userDetails = userDetailsRepository.findByUser_Username(createEditUserByAdminDTO.getUsername());
-        User user = getByUsername(createEditUserByAdminDTO.getUsername());
-        user.setUsername(createEditUserByAdminDTO.getUsername());
-        user.setPassword(createEditUserByAdminDTO.getPassword());
+    public boolean editUserByAdmin(UserEditDTO userEditDTO) {
+
+        UserDetailsModel userDetails = userDetailsRepository.findByUser_Username(userEditDTO.getOldUsername());
+        userDetails.setFirstName(userEditDTO.getFirstName());
+        userDetails.setLastName(userEditDTO.getLastName());
+        userDetails.setEmail(userEditDTO.getEmail());
+
+        User user = getByUsername(userEditDTO.getOldUsername());
+        user.setUsername(userEditDTO.getUsername());
+        user.setPassword(passwordEncoder.encode(userEditDTO.getPassword()));
         user.setUserDetail(userDetails);
-        user.setAuthority(authorityRepository.findByName(createEditUserByAdminDTO.getRole()));
-        user.setEnabled(true);
-        return false;
+        user.setAuthority(authorityRepository.findByName(userEditDTO.getRole()));
+
+        return userRepository.save(user) != null;
     }
 
     @Override
-    public boolean editUser(RegistrationDTO registrationDTO) {
+    public boolean editUser(UserEditDTO userEditDTO) {
+
+        UserDetailsModel userDetails = userDetailsRepository.findByUser_Username(userEditDTO.getOldUsername());
+        userDetails.setFirstName(userEditDTO.getFirstName());
+        userDetails.setLastName(userEditDTO.getLastName());
+        userDetails.setEmail(userEditDTO.getEmail());
+
+        User user = getByUsername(userEditDTO.getOldUsername());
+        user.setUsername(userEditDTO.getUsername());
+        user.setUserDetail(userDetails);
+        System.out.println("in the base");
+        System.out.println(userDetails.getLastName());
+        System.out.println(user.getUsername());
+        System.out.println(userRepository.save(user).getUserDetail().getLastName());
         return false;
+
     }
 
     @Override

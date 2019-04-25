@@ -4,7 +4,7 @@ package track_ninja.playlist_generator.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import track_ninja.playlist_generator.models.dtos.RegistrationDTO;
+import track_ninja.playlist_generator.models.dtos.UserEditDTO;
 import track_ninja.playlist_generator.services.UserService;
 
 import javax.validation.Valid;
@@ -22,9 +22,9 @@ public class UserController {
 
 
 
-    @PutMapping("/edit/user")
-    private boolean editUser(@Valid @RequestBody RegistrationDTO registrationDTO){
-        return userService.editUser(registrationDTO);
+    @PutMapping("/edit")
+    private boolean editUser(@Valid @RequestBody UserEditDTO userEditDTO){
+        return userService.editUser(userEditDTO);
     }
 
     @PostMapping("/upload/avatar")

@@ -2,8 +2,9 @@ package track_ninja.playlist_generator.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import track_ninja.playlist_generator.models.dtos.CreateEditUserByAdminDTO;
-import track_ninja.playlist_generator.models.dtos.UserDTO;
+import track_ninja.playlist_generator.models.dtos.UserDisplayDTO;
+import track_ninja.playlist_generator.models.dtos.UserEditDTO;
+import track_ninja.playlist_generator.models.dtos.UserRegistrationDTO;
 import track_ninja.playlist_generator.services.UserService;
 
 import javax.validation.Valid;
@@ -22,28 +23,27 @@ public class AdminController {
     }
 
     @GetMapping("/users")
-    private List<UserDTO> getAll(){
+    private List<UserDisplayDTO> getAll(){
         return userService.getAll();
     }
 
-    @GetMapping("/users/filter")
-    private UserDTO getUser(@RequestParam String username){
+    @GetMapping("/users/filter/{username}")
+    private UserDisplayDTO getUser(@PathVariable String username){
         return userService.getUser(username);
     }
 
     @PostMapping("/create/user/")
-    private boolean createUser(@Valid @RequestBody CreateEditUserByAdminDTO createEditUserByAdminDTO){
-        return userService.createUser(createEditUserByAdminDTO);
+    private boolean createUser(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO){
+        return userService.createUser(userRegistrationDTO);
     }
 
     @PutMapping("/edit/user")
-    private boolean editUserByAdmin(@Valid @RequestBody CreateEditUserByAdminDTO createEditUserByAdminDTO){
-        return userService.editUserByAdmin(createEditUserByAdminDTO);
+    private boolean editUserByAdmin(@Valid @RequestBody UserEditDTO userEditDTO){
+        return userService.editUserByAdmin(userEditDTO);
     }
 
-    @DeleteMapping("/delete/user")
-    private boolean deleteUser(@RequestParam String username) {
-
+    @DeleteMapping("/delete/user/{username}")
+    private boolean deleteUser(@PathVariable String username) {
         return userService.deleteUser(username);
     }
 }

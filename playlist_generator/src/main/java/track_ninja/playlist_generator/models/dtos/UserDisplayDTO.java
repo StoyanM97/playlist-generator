@@ -1,15 +1,16 @@
 package track_ninja.playlist_generator.models.dtos;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
-@AllArgsConstructor
+@Getter
 @NoArgsConstructor
-public class LoginUserDTO {
+@AllArgsConstructor
+public class UserDisplayDTO {
 
     private String username;
     private String role;
@@ -17,6 +18,4 @@ public class LoginUserDTO {
     private String lastName;
     private String email;
     private String avatar;
-    private String token;
-
 }
