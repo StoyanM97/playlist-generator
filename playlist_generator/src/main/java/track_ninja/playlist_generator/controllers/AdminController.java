@@ -1,7 +1,14 @@
 package track_ninja.playlist_generator.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+import track_ninja.playlist_generator.models.dtos.CreateEditUserByAdminDTO;
+import track_ninja.playlist_generator.models.dtos.UserDTO;
+import track_ninja.playlist_generator.models.exceptions.NoUsersCreatedException;
+import track_ninja.playlist_generator.models.exceptions.UserNotFoundException;
+import track_ninja.playlist_generator.models.exceptions.UsernameAlreadyExistsException;
 import track_ninja.playlist_generator.models.dtos.UserDisplayDTO;
 import track_ninja.playlist_generator.models.dtos.UserEditDTO;
 import track_ninja.playlist_generator.models.dtos.UserRegistrationDTO;
@@ -24,26 +31,46 @@ public class AdminController {
 
     @GetMapping("/users")
     private List<UserDisplayDTO> getAll(){
-        return userService.getAll();
+        try {
+            return userService.getAll();
+        } catch (NoUsersCreatedException ex) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, ex.getMessage());
+        }
     }
 
     @GetMapping("/users/filter/{username}")
     private UserDisplayDTO getUser(@PathVariable String username){
-        return userService.getUser(username);
+        try {
+            return userService.getUser(username);
+        } catch (UserNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+        }
     }
 
     @PostMapping("/create/user/")
     private boolean createUser(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO){
-        return userService.createUser(userRegistrationDTO);
+        try {
+            return userService.createUser(userRegistrationDTO);
+        } catch (UsernameAlreadyExistsException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
+        }
     }
 
     @PutMapping("/edit/user")
     private boolean editUserByAdmin(@Valid @RequestBody UserEditDTO userEditDTO){
-        return userService.editUserByAdmin(userEditDTO);
+        try {
+            return userService.editUserByAdmin(userEditDTO);
+        } catch (UserNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+        }
     }
 
     @DeleteMapping("/delete/user/{username}")
     private boolean deleteUser(@PathVariable String username) {
-        return userService.deleteUser(username);
+        try {
+            return userService.deleteUser(username);
+        } catch (UserNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+        }
     }
 }

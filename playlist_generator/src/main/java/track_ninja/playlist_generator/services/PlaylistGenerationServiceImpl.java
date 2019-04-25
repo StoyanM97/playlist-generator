@@ -6,6 +6,7 @@ import track_ninja.playlist_generator.duration.generator.services.LocationServic
 import track_ninja.playlist_generator.models.*;
 import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistGeneratorDTO;
+import track_ninja.playlist_generator.models.exceptions.DurationTooLongException;
 import track_ninja.playlist_generator.models.mappers.ModelMapper;
 import track_ninja.playlist_generator.repositories.GenreRepository;
 import track_ninja.playlist_generator.repositories.PlaylistRepository;
@@ -38,6 +39,10 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
     public PlaylistDTO generatePlaylist(PlaylistGeneratorDTO playlistGeneratorDTO) {
 
         long totalDuration = locationService.getTravelDuration(playlistGeneratorDTO.getTravelFrom(), playlistGeneratorDTO.getTravelTo()) * 60;
+
+        if (totalDuration > 580000) {
+            throw new DurationTooLongException();
+        }
 
         Deque<Track> playlist = new ArrayDeque<>();
         Playlist generatedPlaylist = new Playlist();

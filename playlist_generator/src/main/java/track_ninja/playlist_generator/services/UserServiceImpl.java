@@ -12,6 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 import track_ninja.playlist_generator.models.User;
 import track_ninja.playlist_generator.models.UserDetailsModel;
 import track_ninja.playlist_generator.models.dtos.*;
+import track_ninja.playlist_generator.models.exceptions.NoUsersCreatedException;
+import track_ninja.playlist_generator.models.exceptions.UserNotFoundException;
+import track_ninja.playlist_generator.models.exceptions.UsernameAlreadyExistsException;
 import track_ninja.playlist_generator.models.mappers.ModelMapper;
 import track_ninja.playlist_generator.repositories.AuthorityRepository;
 import track_ninja.playlist_generator.repositories.UserDetailsRepository;
@@ -51,18 +54,25 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<UserDisplayDTO> getAll() {
         List<UserDisplayDTO> userDisplayDTOS = new ArrayList<>();
         Iterable<User> users = userRepository.findAll();
+        if (!users.iterator().hasNext()) {
+            throw new NoUsersCreatedException();
+        }
         users.forEach(user -> userDisplayDTOS.add(ModelMapper.userToDTO(user)));
         return userDisplayDTOS;
     }
 
     @Override
     public UserDisplayDTO getUser(String username) {
-        return ModelMapper.userToDTO(userRepository.findByUsernameAndEnabledTrue(username));
+        return ModelMapper.userToDTO(getByUsername(username));
     }
 
     @Override
     public User getByUsername(String username) {
-        return userRepository.findByUsernameAndEnabledTrue(username);
+        User user = userRepository.findByUsernameAndEnabledTrue(username);
+        if (user == null) {
+            throw new UserNotFoundException();
+        }
+        return user;
     }
 
     @Override
@@ -84,6 +94,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public boolean register(UserRegistrationDTO registrationUser) {
+        if (userRepository.existsByUsername(registrationUser.getUsername())) {
+            throw new UsernameAlreadyExistsException();
+        }
         User user = new User();
         mapRegistrationDTOToUser(registrationUser, user);
         UserDetailsModel userDetailsModel = new UserDetailsModel();
@@ -95,6 +108,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean deleteUser(String username) {
         System.out.println(username);
         User user = userRepository.findByUsernameAndEnabledTrue(username);
+        if (user == null) {
+            throw new UserNotFoundException();
+        }
         user.setEnabled(false);
 
         return userRepository.save(user) != null;
@@ -103,7 +119,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public boolean createUser(UserRegistrationDTO userRegistrationDTO) {
-
+        if (userRepository.existsByUsername(userRegistrationDTO.getUsername())) {
+            throw new UsernameAlreadyExistsException();
+        }
         UserDetailsModel userDetails = new UserDetailsModel();
         userDetails.setFirstName(userRegistrationDTO.getFirstName());
         userDetails.setLastName(userRegistrationDTO.getLastName());
@@ -123,24 +141,28 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public boolean editUserByAdmin(UserEditDTO userEditDTO) {
+        User user = getByUsername(userEditDTO.getUsername());
+        if (user == null) {
+            throw new UserNotFoundException();
+        }
         UserDetailsModel userDetails = userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getUsername());
         mapCreateEditAdminDTOtoUserDetails(userEditDTO, userDetails);
-        User user = getByUsername(userEditDTO.getUsername());
         mapCreateEditUserByAdminDTOtoUser(userEditDTO, userDetails, user);
-
-        return false;
+        return userRepository.save(user) != null;
     }
 
     @Override
     public boolean editUser(UserEditDTO userEditDTO) {
 
         User user = userRepository.findByUsernameAndEnabledTrue(userEditDTO.getUsername());
+        if (user == null) {
+            throw new UserNotFoundException();
+        }
         mapRegistrationDTOToUser(userEditDTO, user);
         UserDetailsModel userDetailsModel =userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getUsername());
         mapRegistrationDTOToUserDetails(userEditDTO, user, userDetailsModel);
 
         return false;
-
     }
 
     @Override
