@@ -3,7 +3,7 @@ package track_ninja.playlist_generator.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
-import track_ninja.playlist_generator.models.dtos.PlaylistGenerationDTO;
+import track_ninja.playlist_generator.models.dtos.PlaylistGeneratorDTO;
 import track_ninja.playlist_generator.services.PlaylistGenerationService;
 
 
@@ -18,7 +18,7 @@ public class PlaylistGenerationController {
     }
 
     @PostMapping
-    public PlaylistDTO findRandomByGenre(@RequestBody PlaylistGenerationDTO playlistGenerationDTO){
-        return playlistGenerationService.generatePlaylist(playlistGenerationDTO);
+    public PlaylistDTO findRandomByGenre(@RequestBody PlaylistGeneratorDTO playlistGeneratorDTO){
+        return playlistGenerationService.generatePlaylist(playlistGeneratorDTO);
     }
 }

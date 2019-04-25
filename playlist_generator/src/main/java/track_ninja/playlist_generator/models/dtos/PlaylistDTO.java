@@ -14,11 +14,15 @@ import java.util.List;
 @AllArgsConstructor
 public class PlaylistDTO {
 
+    private int playlistId;
+
     private String title;
 
     private String username;
 
     private long duration;
+
+    private List<String> genres;
 
     private List<TrackDTO> tracks;
 }

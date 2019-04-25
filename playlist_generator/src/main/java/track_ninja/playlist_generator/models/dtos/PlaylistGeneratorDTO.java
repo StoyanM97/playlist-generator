@@ -11,7 +11,7 @@ import java.util.Map;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlaylistGenerationDTO {
+public class PlaylistGeneratorDTO {
 
     private String title;
 
