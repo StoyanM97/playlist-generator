@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import track_ninja.playlist_generator.models.dtos.RegistrationDTO;
 import track_ninja.playlist_generator.models.exceptions.UsernameAlreadyExistsException;
-import track_ninja.playlist_generator.security.models.LoginUser;
 import track_ninja.playlist_generator.models.dtos.UserRegistrationDTO;
 import track_ninja.playlist_generator.services.UserService;
 

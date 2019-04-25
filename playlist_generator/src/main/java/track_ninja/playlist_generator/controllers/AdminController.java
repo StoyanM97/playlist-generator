@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import track_ninja.playlist_generator.models.dtos.CreateEditUserByAdminDTO;
-import track_ninja.playlist_generator.models.dtos.UserDTO;
 import track_ninja.playlist_generator.models.exceptions.NoUsersCreatedException;
 import track_ninja.playlist_generator.models.exceptions.UserNotFoundException;
 import track_ninja.playlist_generator.models.exceptions.UsernameAlreadyExistsException;

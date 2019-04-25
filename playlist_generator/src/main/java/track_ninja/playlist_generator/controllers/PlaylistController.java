@@ -32,7 +32,7 @@ public class PlaylistController {
     @GetMapping("/filter/{genre}")
     public Iterable<Playlist> getByGenre(@PathVariable String genre) {
         return playlistService.getByGenre(genre);
-
+    }
     @GetMapping("/filter/user")
     public Iterable<Playlist> getByUser(@PathVariable String username) {
         try {
