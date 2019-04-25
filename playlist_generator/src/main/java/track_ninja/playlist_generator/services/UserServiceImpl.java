@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userDetails.setLastName(userRegistrationDTO.getLastName());
         userDetails.setEmail(userRegistrationDTO.getEmail());
         userDetails.setDeleted(false);
-        mapCreateEditAdminDTOtoUserDetails(createEditUserByAdminDTO, userDetails);
+        mapCreateEditAdminDTOtoUserDetails(userRegistrationDTO, userDetails);
         User user = new User();
         user.setUsername(userRegistrationDTO.getUsername());
         user.setPassword(userRegistrationDTO.getPassword());
@@ -117,54 +117,28 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setAuthority(authorityRepository.findByName(userRegistrationDTO.getRole()));
         user.setEnabled(true);
 
-        mapCreateEditUserByAdminDTOtoUser(createEditUserByAdminDTO, userDetails, user);
+        mapCreateEditUserByAdminDTOtoUser(userRegistrationDTO, userDetails, user);
         return userRepository.save(user) != null;
     }
 
     @Override
     public boolean editUserByAdmin(UserEditDTO userEditDTO) {
-        UserDetailsModel userDetails = userDetailsRepository.findByIsDeletedFalseAndUser_Username(createEditUserByAdminDTO.getUsername());
-        mapCreateEditAdminDTOtoUserDetails(createEditUserByAdminDTO, userDetails);
-        User user = getByUsername(createEditUserByAdminDTO.getUsername());
-        mapCreateEditUserByAdminDTOtoUser(createEditUserByAdminDTO, userDetails, user);
-        return userRepository.save(user) != null;
-    public boolean editUserByAdmin(UserEditDTO userEditDTO) {
+        UserDetailsModel userDetails = userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getUsername());
+        mapCreateEditAdminDTOtoUserDetails(userEditDTO, userDetails);
+        User user = getByUsername(userEditDTO.getUsername());
+        mapCreateEditUserByAdminDTOtoUser(userEditDTO, userDetails, user);
 
-        UserDetailsModel userDetails = userDetailsRepository.findByUser_Username(userEditDTO.getOldUsername());
-        userDetails.setFirstName(userEditDTO.getFirstName());
-        userDetails.setLastName(userEditDTO.getLastName());
-        userDetails.setEmail(userEditDTO.getEmail());
-
-        User user = getByUsername(userEditDTO.getOldUsername());
-        user.setUsername(userEditDTO.getUsername());
-        user.setPassword(passwordEncoder.encode(userEditDTO.getPassword()));
-        user.setUserDetail(userDetails);
-        user.setAuthority(authorityRepository.findByName(userEditDTO.getRole()));
-
-        return userRepository.save(user) != null;
+        return false;
     }
 
     @Override
     public boolean editUser(UserEditDTO userEditDTO) {
-        User user = userRepository.findByUsernameAndEnabledTrue(registrationDTO.getUsername());
-        mapRegistrationDTOToUser(registrationDTO, user);
-        UserDetailsModel userDetailsModel =userDetailsRepository.findByIsDeletedFalseAndUser_Username(registrationDTO.getUsername());
-        mapRegistrationDTOToUserDetails(registrationDTO, user, userDetailsModel);
-        return userRepository.save(user) != null;
-    public boolean editUser(UserEditDTO userEditDTO) {
 
-        UserDetailsModel userDetails = userDetailsRepository.findByUser_Username(userEditDTO.getOldUsername());
-        userDetails.setFirstName(userEditDTO.getFirstName());
-        userDetails.setLastName(userEditDTO.getLastName());
-        userDetails.setEmail(userEditDTO.getEmail());
+        User user = userRepository.findByUsernameAndEnabledTrue(userEditDTO.getUsername());
+        mapRegistrationDTOToUser(userEditDTO, user);
+        UserDetailsModel userDetailsModel =userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getUsername());
+        mapRegistrationDTOToUserDetails(userEditDTO, user, userDetailsModel);
 
-        User user = getByUsername(userEditDTO.getOldUsername());
-        user.setUsername(userEditDTO.getUsername());
-        user.setUserDetail(userDetails);
-        System.out.println("in the base");
-        System.out.println(userDetails.getLastName());
-        System.out.println(user.getUsername());
-        System.out.println(userRepository.save(user).getUserDetail().getLastName());
         return false;
 
     }
@@ -178,7 +152,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return user.getUserDetail().getAvatar()==null? null : new String(Base64.encodeBase64(user.getUserDetail().getAvatar()));
     }
 
-    private void mapRegistrationDTOToUserDetails(RegistrationDTO registrationUser, User user, UserDetailsModel userDetailsModel) {
+    private void mapRegistrationDTOToUserDetails(UserRegistrationDTO registrationUser, User user, UserDetailsModel userDetailsModel) {
         userDetailsModel.setEmail(registrationUser.getEmail());
         userDetailsModel.setFirstName(registrationUser.getFirstName());
         userDetailsModel.setLastName(registrationUser.getLastName());
@@ -186,25 +160,25 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setUserDetail(userDetailsModel);
     }
 
-    private void mapRegistrationDTOToUser(RegistrationDTO registrationUser, User user) {
+    private void mapRegistrationDTOToUser(UserRegistrationDTO registrationUser, User user) {
         user.setUsername(registrationUser.getUsername());
         user.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
         user.setAuthority(authorityRepository.findById(1).orElse(null));
         user.setEnabled(true);
     }
 
-    private void mapCreateEditUserByAdminDTOtoUser(CreateEditUserByAdminDTO createEditUserByAdminDTO, UserDetailsModel userDetails, User user) {
-        user.setUsername(createEditUserByAdminDTO.getUsername());
-        user.setPassword(createEditUserByAdminDTO.getPassword());
+    private void mapCreateEditUserByAdminDTOtoUser(UserRegistrationDTO userRegistrationDTO, UserDetailsModel userDetails, User user) {
+        user.setUsername(userRegistrationDTO.getUsername());
+        user.setPassword(userRegistrationDTO.getPassword());
         user.setUserDetail(userDetails);
-        user.setAuthority(authorityRepository.findByName(createEditUserByAdminDTO.getRole()));
+        user.setAuthority(authorityRepository.findByName(userRegistrationDTO.getRole()));
         user.setEnabled(true);
     }
 
-    private void mapCreateEditAdminDTOtoUserDetails(CreateEditUserByAdminDTO createEditUserByAdminDTO, UserDetailsModel userDetails) {
-        userDetails.setFirstName(createEditUserByAdminDTO.getFirstName());
-        userDetails.setLastName(createEditUserByAdminDTO.getLastName());
-        userDetails.setEmail(createEditUserByAdminDTO.getEmail());
+    private void mapCreateEditAdminDTOtoUserDetails(UserRegistrationDTO userRegistrationDTO, UserDetailsModel userDetails) {
+        userDetails.setFirstName(userRegistrationDTO.getFirstName());
+        userDetails.setLastName(userRegistrationDTO.getLastName());
+        userDetails.setEmail(userRegistrationDTO.getEmail());
         userDetails.setDeleted(false);
     }
 }
