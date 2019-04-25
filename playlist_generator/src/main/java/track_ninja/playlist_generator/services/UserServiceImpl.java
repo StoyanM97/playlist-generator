@@ -80,14 +80,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         final User user = userRepository.findByUsernameAndEnabledTrue((loginUser.getUsername()));
         final String token = jwtTokenUtil.generateToken(user);
-        UserLoginDTO loginDTO = new UserLoginDTO();
-        loginDTO.setUsername(user.getUsername());
-        loginDTO.setRole(user.getAuthority().getName().toString());
-        loginDTO.setFirstName(user.getUserDetail().getFirstName());
-        loginDTO.setLastName(user.getUserDetail().getLastName());
-        loginDTO.setEmail(user.getUserDetail().getEmail());
-        loginDTO.setAvatar(getAvatar(user));
-        loginDTO.setToken(token);
+        UserLoginDTO loginDTO = mapUserToUserLoginDTO(user, token);
 
         return ResponseEntity.ok(loginDTO);
     }
@@ -123,25 +116,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new UsernameAlreadyExistsException();
         }
         UserDetailsModel userDetails = new UserDetailsModel();
-        userDetails.setFirstName(userRegistrationDTO.getFirstName());
-        userDetails.setLastName(userRegistrationDTO.getLastName());
-        userDetails.setEmail(userRegistrationDTO.getEmail());
-        userDetails.setDeleted(false);
         mapCreateEditAdminDTOtoUserDetails(userRegistrationDTO, userDetails);
         User user = new User();
-        user.setUsername(userRegistrationDTO.getUsername());
-        user.setPassword(userRegistrationDTO.getPassword());
-        user.setUserDetail(userDetails);
-        user.setAuthority(authorityRepository.findByName(userRegistrationDTO.getRole()));
-        user.setEnabled(true);
-
         mapCreateEditUserByAdminDTOtoUser(userRegistrationDTO, userDetails, user);
         return userRepository.save(user) != null;
     }
 
     @Override
     public boolean editUserByAdmin(UserEditDTO userEditDTO) {
-        User user = getByUsername(userEditDTO.getUsername());
+        if (userRepository.existsByUsername(userEditDTO.getUsername())) {
+            throw new UsernameAlreadyExistsException();
+        }
+        User user = getByUsername(userEditDTO.getOldUsername());
         if (user == null) {
             throw new UserNotFoundException();
         }
@@ -153,7 +139,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public boolean editUser(UserEditDTO userEditDTO) {
-
+        if (userRepository.existsByUsername(userEditDTO.getUsername())) {
+            throw new UsernameAlreadyExistsException();
+        }
         User user = userRepository.findByUsernameAndEnabledTrue(userEditDTO.getUsername());
         if (user == null) {
             throw new UserNotFoundException();
@@ -202,5 +190,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userDetails.setLastName(userRegistrationDTO.getLastName());
         userDetails.setEmail(userRegistrationDTO.getEmail());
         userDetails.setDeleted(false);
+    }
+
+    private UserLoginDTO mapUserToUserLoginDTO(User user, String token) {
+        UserLoginDTO loginDTO = new UserLoginDTO();
+        loginDTO.setUsername(user.getUsername());
+        loginDTO.setRole(user.getAuthority().getName().toString());
+        loginDTO.setFirstName(user.getUserDetail().getFirstName());
+        loginDTO.setLastName(user.getUserDetail().getLastName());
+        loginDTO.setEmail(user.getUserDetail().getEmail());
+        loginDTO.setAvatar(getAvatar(user));
+        loginDTO.setToken(token);
+        return loginDTO;
     }
 }

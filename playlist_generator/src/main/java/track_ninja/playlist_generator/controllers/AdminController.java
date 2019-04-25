@@ -60,7 +60,9 @@ public class AdminController {
             return userService.editUserByAdmin(userEditDTO);
         } catch (UserNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
-        }
+        }  catch (UsernameAlreadyExistsException ex) {
+        throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
+    }
     }
 
     @DeleteMapping("/delete/user/{username}")

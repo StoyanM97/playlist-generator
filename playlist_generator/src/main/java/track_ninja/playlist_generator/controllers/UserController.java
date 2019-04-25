@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import track_ninja.playlist_generator.models.dtos.UserEditDTO;
 import track_ninja.playlist_generator.models.exceptions.UserNotFoundException;
+import track_ninja.playlist_generator.models.exceptions.UsernameAlreadyExistsException;
 import track_ninja.playlist_generator.services.UserService;
 
 import javax.validation.Valid;
@@ -30,6 +31,8 @@ public class UserController {
         try {
             return userService.editUser(userEditDTO);
         } catch (UserNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
+        } catch (UsernameAlreadyExistsException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
         }
     }
