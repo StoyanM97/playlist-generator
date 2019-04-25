@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-import track_ninja.playlist_generator.models.commons.AuthorityName;
+import track_ninja.playlist_generator.models.commons.UserRole;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -32,7 +32,7 @@ public class Authority implements GrantedAuthority {
     @Column(name = ROLE_TYPE)
     @NotNull
     @Enumerated(EnumType.STRING)
-    private AuthorityName name;
+    private UserRole name;
 
     @JsonIgnore
     @OneToMany(mappedBy = AUTHORITY)

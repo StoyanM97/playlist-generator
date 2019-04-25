@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import track_ninja.playlist_generator.security.models.LoginUser;
 import track_ninja.playlist_generator.services.UserService;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api")
@@ -26,7 +28,7 @@ public class LoginController {
 
     }
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody LoginUser loginUser){
+    public ResponseEntity login(@Valid @RequestBody LoginUser loginUser){
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginUser.getUsername(),

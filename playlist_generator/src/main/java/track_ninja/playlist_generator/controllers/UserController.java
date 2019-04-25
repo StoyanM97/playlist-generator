@@ -7,6 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 import track_ninja.playlist_generator.models.dtos.RegistrationDTO;
 import track_ninja.playlist_generator.services.UserService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -21,7 +23,7 @@ public class UserController {
 
 
     @PutMapping("/edit/user")
-    private boolean editUser(@RequestBody RegistrationDTO registrationDTO){
+    private boolean editUser(@Valid @RequestBody RegistrationDTO registrationDTO){
         return userService.editUser(registrationDTO);
     }
 

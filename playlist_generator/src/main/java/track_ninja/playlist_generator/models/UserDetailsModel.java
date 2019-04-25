@@ -23,10 +23,6 @@ public class UserDetailsModel {
     private static final String LAST_NAME = "last_name";
     private static final String AVATAR = "avatar";
     private static final String IS_DELETED = "is_deleted";
-    private static final String FIRST_NAME_LENGTH_ERROR_MESSAGE = "First name must be between 2 and 20 characters long!";
-    private static final String LAST_NAME_LENGTH_ERROR_MESSAGE = "Last name must be between 2 and 20 characters long!";
-    private static final int NAME_MIN_LENGTH = 2;
-    private static final int NAME_MAX_LENGTH = 20;
     private static final String USER_ID = "user_id";
 
     @Id
@@ -38,16 +34,14 @@ public class UserDetailsModel {
     @JoinColumn(name = USER_ID)
     private User user;
 
-    @Email
+
     @Column(name = EMAIL)
     private String email;
 
     @Column(name = FIRST_NAME)
-    @Size(min = NAME_MIN_LENGTH, max = NAME_MAX_LENGTH, message = FIRST_NAME_LENGTH_ERROR_MESSAGE)
     private String firstName;
 
     @Column(name = LAST_NAME)
-    @Size(min = NAME_MIN_LENGTH, max = NAME_MAX_LENGTH, message = LAST_NAME_LENGTH_ERROR_MESSAGE)
     private String lastName;
 
     @Column(name = AVATAR)

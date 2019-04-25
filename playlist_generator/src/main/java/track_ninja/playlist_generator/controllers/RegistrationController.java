@@ -6,6 +6,7 @@ import track_ninja.playlist_generator.models.dtos.RegistrationDTO;
 import track_ninja.playlist_generator.security.models.LoginUser;
 import track_ninja.playlist_generator.services.UserService;
 
+import javax.validation.Valid;
 
 
 @RestController
@@ -20,7 +21,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public boolean register(@RequestBody RegistrationDTO registrationUser) {
+    public boolean register(@Valid @RequestBody RegistrationDTO registrationUser) {
        return userService.register(registrationUser);
     }
 }

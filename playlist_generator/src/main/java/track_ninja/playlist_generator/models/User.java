@@ -19,15 +19,6 @@ import java.util.List;
 @NoArgsConstructor
 public class User implements UserDetails {
 
-
-    private static final int USER_NAME_MIN_LENGTH = 5;
-    private static final int USER_NAME_MAX_LENGTH = 10;
-    private static final String USER_NAME_LENGTH_ERROR_MESSAGE = "User name must be at least 5 and at most 10 characters long!";
-
-    private static final int PASSWORD_MIN_LENGTH = 8;
-    private static final int PASSWORD_MAX_LENGTH = 16;
-    private static final String PASSWORD_LENGTH_ERROR_MESSAGE = "Password must be at least 6 and at most 15 characters long!";
-
     private static final String USER_ID = "user_id";
     private static final String USER_NAME = "username";
     private static final String PASSWORD = "password";
@@ -41,11 +32,9 @@ public class User implements UserDetails {
     @Column(name = USER_ID)
     private int userId;
 
-    @Size(min = USER_NAME_MIN_LENGTH, max = USER_NAME_MAX_LENGTH, message = USER_NAME_LENGTH_ERROR_MESSAGE)
     @Column(name = USER_NAME)
     private String username;
 
-    @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH, message = PASSWORD_LENGTH_ERROR_MESSAGE)
     @Column(name = PASSWORD)
     private String password;
 
@@ -74,6 +63,7 @@ public class User implements UserDetails {
     public List<Authority> getAuthorities() {
         return Collections.singletonList(authority);
     }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

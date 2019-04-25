@@ -19,7 +19,7 @@ import track_ninja.playlist_generator.repositories.UserRepository;
 import track_ninja.playlist_generator.security.models.JwtTokenUtil;
 import track_ninja.playlist_generator.security.models.LoginUser;
 
-@Service("UserServiceImpl")
+@Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private UserRepository userRepository;
@@ -88,11 +88,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public boolean createUser(CreateEditUserByAdminDTO createEditUserByAdminDTO) {
+        //he can set the user role. The dto has field UserRole. Should be valid
         return false;
     }
 
     @Override
     public boolean editUserByAdmin(CreateEditUserByAdminDTO createEditUserByAdminDTO) {
+        //he can edit the user role. The dto has field UserRole. Should be valid
         return false;
     }
 

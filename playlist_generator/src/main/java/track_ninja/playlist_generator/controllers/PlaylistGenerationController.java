@@ -6,6 +6,8 @@ import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistGeneratorDTO;
 import track_ninja.playlist_generator.services.PlaylistGenerationService;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api/user/generatePlaylist")
@@ -18,7 +20,7 @@ public class PlaylistGenerationController {
     }
 
     @PostMapping
-    public PlaylistDTO findRandomByGenre(@RequestBody PlaylistGeneratorDTO playlistGeneratorDTO){
+    public PlaylistDTO findRandomByGenre(@Valid @RequestBody PlaylistGeneratorDTO playlistGeneratorDTO){
         return playlistGenerationService.generatePlaylist(playlistGeneratorDTO);
     }
 }

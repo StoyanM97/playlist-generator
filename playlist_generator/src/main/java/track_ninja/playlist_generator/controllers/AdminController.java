@@ -6,6 +6,8 @@ import track_ninja.playlist_generator.models.User;
 import track_ninja.playlist_generator.models.dtos.CreateEditUserByAdminDTO;
 import track_ninja.playlist_generator.services.UserService;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api/admin")
@@ -29,12 +31,12 @@ public class AdminController {
     }
 
     @PostMapping("/create/user/")
-    private boolean createUser(@RequestBody CreateEditUserByAdminDTO createEditUserByAdminDTO){
+    private boolean createUser(@Valid @RequestBody CreateEditUserByAdminDTO createEditUserByAdminDTO){
         return userService.createUser(createEditUserByAdminDTO);
     }
 
     @PutMapping("/edit/user")
-    private boolean editUserByAdmin(@RequestBody CreateEditUserByAdminDTO createEditUserByAdminDTO){
+    private boolean editUserByAdmin(@Valid @RequestBody CreateEditUserByAdminDTO createEditUserByAdminDTO){
         return userService.editUserByAdmin(createEditUserByAdminDTO);
     }
 
