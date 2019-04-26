@@ -17,11 +17,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Playlist {
-    private static final String PLAYLIST_ID = "playlist_id";
+
     private static final int TITLE_MIN_LENGTH = 3;
     private static final int TITLE_MAX_LENGTH = 20;
     private static final String TITLE_LENGTH_ERROR_MESSAGE = "Title length must be at least 3 and at most 20 characters long!";
+
     private static final String TITLE = "title";
+    private static final String PLAYLIST_ID = "playlist_id";
     private static final String USER_ID = "user_id";
     private static final String IS_DELETED = "is_deleted";
     private static final String TRACK_ID = "track_id";
@@ -39,7 +41,7 @@ public class Playlist {
 
     @ManyToOne
     @JoinColumn(name= USER_ID, nullable=false)
-    private UserDetailsModel user;
+    private UserDetails user;
 
     @Column(name = IS_DELETED)
     private boolean isDeleted;

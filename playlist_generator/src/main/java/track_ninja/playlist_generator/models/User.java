@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,7 +15,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements UserDetails {
+public class User implements org.springframework.security.core.userdetails.UserDetails {
 
     private static final String USER_ID = "user_id";
     private static final String USER_NAME = "username";
@@ -42,7 +40,7 @@ public class User implements UserDetails {
     private boolean enabled;
 
     @OneToOne(mappedBy = USER, cascade = CascadeType.ALL)
-    private UserDetailsModel userDetail;
+    private UserDetails userDetail;
 
     @ManyToOne
     @JoinColumn(name = AUTHORITY_ID)

@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDetailsModel {
+public class UserDetails {
 
     private static final String USER_DETAILS_ID = "user_details_id";
     private static final String EMAIL = "email";

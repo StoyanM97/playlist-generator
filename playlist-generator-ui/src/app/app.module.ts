@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,8 @@ import { PlaylistComponent } from './playlist/playlist.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { UsersComponent } from './users/users.component';
+import { ConfirmationComponent } from './confirmation-dialog/confirmation.component';
+import { ConfirmationService } from './confirmation-dialog/confirmation.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { UsersComponent } from './users/users.component';
     DashboardComponent,
     UserComponent,
     PlaylistComponent,
-    UsersComponent
+    UsersComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -31,12 +35,15 @@ import { UsersComponent } from './users/users.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule.forRoot()
   ],
   providers: [
+    ConfirmationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
+  entryComponents: [ ConfirmationComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
