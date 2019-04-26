@@ -25,6 +25,8 @@ import java.util.List;
 @Service("UserServiceImpl")
 public class UserServiceImpl implements UserService, UserDetailsService {
 
+    private static final String USER_WITH_THAT_NAME_DOES_NOT_EXIST = "User with that %s does not exist";
+
     private UserRepository userRepository;
     private AuthorityRepository authorityRepository;
     private PasswordEncoder passwordEncoder;
@@ -51,13 +53,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<UserDisplayDTO> getAll() {
         List<UserDisplayDTO> userDisplayDTOS = new ArrayList<>();
         Iterable<User> users = userRepository.findAll();
-        users.forEach(user -> userDisplayDTOS.add(ModelMapper.userToDTO(user)));
+        users.forEach(user -> {
+            if(!user.getUserDetail().isDeleted()){
+                userDisplayDTOS.add(ModelMapper.userToDTO(user));
+            }
+        });
         return userDisplayDTOS;
     }
 
     @Override
     public UserDisplayDTO getUser(String username) {
-        return ModelMapper.userToDTO(userRepository.findByUsernameAndEnabledTrue(username));
+        User user = userRepository.findByUsernameAndEnabledTrue(username);
+        if(user.getUserDetail().isDeleted()){
+            throw new IllegalArgumentException(String.format(USER_WITH_THAT_NAME_DOES_NOT_EXIST, username ));
+        }
+        return ModelMapper.userToDTO(user);
     }
 
     @Override
