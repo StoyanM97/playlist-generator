@@ -22,6 +22,8 @@ public class PlaylistDTO {
 
     private long duration;
 
+    private double averageRank;
+
     private List<String> genres;
 
     private List<TrackDTO> tracks;

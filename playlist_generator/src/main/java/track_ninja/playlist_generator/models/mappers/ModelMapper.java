@@ -9,6 +9,7 @@ import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.models.dtos.TrackDTO;
 import track_ninja.playlist_generator.models.dtos.UserDisplayDTO;
 
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class ModelMapper {
@@ -32,6 +33,7 @@ public class ModelMapper {
         playlistDTO.setTitle(playlist.getTitle());
         playlistDTO.setUsername(playlist.getUser().getUser().getUsername());
         playlistDTO.setDuration(playlist.getDuration());
+        playlistDTO.setAverageRank(playlist.getTracks().stream().mapToInt(Track::getRank).average().orElseThrow(NullPointerException::new));
         playlistDTO.setGenres(playlist.getGenres().stream()
                 .map(Genre::getName)
                 .collect(Collectors.toList()));
