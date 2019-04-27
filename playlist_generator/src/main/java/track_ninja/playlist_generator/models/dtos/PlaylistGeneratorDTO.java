@@ -26,4 +26,24 @@ public class PlaylistGeneratorDTO {
     private boolean useTopTracks;
 
     private String username;
+
+    @Override
+    public String toString() {
+        return "title: " + title +
+                "; travelFrom: " + travelFrom +
+                "; travelTo: " + travelTo +
+                "; genres: " + genresToString() +
+                "; allowSameArtists: " + allowSameArtists +
+                "; useTopTracks: " + useTopTracks +
+                "; user: " + username;
+    }
+
+    private String genresToString() {
+        StringBuilder builder = new StringBuilder("(");
+        for (String genre : genres.keySet()) {
+            builder.append(genre).append("-").append(genres.get(genre)).append("%, ");
+        }
+        builder.append(")");
+        return builder.toString();
+    }
 }

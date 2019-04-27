@@ -26,7 +26,7 @@ public interface PlaylistRepository extends CrudRepository<Playlist, Integer> {
 
     List<Playlist> findAllByIsDeletedFalseAndUser_User_Username(String username);
 
-    List<Playlist> findAllByIsDeletedFalseAndTitle(String title);
+    List<Playlist> findAllByIsDeletedFalseAndTitleLike(String title);
 
     List<Playlist> findAllByDurationBetween(long minDuration, long maxDuration);
 }
