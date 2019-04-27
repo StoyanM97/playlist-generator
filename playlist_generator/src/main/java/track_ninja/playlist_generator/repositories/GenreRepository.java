@@ -6,5 +6,7 @@ import track_ninja.playlist_generator.models.Genre;
 
 @Repository
 public interface GenreRepository extends CrudRepository<Genre, Long> {
+    boolean existsByName(String name);
+
     Genre findByName(String genreName);
 }

@@ -2,12 +2,16 @@ package track_ninja.playlist_generator.services;
 
 import track_ninja.playlist_generator.models.Playlist;
 
+import java.util.List;
+
 public interface PlaylistService {
-    Iterable<Playlist> getAll();
+    List<Playlist> getAll();
 
-    Iterable<Playlist> getByGenre(String genre);
+    List<Playlist> getByGenre(String genre);
 
-    Iterable<Playlist> getByUser(String username);
+    List<Playlist> getByUser(String username);
 
-    Iterable<Playlist> getByTitle(String title);
+    List<Playlist> getByTitle(String title);
+
+    List<Playlist> getByDurationBetween(long minDurationMinutes, long maxDurationMinutes);
 }
