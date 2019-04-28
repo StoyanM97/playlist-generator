@@ -31,7 +31,7 @@ public class PlaylistServiceImpl implements PlaylistService{
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_TITLE_MESSAGE = "Retrieving all playlists for title like %s...";
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE = "Retrieving all playlists for duration between %d and %d minutes...";
 
-    private static final Logger logger = LoggerFactory.getLogger(PlaylistServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(PlaylistService.class);
 
     private PlaylistRepository playlistRepository;
     private GenreRepository genreRepository;

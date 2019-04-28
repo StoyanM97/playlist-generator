@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private static final String COULD_NOT_EDIT_USER_ERROR_MESSAGE = "Could not edit user! %s";
     private static final String USER_SUCCESSFULLY_EDITED_MESSAGE = "User successfully edited!";
 
-    private static final Logger logger = LoggerFactory.getLogger(PlaylistServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private UserRepository userRepository;
     private AuthorityRepository authorityRepository;
@@ -79,8 +79,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<UserDisplayDTO> getAll() {
         logger.info(RETRIEVING_ALL_USERS_MESSAGE);
         List<UserDisplayDTO> userDisplayDTOS = new ArrayList<>();
-        Iterable<User> users = userRepository.findAll();
-        if (!users.iterator().hasNext()) {
+        List<User> users = userRepository.findAll();
+        if (users.isEmpty()) {
             NoUsersCreatedException nuc = new NoUsersCreatedException();
             logger.error(String.format(COULD_NOT_RETRIEVE_USERS_ERROR_MESSAGE, nuc.getMessage()));
             throw nuc;
