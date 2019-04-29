@@ -228,6 +228,13 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`authorities` (
 ENGINE = InnoDB;
 insert into authorities values(1, "ROLE_USER"),(2, "ROLE_ADMIN");
 
+insert into users 
+values (1, "stoyan", "$2a$10$SUIXcLF6VA0Rw1Au7itQF.KV2gKVm4LNx0HfMAt4yXoD0Re2zTu92", 2, 1, 1), 
+(2, "ventsi", "$2a$10$SUIXcLF6VA0Rw1Au7itQF.KV2gKVm4LNx0HfMAt4yXoD0Re2zTu92", 2, 1, 1);
+
+insert into user_details
+values(1, 1, "stoyan@gmail.com", "Stoyan", "Mihaylov", null, 0), (2, 2, "ventsi@gmail.com", "Ventsislav", "Draganov", null, 0);
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

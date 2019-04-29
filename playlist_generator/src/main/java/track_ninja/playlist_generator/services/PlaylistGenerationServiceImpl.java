@@ -1,5 +1,7 @@
 package track_ninja.playlist_generator.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import track_ninja.playlist_generator.duration.generator.services.LocationService;
@@ -17,6 +19,12 @@ import java.util.*;
 
 @Service
 public class PlaylistGenerationServiceImpl implements PlaylistGenerationService {
+
+    private static final String INITIATED_PLAYLIST_GENERATION_MESSAGE = "Initiated playlist generation. Parameters: %s";
+    private static final String PLAYLIST_SAVED_MESSAGE = "Playlist successfully saved! Total duration: %d seconds; Total number of tracks: %d";
+    private static final String PLAYLIST_ADDED_TO_GENRES_MESSAGE = "Playlist successfully added to all of it's genres!";
+
+    private static final Logger logger = LoggerFactory.getLogger(PlaylistGenerationService.class);
 
     private TrackRepository trackRepository;
     private PlaylistRepository playlistRepository;
@@ -37,22 +45,25 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
 
     @Override
     public PlaylistDTO generatePlaylist(PlaylistGeneratorDTO playlistGeneratorDTO) {
+        logger.info(String.format(INITIATED_PLAYLIST_GENERATION_MESSAGE, playlistGeneratorDTO.toString()));
 
         long totalDuration = locationService.getTravelDuration(playlistGeneratorDTO.getTravelFrom(), playlistGeneratorDTO.getTravelTo()) * 60;
 
         if (totalDuration > 580000) {
-            throw new DurationTooLongException();
+            DurationTooLongException dtl = new DurationTooLongException();
+            logger.error(dtl.getMessage());
+            throw dtl;
         }
 
-        Deque<Track> playlist = new ArrayDeque<>();
+        Deque<Track> tracks = new ArrayDeque<>();
         Playlist generatedPlaylist = new Playlist();
         generatedPlaylist.setTitle(playlistGeneratorDTO.getTitle());
         generatedPlaylist.setUser(userDetailsRepository.findByIsDeletedFalseAndUser_Username(playlistGeneratorDTO.getUsername()));
         generatedPlaylist.setDeleted(false);
         generatedPlaylist.setDuration(0L);
         List<Genre> genres = new ArrayList<>();
-        for (String genre : playlistGeneratorDTO.getGenres().keySet()) {
-            genres.add(genreRepository.findByName(genre));
+        for (String genreName : playlistGeneratorDTO.getGenres().keySet()) {
+            genres.add(genreRepository.findByName(genreName));
         }
         generatedPlaylist.setGenres(genres);
 
@@ -65,10 +76,10 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
                     Track firstTrack = trackRepository.findTopTrackByGenre(genre);
                     durationSeconds = updateDuration(durationSeconds, firstTrack);
                     trackIds.add(firstTrack.getTrackId());
-                    playlist.add(firstTrack);
+                    tracks.add(firstTrack);
 
                     while (durationSeconds < genreDurationSecond - 150) {
-                        durationSeconds = addTrackInLoopAllowSameArtistAndTopTracks(playlist, trackIds, durationSeconds, genre);
+                        durationSeconds = addTrackInLoopAllowSameArtistAndTopTracks(tracks, trackIds, durationSeconds, genre);
                     }
                     generatedPlaylist.setDuration(generatedPlaylist.getDuration() + durationSeconds);
                 }
@@ -80,10 +91,10 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
                     Track firstTrack = trackRepository.findRandomTrackByGenre(genre);
                     durationSeconds = updateDuration(durationSeconds, firstTrack);
                     trackIds.add(firstTrack.getTrackId());
-                    playlist.add(firstTrack);
+                    tracks.add(firstTrack);
 
                     while (durationSeconds < genreDurationSecond - 150) {
-                        durationSeconds = addTrackInLoopAllowSameArtist(playlist, trackIds, durationSeconds, genre);
+                        durationSeconds = addTrackInLoopAllowSameArtist(tracks, trackIds, durationSeconds, genre);
                     }
                     generatedPlaylist.setDuration(generatedPlaylist.getDuration() + durationSeconds);
                 }
@@ -96,10 +107,10 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
                 Track firstTrack = trackRepository.findTopTrackByGenre(genre);
                 durationSeconds = updateDuration(durationSeconds, firstTrack);
                 artistIds.add(firstTrack.getArtist().getArtistId());
-                playlist.add(firstTrack);
+                tracks.add(firstTrack);
 
                 while (durationSeconds < genreDurationSecond - 150) {
-                    durationSeconds = addTrackInLoopUseTopTracks(playlist, artistIds, durationSeconds, genre);
+                    durationSeconds = addTrackInLoopUseTopTracks(tracks, artistIds, durationSeconds, genre);
                 }
                 generatedPlaylist.setDuration(generatedPlaylist.getDuration() + durationSeconds);
             }
@@ -110,16 +121,23 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
                 long durationSeconds = 0L;
                 Track firstTrack = trackRepository.findRandomTrackByGenre(genre);
                 artistIds.add(firstTrack.getArtist().getArtistId());
-                playlist.add(firstTrack);
+                tracks.add(firstTrack);
 
                 while (durationSeconds < genreDurationSecond - 150) {
-                    durationSeconds = addTrackInLoopRandom(playlist, artistIds, durationSeconds, genre);
+                    durationSeconds = addTrackInLoopRandom(tracks, artistIds, durationSeconds, genre);
                 }
                 generatedPlaylist.setDuration(generatedPlaylist.getDuration() + durationSeconds);
             }
         }
-        shuffleTracksIfMoreThanOneGenre(playlistGeneratorDTO, playlist, generatedPlaylist);
+        shuffleTracksIfMoreThanOneGenre(playlistGeneratorDTO, tracks, generatedPlaylist);
         playlistRepository.save(generatedPlaylist);
+        logger.info(String.format(PLAYLIST_SAVED_MESSAGE,
+                generatedPlaylist.getDuration(), generatedPlaylist.getTracks().size()));
+        for (Genre genre : generatedPlaylist.getGenres()) {
+            genre.getPlaylists().add(generatedPlaylist);
+            genreRepository.save(genre);
+        }
+        logger.info(PLAYLIST_ADDED_TO_GENRES_MESSAGE);
         return ModelMapper.playlistToDTO(generatedPlaylist);
     }
 
