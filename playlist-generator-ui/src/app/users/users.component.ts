@@ -106,7 +106,8 @@ export class UsersComponent implements OnInit{
     onUserRoleChange(value: string){
       this.user.role = value.toUpperCase();
     }
-
+    
+    //TODO add another array
     searchByNameUser(name: string){
       this.users = this.users.filter((user: User) => user.username.toUpperCase() === name.toUpperCase());
     }
