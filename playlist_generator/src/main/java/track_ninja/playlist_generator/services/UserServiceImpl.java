@@ -23,6 +23,7 @@ import track_ninja.playlist_generator.repositories.UserRepository;
 import track_ninja.playlist_generator.security.models.JwtTokenUtil;
 import track_ninja.playlist_generator.security.models.LoginUser;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -199,8 +200,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public boolean avatarUpload(MultipartFile file, String username) {
-        return false;
+    public boolean avatarUpload(MultipartFile file, String username) throws IOException {
+        UserDetails userDetails = userRepository.findByUsernameAndEnabledTrue(username).getUserDetail();
+        userDetails.setAvatar(file.getBytes());
+        return userDetailsRepository.save(userDetails) != null;
     }
 
     private String getAvatar(User user){
