@@ -23,6 +23,7 @@ import track_ninja.playlist_generator.repositories.UserRepository;
 import track_ninja.playlist_generator.security.models.JwtTokenUtil;
 import track_ninja.playlist_generator.security.models.LoginUser;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -167,7 +168,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public boolean editUserByAdmin(UserEditDTO userEditDTO) {
         logger.info(String.format(EDITING_USER_MESSAGE, userEditDTO.getUsername()));
-        if (userRepository.existsByUsername(userEditDTO.getUsername())) {
+        if (!userEditDTO.getOldUsername().equals(userEditDTO.getUsername()) && userRepository.existsByUsername(userEditDTO.getUsername())) {
             handleUsernameAlreadyExistsException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
         }
         User user = getByUsername(userEditDTO.getOldUsername());
@@ -184,7 +185,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public boolean editUser(UserEditDTO userEditDTO) {
         logger.info(String.format(EDITING_USER_MESSAGE, userEditDTO.getUsername()));
-        if (userRepository.existsByUsername(userEditDTO.getUsername())) {
+        if (!userEditDTO.getOldUsername().equals(userEditDTO.getUsername()) && userRepository.existsByUsername(userEditDTO.getUsername())) {
             return handleUsernameAlreadyExistsException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
         }
         User user = userRepository.findByUsernameAndEnabledTrue(userEditDTO.getUsername());
@@ -199,8 +200,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public boolean avatarUpload(MultipartFile file, String username) {
-        return false;
+    public boolean avatarUpload(MultipartFile file, String username) throws IOException {
+        UserDetails userDetails = userRepository.findByUsernameAndEnabledTrue(username).getUserDetail();
+        userDetails.setAvatar(file.getBytes());
+        return userDetailsRepository.save(userDetails) != null;
     }
 
     private String getAvatar(User user){

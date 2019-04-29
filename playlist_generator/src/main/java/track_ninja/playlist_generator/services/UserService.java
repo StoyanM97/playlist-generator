@@ -8,6 +8,7 @@ import track_ninja.playlist_generator.models.dtos.UserRegistrationDTO;
 import track_ninja.playlist_generator.models.dtos.UserDisplayDTO;
 import track_ninja.playlist_generator.security.models.LoginUser;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -31,6 +32,6 @@ public interface UserService {
 
     boolean editUser(UserEditDTO userEditDTO);
 
-    boolean avatarUpload(MultipartFile file, String username);
+    boolean avatarUpload(MultipartFile file, String username) throws IOException;
 
 }
