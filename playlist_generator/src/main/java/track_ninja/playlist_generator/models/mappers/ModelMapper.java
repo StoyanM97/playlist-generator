@@ -31,9 +31,14 @@ public class ModelMapper {
         PlaylistDTO playlistDTO = new PlaylistDTO();
         playlistDTO.setPlaylistId(playlist.getPlaylistId());
         playlistDTO.setTitle(playlist.getTitle());
+        //TODO: set url based on most used genre
+        playlistDTO.setImageUrl(playlist.getGenres().get(0).getImageUrl());
         playlistDTO.setUsername(playlist.getUser().getUser().getUsername());
         playlistDTO.setDuration(playlist.getDuration());
-        playlistDTO.setAverageRank(playlist.getTracks().stream().mapToInt(Track::getRank).average().orElseThrow(NullPointerException::new));
+        playlistDTO.setAverageRank(playlist.getTracks().stream()
+                .mapToInt(Track::getRank)
+                .average()
+                .orElseThrow(NullPointerException::new));
         playlistDTO.setGenres(playlist.getGenres().stream()
                 .map(Genre::getName)
                 .collect(Collectors.toList()));

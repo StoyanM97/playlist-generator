@@ -24,6 +24,8 @@ public class PlaylistDTO {
 
     private double averageRank;
 
+    private String imageUrl;
+
     private List<String> genres;
 
     private List<TrackDTO> tracks;

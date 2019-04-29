@@ -12,6 +12,7 @@ import track_ninja.playlist_generator.exceptions.UsernameAlreadyExistsException;
 import track_ninja.playlist_generator.services.UserService;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/user")
@@ -38,9 +39,13 @@ public class UserController {
     }
 
     @PostMapping("/upload/avatar")
-    public boolean avatarUpload(@RequestParam MultipartFile file, @RequestParam String username) {
+    public boolean avatarUpload(@RequestParam MultipartFile file, @RequestParam String username){
 
-        return userService.avatarUpload(file, username);
+        try {
+            return userService.avatarUpload(file, username);
+        } catch (IOException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
+        }
 
     }
 }

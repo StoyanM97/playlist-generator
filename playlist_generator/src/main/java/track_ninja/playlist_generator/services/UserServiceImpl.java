@@ -220,7 +220,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     private void mapRegistrationDTOToUser(UserRegistrationDTO registrationUser, User user) {
         user.setUsername(registrationUser.getUsername());
-        user.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
+        if (user.getPassword() == null) {
+            user.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
+        }
         user.setAuthority(authorityRepository.findById(1).orElse(null));
         user.setEnabled(true);
     }

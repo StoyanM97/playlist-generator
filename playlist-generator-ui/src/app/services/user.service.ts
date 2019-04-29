@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -23,10 +24,10 @@ export class UserService {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
 
-    constructor(private httpClient: HttpClient){}
+    constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService){}
     
     getUsers(): Observable<User[]> {
-      return this.httpClient.get<User[]>(this.GET_USERS);
+      return this.httpClient.get<User[]>(this.GET_USERS, {headers: this.getHeader()});
   }
     uploadAvatar(username: string, avatar: File): Observable<{}>{
         const formdata: FormData = new FormData();
@@ -44,12 +45,13 @@ export class UserService {
             email: user.email,
             oldUsername: oldUsername
         };
-      return this.httpClient.put<User>(this.EDIT_USER, editUser, this.httpOptions);
+      return this.httpClient.put<User>(this.EDIT_USER, editUser, {headers: this.getHeader()});
     }
 
     deleteUser(username: string): Observable<{}> {
         const url = `${this.DELETE_USER}/${username}`;
-        return this.httpClient.delete(url, this.httpOptions);
+
+        return this.httpClient.delete(url, {headers: this.getHeader()});
     }
   
     editUserByAdmin(user: User, oldUsername: string): Observable<{}>{
@@ -61,13 +63,17 @@ export class UserService {
          role: user.role,
          oldUsername: oldUsername
      };
-   return this.httpClient.put<User>(this.EDIT_USER_BY_ADMIN, editUser, this.httpOptions);
+   return this.httpClient.put<User>(this.EDIT_USER_BY_ADMIN, editUser, {headers: this.getHeader()});
   }
 
   createUserByAdmin(username: string, password: string, firstName: string, lastName: string, email: string, userRole: string,): Observable<{}>{
     const createUser = 
     { username: username, password: password, firstName: firstName, lastName: lastName, email: email, role: userRole };
-  return this.httpClient.post<User>(this.CREATE_USER_BY_ADMIN, createUser, this.httpOptions); 
+  return this.httpClient.post<User>(this.CREATE_USER_BY_ADMIN, createUser, {headers: this.getHeader()}); 
   }
+
+  getHeader(): HttpHeaders{        
+    return new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.authenticationService.currentUserValue.token});
+}
 
 }
