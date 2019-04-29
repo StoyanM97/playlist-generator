@@ -167,7 +167,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public boolean editUserByAdmin(UserEditDTO userEditDTO) {
         logger.info(String.format(EDITING_USER_MESSAGE, userEditDTO.getUsername()));
-        if (userRepository.existsByUsername(userEditDTO.getUsername())) {
+        if (!userEditDTO.getOldUsername().equals(userEditDTO.getUsername()) && userRepository.existsByUsername(userEditDTO.getUsername())) {
             handleUsernameAlreadyExistsException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
         }
         User user = getByUsername(userEditDTO.getOldUsername());
@@ -184,7 +184,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public boolean editUser(UserEditDTO userEditDTO) {
         logger.info(String.format(EDITING_USER_MESSAGE, userEditDTO.getUsername()));
-        if (userRepository.existsByUsername(userEditDTO.getUsername())) {
+        if (!userEditDTO.getOldUsername().equals(userEditDTO.getUsername()) && userRepository.existsByUsername(userEditDTO.getUsername())) {
             return handleUsernameAlreadyExistsException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
         }
         User user = userRepository.findByUsernameAndEnabledTrue(userEditDTO.getUsername());
