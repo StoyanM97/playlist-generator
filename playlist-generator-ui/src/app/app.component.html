@@ -36,6 +36,10 @@
       <a class="nav-link" routerLink="/playlist">Create Playlist</a>
     </li>
 
+    <li *ngIf = "loggedUser" class="nav-item">
+      <a class="nav-link" routerLink="/not-found/This is a test">Not Found</a>
+    </li>
+
     <li class="right">
         <div class="input-group">
               <input id="txtSearch" type="text" class="form-control" placeholder="Search" value = "" #getInput />

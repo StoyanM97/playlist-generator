@@ -24,18 +24,19 @@
               <span style="padding-left:3px">{{genre}},</span>
           </h6>
         </div>
-          <div class="track-container">Track: 
-               <h6 class="form-inline" *ngFor="let track of playlist?.tracks">      
-                  <button type="button" (click)="playPreview(track.previewUrl)" style="padding-left:3px"><i class="fa fa-play-circle"></i></button>
-                  <span style="padding-left:3px">{{track.title}},</span>
-                  <span style="padding-left:3px">{{track.duration}},</span>
-                  <span style="padding-left:3px">{{track.artistName}},</span>
-                  <span style="padding-left:3px">{{track.albumName}},</span>
-                  <span style="padding-left:3px">{{track.genreName}},</span>
-                  <span style="padding-left:3px">{{track.rank}},</span>
-              </h6>
-          </div>
-
+           <div class="track-container">Track:
+            <cdk-virtual-scroll-viewport itemSize="200" >
+                <div class="form-inline" *cdkVirtualFor="let track of playlist?.tracks">
+                    <button type="button" (click)="playPreview(track.previewUrl)" style="padding-left:3px"><i class="fa fa-play-circle"></i></button>
+                    <span style="padding-left:3px">{{track.title}},</span>
+                    <span style="padding-left:3px">{{track.duration}},</span>
+                    <span style="padding-left:3px">{{track.artistName}},</span>
+                    <span style="padding-left:3px">{{track.albumName}},</span>
+                    <span style="padding-left:3px">{{track.genreName}},</span>
+                    <span style="padding-left:3px">{{track.rank}},</span>
+                </div>
+              </cdk-virtual-scroll-viewport>
+           </div>
           <button class="btn btn-primary" type="button" (click)="doneEditting()">{{ edditing ? "Done" : "Edit" }}</button>
         </div>
       </div>

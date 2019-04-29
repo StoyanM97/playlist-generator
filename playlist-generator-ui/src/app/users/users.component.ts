@@ -1,6 +1,6 @@
 import { Component, OnInit, Injectable } from "@angular/core";
 import { UserService } from '../services/user.service';
-import { User } from '../models/user';
+import { User, test} from '../models/user';
 import { AuthenticationService } from '../services/authentication.service';
 import { SearchService } from '../services/search.service';
 import { Subscription } from 'rxjs';
@@ -29,9 +29,10 @@ export class UsersComponent implements OnInit{
     }
      
     ngOnInit(){
-        this.subscriptions.add(this.userService.getUsers().subscribe(data => {
-                    this.users = data.filter(user => user.username !== this.authenticationService.currentUserValue.username );
-        }));   
+        this.users = test;
+        // this.subscriptions.add(this.userService.getUsers().subscribe(data => {
+        //             this.users = data.filter(user => user.username !== this.authenticationService.currentUserValue.username );
+        // }));   
     }
 
     ngAfterViewInit(){
@@ -109,7 +110,7 @@ export class UsersComponent implements OnInit{
     
     //TODO add another array
     searchByNameUser(name: string){
-      this.users = this.users.filter((user: User) => user.username.toUpperCase() === name.toUpperCase());
+      this.users = this.users.filter(user => user.username.toUpperCase() === name.toUpperCase());
     }
     
 }

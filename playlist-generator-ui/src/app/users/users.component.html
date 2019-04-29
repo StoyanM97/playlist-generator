@@ -1,7 +1,7 @@
-
-<body>
-  <div class="container margin-top">
-    <table class="table table-hover">
+<body class="bc-image">
+  <div class="container center">
+   <cdk-virtual-scroll-viewport class="viewport" itemSize="20">
+    <table class="table table-hover margin_top text">
       <thead>
         <tr>
             <th>FirstName</th>
@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users">
+        <tr *cdkVirtualFor="let user of users">
           
             <td *ngIf = "!edditing">{{user.firstName}}</td>
             <td *ngIf = "edditing"> 
@@ -50,7 +50,9 @@
             </td>
 
         </tr>
+      
       </tbody>
     </table>
+  </cdk-virtual-scroll-viewport>
    </div>
 </body>

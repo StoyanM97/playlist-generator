@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatCardModule} from '@angular/material';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -41,6 +43,8 @@ import { AdminComponent } from './admin/admin.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ScrollingModule,
+    MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule.forRoot()

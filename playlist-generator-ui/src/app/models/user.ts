@@ -7,3 +7,302 @@ export class User {
     avatar: string;
     token?: string;
 }
+  export const  test = [
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        },
+        {
+            username: "Ven",
+            role: "admin",
+            firstName: "Cool",
+            lastName: "Dute",
+            email: "no",
+            avatar: null,
+            token: null
+        }
+    ];
