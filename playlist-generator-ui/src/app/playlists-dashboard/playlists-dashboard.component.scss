@@ -1,0 +1,121 @@
+.bc-image{
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-image: url(../../assets/black-and-white-brand-data.jpg);
+  opacity: 0.9;
+}
+.container-list{
+  width: 80%;
+  height: 40%;
+  //background-color: black;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+}
+
+.container-list .wrapper{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  align-items: center;
+}
+.container-list .wrapper .box{
+  background-color: rgba(183, 184, 184, 0.3);
+  width: 380px;
+  height: 220px;
+  margin: 10px;
+  border-radius: 1px;
+  overflow: hidden;
+  border: 0.5px solid white;
+  
+}
+
+.container-list .wrapper .box .icon{
+  // background-image: url(../../assets/black-and-white-brand-data.jpg);
+  background-size: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+  z-index: 1;
+  position: relative;
+
+  &.icon-hover{
+    top: 20px;
+    left: 150px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+   
+   }
+  
+}
+
+// .container-list .wrapper .box:hover .icon{
+//  background-image: none;
+//  top: 20px;
+//  left: 150px;
+//  width: 80px;
+//  height: 80px;
+//  border-radius: 50%;
+
+// }
+
+.container-list .wrapper .box .icon .fa{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  transition: 0.5s;
+  color:white;
+  font-size: 35pt;
+  position: relative;
+}
+
+.container-list .wrapper .box:hover .icon .fa{
+  font-size: 15pt;
+}
+.container-list .wrapper .box .icon .title{
+  padding: 5px;
+  font-size: 35pt;
+  white-space: nowrap;
+}
+
+.container-list .wrapper .box:hover .icon .title{
+  padding: 3px;
+  font-size: 15pt;
+  white-space: nowrap;
+}
+
+.container-list .wrapper .box .content{
+  
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
+.arrows{
+  font-size: 50px;
+  color: white;
+  padding: 0;
+  border: none;
+  background: none;
+ 
+}
+.arrows:hover{
+  color: black;
+}
+.arrows[disabled]{
+  visibility: hidden;
+}
+.left-arrow{
+  margin-left: 5%;
+}
+.right-arrow{
+  margin-right: 5%;
+}

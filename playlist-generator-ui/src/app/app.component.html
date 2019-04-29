@@ -1,37 +1,52 @@
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" routerLink="/" >Playlist Generator</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark border-bar" >
+  <div class="collapse navbar-collapse">
+   <ul class="navbar-nav">
+     
+    <li class="nav-item">
+      <a class="navbar-brand" routerLink="/" >Playlist Generator</a>
+    </li>
 
-      <li *ngIf = "!loggedUser" class="nav-item">
-        <a class="nav-link" routerLink="/login" >Login</a>
-      </li>
+    <li *ngIf = "!loggedUser" class="nav-item">
+      <a class="nav-link" routerLink="/login" >Login</a>
+    </li>
     
-    <li *ngIf = "loggedUser" class="nav-item">
+    <li *ngIf = "!loggedUser" class="nav-item">
       <a class="nav-link" routerLink="/" (click)="lagout()">Logout</a>
     </li>
 
-      <li *ngIf = "!loggedUser" class="nav-item">
-        <a class="nav-link" routerLink="/registration">Register</a>
-      </li>
+    <li *ngIf = "!loggedUser" class="nav-item">
+      <a class="nav-link" routerLink="/registration">Register</a>
+    </li>
 
-      <li *ngIf = "loggedUser" class="nav-item">
-        <a class="nav-link" routerLink="/user">{{loggedUser.firstName}} {{loggedUser.lastName}}</a>
-      </li>
+    <li *ngIf = "!loggedUser" class="nav-item">
+        <!-- <a class="nav-link" routerLink="/user">{{loggedUser.firstName}} {{loggedUser.lastName}}</a> -->
+      <a class="nav-link" routerLink="/user">User</a>
+    </li>
 
-      <li *ngIf = "loggedUser" class="nav-item">
-          <a class="nav-link" routerLink="/users">Users</a>
-        </li>
+    <li *ngIf = "!loggedUser" class="nav-item">
+      <a class="nav-link" routerLink="/users">Users</a>
+    </li>
 
-      <li *ngIf = "loggedUser" class="nav-item">
-        <a class="nav-link" routerLink="/playlist">Create Playlist</a>
-      </li>
+    <li *ngIf = "!loggedUser" class="nav-item">
+      <a class="nav-link" routerLink="/admin">Admin</a>
+    </li>
 
-    </ul>
-  </div> 
+    <li *ngIf = "!loggedUser" class="nav-item">
+      <a class="nav-link" routerLink="/playlist">Create Playlist</a>
+    </li>
+
+    <li class="right">
+        <div class="input-group">
+              <input id="txtSearch" type="text" class="form-control" placeholder="Search" value = "" #getInput />
+              <div class="input-group-btn">
+                <button class="btn btn-primary" (click)="setSearchValue(getInput.value)">
+                  <span class="fa fa-search"></span>
+                </button>
+              </div>
+        </div>
+    </li>
+  </ul>
+ </div> 
 </nav>  
 <router-outlet></router-outlet>

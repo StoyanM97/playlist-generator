@@ -1,30 +1,53 @@
-.image-button{
-    
+.bc-image{
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-image: url(../../assets/asphalt.jpg);
+  opacity: 0.9;
+}
+.container{
+  background-color: rgba(50, 55, 62, 0.7);
+  border: 0.5px solid white;
+  border-radius: 1%;
+  padding:5%;
+}
+.container .img{
+  text-align:center;
+}
+.container .details{
+  border-left:3px solid white;
+}
+.container .details p{
+  font-size:15px;
+  font-weight:bold;
+  color: white;
+}
+.container .image-button{
+    border: 0.5px solid white;
+    border-radius: 1%;
     background-image: url(../../assets/avatar.png);
     background-size: 100%;
-    width: 100%;
-    height: 250px;
-    
+    width: 200px;
+    height: 200px;
   }
+
+  .container .imgage-size{
+    height: 200px;
+    width: 200px;
+  }
+ 
+  [span],[input]{
+    color: white;
+    margin-left: 10px;
+  }
+
   .button-bc{
-    background-color: rgba(8, 8, 8, 0.3);
+    background-color: grey;
   }
 
-  .margin-container{
-      margin-top: 50px;
-  }
-  .imgage-size{
-    height: 150px;
-    width: auto;
-  }
-
-  .inline-box {
-    display: inline-block;
-  
-  }
-
-  .carousel-div-size{
-    background-color:  rgba(8, 8, 8, 0.7);
-     height: 300px;
-     width: auto;
+  .form-inline { 
+    color: white;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
   }

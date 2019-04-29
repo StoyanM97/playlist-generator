@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
-import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,7 +22,7 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
   });
-
+    
    // reset login status
    this.authenticationService.logout();
   }
@@ -45,7 +44,7 @@ export class LoginComponent implements OnInit {
                 data => {
                     console.log(data);
                     alert('SUCCESS!');
-                    this.router.navigate(['/dashboard']);
+                    this.router.navigate(['/playlists-dashboard']);
                 },
                 error => {
                     this.error = error;

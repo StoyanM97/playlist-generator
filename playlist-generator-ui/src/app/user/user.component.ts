@@ -26,29 +26,20 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     
     this.authenticationService.currentUser.subscribe(currentUser => this.user = currentUser);
-    console.log(this.user.username);
     this.oldUsername = this.user.username;
     if(this.user.avatar !== undefined && this.user.avatar !== null){
-      console.log(" has image");
       this.hasImage = true;
     }
   }
 
-  onUploadPicture(event){
+onUploadPicture(event){
     this.selectedFile = event.target.files[0];
-    
+    console.log(event);
     this.userService.uploadAvatar(this.user.username, this.selectedFile).subscribe(data => {
         console.log(data);
     },error => {
         console.log(error);
-        console.log(error.status + "  " + error.error.error);
-      },
-      () => {
-        // No errors, route to new page
-      }
-        );
-  
- console.log(event);
+      },() => { });
 }
 
 onUsernameChange(value: string){
@@ -73,12 +64,11 @@ doneEditting(){
     this.userService.editUser(this.user, this.oldUsername).subscribe(data => {
         console.log(data);
     },error => {
-        console.log(error);
+      alert('Your profile has not been updated!');
       },
       () => {
-        // No errors, route to new page
         this.authenticationService.saveEditUser(this.user);
-        //this.authenticationService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
+        alert('Your profile has been successfully updated!');
       }
         );
     
