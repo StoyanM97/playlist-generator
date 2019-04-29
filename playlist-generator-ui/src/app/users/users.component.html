@@ -1,69 +1,56 @@
 
-<div *ngIf = "!edditing">
-    <h1 style="text-align:center">User List</h1>
-    <div class="col">
-      <div class="col-xs-6 col-md-4 pull-right">
-        <div class="input-group">
-          <input id="txtSearch" type="text" class="form-control" placeholder="Search" value = "" #getInput />
-          <div class="input-group-btn">
-            <button class="btn btn-primary" (click)="showByNameUser(getInput.value)">
-              <span class="fa fa-search"></span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th>UserName</th>
-            <th>Email</th>
+<body>
+  <div class="container margin-top">
+    <table class="table table-hover">
+      <thead>
+        <tr>
             <th>FirstName</th>
             <th>LastName</th>
             <th>User Role</th>
+            <th>UserName</th>
+            <th>Email</th>
             <th>Edit</th>
             <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let user of users">
-          <tr>
-              <td *ngIf = "!edditing">{{user.username}}</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          
+            <td *ngIf = "!edditing">{{user.firstName}}</td>
+            <td *ngIf = "edditing"> 
+              <input type="text" [value] = "user.firstName" (input) = "onFirstNameChange(firstName.value)" #firstName>
+            </td>
+
+            <td *ngIf = "!edditing">{{user.lastName}}</td>
+            <td *ngIf = "edditing">
+               <input type="text" [value] = "user.lastName" (input) = "onLastNameChange(lastName.value)" #lastName>
+            </td>
+
+            <td *ngIf = "!edditing">{{user.role}}</td>
+            <td *ngIf = "edditing">
+               <input type="text" [value] = "user.role" (input) = "onUserRoleChange(role.value)" #role>
+            </td>
+
+            <td *ngIf = "!edditing">{{user.username}}</td>
+            <td *ngIf = "edditing">
+              <input type="text" [value] = "user.username" (input) = "onUsernameChange(name.value)" #name>
+            </td>
+
+            <td *ngIf = "!edditing">{{user.email}}</td>
               <td *ngIf = "edditing">
-                <input type="text" [value] = "user.username"
-                (input) = "onUsernameChange(name.value)"
-                #name>
-              </td>
-              <td *ngIf = "!edditing">{{user.email}}</td>
-              <td *ngIf = "edditing">
-                <input type="text" [value] = "user.email"
-                (input) = "onEmailChange(email.value)"
-                #email>
-              </td>
-              <td *ngIf = "!edditing">{{user.firstName}}</td>
-              <td *ngIf = "edditing">
-                  <input type="text" [value] = "user.firstName"
-                  (input) = "onFirstNameChange(firstName.value)"
-                  #firstName>
-              </td>
-              <td *ngIf = "!edditing">{{user.lastName}}</td>
-              <td *ngIf = "edditing">
-                  <input type="text" [value] = "user.lastName"
-                  (input) = "onLastNameChange(lastName.value)"
-                  #lastName>
-              </td>
-              <td *ngIf = "!edditing">{{user.role}}</td>
-              <td *ngIf = "edditing">
-                 <input type="text" [value] = "user.role"
-                 (input) = "onUserRoleChange(role.value)"
-                 #role>
-              </td>
-              <td>
-                <button class="btn btn-primary" (click)= "editMode(user)" >{{edditing? "Done" : "Edit"}}</button>
-              </td>
-              <td>
-                  <button class="btn btn-primary" (click)= "delete(user)" >Delete</button>
-                </td>
-          </tr>
-        </tbody>
-      </table>
-  </div>
+                <input type="text" [value] = "user.email" (input) = "onEmailChange(email.value)" #email>
+            </td>
+
+            <td>
+              <button class="btn btn-primary" (click)= "editMode(user)" >{{edditing? "Done" : "Edit"}}</button>
+            </td>
+
+            <td>
+                <button class="btn btn-primary" (click)= "delete(user)" >Delete</button>
+            </td>
+
+        </tr>
+      </tbody>
+    </table>
+   </div>
+</body>

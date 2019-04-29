@@ -1,35 +1,69 @@
-
-<div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit(login)" #login="ngForm">
-                    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+<body class="bc-image">
+<div class="main-container margin-top center">
+        <h4 class="line main-text margin-top" >Playlist</h4>
+                <form [formGroup]="playlistForm" (ngSubmit)="onGeneratePlaylist(playlist)" #playlist="ngForm">
+                    <div class="mid-container" >
+                    
                     <div class="form-group">
-                        <label>Travel From</label>
-                        <input type="text" formControlName="fromPoint" class="form-control" 
-                        [ngClass]="{ 'is-invalid': field.fromPoint.errors && 
-                        (field.fromPoint.touched || field.fromPoint.dirty)}"/>
-                        <div *ngIf="field.fromPoint.errors" class="invalid-feedback">
-                            <div *ngIf="field.fromPoint.errors.required">Travel from is required</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                            <label>Travel To</label>
-                            <input type="text" formControlName="toPoint" class="form-control" 
-                            [ngClass]="{ 'is-invalid': field.toPoint.errors && 
-                            (field.toPoint.touched || field.toPoint.dirty)}" />
-                            <div *ngIf="field.toPoint.errors" class="invalid-feedback">
-                                <div *ngIf="field.toPoint.errors.required">Travel to is required</div>
+                            <label class="label-from">Title</label>
+                            <input type="text" formControlName="title" class="input form-control"
+                            [ngClass]="{ 'is-invalid': field.title.errors && 
+                            (field.title.touched || field.title.dirty)}"/>
+                            <div *ngIf="field.title.errors" class="invalid-feedback">
+                                <div class="error-message" *ngIf="field.title.errors.required">Title is required</div>
+                                <div *ngIf="field.title.errors.minlength || field.title.errors.maxlength">
+                                    Title must be at least 2 characters and maximum 10 characters long
+                                </div>
                             </div>
                     </div>
-
+                   
                     <div class="form-group">
-                        <button class="btn btn-primary" type="button" onclick="cancel()">Cancel</button>
-                        <button class="btn btn-primary">Generate</button>
+                             <label class="label-from">Travel From</label>
+                             <input type="text" formControlName="fromPoint" class="input form-control"
+                             [ngClass]="{ 'is-invalid': field.fromPoint.errors && 
+                            (field.fromPoint.touched || field.fromPoint.dirty)}"/>
+                            <div *ngIf="field.fromPoint.errors" class="invalid-feedback group">
+                                <div class="error-message" *ngIf="field.fromPoint.errors.required">Travel from is required</div>
+                             </div>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                     <div class="form-group">
+                             <label class="label-to">Travel To</label>
+                            <input type="text" formControlName="toPoint" class="input form-control" 
+                             [ngClass]="{ 'is-invalid': field.toPoint.errors && 
+                            (field.toPoint.touched || field.toPoint.dirty)}" />
+                            <div *ngIf="field.toPoint.errors" class="invalid-feedback">
+                                 <div class="error-message" *ngIf="field.toPoint.errors.required">Travel to is required</div>
+                             </div>
+                     </div>
+                    </div>
+                    
+                    <div class="line group">
+                        <input class="checkbox-margin" type="checkbox" formControlName="popGenre"/>Pop
+                        <select class="select-margin" name="percentage" formControlName="popGenrePercentage">
+                                <option *ngFor="let value of values" [ngValue]="value">{{value}}%</option>
+                        </select>
+                   
+                        <input class="checkbox-margin" type="checkbox" formControlName="danceGenre"/>Dance
+                        <select class="select-margin" name="percentage" formControlName="danceGenrePercentage">
+                                <option *ngFor="let value of values" [ngValue]="value">{{value}}%</option>
+                        </select>
+                    
+                        <input class="checkbox-margin" type="checkbox" formControlName="rockGenre"/>Rock
+                        <select class="select-margin" name="percentage" formControlName="rockGenrePercentage">
+                                <option *ngFor="let value of values" [ngValue]="value" >{{value}}%</option>
+                        </select>
+                    </div>
 
+                    <div class="line group conf-buttons">
+                        <input class="checkbox-conf" type="checkbox" formControlName="useTopTracks"/>Use Top Tracks
+                        <input class="checkbox-conf" type="checkbox" formControlName="allowSameArtists"/>Allow Same Artists
+                    </div>
+                    
+                    <div class="form-group top-margin">
+                        <button class="btn btn-primary left-side">Generate</button>
+                        <button class="btn btn-primary right-side" type="button" (click)="cancel()">Cancel</button>
+                    </div>
+         </form>
+   </div>
+</body>
 

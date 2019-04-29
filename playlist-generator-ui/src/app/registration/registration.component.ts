@@ -48,8 +48,7 @@ export class RegistrationComponent implements OnInit {
           console.log("This is the error " + error);
         },
         ()=>{
-          console.log("No errors");
-          alert('SUCCESS!');
+          alert('successful Registration! Redirect to Login Page!');
           this.router.navigate(['/login']);
         });
   }

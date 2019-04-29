@@ -53,8 +53,6 @@ export class AuthenticationService {
     }
 
     saveEditUser(user: User){
-    
-        this.currentUserSubject.next(null);
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
     }

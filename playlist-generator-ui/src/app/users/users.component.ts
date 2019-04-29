@@ -2,6 +2,8 @@ import { Component, OnInit, Injectable } from "@angular/core";
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
 import { AuthenticationService } from '../services/authentication.service';
+import { SearchService } from '../services/search.service';
+import { Subscription } from 'rxjs';
 
 @Component({ 
     selector: 'users',
@@ -12,20 +14,37 @@ import { AuthenticationService } from '../services/authentication.service';
 
 export class UsersComponent implements OnInit{
     
+    private subscriptions = new Subscription();
+    
     user: User;
     users: User[];
     oldUsername: string;
     edditing: boolean = false;
+   
 
-    constructor(private userService: UserService, private authenticationService: AuthenticationService){
+
+    constructor(private userService: UserService, private authenticationService: AuthenticationService,
+      private searchService: SearchService){
      
     }
      
     ngOnInit(){
-         this.userService.getUsers().subscribe(data => {
-                    console.log('this is the object ', data);
-                    this.users = data.filter((user: User) => user.username !== this.authenticationService.currentUserValue.username );;
-        });  
+        this.subscriptions.add(this.userService.getUsers().subscribe(data => {
+                    this.users = data.filter(user => user.username !== this.authenticationService.currentUserValue.username );
+        }));   
+    }
+
+    ngAfterViewInit(){
+      this.subscriptions.add(this.searchService.searchWord.subscribe(word =>{
+        console.log(word);
+        if(word !== undefined && word !== null && this.users !== undefined && this.users !== null){
+          this.searchByNameUser(word);
+        }
+      }));
+    }
+
+    ngOnDestroy(){
+        this.subscriptions.unsubscribe();
     }
 
     editMode(user){
@@ -40,21 +59,8 @@ export class UsersComponent implements OnInit{
           
     }
 
-    delete(event){
-      this.users = this.users.filter((user: User) => user.username !== event.username );
-      this.userService.deleteUser(event.username).subscribe(data => {
-        console.log(data);
-    },error => {
-        console.log(error);
-      },
-      () => {
-        // No errors, route to new page
-      }
-        );
-    }
-
     handleEdit(oldUser: User){
-      this.users = this.users.map((u: User) => {
+      this.users = this.users.map(u => {
           if(u.username === oldUser.username){
               u = Object.assign({}, u, this.user);
           }
@@ -65,13 +71,20 @@ export class UsersComponent implements OnInit{
             console.log(data);
         },error => {
             console.log(error);
-            console.log(error.status + "  " + error.error.error);
           },
           () => {
-            // No errors, route to new page
             this.authenticationService.saveEditUser(this.user);
-          }
-            );
+          });
+    }
+
+    delete(event){
+      this.users = this.users.filter((user: User) => user.username !== event.username );
+      this.userService.deleteUser(event.username).subscribe(data => {
+        console.log(data);
+    },error => {
+        console.log(error);
+      },
+      () => {});
     }
 
     onUsernameChange(value: string){
@@ -94,8 +107,8 @@ export class UsersComponent implements OnInit{
       this.user.role = value.toUpperCase();
     }
 
-    showByNameUser(name: string){
-        this.users = this.users.filter((user: User) => user.username.toUpperCase() === name.toUpperCase());
+    searchByNameUser(name: string){
+      this.users = this.users.filter((user: User) => user.username.toUpperCase() === name.toUpperCase());
     }
     
 }

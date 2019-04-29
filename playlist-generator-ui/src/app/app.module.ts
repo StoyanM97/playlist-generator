@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { PlaylistsDashboardComponent } from './playlists-dashboard/playlists-dashboard.component';
 import { UserComponent } from './user/user.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
@@ -17,17 +17,24 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
 import { UsersComponent } from './users/users.component';
 import { ConfirmationComponent } from './confirmation-dialog/confirmation.component';
 import { ConfirmationService } from './confirmation-dialog/confirmation.service';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { PercentageService } from './services/percentage.survice';
+import { PlaylistDetailsComponent } from './playlist-details/playlist-details.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    DashboardComponent,
+    PlaylistsDashboardComponent,
     UserComponent,
     PlaylistComponent,
     UsersComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    NotFoundComponent,
+    PlaylistDetailsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +47,7 @@ import { ConfirmationService } from './confirmation-dialog/confirmation.service'
   ],
   providers: [
     ConfirmationService,
+    PercentageService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],

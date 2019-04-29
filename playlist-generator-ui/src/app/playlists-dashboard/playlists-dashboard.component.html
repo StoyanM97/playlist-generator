@@ -1,0 +1,28 @@
+<body class="bc-image">
+
+<!-- <div class="container margin-top">
+    <h1>Welcome to {{ title }}!</h1>
+    <img width="500" alt="Playlist Logo" src="../assets/playlist.png">
+    <button (click)="showPlaylists()" type="button" class="btn btn-primary margin-right">Explorer Our Playlists</button>
+</div> -->
+
+
+    <div class="container-list">
+        <button (click)="previous()" type="button" class="arrows left-arrow"
+        [disabled]="backwarDdisabled">
+          <i class="fa fa-chevron-left"></i></button>
+       <ul class="wrapper" style="list-style: none;">
+            <li class="box" *ngFor='let playlist of playlists' (mouseover)="playlist.hoverActive=true" (mouseout)="playlist.hoverActive=false">
+                <div class="icon" [class.icon-hover]="playlist.hoverActive"
+                [ngStyle]= "playlist.hoverActive ? {} : {'background-image': 'url(../../assets/black-and-white-brand-data.jpg)'}"><i class="fa fa-music"><span class="title">{{playlist.title}}</span></i></div>
+                <div class="content"> 
+                <h6>Duration: {{playlist.duration}}</h6>
+                <button (click)="showPlaylistDetails()" type="button" class="btn btn-primary btn-xs">Playlist</button>
+              </div>
+            </li>
+          </ul>
+          <button (click)="next()" type="button" class="arrows right-arrow" 
+          [disabled]="forwardDisabled">
+          <i class="fa fa-chevron-right"></i></button>
+    </div>
+</body>
