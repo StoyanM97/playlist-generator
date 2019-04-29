@@ -30,4 +30,9 @@ public class DatabaseGeneratorControllerImpl {
     public boolean downloadTracks() {
         return service.saveTracks();
     }
+
+    @GetMapping("/synch/genres")
+    public boolean synchronizeGenres(){
+        return service.synchronizeGenres();
+    }
 }

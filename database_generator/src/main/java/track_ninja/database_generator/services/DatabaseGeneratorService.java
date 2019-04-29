@@ -4,5 +4,5 @@ public interface DatabaseGeneratorService {
 
     boolean saveGenres();
     boolean saveTracks();
-
+    boolean synchronizeGenres();
 }

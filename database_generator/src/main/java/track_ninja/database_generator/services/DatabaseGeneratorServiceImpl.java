@@ -63,7 +63,7 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
     }
 
     @Override
-    public boolean saveGenres() {
+    public boolean synchronizeGenres() {
 
         GenreList result = restTemplate.getForObject(URL_GENRE, GenreList.class);
 
@@ -78,6 +78,26 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
             });
 
             genreRepository.saveAll(genresToSave);
+
+            log.info(GENRES_WERE_LOADED);
+            return true;
+        }
+        else{
+            log.error(UNABLE_TO_LOAD_GENRES);
+            return false;
+        }
+
+    }
+
+    @Override
+    public boolean saveGenres() {
+
+        GenreList result = restTemplate.getForObject(URL_GENRE, GenreList.class);
+
+        if(result!=null){
+            List<Genre> genres = result.getGenres();
+
+            genreRepository.saveAll(genres);
 
             log.info(GENRES_WERE_LOADED);
             return true;
