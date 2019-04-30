@@ -14,10 +14,11 @@
        <ul class="wrapper" style="list-style: none;">
             <li class="box" *ngFor='let playlist of playlists' (mouseover)="playlist.hoverActive=true" (mouseout)="playlist.hoverActive=false">
                 <div class="icon" [class.icon-hover]="playlist.hoverActive"
-                [ngStyle]= "playlist.hoverActive ? {} : {'background-image': 'url(../../assets/black-and-white-brand-data.jpg)'}"><i class="fa fa-music"><span class="title">{{playlist.title}}</span></i></div>
+                [ngStyle]= "playlist.hoverActive ? {} : {'background-image': 'url('+playlist.imageUrl+')', 'background-repeat': 'no-repeat', 'background-size': 'cover'}">
+                <i class="fa fa-music"><span class="title">{{playlist.title}}</span></i></div>
                 <div class="content"> 
                 <h6>Duration: {{playlist.duration}}</h6>
-                <button (click)="showPlaylistDetails()" type="button" class="btn btn-primary btn-xs">Playlist</button>
+                <button (click)="showPlaylistDetails(playlist)" type="button" class="btn btn-primary btn-xs">Playlist</button>
               </div>
             </li>
           </ul>

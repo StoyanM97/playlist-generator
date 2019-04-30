@@ -23,6 +23,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { PercentageService } from './services/percentage.survice';
 import { PlaylistDetailsComponent } from './playlist-details/playlist-details.component';
 import { AdminComponent } from './admin/admin.component';
+import { PlayerComponent } from './playlist-details/player/player.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AdminComponent } from './admin/admin.component';
     ConfirmationComponent,
     NotFoundComponent,
     PlaylistDetailsComponent,
-    AdminComponent
+    AdminComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,

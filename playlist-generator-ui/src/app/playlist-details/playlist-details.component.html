@@ -2,38 +2,44 @@
 <body class="bc-image">
   <div class="container center">
       <div class="row">
-        <div class="col-md-6 img">
-            <img class = "image-size" [src]="playlist?.imageUrl" style="max-width:100%; max-height:100%; object-fit: cover" alt="Playlist Image">
+
+        <div class="container-image" [ngStyle]= "{'background-image': 'url('+playlist?.imageUrl+')' , 'background-repeat': 'no-repeat', 'background-size': 'cover'}">
+          
+              <h3 class="form-inline">Title:
+                  <span  *ngIf = "!edditing" >{{playlist?.title}}</span>
+                  <input *ngIf = "edditing" type="text" [value] = "playlist?.title" (input) = "onTitleChange(title.value)" #title>
+                </h3>
+      
+                <h6 class="form-inline">Duration:
+                    <span >{{playlist?.duration}}</span>
+                </h6>
+        
+                <h6 class="form-inline">User Created it:
+                  <span *ngIf = "!edditing" >{{playlist?.username}}</span>
+                </h6>
+                
+                <h6 class="form-inline">Genres:
+                <span *ngFor="let genre of playlist?.genres">
+                    <span style="padding-left:3px">{{genre}}</span>
+                </span>
+                </h6>
         </div>
+
         <div class="col-md-6 details">
 
-          <h3 class="form-inline">Title:
-            <span  *ngIf = "!edditing" >{{playlist?.title}}</span>
-            <input *ngIf = "edditing" type="text" [value] = "playlist.title" (input) = "onTitleChange(title.value)" #title>
-          </h3>
-
-          <h6 class="form-inline">Duration:
-              <span >{{playlist?.duration}}</span>
-          </h6>
-  
-          <h6 class="form-inline">User Created it:
-            <span *ngIf = "!edditing" >{{playlist?.username}}</span>
-          </h6>
-         <div class="genre-container">Genres:
-          <h6 class="form-inline" *ngFor="let genre of playlist?.genres">
-              <span style="padding-left:3px">{{genre}},</span>
-          </h6>
-        </div>
-           <div class="track-container">Track:
-            <cdk-virtual-scroll-viewport itemSize="200" >
+        
+           <div class="container-color">Track:
+            <cdk-virtual-scroll-viewport itemSize="20" class="track-container" >
                 <div class="form-inline" *cdkVirtualFor="let track of playlist?.tracks">
-                    <button type="button" (click)="playPreview(track.previewUrl)" style="padding-left:3px"><i class="fa fa-play-circle"></i></button>
-                    <span style="padding-left:3px">{{track.title}},</span>
-                    <span style="padding-left:3px">{{track.duration}},</span>
-                    <span style="padding-left:3px">{{track.artistName}},</span>
-                    <span style="padding-left:3px">{{track.albumName}},</span>
-                    <span style="padding-left:3px">{{track.genreName}},</span>
-                    <span style="padding-left:3px">{{track.rank}},</span>
+                    <!-- <a [routerLink]="['/player', {url: getFilter(track.previewUrl)}]"
+                    style="padding-left:3px"><i class="fa fa-play-circle"></i></a> -->
+                    <button (click)= "play(track.previewUrl)"><i class="fa fa-play-circle"></i></button>
+                    <span style="padding-left:3px">{{track?.title}},</span>
+                    <span style="padding-left:3px">{{track?.duration}},</span>
+                    <span style="padding-left:3px">{{track?.artistName}},</span>
+                    <span style="padding-left:3px">{{track?.albumName}},</span>
+                    <span style="padding-left:3px">{{track?.genreName}},</span>
+                    <span style="padding-left:3px">{{track?.rank}}</span>
                 </div>
               </cdk-virtual-scroll-viewport>
            </div>
@@ -41,4 +47,9 @@
         </div>
       </div>
     </div>
+   
+    <player *ngIf="playUrl" [url]="previewUrl" (stop) ="handelStop($event)">
+    </player>
+    
+    
   </body>

@@ -11,18 +11,35 @@
     border-radius: 1%;
     padding:5%;
   }
-  .container .img{
-    text-align:center;
-  }
+ 
   .container .details{
     border-left:3px solid white;
   }
  
- .container .imgage-size{
-    height: 200px;
-    width: 200px;
+ .container-image{
+    color: white;
+    border: 1.5px solid white;
+    border-radius: 1%;
+    height: 300px;
+    width: 300px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
 }
    
+.container-image .img {
+  position: relative; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+
+  width: 200px;
+  height: 200px;;
+  
+}​
+
 [span],[input]{
     color: white;
     margin-left: 10px;
@@ -35,13 +52,17 @@
     align-items: center;
 }
 
-.genre-container{
+.container-color{
     color: white;
 }
 
 .track-container{
     color: white;
-    height: 400px;
+    border: 0.5px solid white;
+    border-radius: 1%;
+    padding: 10px;
+    height: 350px;
     width:  500px;
+    margin: 10px;
 }
   
