@@ -18,5 +18,5 @@ import java.util.List;
 public class PlaylistList {
 
     @JsonProperty("data")
-    private List<Playlist> playlists;
+    private List<GenerationPlaylist> generationPlaylists;
 }

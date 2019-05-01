@@ -14,10 +14,10 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Genre")
+@Entity
 @Table(name = "genres")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Genre {
+public class GenerationGenre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,7 @@ public class Genre {
 
     @Override
     public String toString() {
-        return "Genre{" +
+        return "GenerationGenre{" +
                 "genreId=" + genreId +
                 ", name='" + name + '\'' +
                 ", picture_big='" + picture_big + '\'' +
