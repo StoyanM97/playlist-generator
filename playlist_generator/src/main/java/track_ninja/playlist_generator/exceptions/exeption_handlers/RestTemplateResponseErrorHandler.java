@@ -1,4 +1,4 @@
-package track_ninja.playlist_generator.duration.generator.exeption_handlers;
+package track_ninja.playlist_generator.exceptions.exeption_handlers;
 
 
 import org.slf4j.Logger;

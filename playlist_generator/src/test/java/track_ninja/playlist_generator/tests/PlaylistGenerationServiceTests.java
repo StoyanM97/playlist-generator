@@ -7,8 +7,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import track_ninja.playlist_generator.duration.generator.services.LocationService;
 import track_ninja.playlist_generator.models.Genre;
 import track_ninja.playlist_generator.models.Playlist;
@@ -60,7 +58,7 @@ public class PlaylistGenerationServiceTests {
         Mockito.when(locationService.getTravelDuration("TestDestination1", "TestDestination2")).thenReturn(6000L);
         Mockito.when(userDetailsRepository.findByIsDeletedFalseAndUser_Username("TestUser")).thenReturn(new UserDetails());
         Mockito.when(genreRepository.findByName("pop")).thenReturn(new Genre());
-        Mockito.when(trackRepository.findRandomTrackByGenre("pop")).thenReturn(testService.randomTrackByGenre);
+        Mockito.when(trackRepository.findRandomTrackByGenre("pop")).thenCallRealMethod();
         Mockito.when(playlistRepository.save(any(Playlist.class))).thenReturn(null);
         Mockito.when(genreRepository.save(any(Genre.class))).thenReturn(null);
 
