@@ -2,8 +2,13 @@ export class PlaylistGenerator{
     title: string;
     travelFrom: string;
     travelTo: string;
-    genres: Map<string,number>;
+    genres: Genre[];
     allowSameArtists: boolean;
     useTopTracks: boolean;
     username: string;
+}
+
+export class Genre{
+    genre: string;
+    percentage: number;
 }

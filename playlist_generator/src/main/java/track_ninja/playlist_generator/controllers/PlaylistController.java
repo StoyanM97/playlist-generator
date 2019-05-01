@@ -27,7 +27,7 @@ public class PlaylistController {
         this.playlistService = playlistService;
     }
 
-    @GetMapping
+    @GetMapping("/playlist")
     public List<PlaylistDTO> getAll() {
         try {
             return playlistService.getAll();

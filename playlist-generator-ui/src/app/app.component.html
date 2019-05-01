@@ -31,6 +31,10 @@
       <a class="nav-link" routerLink="/admin">Admin</a>
     </li>
 
+    <li *ngIf = "loggedUser && loggedUser.role==='ROLE_ADMIN'" class="nav-item">
+      <a class="nav-link" routerLink="/registration">Create User</a>
+    </li>
+
     <li *ngIf = "loggedUser" class="nav-item">
       <a class="nav-link" routerLink="/playlist">Create Playlist</a>
     </li>

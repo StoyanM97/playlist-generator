@@ -23,7 +23,6 @@ export class PlaylistsDashboardComponent implements OnInit {
   backwarDdisabled: boolean;
 
   constructor(private playlistService: PlaylistService, private router: Router) {
-    this.playlistFullStack = this.playlistService.getPlaylistsTest();
     this.trackList = 0;
     this.nextStack = 3;
     this.forward = false;
@@ -32,9 +31,17 @@ export class PlaylistsDashboardComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.playlists = this.playlistFullStack.slice(this.trackList, this.trackList+=this.nextStack);
-    this.forwardDisabled = this.validateNext;
-    this.backwarDdisabled = true;
+    this.playlistService.getPlaylists().subscribe(data => {
+      console.log(data);
+      this.playlistFullStack = data;
+  },error => {
+      console.log(error);
+    },() => { 
+      this.playlists = this.playlistFullStack.slice(this.trackList, this.trackList+=this.nextStack);
+      this.forwardDisabled = this.validateNext;
+      this.backwarDdisabled = true;
+    });
+   
   }
 
   showPlaylistDetails(value: Playlist){

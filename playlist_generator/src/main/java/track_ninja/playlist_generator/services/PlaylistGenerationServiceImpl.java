@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import track_ninja.playlist_generator.duration.generator.services.LocationService;
 import track_ninja.playlist_generator.models.*;
+import track_ninja.playlist_generator.models.dtos.GenreDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistGeneratorDTO;
 import track_ninja.playlist_generator.exceptions.DurationTooLongException;
@@ -16,6 +17,7 @@ import track_ninja.playlist_generator.repositories.TrackRepository;
 import track_ninja.playlist_generator.repositories.UserDetailsRepository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class PlaylistGenerationServiceImpl implements PlaylistGenerationService {
@@ -54,6 +56,7 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
             logger.error(dtl.getMessage());
             throw dtl;
         }
+        List<String> genresDto = playlistGeneratorDTO.getGenres().stream().map(GenreDTO::getGenre).collect(Collectors.toList());
 
         Deque<Track> tracks = new ArrayDeque<>();
         Playlist generatedPlaylist = new Playlist();
@@ -62,7 +65,7 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
         generatedPlaylist.setDeleted(false);
         generatedPlaylist.setDuration(0L);
         List<Genre> genres = new ArrayList<>();
-        for (String genreName : playlistGeneratorDTO.getGenres().keySet()) {
+        for (String genreName : genresDto) {
             genres.add(genreRepository.findByName(genreName));
         }
         generatedPlaylist.setGenres(genres);
@@ -70,73 +73,73 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
         if (playlistGeneratorDTO.isAllowSameArtists()) {
             if (playlistGeneratorDTO.isUseTopTracks()) {
                 Deque<Long> trackIds = new ArrayDeque<>();
-                for (String genre : playlistGeneratorDTO.getGenres().keySet()) {
-                    if (playlistGeneratorDTO.getGenres().get(genre) == 0) {
+                for (GenreDTO genre : playlistGeneratorDTO.getGenres()) {
+                    if (genre.getPercentage() == 0) {
                         continue;
                     }
-                    double genreDurationSecond = totalDuration * playlistGeneratorDTO.getGenres().get(genre) / 100.0;
+                    double genreDurationSecond = totalDuration * genre.getPercentage() / 100.0;
                     long durationSeconds = 0L;
-                    Track firstTrack = trackRepository.findTopTrackByGenre(genre);
+                    Track firstTrack = trackRepository.findTopTrackByGenre(genre.getGenre());
                     durationSeconds = updateDuration(durationSeconds, firstTrack);
                     trackIds.add(firstTrack.getTrackId());
                     tracks.add(firstTrack);
 
                     while (durationSeconds < genreDurationSecond - 150) {
-                        durationSeconds = addTrackInLoopAllowSameArtistAndTopTracks(tracks, trackIds, durationSeconds, genre);
+                        durationSeconds = addTrackInLoopAllowSameArtistAndTopTracks(tracks, trackIds, durationSeconds, genre.getGenre());
                     }
                     generatedPlaylist.setDuration(generatedPlaylist.getDuration() + durationSeconds);
                 }
             } else {
                 Deque<Long> trackIds = new ArrayDeque<>();
-                for (String genre : playlistGeneratorDTO.getGenres().keySet()) {
-                    if (playlistGeneratorDTO.getGenres().get(genre) == 0) {
+                for (GenreDTO genre : playlistGeneratorDTO.getGenres()) {
+                    if (genre.getPercentage() == 0) {
                         continue;
                     }
-                    double genreDurationSecond = totalDuration * playlistGeneratorDTO.getGenres().get(genre) / 100.0;
+                    double genreDurationSecond = totalDuration * genre.getPercentage() / 100.0;
                     long durationSeconds = 0L;
-                    Track firstTrack = trackRepository.findRandomTrackByGenre(genre);
+                    Track firstTrack = trackRepository.findRandomTrackByGenre(genre.getGenre());
                     durationSeconds = updateDuration(durationSeconds, firstTrack);
                     trackIds.add(firstTrack.getTrackId());
                     tracks.add(firstTrack);
 
                     while (durationSeconds < genreDurationSecond - 150) {
-                        durationSeconds = addTrackInLoopAllowSameArtist(tracks, trackIds, durationSeconds, genre);
+                        durationSeconds = addTrackInLoopAllowSameArtist(tracks, trackIds, durationSeconds, genre.getGenre());
                     }
                     generatedPlaylist.setDuration(generatedPlaylist.getDuration() + durationSeconds);
                 }
             }
         } else if (playlistGeneratorDTO.isUseTopTracks()) {
             Deque<Integer> artistIds = new ArrayDeque<>();
-            for (String genre : playlistGeneratorDTO.getGenres().keySet()) {
-                if (playlistGeneratorDTO.getGenres().get(genre) == 0) {
+            for (GenreDTO genre : playlistGeneratorDTO.getGenres()) {
+                if (genre.getPercentage() == 0) {
                     continue;
                 }
-                double genreDurationSecond = totalDuration * playlistGeneratorDTO.getGenres().get(genre) / 100.0;
+                double genreDurationSecond = totalDuration * genre.getPercentage() / 100.0;
                 long durationSeconds = 0L;
-                Track firstTrack = trackRepository.findTopTrackByGenre(genre);
+                Track firstTrack = trackRepository.findTopTrackByGenre(genre.getGenre());
                 durationSeconds = updateDuration(durationSeconds, firstTrack);
                 artistIds.add(firstTrack.getArtist().getArtistId());
                 tracks.add(firstTrack);
 
                 while (durationSeconds < genreDurationSecond - 150) {
-                    durationSeconds = addTrackInLoopUseTopTracks(tracks, artistIds, durationSeconds, genre);
+                    durationSeconds = addTrackInLoopUseTopTracks(tracks, artistIds, durationSeconds, genre.getGenre());
                 }
                 generatedPlaylist.setDuration(generatedPlaylist.getDuration() + durationSeconds);
             }
         } else {
             Deque<Integer> artistIds = new ArrayDeque<>();
-            for (String genre : playlistGeneratorDTO.getGenres().keySet()) {
-                if (playlistGeneratorDTO.getGenres().get(genre) == 0) {
+            for (GenreDTO genre : playlistGeneratorDTO.getGenres()) {
+                if (genre.getPercentage() == 0) {
                     continue;
                 }
-                double genreDurationSecond = totalDuration * playlistGeneratorDTO.getGenres().get(genre) / 100.0;
+                double genreDurationSecond = totalDuration * genre.getPercentage() / 100.0;
                 long durationSeconds = 0L;
-                Track firstTrack = trackRepository.findRandomTrackByGenre(genre);
+                Track firstTrack = trackRepository.findRandomTrackByGenre(genre.getGenre());
                 artistIds.add(firstTrack.getArtist().getArtistId());
                 tracks.add(firstTrack);
 
                 while (durationSeconds < genreDurationSecond - 150) {
-                    durationSeconds = addTrackInLoopRandom(tracks, artistIds, durationSeconds, genre);
+                    durationSeconds = addTrackInLoopRandom(tracks, artistIds, durationSeconds, genre.getGenre());
                 }
                 generatedPlaylist.setDuration(generatedPlaylist.getDuration() + durationSeconds);
             }
@@ -154,7 +157,7 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
     }
 
     private void shuffleTracksIfMoreThanOneGenre(PlaylistGeneratorDTO playlistGeneratorDTO, Deque<Track> playlist, Playlist generatedPlaylist) {
-        if (playlistGeneratorDTO.getGenres().keySet().size() > 1) {
+        if (playlistGeneratorDTO.getGenres().size() > 1) {
             generatedPlaylist.setTracks(shuffleTracks(playlist));
         } else {
             generatedPlaylist.setTracks(new ArrayList<>(playlist));

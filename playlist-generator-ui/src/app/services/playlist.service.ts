@@ -33,20 +33,7 @@ export class PlaylistService{
 
     createPlaylist(playlist: PlaylistGenerator): Observable<Playlist> {
       const body = JSON.stringify(playlist); 
-      const playlistToSave = {
-          title: playlist.title ,
-          travelFrom: playlist.travelFrom,
-          travelTo: playlist.travelTo,
-          genres: {
-            pop: playlist.genres.get("pop"),
-            dance: playlist.genres.get("dance"),
-            rock: playlist.genres.get("rock")
-          },
-          allowSameArtist: playlist.allowSameArtists,
-          useTopTracks: playlist.useTopTracks,
-          username: playlist.username
-      };
-      return this.httpClient.post<Playlist>(this.CREATE_PLAYLIST_URL, playlistToSave, { headers: this.authenticationService.getHeader()});
+      return this.httpClient.post<Playlist>(this.CREATE_PLAYLIST_URL, body, { headers: this.authenticationService.getHeader()});
     }
 
     playlistsExist(): Observable<boolean>{

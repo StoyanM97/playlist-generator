@@ -28,7 +28,7 @@ export class RegistrationComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
       email: ['', [Validators.required, Validators.email]],
-      role: ['ROLE_USER', Validators.required],
+      role: ['', Validators.required],
       username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}(?!.*\s).*$/)]],
       confirmPassword: ['', Validators.required]

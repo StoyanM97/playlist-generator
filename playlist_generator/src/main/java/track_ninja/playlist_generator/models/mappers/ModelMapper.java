@@ -31,7 +31,7 @@ public class ModelMapper {
         PlaylistDTO playlistDTO = new PlaylistDTO();
         playlistDTO.setPlaylistId(playlist.getPlaylistId());
         playlistDTO.setTitle(playlist.getTitle());
-        //TODO: set url based on most used genre
+        //TODO: set url based on most used genre check if playlist is created throws null point exeption
         playlistDTO.setImageUrl(playlist.getGenres().get(0).getImageUrl());
         playlistDTO.setUsername(playlist.getUser().getUser().getUsername());
         playlistDTO.setDuration(playlist.getDuration());

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PercentageService } from '../services/percentage.survice';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MustMatch } from '../helpers/must-match.validator';
 import { Router } from '@angular/router';
 import { PlaylistService } from '../services/playlist.service';
-import { PlaylistGenerator } from '../models/playlistGenerator';
+import { PlaylistGenerator, Genre } from '../models/playlistGenerator';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -42,66 +41,148 @@ export class PlaylistComponent implements OnInit {
     // convenience getter for easy access to form fields
     get field() { return this.playlistForm.controls; }
 
-  onGeneratePlaylist(event){
+    cancel(){this.router.navigate(['/playlists-dashboard']);}
+
+    generatePlaylist(playlistGenerator: PlaylistGenerator){
+      this.playlistService.createPlaylist(playlistGenerator).subscribe(data => {
+        console.log(data);
+      },error => {
+        console.log(error);
+      },() => { 
+        alert("Playlist created!");
+        this.router.navigate(['/playlists-dashboard']);
+      });
+    }
+
+    onGeneratePlaylist(event){
+
+      console.log(event.value.title);
+      console.log(event.value.fromPoint);
+      console.log(event.value.toPoint);
+      console.log("Pop "+ event.value.popGenre);
+      console.log("Pop %"+ event.value.popGenrePercentage);
+      console.log("Dance "+event.value.danceGenre);
+      console.log("Dance %"+event.value.danceGenrePercentage);
+      console.log("Rock "+event.value.rockGenre);
+      console.log("Rock %"+event.value.rockGenrePercentage);
+      console.log("Top Tracks "+event.value.useTopTracks);
+      console.log("Same artists "+event.value.allowSameArtists);
+
     if (this.playlistForm.invalid) {
       return;
     }
-
-    if(event.value.popGenrePercentage + event.value.danceGenrePercentage + event.value.rockGenrePercentage > 100 ){
-      alert('Total genre percentage can not be more than 100%!');
+    var totalPercentage = event.value.popGenrePercentage + event.value.danceGenrePercentage + event.value.rockGenrePercentage;
+    
+    if(totalPercentage !== 0 && totalPercentage !== 100){
+      alert('Total genres percentage must be 100%!');
+      return;
     }
-    var playlistGenerator = new PlaylistGenerator();
 
+    var playlistGenerator = new PlaylistGenerator();
     playlistGenerator.title = event.value.title;
     playlistGenerator.travelFrom = event.value.fromPoint;
     playlistGenerator.travelTo = event.value.toPoint;
     playlistGenerator.username = this.authenticationService.currentUserValue.username;
     playlistGenerator.allowSameArtists = event.value.allowSameArtists;
     playlistGenerator.useTopTracks = event.value.useTopTracks;
-    var genres: Map<string,number> = new Map();
-    if(event.value.popGenre){
-      genres.set("Pop", event.value.popGenrePercentage);
+    var genres: Genre[] = [];
+
+    if( totalPercentage === 100 ){
+      var genrePop = new Genre();
+      if(event.value.popGenre){
+        genrePop.genre = "Pop";
+        genrePop.percentage = event.value.popGenrePercentage;
+      }
+      genres.push(genrePop);
+
+      var genreDance = new Genre();
+      if(event.value.danceGenre){
+        genreDance.genre = "Dance";
+        genreDance.percentage = event.value.danceGenrePercentage;
+      }
+      genres.push(genreDance);
+
+      var genreRock = new Genre();
+      if(event.value.rockGenre){
+        genreRock.genre = "Rock";
+        genreRock.percentage = event.value.rockGenrePercentage;
+      }
+      genres.push(genreRock);
+
     }
-    else{
-      genres.set("Pop", 0);
-    }
-    if(event.value.danceGenre){
-      genres.set("Dance", event.value.danceGenrePercentage);
-    }
-    else{
-      genres.set("Dance", 0);
-    }
-    if(event.value.rockGenre){
-      genres.set("Rock", event.value.rockGenrePercentage);
-    }
-    else{
-      genres.set("Rock", 0);
+    else if(totalPercentage === 0){
+        
+      if(event.value.popGenre && !event.value.danceGenre && !event.value.rockGenre){
+        var genre = new Genre();
+        genre.genre = "Pop"
+        genre.percentage = 100;
+        genres.push(genre);
+      }
+      else if(!event.value.popGenre && event.value.danceGenre && !event.value.rockGenre){ 
+        var genre = new Genre();
+        genre.genre = "Dance"
+        genre.percentage = 100;
+        genres.push(genre);
+      }
+      else if(!event.value.popGenre && !event.value.danceGenre && event.value.rockGenre){ 
+        var genre = new Genre();
+        genre.genre = "Rock"
+        genre.percentage = 100;
+        genres.push(genre);
+      }
+      else if(event.value.popGenre && event.value.danceGenre && !event.value.rockGenre){ 
+        var genrePop = new Genre();
+        genrePop.genre = "Pop"
+        genrePop.percentage = 50;
+        genres.push(genrePop);
+
+        var genreDance = new Genre();
+        genreDance.genre = "Dance"
+        genreDance.percentage = 50;
+        genres.push(genreDance);
+      }
+      else if(event.value.popGenre && !event.value.danceGenre && event.value.rockGenre){ 
+        var genrePop = new Genre();
+        genrePop.genre = "Pop"
+        genrePop.percentage = 50;
+        genres.push(genrePop);
+        
+        var genreRock = new Genre();
+        genreRock.genre = "Rock"
+        genreRock.percentage = 50;
+        genres.push(genreRock);
+      }
+      else if(!event.value.popGenre && event.value.danceGenre && event.value.rockGenre){ 
+        var genreDance = new Genre();
+        genreDance.genre = "Dance"
+        genreDance.percentage = 50;
+        genres.push(genreDance);
+        
+        var genreRock = new Genre();
+        genreRock.genre = "Rock"
+        genreRock.percentage = 50;
+        genres.push(genreRock);
+      }
+      else if( (event.value.popGenre && event.value.danceGenre && event.value.rockGenre) || (!event.value.popGenre && !event.value.danceGenre && !event.value.rockGenre)) { 
+        var genrePop = new Genre();
+        genrePop.genre = "Pop"
+        genrePop.percentage = 100/3;
+        genres.push(genrePop);
+
+        var genreDance = new Genre();
+        genreDance.genre = "Dance"
+        genreDance.percentage = 100/3;
+        genres.push(genreDance);
+        
+        var genreRock = new Genre();
+        genreRock.genre = "Rock"
+        genreRock.percentage = 100/3;
+        genres.push(genreRock);
+      }
     }
 
-    this.playlistService.createPlaylist(playlistGenerator).subscribe(data => {
-      console.log(data);
-    },error => {
-      console.log(error);
-    },() => { 
-      alert("Playlist created!");
-    });
-
-    console.log(event.value.title);
-    console.log(event.value.fromPoint);
-    console.log(event.value.toPoint);
-    console.log("Pop "+ event.value.popGenre);
-    console.log("Pop %"+ event.value.popGenrePercentage);
-    console.log("Dance "+event.value.danceGenre);
-    console.log("Dance %"+event.value.danceGenrePercentage);
-    console.log("Rock "+event.value.rockGenre);
-    console.log("Rock %"+event.value.rockGenrePercentage);
-    console.log("Top Tracks "+event.value.useTopTracks);
-    console.log("Same artists "+event.value.allowSameArtists);
-
-  }
-
-  cancel(){
-    this.router.navigate(['/playlists-dashboard']);
+    playlistGenerator.genres = genres;
+    this.generatePlaylist(playlistGenerator);   
   }
 
 }

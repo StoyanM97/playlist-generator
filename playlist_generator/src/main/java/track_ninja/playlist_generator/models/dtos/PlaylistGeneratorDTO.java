@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -19,7 +20,7 @@ public class PlaylistGeneratorDTO {
 
     private String travelTo;
 
-    private Map<String, Integer> genres;
+    private List<GenreDTO> genres;
 
     private boolean allowSameArtists;
 
@@ -40,8 +41,8 @@ public class PlaylistGeneratorDTO {
 
     private String genresToString() {
         StringBuilder builder = new StringBuilder("(");
-        for (String genre : genres.keySet()) {
-            builder.append(genre).append("-").append(genres.get(genre)).append("%, ");
+        for (GenreDTO genre : genres) {
+            builder.append(genre.getGenre()).append("-").append(genre.getPercentage()).append("%, ");
         }
         builder.append(")");
         return builder.toString();
