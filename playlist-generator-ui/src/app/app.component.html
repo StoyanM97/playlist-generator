@@ -19,28 +19,27 @@
       <a class="nav-link" routerLink="/registration">Register</a>
     </li>
 
-    <li *ngIf = "!loggedUser" class="nav-item">
-        <!-- <a class="nav-link" routerLink="/user">{{loggedUser.firstName}} {{loggedUser.lastName}}</a> -->
-      <a class="nav-link" routerLink="/user">User</a>
+    <li *ngIf = "loggedUser" class="nav-item">
+        <a class="nav-link" routerLink="/user">{{loggedUser.firstName}} {{loggedUser.lastName}}</a>  
     </li>
 
-    <li *ngIf = "!loggedUser" class="nav-item">
+    <li *ngIf = "loggedUser" class="nav-item">
       <a class="nav-link" routerLink="/users">Users</a>
     </li>
 
-    <li *ngIf = "!loggedUser" class="nav-item">
+    <li *ngIf = "loggedUser" class="nav-item">
       <a class="nav-link" routerLink="/admin">Admin</a>
     </li>
 
-    <li *ngIf = "!loggedUser" class="nav-item">
+    <li *ngIf = "loggedUser" class="nav-item">
       <a class="nav-link" routerLink="/playlist">Create Playlist</a>
     </li>
 
-    <li *ngIf = "!loggedUser" class="nav-item">
+    <!-- <li *ngIf = "loggedUser" class="nav-item">
       <a class="nav-link" [routerLink]="['/not-found', {message: 'Hello'}]">Not Found</a>
-    </li>
+    </li> -->
 
-    <li class="right">
+    <li *ngIf = "loggedUser" class="right">
         <div class="input-group">
               <input id="txtSearch" type="text" class="form-control" placeholder="Search" value = "" #getInput />
               <div class="input-group-btn">

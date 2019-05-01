@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     console.log(data);
-                    alert('SUCCESS!');
                     this.router.navigate(['/playlists-dashboard']);
                 },
                 error => {

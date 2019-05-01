@@ -27,7 +27,7 @@ export class UserService {
     constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService){}
     
     getUsers(): Observable<User[]> {
-      return this.httpClient.get<User[]>(this.GET_USERS, {headers: this.getHeader()});
+      return this.httpClient.get<User[]>(this.GET_USERS, {headers: this.authenticationService.getHeader()});
   }
     uploadAvatar(username: string, avatar: File): Observable<{}>{
         const formdata: FormData = new FormData();
@@ -45,13 +45,13 @@ export class UserService {
             email: user.email,
             oldUsername: oldUsername
         };
-      return this.httpClient.put<User>(this.EDIT_USER, editUser, {headers: this.getHeader()});
+      return this.httpClient.put<User>(this.EDIT_USER, editUser, {headers: this.authenticationService.getHeader()});
     }
 
     deleteUser(username: string): Observable<{}> {
         const url = `${this.DELETE_USER}/${username}`;
 
-        return this.httpClient.delete(url, {headers: this.getHeader()});
+        return this.httpClient.delete(url, {headers: this.authenticationService.getHeader()});
     }
   
     editUserByAdmin(user: User, oldUsername: string): Observable<{}>{
@@ -63,17 +63,13 @@ export class UserService {
          role: user.role,
          oldUsername: oldUsername
      };
-   return this.httpClient.put<User>(this.EDIT_USER_BY_ADMIN, editUser, {headers: this.getHeader()});
+   return this.httpClient.put<User>(this.EDIT_USER_BY_ADMIN, editUser, {headers: this.authenticationService.getHeader()});
   }
 
   createUserByAdmin(username: string, password: string, firstName: string, lastName: string, email: string, userRole: string,): Observable<{}>{
     const createUser = 
     { username: username, password: password, firstName: firstName, lastName: lastName, email: email, role: userRole };
-  return this.httpClient.post<User>(this.CREATE_USER_BY_ADMIN, createUser, {headers: this.getHeader()}); 
+  return this.httpClient.post<User>(this.CREATE_USER_BY_ADMIN, createUser, {headers: this.authenticationService.getHeader()}); 
   }
-
-  getHeader(): HttpHeaders{        
-    return new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.authenticationService.currentUserValue.token});
-}
 
 }

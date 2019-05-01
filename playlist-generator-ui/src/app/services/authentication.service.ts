@@ -57,10 +57,15 @@ export class AuthenticationService {
         this.currentUserSubject.next(user);
     }
 
+    getHeader(): HttpHeaders{        
+        return new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.currentUserValue.token});
+    }
+
     logout() {
         //clean local storage
         localStorage.clear();
         //set user to null
         this.currentUserSubject.next(null);
     }
+
 }
