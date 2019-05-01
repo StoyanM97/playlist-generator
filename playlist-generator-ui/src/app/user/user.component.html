@@ -6,7 +6,7 @@
               <img *ngIf="hasImage" class = "image-size" [src]="domSanitizer.bypassSecurityTrustUrl('data:image/png;base64,'+user?.avatar)" style="max-width:100%; max-height:100%;" alt="Avatar">
         
               <input style="display: none" type="file"
-              (change)="onUploadPicture($event)"
+              (change)="onUploadAvatar($event)"
               #avatar>
           <button  *ngIf="!hasImage || edditing" type="button" class="image-button" (click)="avatar.click()"></button>
           </div>

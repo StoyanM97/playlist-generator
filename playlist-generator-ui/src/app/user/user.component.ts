@@ -14,6 +14,7 @@ export class UserComponent implements OnInit {
   user: User;
   
   selectedFile: File = null;
+  avatar: any;
   oldUsername: string;
   edditing: boolean = false;
   hasImage: boolean = false;
@@ -30,16 +31,34 @@ export class UserComponent implements OnInit {
     if(this.user.avatar !== undefined && this.user.avatar !== null){
       this.hasImage = true;
     }
+
+    console.log("user avatar " + this.authenticationService.currentUserValue.avatar);
   }
 
-onUploadPicture(event){
+onUploadAvatar(event){
     this.selectedFile = event.target.files[0];
     console.log(event);
     this.userService.uploadAvatar(this.user.username, this.selectedFile).subscribe(data => {
         console.log(data);
     },error => {
         console.log(error);
-      },() => { });
+      },() => { 
+        this.saveAvatar(this.selectedFile);
+      });
+}
+
+saveAvatar(avatarFile: File){
+
+  var reader:FileReader = new FileReader();
+
+  reader.onloadend = (e) => {
+    this.avatar = reader.result;
+    this.user.avatar = this.avatar.replace("data:image/png;base64,","");
+    this.authenticationService.saveEditUser(this.user);
+    //location.reload();
+    this.ngOnInit();
+  }
+  reader.readAsDataURL(avatarFile);
 }
 
 onUsernameChange(value: string){

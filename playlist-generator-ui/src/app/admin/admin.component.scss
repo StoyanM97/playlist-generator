@@ -28,13 +28,14 @@
   width: 380px;
   height: 220px;
   margin: 10px;
+  font-size: 20pt;
   border-radius: 1px;
   overflow: hidden;
   border: 1px solid white;
   
 }
 
-.container-list .wrapper .box:hover{
+.container-list .wrapper .box:hover:not([disabled]) {
   background-color: rgba(126, 126, 126, 0.3);
   border: none;
 }

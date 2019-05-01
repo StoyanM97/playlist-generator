@@ -46,6 +46,7 @@ export class AdminComponent implements OnInit {
       console.log(error);
     },() => { 
       alert("Genres were downloaded!");
+      this.genresExist = false;
     });
   
   }
@@ -58,6 +59,7 @@ export class AdminComponent implements OnInit {
       console.log(error);
     },() => { 
       alert("Tracks were downloaded!");
+      this.tracksExist = false;
     });
   
   }

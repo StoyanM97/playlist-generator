@@ -2,18 +2,20 @@
 
     <div class="container-list">
        <ul class="wrapper" style="list-style: none;">
-          <li>
-              <button (click)="syncGenres()" type="button" class="btn btn-primary box" >Sync Genres</button>
-         </li>
             <li>
               <button (click)="downloadGenres()" type="button" class="btn btn-primary box"
               [disabled]="genresExist">Download Genres
               </button>
             </li>
+
+            <li>
+                <button (click)="syncGenres()" type="button" class="btn btn-primary box" >Sync Genres</button>
+           </li>
+
             <li>
                 <button (click)="downloadTracks()" type="button" class="btn btn-primary box"
                 [disabled]="tracksExist">Download Tracks
-              </button>
+                </button>
            </li>
       </ul>
     </div>
