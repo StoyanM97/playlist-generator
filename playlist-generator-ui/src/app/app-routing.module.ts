@@ -18,13 +18,13 @@ const routes: Routes = [
 { path: 'login', component: LoginComponent},
 { path: 'registration', component: RegistrationComponent},
 { path: 'not-found', component: NotFoundComponent},
-{ path: '**', redirectTo: '/not-found'},
 { path: 'playlist-details/:playlistId' , component: PlaylistDetailsComponent},
 { path: 'player' , component: PlayerComponent},
 { path: 'playlist', component: PlaylistComponent},
 { path: 'user', component: UserComponent},
 { path: 'users', component: UsersComponent},
-{ path: 'admin', component: AdminComponent}
+{ path: 'admin', component: AdminComponent},
+{ path: '**', redirectTo: '/not-found'}
 // { path: 'admin', component: AdminComponent,canActivate: [AuthGuard]},
 // { path: 'playlist', component: PlaylistComponent,canActivate: [AuthGuard]},
 // { path: 'user', component: UserComponent, canActivate: [AuthGuard]},
