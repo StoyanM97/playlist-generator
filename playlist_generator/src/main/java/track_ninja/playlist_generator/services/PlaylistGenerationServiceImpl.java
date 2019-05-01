@@ -21,8 +21,8 @@ import java.util.*;
 public class PlaylistGenerationServiceImpl implements PlaylistGenerationService {
 
     private static final String INITIATED_PLAYLIST_GENERATION_MESSAGE = "Initiated playlist generation. Parameters: %s";
-    private static final String PLAYLIST_SAVED_MESSAGE = "Playlist successfully saved! Total duration: %d seconds; Total number of tracks: %d";
-    private static final String PLAYLIST_ADDED_TO_GENRES_MESSAGE = "Playlist successfully added to all of it's genres!";
+    private static final String PLAYLIST_SAVED_MESSAGE = "playlist successfully saved! Total duration: %d seconds; Total number of tracks: %d";
+    private static final String PLAYLIST_ADDED_TO_GENRES_MESSAGE = "playlist successfully added to all of it's genres!";
 
     private static final Logger logger = LoggerFactory.getLogger(PlaylistGenerationService.class);
 

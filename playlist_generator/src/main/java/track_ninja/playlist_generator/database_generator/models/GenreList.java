@@ -19,6 +19,6 @@ import java.util.List;
 public class GenreList {
 
     @JsonProperty("data")
-    private List<Genre> genres;
+    private List<GenerationGenre> generationGenres;
 
 }

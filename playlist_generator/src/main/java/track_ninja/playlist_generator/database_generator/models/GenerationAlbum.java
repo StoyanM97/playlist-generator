@@ -9,36 +9,40 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="Artist")
-@Table(name = "artists")
+@Entity
+@Table(name = "albums")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Artist {
+public class GenerationAlbum {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "artist_id")
-    private int artistId;
+    @Column(name = "album_id")
+    private int albumId;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "artist_tracklist_url")
+    @Column(name="Album_tracklist_url")
     private String tracklist;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "artist_id")
+    private GenerationArtist generationArtist;
 
     @Transient
     long id;
 
     @Override
     public String toString() {
-        return "Artist{" +
-                "artistId=" + artistId +
-                ", name='" + name + '\'' +
+        return "GenerationAlbum{" +
+                "albumId=" + albumId +
+                ", title='" + title + '\'' +
                 ", tracklist='" + tracklist + '\'' +
+                ", generationArtist=" + generationArtist +
                 ", id=" + id +
                 '}';
     }

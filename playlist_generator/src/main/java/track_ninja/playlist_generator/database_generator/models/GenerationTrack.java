@@ -14,10 +14,10 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Track")
+@Entity
 @Table(name = "tracks")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Track {
+public class GenerationTrack {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,15 +41,15 @@ public class Track {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "genre_id")
-    Genre genre;
+    GenerationGenre generationGenre;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "artist_id")
-    Artist artist;
+    GenerationArtist generationArtist;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "album_id")
-    Album album;
+    GenerationAlbum GenerationAlbum;
 
     @Transient
     long id;
@@ -58,8 +58,8 @@ public class Track {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Track track = (Track) o;
-        return getId() == track.getId();
+        GenerationTrack generationTrack = (GenerationTrack) o;
+        return getId() == generationTrack.getId();
     }
 
     @Override
@@ -70,16 +70,16 @@ public class Track {
 
     @Override
     public String toString() {
-        return "Track{" +
+        return "GenerationTrack{" +
                 "trackId=" + trackId +
                 ", title='" + title + '\'' +
                 ", preview='" + preview + '\'' +
                 ", duration=" + duration +
                 ", rank=" + rank +
                 ", link='" + link + '\'' +
-                ", genre=" + genre +
-                ", artist=" + artist +
-                ", album=" + album +
+                ", generationGenre=" + generationGenre +
+                ", generationArtist=" + generationArtist +
+                ", GenerationAlbum=" + GenerationAlbum +
                 ", id=" + id +
                 '}';
     }

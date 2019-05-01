@@ -30,7 +30,7 @@ public enum GenreStyle {
                 return "Dance";
             }
             default:{
-                throw  new IllegalArgumentException("Incorrect Genre Style");
+                throw  new IllegalArgumentException("Incorrect GenerationGenre Style");
             }
         }
     }
