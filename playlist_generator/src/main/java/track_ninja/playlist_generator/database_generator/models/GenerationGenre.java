@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name="GenerationGenre")
 @Table(name = "genres")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GenerationGenre {
@@ -28,7 +28,7 @@ public class GenerationGenre {
     private String name;
 
     @Column(name = "image_url")
-    private String picture_big;
+    private String picture_xl;
 
     @Transient
     long id;
@@ -38,7 +38,7 @@ public class GenerationGenre {
         return "GenerationGenre{" +
                 "genreId=" + genreId +
                 ", name='" + name + '\'' +
-                ", picture_big='" + picture_big + '\'' +
+                ", picture_big='" + picture_xl + '\'' +
                 ", id=" + id +
                 '}';
     }

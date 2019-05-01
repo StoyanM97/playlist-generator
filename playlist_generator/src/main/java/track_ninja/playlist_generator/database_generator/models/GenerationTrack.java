@@ -14,7 +14,7 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name="GenerationTrack")
 @Table(name = "tracks")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GenerationTrack {
@@ -33,23 +33,23 @@ public class GenerationTrack {
     @Column(name="duration")
     int duration;
 
-    @Column(name="rank")
-    int rank;
+    @Column(name="[rank]")
+    long rank;
 
     @Column(name="link")
     String link;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "genre_id")
-    GenerationGenre generationGenre;
+    GenerationGenre genre;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "artist_id")
-    GenerationArtist generationArtist;
+    GenerationArtist artist;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "album_id")
-    GenerationAlbum GenerationAlbum;
+    GenerationAlbum album;
 
     @Transient
     long id;
@@ -77,9 +77,9 @@ public class GenerationTrack {
                 ", duration=" + duration +
                 ", rank=" + rank +
                 ", link='" + link + '\'' +
-                ", generationGenre=" + generationGenre +
-                ", generationArtist=" + generationArtist +
-                ", GenerationAlbum=" + GenerationAlbum +
+                ", generationGenre=" + genre +
+                ", generationArtist=" + artist +
+                ", GenerationAlbum=" + album +
                 ", id=" + id +
                 '}';
     }

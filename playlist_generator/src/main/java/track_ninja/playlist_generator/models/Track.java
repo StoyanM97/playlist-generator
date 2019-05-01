@@ -21,7 +21,7 @@ public class Track {
     private static final String TITLE = "title";
     private static final String PREVIEW_URL = "preview_url";
     private static final String DURATION = "duration";
-    private static final String RANK = "rank";
+    private static final String RANK = "[rank]";
     private static final String ALBUM_ID = "album_id";
     private static final String GENRE_ID = "genre_id";
     private static final String TRACKS = "tracks";

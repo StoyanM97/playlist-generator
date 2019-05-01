@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name="GenerationArtist")
 @Table(name = "artists")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GenerationArtist {

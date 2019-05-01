@@ -150,7 +150,9 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
                 track.getAlbum().setArtist(artist);
             }
 
+            System.out.println("before");
             trackRepository.save(track);
+            System.out.println("after");
 
         });
 
@@ -170,7 +172,7 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
             log.info(TOTAL_PLAYLISTS_FOR_GENRE + style.getStyle()+ DELIMITER + playlists.size());
 
             List<Track> trackList = getTracklist(restTemplate, playlists, style.getStyle());
-            log.info(NUMBER_OF_TRACKS_DOWNLOADED_FOR_GENRE + style.getStyle()+ DELIMITER + tracks.size());
+            log.info(NUMBER_OF_TRACKS_DOWNLOADED_FOR_GENRE + style.getStyle()+ DELIMITER + trackList.size());
 
             removeDuplicateTracks(tracks, trackList, style.getStyle());
 

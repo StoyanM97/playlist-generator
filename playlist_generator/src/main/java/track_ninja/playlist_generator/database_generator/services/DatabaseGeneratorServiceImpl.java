@@ -26,6 +26,7 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
     private static final String TRACK_NEXT_INDEX = "&index=25";
     private static final String URL_PLAYLIST = "https://api.deezer.com/search/playlist?q=";
     private static final String URL_GENRE = "https://api.deezer.com/genre";
+
     private static final String GENRES_WERE_LOADED = "Genres were loaded";
     private static final String UNABLE_TO_LOAD_GENRES = "Unable to load Genres";
     private static final String TRACKS_SAVING_FINISHED = "Saving tracts to database finished";
@@ -45,20 +46,18 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
     private ArtistGenerationRepository artistGenerationRepository;
     private AlbumGenerationRepository albumGenerationRepository;
     private RestTemplate restTemplate;
-    private GenreRepository genreRepository;
 
     private static final Logger log = LoggerFactory.getLogger(DatabaseGeneratorService.class);
 
     @Autowired
     public DatabaseGeneratorServiceImpl(GenreGenerationRepository genreGenerationRepository, TrackGenerationRepository trackGenerationRepository,
                                         ArtistGenerationRepository artistGenerationRepository, AlbumGenerationRepository albumGenerationRepository,
-                                        RestTemplate restTemplate, GenreRepository genreRepository) {
+                                        RestTemplate restTemplate) {
         this.genreGenerationRepository = genreGenerationRepository;
         this.trackGenerationRepository = trackGenerationRepository;
         this.artistGenerationRepository = artistGenerationRepository;
         this.albumGenerationRepository = albumGenerationRepository;
         this.restTemplate = restTemplate;
-        this.genreRepository = genreRepository;
 
     }
 
@@ -68,7 +67,7 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
         GenreList result = restTemplate.getForObject(URL_GENRE, GenreList.class);
 
         if(result!=null){
-            List<GenerationGenre> generationGenres = result.getGenerationGenres();
+            List<GenerationGenre> generationGenres = result.getGenres();
             List<GenerationGenre> genresToSave = new ArrayList<>();
 
             generationGenres.forEach(generationGenre -> {
@@ -108,7 +107,7 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
         GenreList result = restTemplate.getForObject(URL_GENRE, GenreList.class);
 
         if(result!=null){
-            List<GenerationGenre> generationGenres = result.getGenerationGenres();
+            List<GenerationGenre> generationGenres = result.getGenres();
 
             genreGenerationRepository.saveAll(generationGenres);
 
@@ -125,35 +124,35 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
     @Override
     public boolean saveTracks() {
         
-        Set<GenerationTrack> generationTracks = getTracks();
+        Set<GenerationTrack> tracks = getTracks();
 
-        if(generationTracks.isEmpty()){
+        if(tracks.isEmpty()){
             return false;
         }
 
-        generationTracks.forEach(generationTrack -> {
+        tracks.forEach(track -> {
 
-            GenerationGenre generationGenre = generationTrack.getGenerationGenre();
+            GenerationGenre generationGenre = track.getGenre();
             if(genreGenerationRepository.existsByName(generationGenre.getName())){
                 generationGenre = genreGenerationRepository.getByName(generationGenre.getName());
-                generationTrack.setGenerationGenre(generationGenre);
+                track.setGenre(generationGenre);
             }
 
-            GenerationAlbum GenerationAlbum = generationTrack.getGenerationAlbum();
+            GenerationAlbum GenerationAlbum = track.getAlbum();
             if(albumGenerationRepository.existsByTitleAndTracklist(GenerationAlbum.getTitle(), GenerationAlbum.getTracklist())){
                 GenerationAlbum = albumGenerationRepository.getByTitleAndTracklist(GenerationAlbum.getTitle(), GenerationAlbum.getTracklist());
-                generationTrack.setGenerationAlbum(GenerationAlbum);
+                track.setAlbum(GenerationAlbum);
 
             }
 
-            GenerationArtist generationArtist = generationTrack.getGenerationArtist();
+            GenerationArtist generationArtist = track.getArtist();
             if(artistGenerationRepository.existsByNameAndTracklist(generationArtist.getName(), generationArtist.getTracklist())){
                 generationArtist = artistGenerationRepository.getByNameAndTracklist(generationArtist.getName(), generationArtist.getTracklist());
-                generationTrack.setGenerationArtist(generationArtist);
-                generationTrack.getGenerationAlbum().setGenerationArtist(generationArtist);
+                track.setArtist(generationArtist);
+                track.getAlbum().setArtist(generationArtist);
             }
 
-            trackGenerationRepository.save(generationTrack);
+            trackGenerationRepository.save(track);
 
         });
 
@@ -173,7 +172,7 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
             log.info(TOTAL_PLAYLISTS_FOR_GENRE + style.getStyle()+ DELIMITER + generationPlaylists.size());
 
             List<GenerationTrack> generationTrackList = getTracklist(restTemplate, generationPlaylists, style.getStyle());
-            log.info(NUMBER_OF_TRACKS_DOWNLOADED_FOR_GENRE + style.getStyle()+ DELIMITER + generationTracks.size());
+            log.info(NUMBER_OF_TRACKS_DOWNLOADED_FOR_GENRE + style.getStyle()+ DELIMITER + generationTrackList.size());
 
             removeDuplicateTracks(generationTracks, generationTrackList, style.getStyle());
 
@@ -201,12 +200,12 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
 
         PlaylistList result = restTemplate.getForObject(URL_PLAYLIST + style, PlaylistList.class);
         if(result!=null){
-            generationPlaylists.addAll(result.getGenerationPlaylists());
+            generationPlaylists.addAll(result.getPlaylists());
             log.info(PLAYLISTS_FROM_DEEZER_API + style);
         }
         PlaylistList resultNext = restTemplate.getForObject(URL_PLAYLIST +style + TRACK_NEXT_INDEX, PlaylistList.class);
         if(resultNext!=null){
-            generationPlaylists.addAll(resultNext.getGenerationPlaylists());
+            generationPlaylists.addAll(resultNext.getPlaylists());
             log.info(PLAYLISTS_FROM_DEEZER_API_NEXT_25 + style);
         }
         return generationPlaylists;
@@ -218,7 +217,7 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
         for (GenerationPlaylist p: generationPlaylists) {
             TrackList trackListResult = restTemplate.getForObject(p.getTracklist()+ TRACK_INDEX, TrackList.class);
             if(trackListResult!=null){
-                generationTrackList.addAll(trackListResult.getGenerationTracks());
+                generationTrackList.addAll(trackListResult.getTracks());
 
             }
         }
@@ -230,10 +229,10 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
 
         generationTrackList.forEach(generationTrack -> {
 
-            generationTrack.getGenerationAlbum().setGenerationArtist(generationTrack.getGenerationArtist());
+            generationTrack.getAlbum().setArtist(generationTrack.getArtist());
             GenerationGenre generationGenre = new GenerationGenre();
             generationGenre.setName(style);
-            generationTrack.setGenerationGenre(generationGenre);
+            generationTrack.setGenre(generationGenre);
             generationTracks.add(generationTrack);
 
         });

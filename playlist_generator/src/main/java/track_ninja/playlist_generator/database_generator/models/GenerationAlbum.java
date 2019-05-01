@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name="GenerationAlbum")
 @Table(name = "albums")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GenerationAlbum {
@@ -31,7 +31,7 @@ public class GenerationAlbum {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "artist_id")
-    private GenerationArtist generationArtist;
+    private GenerationArtist artist;
 
     @Transient
     long id;
@@ -42,7 +42,7 @@ public class GenerationAlbum {
                 "albumId=" + albumId +
                 ", title='" + title + '\'' +
                 ", tracklist='" + tracklist + '\'' +
-                ", generationArtist=" + generationArtist +
+                ", generationArtist=" + artist +
                 ", id=" + id +
                 '}';
     }

@@ -19,6 +19,6 @@ import java.util.List;
 public class TrackList {
 
     @JsonProperty("data")
-    private List<GenerationTrack> generationTracks;
+    private List<GenerationTrack> tracks;
 
 }
