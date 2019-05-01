@@ -25,7 +25,7 @@ public class PlaylistServiceImpl implements PlaylistService{
 
     private static final String RETRIEVING_ALL_PLAYLISTS_MESSAGE = "Retrieving all playlists...";
     private static final String RETRIEVED_PLAYLISTS_MESSAGE = "Retrieved playlists!";
-    private static final String RETRIEVING_ALL_PLAYLISTS_FOR_GENRE_MESAGE = "Retrieving all playlists for genre %s...";
+    private static final String RETRIEVING_ALL_PLAYLISTS_FOR_GENRE_MESSAGE = "Retrieving all playlists for genre %s...";
     private static final String COULD_NOT_RETRIEVE_PLAYLISTS_MESSAGE = "Could not retrieve playlists! %s";
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_USER_MESSAGE = "Retrieving all playlists for user %s...";
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_TITLE_MESSAGE = "Retrieving all playlists for title like %s...";
@@ -58,7 +58,7 @@ public class PlaylistServiceImpl implements PlaylistService{
 
     @Override
     public List<Playlist> getByGenre(String genre) {
-        logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_GENRE_MESAGE, genre));
+        logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_GENRE_MESSAGE, genre));
         if (!genreRepository.existsByName(genre)) {
             GenreDoesNotExistException gdne = new GenreDoesNotExistException();
             logger.error(String.format(COULD_NOT_RETRIEVE_PLAYLISTS_MESSAGE, gdne.getMessage()));

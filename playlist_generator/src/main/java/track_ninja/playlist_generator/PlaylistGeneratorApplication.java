@@ -7,7 +7,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.client.RestTemplate;
-import track_ninja.playlist_generator.duration.generator.exeption_handlers.RestTemplateResponseErrorHandler;
+import track_ninja.playlist_generator.exceptions.exeption_handlers.RestTemplateResponseErrorHandler;
 
 @SpringBootApplication
 @EnableJpaRepositories
