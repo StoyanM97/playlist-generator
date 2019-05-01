@@ -10,6 +10,7 @@ import { UsersComponent } from './users/users.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PlaylistDetailsComponent } from './playlist-details/playlist-details.component';
 import { AdminComponent } from './admin/admin.component';
+import { PlayerComponent } from './playlist-details/player/player.component';
 
 const routes: Routes = [
 { path: '', redirectTo: '/playlists-dashboard', pathMatch: 'full' },
@@ -17,7 +18,8 @@ const routes: Routes = [
 { path: 'login', component: LoginComponent},
 { path: 'registration', component: RegistrationComponent},
 { path: 'not-found/:message', component: NotFoundComponent},
-{ path: 'playlist-details' , component: PlaylistDetailsComponent},
+{ path: 'playlist-details/:playlistId' , component: PlaylistDetailsComponent},
+{ path: 'player' , component: PlayerComponent},
 { path: 'playlist', component: PlaylistComponent},
 { path: 'user', component: UserComponent},
 { path: 'users', component: UsersComponent},

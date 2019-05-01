@@ -19,21 +19,25 @@
       <a class="nav-link" routerLink="/registration">Register</a>
     </li>
 
-    <li *ngIf = "loggedUser" class="nav-item">
+    <li *ngIf = "!loggedUser" class="nav-item">
         <!-- <a class="nav-link" routerLink="/user">{{loggedUser.firstName}} {{loggedUser.lastName}}</a> -->
       <a class="nav-link" routerLink="/user">User</a>
     </li>
 
-    <li *ngIf = "loggedUser" class="nav-item">
+    <li *ngIf = "!loggedUser" class="nav-item">
       <a class="nav-link" routerLink="/users">Users</a>
     </li>
 
-    <li *ngIf = "loggedUser" class="nav-item">
+    <li *ngIf = "!loggedUser" class="nav-item">
       <a class="nav-link" routerLink="/admin">Admin</a>
     </li>
 
-    <li *ngIf = "loggedUser" class="nav-item">
+    <li *ngIf = "!loggedUser" class="nav-item">
       <a class="nav-link" routerLink="/playlist">Create Playlist</a>
+    </li>
+
+    <li *ngIf = "!loggedUser" class="nav-item">
+      <a class="nav-link" routerLink="/not-found/This is a test">Not Found</a>
     </li>
 
     <li class="right">

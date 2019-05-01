@@ -5,24 +5,42 @@
     background-image: url(../../assets/entertainment.jpg);
     opacity: 0.9;
   }
-  .container{
+  .container-playlist{
     background-color: rgba(50, 55, 62, 0.7);
     border: 0.5px solid white;
     border-radius: 1%;
     padding:5%;
+    width: 65%;
+    height: 65%;
   }
-  .container .img{
-    text-align:center;
-  }
+ 
   .container .details{
     border-left:3px solid white;
   }
  
- .container .imgage-size{
-    height: 200px;
-    width: 200px;
+ .container-image{
+    color: white;
+    border: 1.5px solid white;
+    border-radius: 1%;
+    height: 380px;
+    width: 300px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: auto;
+    margin-right: 50px;
 }
    
+.container-image .img {
+  position: relative; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  width: 200px;
+  height: 200px;;
+  
+}​
+
 [span],[input]{
     color: white;
     margin-left: 10px;
@@ -35,13 +53,41 @@
     align-items: center;
 }
 
-.genre-container{
-    color: white;
-}
 
 .track-container{
     color: white;
-    height: 400px;
-    width:  500px;
+    border: 0.5px solid white;
+    border-radius: 1%;
+    padding: 10px;
+    height: 380px;
+    width:  700px;
+    margin: 10px;
 }
+.indent{
+    padding-left: 10px;
+}
+
+.title{
+  color: white;
+  font-size: 20pt;
+}
+
+.track-titles{
+  padding-left: 15px;
+  color: white;
+  font-size: 20pt;
+}
+
+.play-button{
+ margin-left: 10px;
+ margin-bottom: 3px;
+ margin-top: 3px;
+ border: none;
+ border-radius: 20%;
+}
+
+.play-icon{
+  font-size: 16pt
+}
+
   

@@ -40,8 +40,8 @@ export class PlaylistsDashboardComponent implements OnInit {
 
   }
 
-  showPlaylistDetails(){
-    this.router.navigate(['/playlist-details']);
+  showPlaylistDetails(value: Playlist){
+    this.router.navigate(['/playlist-details', value.playlistId]);
   }
 
   next(){

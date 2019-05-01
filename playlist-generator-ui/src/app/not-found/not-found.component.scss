@@ -1,6 +1,13 @@
 body {
-    background: #dedede;
+    background: black;
+    opacity: 0.2;
+}
+.text-color{
+    color: white;
 }
 .page-wrap {
     min-height: 100vh;
+}
+.margin-top{
+    margin-top: 15px;
 }
