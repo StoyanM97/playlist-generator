@@ -11,7 +11,6 @@ import track_ninja.playlist_generator.database_generator.common.GenreStyle;
 import track_ninja.playlist_generator.database_generator.models.*;
 import track_ninja.playlist_generator.database_generator.repositories.*;
 import track_ninja.playlist_generator.repositories.GenreRepository;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
