@@ -12,7 +12,7 @@ import { UserService } from '../services/user.service';
 export class UserComponent implements OnInit {
 
   user: User;
-  
+  oldUser: User;
   selectedFile: File = null;
   avatar: any;
   oldUsername: string;
@@ -26,13 +26,13 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     
-    this.authenticationService.currentUser.subscribe(currentUser => this.user = currentUser);
+    this.authenticationService.currentUser.subscribe(currentUser => 
+      {this.user = currentUser
+       this.oldUser = this.getCloneUser(currentUser)});
     this.oldUsername = this.user.username;
     if(this.user.avatar !== undefined && this.user.avatar !== null){
       this.hasImage = true;
     }
-
-    console.log("user avatar " + this.authenticationService.currentUserValue.avatar);
   }
 
 onUploadAvatar(event){
@@ -48,14 +48,11 @@ onUploadAvatar(event){
 }
 
 saveAvatar(avatarFile: File){
-
   var reader:FileReader = new FileReader();
-
   reader.onloadend = (e) => {
     this.avatar = reader.result;
     this.user.avatar = this.avatar.replace("data:image/png;base64,","");
     this.authenticationService.saveEditUser(this.user);
-    //location.reload();
     this.ngOnInit();
   }
   reader.readAsDataURL(avatarFile);
@@ -83,17 +80,30 @@ doneEditting(){
     this.userService.editUser(this.user, this.oldUsername).subscribe(data => {
         console.log(data);
     },error => {
-      alert('Your profile has not been updated!');
+      this.authenticationService.saveEditUser(this.oldUser);
+      alert('Your profile has not been updated!\n'+ error);
       },
       () => {
         this.authenticationService.saveEditUser(this.user);
-        alert('Your profile has been successfully updated!');
       }
         );
     
     }
   
   this.edditing = !this.edditing;
+}
+
+getCloneUser(userIn: User): User{
+   var userClone = new User();
+   userClone.firstName = userIn.firstName;
+   userClone.lastName = userIn.lastName;
+   userClone.username = userIn.username;
+   userClone.role = userIn.role;
+   userClone.email= userIn.email;
+   userClone.avatar = userIn.avatar;
+   userClone.token = userIn.token;
+   
+   return userClone;
 }
 
 }

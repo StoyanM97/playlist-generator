@@ -12,7 +12,8 @@ export class PlaylistsDashboardComponent implements OnInit {
  
   playlistFullStack: Playlist[];
   playlists: Playlist[];
-
+  
+  hasPlaylists: boolean;
   forward: boolean;
   backward: boolean;
   trackList: number;
@@ -34,10 +35,6 @@ export class PlaylistsDashboardComponent implements OnInit {
     this.playlists = this.playlistFullStack.slice(this.trackList, this.trackList+=this.nextStack);
     this.forwardDisabled = this.validateNext;
     this.backwarDdisabled = true;
-  }
-
-  howPlaylists(){
-
   }
 
   showPlaylistDetails(value: Playlist){

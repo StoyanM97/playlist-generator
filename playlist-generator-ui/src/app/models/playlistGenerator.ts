@@ -1,5 +1,4 @@
 export class PlaylistGenerator{
-    playlistId: number;
     title: string;
     travelFrom: string;
     travelTo: string;

@@ -15,6 +15,7 @@ export class PlaylistDetailsComponent implements OnInit {
   editting: boolean = false;
   playUrl: boolean = false;
   previewUrl: string;
+
   playlist: Playlist;
   playlistId: number;
 
@@ -29,11 +30,14 @@ export class PlaylistDetailsComponent implements OnInit {
   }
 
   setPlaylist(playlistId: number){
-    this.playlist = this.playlistService.getPlaylist(playlistId);
-    console.log(this.playlist.playlistId);
-    console.log(this.playlist.imageUrl);
-    console.log(this.playlist.genres);
-    console.log(this.playlist.tracks[0].previewUrl);
+  this.playlistService.getPlaylist(playlistId).subscribe(data => {
+      console.log(data);
+      this.playlist = data;
+  },error => {
+      console.log(error);
+    },() => { 
+      
+    });
   }
   onTitleChange(value: string){
 

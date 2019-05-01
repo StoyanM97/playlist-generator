@@ -8,7 +8,7 @@
               <input style="display: none" type="file"
               (change)="onUploadAvatar($event)"
               #avatar>
-          <button  *ngIf="!hasImage || edditing" type="button" class="image-button" (click)="avatar.click()"></button>
+          <button  *ngIf="!hasImage" type="button" class="image-button" (click)="avatar.click()"></button>
           </div>
           <div class="col-md-6 details">
 
@@ -19,16 +19,18 @@
               <input *ngIf = "edditing" type="text" [value] = "user.lastName" (input) = "onLastNameChange(lastName.value)" #lastName>
             </h3>
 
-            <h6 class="form-inline">Role:
+            <h6 *ngIf = "!edditing" class="form-inline">Role:
                 <span >{{user?.role}}</span>
             </h6>
     
-            <h6 class="form-inline">Username:
+            <h6 class="form-inline">
+              <span *ngIf = "!edditing" >Username:</span>
               <span *ngIf = "!edditing" >{{user?.username}}</span>
               <input *ngIf = "edditing" type="text" [value] = "user.username" (input) = "onUsernameChange(name.value)" #name>
             </h6>
 
-            <h6 class="form-inline">Email:
+            <h6 class="form-inline">
+                <span *ngIf = "!edditing" >Email:</span>
                 <span *ngIf = "!edditing" >{{user?.email}}</span>
                 <input *ngIf = "edditing" type="text" [value] = "user.email" (input) = "onEmailChange(email.value)" #email>
             </h6>

@@ -3,6 +3,9 @@ import { PercentageService } from '../services/percentage.survice';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MustMatch } from '../helpers/must-match.validator';
 import { Router } from '@angular/router';
+import { PlaylistService } from '../services/playlist.service';
+import { PlaylistGenerator } from '../models/playlistGenerator';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'playlist',
@@ -15,7 +18,8 @@ export class PlaylistComponent implements OnInit {
   values: number[];
   playlistForm: FormGroup;
   
-  constructor(private percentageService: PercentageService, private formBuilder: FormBuilder, private router: Router ) { 
+  constructor(private percentageService: PercentageService, private formBuilder: FormBuilder, 
+    private router: Router, private playlistService: PlaylistService, private authenticationService: AuthenticationService) { 
     this.values = this.percentageService.getValues;
   }
 
@@ -46,6 +50,42 @@ export class PlaylistComponent implements OnInit {
     if(event.value.popGenrePercentage + event.value.danceGenrePercentage + event.value.rockGenrePercentage > 100 ){
       alert('Total genre percentage can not be more than 100%!');
     }
+    var playlistGenerator = new PlaylistGenerator();
+
+    playlistGenerator.title = event.value.title;
+    playlistGenerator.travelFrom = event.value.fromPoint;
+    playlistGenerator.travelTo = event.value.toPoint;
+    playlistGenerator.username = this.authenticationService.currentUserValue.username;
+    playlistGenerator.allowSameArtists = event.value.allowSameArtists;
+    playlistGenerator.useTopTracks = event.value.useTopTracks;
+    var genres: Map<string,number> = new Map();
+    if(event.value.popGenre){
+      genres.set("Pop", event.value.popGenrePercentage);
+    }
+    else{
+      genres.set("Pop", 0);
+    }
+    if(event.value.danceGenre){
+      genres.set("Dance", event.value.danceGenrePercentage);
+    }
+    else{
+      genres.set("Dance", 0);
+    }
+    if(event.value.rockGenre){
+      genres.set("Rock", event.value.rockGenrePercentage);
+    }
+    else{
+      genres.set("Rock", 0);
+    }
+
+    this.playlistService.createPlaylist(playlistGenerator).subscribe(data => {
+      console.log(data);
+    },error => {
+      console.log(error);
+    },() => { 
+      alert("Playlist created!");
+    });
+
     console.log(event.value.title);
     console.log(event.value.fromPoint);
     console.log(event.value.toPoint);
