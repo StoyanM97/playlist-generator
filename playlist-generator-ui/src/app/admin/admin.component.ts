@@ -10,6 +10,7 @@ export class AdminComponent implements OnInit {
   
   genresExist: boolean = false;
   tracksExist: boolean = false;
+  sync: boolean;
 
   constructor(private adminService: AdminService) { }
 
@@ -46,7 +47,7 @@ export class AdminComponent implements OnInit {
       console.log(error);
     },() => { 
       alert("Genres were downloaded!");
-      this.genresExist = false;
+      this.genresExist = true;
     });
   
   }
@@ -59,7 +60,7 @@ export class AdminComponent implements OnInit {
       console.log(error);
     },() => { 
       alert("Tracks were downloaded!");
-      this.tracksExist = false;
+      this.tracksExist = true;
     });
   
   }
@@ -67,10 +68,11 @@ export class AdminComponent implements OnInit {
   syncGenres(){
     this.adminService.syncGenres().subscribe(data => {
       console.log(data);
+      this.sync = data;
   },error => {
       console.log(error);
     },() => { 
-      alert("Genres were sync!");
+      alert(this.sync ? "Genres were sync!" :  "No new genres to be added!");
     });
   }
 }
