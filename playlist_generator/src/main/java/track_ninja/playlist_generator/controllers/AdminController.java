@@ -36,6 +36,15 @@ public class AdminController {
         }
     }
 
+    @GetMapping("/users/{username}")
+    private List<UserDisplayDTO> getByUsername(@PathVariable String username) {
+        try {
+            return userService.findAllByUsernameLike(username);
+        } catch (UserNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+        }
+    }
+
     @GetMapping("/users/filter/{username}")
     private UserDisplayDTO getUser(@PathVariable String username){
         try {

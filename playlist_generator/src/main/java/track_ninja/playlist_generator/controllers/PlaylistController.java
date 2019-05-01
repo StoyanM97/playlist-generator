@@ -8,8 +8,11 @@ import track_ninja.playlist_generator.exceptions.GenreDoesNotExistException;
 import track_ninja.playlist_generator.exceptions.UserNotFoundException;
 import track_ninja.playlist_generator.models.Playlist;
 import track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistsException;
+import track_ninja.playlist_generator.models.dtos.PlayListEditDTO;
+import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.services.PlaylistService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -25,7 +28,7 @@ public class PlaylistController {
     }
 
     @GetMapping
-    public List<Playlist> getAll() {
+    public List<PlaylistDTO> getAll() {
         try {
             return playlistService.getAll();
         } catch (NoGeneratedPlaylistsException ex) {
@@ -33,16 +36,16 @@ public class PlaylistController {
         }
     }
 
-    @GetMapping("/filter/genre/{genre}")
-    public List<Playlist> getByGenre(@PathVariable String genre) {
+    @GetMapping("/playlist/filter/genre/{genre}")
+    public List<PlaylistDTO> getByGenre(@PathVariable String genre) {
         try {
             return playlistService.getByGenre(genre);
         } catch (NoGeneratedPlaylistsException | GenreDoesNotExistException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
     }
-    @GetMapping("/filter/user/{username}")
-    public List<Playlist> getByUser(@PathVariable String username) {
+    @GetMapping("/playlist/filter/user/{username}")
+    public List<PlaylistDTO> getByUser(@PathVariable String username) {
         try {
             return playlistService.getByUser(username);
         } catch (NoGeneratedPlaylistsException | UserNotFoundException ex) {
@@ -50,8 +53,8 @@ public class PlaylistController {
         }
     }
 
-    @GetMapping("/filter/{title}")
-    public List<Playlist> getByTitle(@PathVariable String title) {
+    @GetMapping("/playlist/filter/{title}")
+    public List<PlaylistDTO> getByTitle(@PathVariable String title) {
         try {
             return playlistService.getByTitle(title);
         } catch (NoGeneratedPlaylistsException ex) {
@@ -59,11 +62,43 @@ public class PlaylistController {
         }
     }
 
-    @GetMapping("/filter/duration/{minDuration},{maxDuration}")
-    public List<Playlist> getByDurationBetween(@PathVariable(name = "minDuration") long minDurationMinutes,
+    @GetMapping("/playlist/filter/duration/{minDuration}/{maxDuration}")
+    public List<PlaylistDTO> getByDurationBetween(@PathVariable(name = "minDuration") long minDurationMinutes,
                                                @PathVariable(name = "maxDuration")long maxDurationMinutes) {
         try {
             return playlistService.getByDurationBetween(minDurationMinutes, maxDurationMinutes);
+        } catch (NoGeneratedPlaylistsException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+        }
+    }
+
+    @GetMapping("/playlist/exist")
+    public boolean playlistsExist() {
+        return playlistService.playlistsExist();
+    }
+
+    @GetMapping("/playlist/{id}")
+    public PlaylistDTO getById(@PathVariable int id) {
+        try{
+            return playlistService.getById(id);
+        } catch (NoGeneratedPlaylistsException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+        }
+    }
+
+    @PostMapping("/user/playlist/edit")
+    public boolean editPlaylist(@RequestBody @Valid PlayListEditDTO playListEditDTO) {
+        try{
+            return playlistService.editPlaylist(playListEditDTO);
+        } catch (NoGeneratedPlaylistsException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+        }
+    }
+
+    @DeleteMapping("/user/playlist/delete/{id}")
+    public boolean deletePlaylist(@PathVariable int id) {
+        try{
+            return playlistService.deletePlaylist(id);
         } catch (NoGeneratedPlaylistsException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }

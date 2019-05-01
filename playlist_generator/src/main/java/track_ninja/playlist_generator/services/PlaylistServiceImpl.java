@@ -8,11 +8,15 @@ import track_ninja.playlist_generator.exceptions.GenreDoesNotExistException;
 import track_ninja.playlist_generator.exceptions.UserNotFoundException;
 import track_ninja.playlist_generator.models.Playlist;
 import track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistsException;
+import track_ninja.playlist_generator.models.dtos.PlayListEditDTO;
+import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
+import track_ninja.playlist_generator.models.mappers.ModelMapper;
 import track_ninja.playlist_generator.repositories.GenreRepository;
 import track_ninja.playlist_generator.repositories.PlaylistRepository;
 import track_ninja.playlist_generator.repositories.UserRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -46,18 +50,18 @@ public class PlaylistServiceImpl implements PlaylistService{
 
 
     @Override
-    public List<Playlist> getAll() {
+    public List<PlaylistDTO> getAll() {
         logger.info(RETRIEVING_ALL_PLAYLISTS_MESSAGE);
         List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalse();
         if (playlists.isEmpty()) {
             handleNoGeneratedPlaylistsException(NO_PLAYLISTS_GENERATED_ERROR_MESSAGE);
         }
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
-        return playlists;
+        return mapListOfPlaylistToDTOs(playlists);
     }
 
     @Override
-    public List<Playlist> getByGenre(String genre) {
+    public List<PlaylistDTO> getByGenre(String genre) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_GENRE_MESSAGE, genre));
         if (!genreRepository.existsByName(genre)) {
             GenreDoesNotExistException gdne = new GenreDoesNotExistException();
@@ -69,11 +73,11 @@ public class PlaylistServiceImpl implements PlaylistService{
             handleNoGeneratedPlaylistsException(NO_PLAYLISTS_GENERATED_FOR_THIS_GENRE_ERROR_MESSAGE);
         }
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
-        return playlists;
+        return mapListOfPlaylistToDTOs(playlists);
     }
 
     @Override
-    public List<Playlist> getByUser(String username) {
+    public List<PlaylistDTO> getByUser(String username) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_USER_MESSAGE, username));
         if (userRepository.existsByUsername(username)) {
             UserNotFoundException unf = new UserNotFoundException();
@@ -85,34 +89,80 @@ public class PlaylistServiceImpl implements PlaylistService{
             handleNoGeneratedPlaylistsException(NO_PLAYLISTS_GENERATED_BY_THIS_USER_ERROR_MESSAGE);
         }
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
-        return playlists;
+        return mapListOfPlaylistToDTOs(playlists);
     }
 
     @Override
-    public List<Playlist> getByTitle(String title) {
+    public List<PlaylistDTO> getByTitle(String title) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_TITLE_MESSAGE, title));
         List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndTitleLike(title);
         if (playlists.isEmpty()) {
             handleNoGeneratedPlaylistsException(NO_PLAYLISTS_GENERATED_WITH_SUCH_TITLE_ERROR_MESSAGE);
         }
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
-        return playlists;
+        return mapListOfPlaylistToDTOs(playlists);
     }
 
     @Override
-    public List<Playlist> getByDurationBetween(long minDurationMinutes, long maxDurationMinutes) {
+    public List<PlaylistDTO> getByDurationBetween(long minDurationMinutes, long maxDurationMinutes) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE, minDurationMinutes, maxDurationMinutes));
-        List<Playlist> playlists = playlistRepository.findAllByDurationBetween(minDurationMinutes * 60, maxDurationMinutes * 60);
+        List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndDurationBetween(minDurationMinutes * 60, maxDurationMinutes * 60);
         if (playlists.isEmpty()) {
             handleNoGeneratedPlaylistsException(NO_PLAYLISTS_WITH_DURATION_WITHIN_THIS_RANGE_ERROR_MESSAGE);
         }
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
-        return playlists;
+        return mapListOfPlaylistToDTOs(playlists);
+    }
+
+    @Override
+    public boolean playlistsExist() {
+        return playlistRepository.existsByIsDeletedFalseAndPlaylistId(1);
+    }
+
+    @Override
+    public PlaylistDTO getById(int id) {
+        logger.info(String.format("Looking for playlist with id %d...", id));
+        Playlist playlist = playlistRepository.findByIsDeletedFalseAndPlaylistId(id);
+        if (playlist == null) {
+            handleNoGeneratedPlaylistsException("No playlist with this id!");
+        }
+        logger.info("Playlist found!");
+        return ModelMapper.playlistToDTO(playlist);
+    }
+
+    @Override
+    public boolean editPlaylist(PlayListEditDTO playListEditDTO) {
+        logger.info(String.format("Editing playlist with id %d...", playListEditDTO.getPlaylistId()));
+        Playlist playlist = playlistRepository.findByIsDeletedFalseAndPlaylistId(playListEditDTO.getPlaylistId());
+        if (playlist == null) {
+            handleNoGeneratedPlaylistsException("No playlist with this id!");
+        }
+        playlist.setTitle(playListEditDTO.getTitle());
+        playlistRepository.save(playlist);
+        logger.info("Playlist edited!");
+        return true;
+    }
+
+    @Override
+    public boolean deletePlaylist(int id) {
+        logger.info(String.format("Deleting playlist with id %d...", id));
+        Playlist playlist = playlistRepository.findByIsDeletedFalseAndPlaylistId(id);
+        if (playlist == null) {
+            handleNoGeneratedPlaylistsException("No playlist with this id!");
+        }
+        playlist.setDeleted(true);
+        playlistRepository.save(playlist);
+        logger.info("Playlist deleted!");
+        return false;
     }
 
     private void handleNoGeneratedPlaylistsException(String noPlaylistsGeneratedErrorMessage) {
         NoGeneratedPlaylistsException ngp = new NoGeneratedPlaylistsException(noPlaylistsGeneratedErrorMessage);
         logger.error(String.format(COULD_NOT_RETRIEVE_PLAYLISTS_MESSAGE, ngp.getMessage()));
         throw ngp;
+    }
+
+    private List<PlaylistDTO> mapListOfPlaylistToDTOs(List<Playlist> playlists) {
+        return playlists.stream().map(ModelMapper::playlistToDTO).collect(Collectors.toList());
     }
 }

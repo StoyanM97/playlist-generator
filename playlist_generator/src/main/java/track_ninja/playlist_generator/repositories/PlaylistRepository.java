@@ -21,12 +21,16 @@ public interface PlaylistRepository extends CrudRepository<Playlist, Integer> {
             "JOIN playlist_track_relations ptr ON p.playlist_id = ptr.playlist_id " +
             "JOIN tracks t ON ptr.track_id = t.track_id " +
             "GROUP BY p.playlist_id " +
-            "ORDER BY AVG(t.duration)", nativeQuery = true)
+            "ORDER BY AVG(t.rank)", nativeQuery = true)
     List<Playlist> findAllByIsDeletedFalse();
 
     List<Playlist> findAllByIsDeletedFalseAndUser_User_Username(String username);
 
     List<Playlist> findAllByIsDeletedFalseAndTitleLike(String title);
 
-    List<Playlist> findAllByDurationBetween(long minDuration, long maxDuration);
+    List<Playlist> findAllByIsDeletedFalseAndDurationBetween(long minDuration, long maxDuration);
+
+    boolean existsByIsDeletedFalseAndPlaylistId(int id);
+
+    Playlist findByIsDeletedFalseAndPlaylistId(int id);
 }

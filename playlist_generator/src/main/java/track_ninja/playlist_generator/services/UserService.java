@@ -13,7 +13,6 @@ import java.util.List;
 
 
 public interface UserService {
-
     User getByUsername(String username);
 
     UserDisplayDTO getUser(String username);
@@ -33,5 +32,7 @@ public interface UserService {
     boolean editUser(UserEditDTO userEditDTO);
 
     boolean avatarUpload(MultipartFile file, String username) throws IOException;
+
+    List<UserDisplayDTO> findAllByUsernameLike(String username);
 
 }
