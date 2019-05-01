@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/playlists")
 public class PlaylistController {
 
     private PlaylistService playlistService;
@@ -67,5 +67,10 @@ public class PlaylistController {
         } catch (NoGeneratedPlaylistsException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
+    }
+
+    @GetMapping("/playlists/exist")
+    public boolean playlistsExist() {
+        return playlistService.playlistsExist();
     }
 }

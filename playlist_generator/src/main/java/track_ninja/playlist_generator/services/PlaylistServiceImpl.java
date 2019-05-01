@@ -110,6 +110,11 @@ public class PlaylistServiceImpl implements PlaylistService{
         return playlists;
     }
 
+    @Override
+    public boolean playlistsExist() {
+        return playlistRepository.existsByPlaylistId(1);
+    }
+
     private void handleNoGeneratedPlaylistsException(String noPlaylistsGeneratedErrorMessage) {
         NoGeneratedPlaylistsException ngp = new NoGeneratedPlaylistsException(noPlaylistsGeneratedErrorMessage);
         logger.error(String.format(COULD_NOT_RETRIEVE_PLAYLISTS_MESSAGE, ngp.getMessage()));

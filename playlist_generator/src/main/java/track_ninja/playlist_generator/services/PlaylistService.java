@@ -14,4 +14,6 @@ public interface PlaylistService {
     List<Playlist> getByTitle(String title);
 
     List<Playlist> getByDurationBetween(long minDurationMinutes, long maxDurationMinutes);
+
+    boolean playlistsExist();
 }
