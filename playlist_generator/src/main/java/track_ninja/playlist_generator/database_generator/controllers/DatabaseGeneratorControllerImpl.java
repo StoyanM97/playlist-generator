@@ -23,7 +23,6 @@ public class DatabaseGeneratorControllerImpl {
         return service.saveGenres();
     }
 
-
     @GetMapping("/tracks")
     public boolean downloadTracks() {
         return service.saveTracks();
