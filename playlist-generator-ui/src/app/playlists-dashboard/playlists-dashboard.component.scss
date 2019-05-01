@@ -2,13 +2,12 @@
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-image: url(../../assets/black-and-white-brand-data.jpg);
+  background-image: url(../../assets/gramopone-record.jpg);
   opacity: 0.9;
 }
 .container-list{
   width: 80%;
   height: 40%;
-  //background-color: black;
   position: relative;
   top: 50%;
   left: 50%;
@@ -36,7 +35,6 @@
 }
 
 .container-list .wrapper .box .icon{
-  // background-image: url(../../assets/black-and-white-brand-data.jpg);
   background-size: cover;
   top: 0;
   left: 0;
@@ -56,16 +54,6 @@
    }
   
 }
-
-// .container-list .wrapper .box:hover .icon{
-//  background-image: none;
-//  top: 20px;
-//  left: 150px;
-//  width: 80px;
-//  height: 80px;
-//  border-radius: 50%;
-
-// }
 
 .container-list .wrapper .box .icon .fa{
   top: 50%;

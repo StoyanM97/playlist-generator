@@ -1,15 +1,16 @@
 
 <body class="bc-image">
-  <div class="container center">
+  <div class="container-playlist center">
       <div class="row">
+        <div>
+        <div>
+            <span class="title">Title:</span>
+            <span class="track-titles" *ngIf = "!edditing" >{{playlist?.title}}</span>
+             <input *ngIf = "edditing" type="text" [value] = "playlist?.title" (input) = "onTitleChange(title.value)" #title>
+        </div>
 
         <div class="container-image" [ngStyle]= "{'background-image': 'url('+playlist?.imageUrl+')' , 'background-repeat': 'no-repeat', 'background-size': 'cover'}">
           
-              <h3 class="form-inline">Title:
-                  <span  *ngIf = "!edditing" >{{playlist?.title}}</span>
-                  <input *ngIf = "edditing" type="text" [value] = "playlist?.title" (input) = "onTitleChange(title.value)" #title>
-                </h3>
-      
                 <h6 class="form-inline">Duration:
                     <span >{{playlist?.duration}}</span>
                 </h6>
@@ -23,33 +24,35 @@
                     <span style="padding-left:3px">{{genre}}</span>
                 </span>
                 </h6>
+                <button class="btn btn-primary" type="button" (click)="doneEditting()">{{ edditing ? "Done" : "Edit" }}</button>
         </div>
-
-        <div class="col-md-6 details">
-
+      </div>
         
-           <div class="container-color">Track:
+        <div class="col-md-6 details">
+           <div>
+             <div>
+                <span class="track-titles">Tracks:</span>
+                <span class="track-titles">Name</span> 
+                <span class="track-titles">Duration</span> 
+                <span class="track-titles">Artist</span> 
+                <span class="track-titles">Album</span> 
+                <span class="track-titles">Genres</span>
+                <span class="track-titles">Rank</span> 
+             </div>
             <cdk-virtual-scroll-viewport itemSize="20" class="track-container" >
                 <div class="form-inline" *cdkVirtualFor="let track of playlist?.tracks">
-                    <!-- <a [routerLink]="['/player', {url: getFilter(track.previewUrl)}]"
-                    style="padding-left:3px"><i class="fa fa-play-circle"></i></a> -->
-                    <button (click)= "play(track.previewUrl)"><i class="fa fa-play-circle"></i></button>
-                    <span style="padding-left:3px">{{track?.title}},</span>
-                    <span style="padding-left:3px">{{track?.duration}},</span>
-                    <span style="padding-left:3px">{{track?.artistName}},</span>
-                    <span style="padding-left:3px">{{track?.albumName}},</span>
-                    <span style="padding-left:3px">{{track?.genreName}},</span>
-                    <span style="padding-left:3px">{{track?.rank}}</span>
+                    <button class="btn btn-primary play-button" (click)= "play(track.previewUrl)"><i class="fa fa-play-circle play-icon"></i></button>
+                    <span class="indent">{{track?.title}},</span>
+                    <span class="indent">{{track?.duration}},</span>
+                    <span class="indent">{{track?.artistName}},</span>
+                    <span class="indent">{{track?.albumName}},</span>
+                    <span class="indent">{{track?.genreName}},</span>
+                    <span class="indent">{{track?.rank}}</span>
                 </div>
               </cdk-virtual-scroll-viewport>
            </div>
-          <button class="btn btn-primary" type="button" (click)="doneEditting()">{{ edditing ? "Done" : "Edit" }}</button>
         </div>
       </div>
     </div>
-   
-    <player *ngIf="playUrl" [url]="previewUrl" (stop) ="handelStop($event)">
-    </player>
-    
-    
+    <player *ngIf="playUrl" [url]="previewUrl" (stop) ="handelStop($event)"></player>
   </body>

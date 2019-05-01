@@ -1,10 +1,14 @@
 <body class="bc-image">
 
-    <div class="wrapper" style="list-style: none;">
-        <div class="box">
-            <h6>Duration: {{playlist.duration}}</h6>
-            <button></button>
-          </div>
-        </div>
+    <div class="container-list">
+       <ul class="wrapper" style="list-style: none;">
+            <li>
+              <button (click)="downloadGenres()" type="button" class="btn btn-primary box">Download Genres</button>
+            </li>
+            <li>
+                <button (click)="downloadTracks()" type="button" class="btn btn-primary box">Download Tracks</button>
+           </li>
+      </ul>
+    </div>
 </body>
 
