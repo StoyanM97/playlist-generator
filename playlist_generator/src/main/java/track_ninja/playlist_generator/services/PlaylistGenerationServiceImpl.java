@@ -71,6 +71,9 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
             if (playlistGeneratorDTO.isUseTopTracks()) {
                 Deque<Long> trackIds = new ArrayDeque<>();
                 for (String genre : playlistGeneratorDTO.getGenres().keySet()) {
+                    if (playlistGeneratorDTO.getGenres().get(genre) == 0) {
+                        continue;
+                    }
                     double genreDurationSecond = totalDuration * playlistGeneratorDTO.getGenres().get(genre) / 100.0;
                     long durationSeconds = 0L;
                     Track firstTrack = trackRepository.findTopTrackByGenre(genre);
@@ -86,6 +89,9 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
             } else {
                 Deque<Long> trackIds = new ArrayDeque<>();
                 for (String genre : playlistGeneratorDTO.getGenres().keySet()) {
+                    if (playlistGeneratorDTO.getGenres().get(genre) == 0) {
+                        continue;
+                    }
                     double genreDurationSecond = totalDuration * playlistGeneratorDTO.getGenres().get(genre) / 100.0;
                     long durationSeconds = 0L;
                     Track firstTrack = trackRepository.findRandomTrackByGenre(genre);
@@ -102,6 +108,9 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
         } else if (playlistGeneratorDTO.isUseTopTracks()) {
             Deque<Integer> artistIds = new ArrayDeque<>();
             for (String genre : playlistGeneratorDTO.getGenres().keySet()) {
+                if (playlistGeneratorDTO.getGenres().get(genre) == 0) {
+                    continue;
+                }
                 double genreDurationSecond = totalDuration * playlistGeneratorDTO.getGenres().get(genre) / 100.0;
                 long durationSeconds = 0L;
                 Track firstTrack = trackRepository.findTopTrackByGenre(genre);
@@ -117,6 +126,9 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
         } else {
             Deque<Integer> artistIds = new ArrayDeque<>();
             for (String genre : playlistGeneratorDTO.getGenres().keySet()) {
+                if (playlistGeneratorDTO.getGenres().get(genre) == 0) {
+                    continue;
+                }
                 double genreDurationSecond = totalDuration * playlistGeneratorDTO.getGenres().get(genre) / 100.0;
                 long durationSeconds = 0L;
                 Track firstTrack = trackRepository.findRandomTrackByGenre(genre);

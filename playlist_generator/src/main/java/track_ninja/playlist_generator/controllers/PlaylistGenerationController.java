@@ -13,7 +13,7 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping("/api/user/generatePlaylist")
+@RequestMapping("/api/user/generate")
 public class PlaylistGenerationController {
     private PlaylistGenerationService playlistGenerationService;
 

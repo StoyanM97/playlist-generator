@@ -8,6 +8,7 @@ import track_ninja.playlist_generator.exceptions.GenreDoesNotExistException;
 import track_ninja.playlist_generator.exceptions.UserNotFoundException;
 import track_ninja.playlist_generator.models.Playlist;
 import track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistsException;
+import track_ninja.playlist_generator.models.dtos.PlayListEditDTO;
 import track_ninja.playlist_generator.repositories.GenreRepository;
 import track_ninja.playlist_generator.repositories.PlaylistRepository;
 import track_ninja.playlist_generator.repositories.UserRepository;
@@ -102,7 +103,7 @@ public class PlaylistServiceImpl implements PlaylistService{
     @Override
     public List<Playlist> getByDurationBetween(long minDurationMinutes, long maxDurationMinutes) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE, minDurationMinutes, maxDurationMinutes));
-        List<Playlist> playlists = playlistRepository.findAllByDurationBetween(minDurationMinutes * 60, maxDurationMinutes * 60);
+        List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndDurationBetween(minDurationMinutes * 60, maxDurationMinutes * 60);
         if (playlists.isEmpty()) {
             handleNoGeneratedPlaylistsException(NO_PLAYLISTS_WITH_DURATION_WITHIN_THIS_RANGE_ERROR_MESSAGE);
         }
@@ -112,7 +113,43 @@ public class PlaylistServiceImpl implements PlaylistService{
 
     @Override
     public boolean playlistsExist() {
-        return playlistRepository.existsByPlaylistId(1);
+        return playlistRepository.existsByIsDeletedFalseAndPlaylistId(1);
+    }
+
+    @Override
+    public Playlist getById(int id) {
+        logger.info(String.format("Looking for playlist with id %d...", id));
+        Playlist playlist = playlistRepository.findByIsDeletedFalseAndPlaylistId(id);
+        if (playlist == null) {
+            handleNoGeneratedPlaylistsException("No playlist with this id!");
+        }
+        logger.info("Playlist found!");
+        return playlist;
+    }
+
+    @Override
+    public boolean editPlaylist(PlayListEditDTO playListEditDTO) {
+        logger.info(String.format("Editing playlist with id %d...", playListEditDTO.getId()));
+        Playlist playlist = getById(playListEditDTO.getId());
+        if (playlist == null) {
+            handleNoGeneratedPlaylistsException("No playlist with this id!");
+        }
+        playlistRepository.save(playlist);
+        logger.info("Playlist edited!");
+        return true;
+    }
+
+    @Override
+    public boolean deletePlaylist(int id) {
+        logger.info(String.format("Deleting playlist with id %d...", id));
+        Playlist playlist = getById(id);
+        if (playlist == null) {
+            handleNoGeneratedPlaylistsException("No playlist with this id!");
+        }
+        playlist.setDeleted(true);
+        playlistRepository.save(playlist);
+        logger.info("Playlist deleted!");
+        return false;
     }
 
     private void handleNoGeneratedPlaylistsException(String noPlaylistsGeneratedErrorMessage) {
