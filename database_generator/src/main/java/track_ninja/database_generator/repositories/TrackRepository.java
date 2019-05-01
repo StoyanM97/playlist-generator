@@ -6,4 +6,5 @@ import track_ninja.database_generator.models.Track;
 public interface TrackRepository extends CrudRepository<Track, Integer> {
 
       Track getByTitle(String title);
+      boolean existsByTrackId(int trackId);
 }

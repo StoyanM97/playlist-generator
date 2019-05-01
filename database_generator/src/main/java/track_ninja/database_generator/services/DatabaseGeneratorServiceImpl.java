@@ -90,6 +90,16 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
     }
 
     @Override
+    public boolean tracksAreDownloaded() {
+        return trackRepository.existsByTrackId(1);
+    }
+
+    @Override
+    public boolean genresAreDownloaded() {
+        return genreRepository.existsByGenreId(1);
+    }
+
+    @Override
     public boolean saveGenres() {
 
         GenreList result = restTemplate.getForObject(URL_GENRE, GenreList.class);

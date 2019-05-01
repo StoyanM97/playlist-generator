@@ -9,4 +9,5 @@ public interface GenreRepository extends CrudRepository< Genre, Integer> {
 
     boolean existsByName(String name);
     Genre getByName(String name);
+    boolean existsByGenreId(int genreId);
 }
