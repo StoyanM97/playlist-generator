@@ -9,6 +9,7 @@ import track_ninja.playlist_generator.exceptions.UserNotFoundException;
 import track_ninja.playlist_generator.models.Playlist;
 import track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistsException;
 import track_ninja.playlist_generator.models.dtos.PlayListEditDTO;
+import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.services.PlaylistService;
 
 import javax.validation.Valid;
@@ -27,7 +28,7 @@ public class PlaylistController {
     }
 
     @GetMapping
-    public List<Playlist> getAll() {
+    public List<PlaylistDTO> getAll() {
         try {
             return playlistService.getAll();
         } catch (NoGeneratedPlaylistsException ex) {
@@ -36,7 +37,7 @@ public class PlaylistController {
     }
 
     @GetMapping("/playlist/filter/genre/{genre}")
-    public List<Playlist> getByGenre(@PathVariable String genre) {
+    public List<PlaylistDTO> getByGenre(@PathVariable String genre) {
         try {
             return playlistService.getByGenre(genre);
         } catch (NoGeneratedPlaylistsException | GenreDoesNotExistException ex) {
@@ -44,7 +45,7 @@ public class PlaylistController {
         }
     }
     @GetMapping("/playlist/filter/user/{username}")
-    public List<Playlist> getByUser(@PathVariable String username) {
+    public List<PlaylistDTO> getByUser(@PathVariable String username) {
         try {
             return playlistService.getByUser(username);
         } catch (NoGeneratedPlaylistsException | UserNotFoundException ex) {
@@ -53,7 +54,7 @@ public class PlaylistController {
     }
 
     @GetMapping("/playlist/filter/{title}")
-    public List<Playlist> getByTitle(@PathVariable String title) {
+    public List<PlaylistDTO> getByTitle(@PathVariable String title) {
         try {
             return playlistService.getByTitle(title);
         } catch (NoGeneratedPlaylistsException ex) {
@@ -61,8 +62,8 @@ public class PlaylistController {
         }
     }
 
-    @GetMapping("/playlist/filter/duration/{minDuration},{maxDuration}")
-    public List<Playlist> getByDurationBetween(@PathVariable(name = "minDuration") long minDurationMinutes,
+    @GetMapping("/playlist/filter/duration/{minDuration}/{maxDuration}")
+    public List<PlaylistDTO> getByDurationBetween(@PathVariable(name = "minDuration") long minDurationMinutes,
                                                @PathVariable(name = "maxDuration")long maxDurationMinutes) {
         try {
             return playlistService.getByDurationBetween(minDurationMinutes, maxDurationMinutes);
@@ -77,7 +78,7 @@ public class PlaylistController {
     }
 
     @GetMapping("/playlist/{id}")
-    public Playlist getById(@PathVariable int id) {
+    public PlaylistDTO getById(@PathVariable int id) {
         try{
             return playlistService.getById(id);
         } catch (NoGeneratedPlaylistsException ex) {
