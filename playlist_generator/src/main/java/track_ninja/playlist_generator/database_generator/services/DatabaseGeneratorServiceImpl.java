@@ -38,6 +38,7 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
     private static final String TOTAL_PLAYLISTS_FOR_GENRE = "Total playlists for genre ";
     private static final String DELIMITER = ": ";
     private static final String TOTAL_TRACKS = "Total tracks after removing the duplicate tracks: ";
+    private static final String NO_NEW_GENRES_ADDED = "No new genres added";
 
     private GenreGenerationRepository genreGenerationRepository;
     private TrackGenerationRepository trackGenerationRepository;
@@ -75,7 +76,10 @@ public class DatabaseGeneratorServiceImpl implements DatabaseGeneratorService {
                     genresToSave.add(generationGenre);
                 }
             });
-
+            if (genresToSave.isEmpty()) {
+                log.info(NO_NEW_GENRES_ADDED);
+                return false;
+            }
             genreGenerationRepository.saveAll(genresToSave);
 
             log.info(GENRES_WERE_LOADED);
