@@ -26,6 +26,7 @@ import track_ninja.playlist_generator.security.models.LoginUser;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("UserServiceImpl")
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -55,6 +56,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     private static final String UPLOADING_AVATAR_MESSAGE = "Uploading avatar...";
     private static final String AVATAR_UPLOADED_MESSAGE = "Avatar uploaded!";
+    static final String LOOKING_FOR_USERS_MESSAGE = "Looking for user with username like %s";
+    static final String COULD_NOT_FIND_USERS_ERROR_MESSAGE = "Could not find users! %s";
+    static final String USERS_FOUND_MESSAGE = "User/s found!";
 
     private UserRepository userRepository;
     private AuthorityRepository authorityRepository;
@@ -208,6 +212,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userDetails.setAvatar(file.getBytes());
         logger.info(AVATAR_UPLOADED_MESSAGE);
         return userDetailsRepository.save(userDetails) != null;
+    }
+
+    @Override
+    public List<UserDisplayDTO> findAllByUsernameLike(String username) {
+        logger.info(String.format(LOOKING_FOR_USERS_MESSAGE, username));
+        List<User> users = userRepository.findAllByEnabledTrueAndUsernameLike(username);
+        if (users.isEmpty()) {
+            UserNotFoundException unf = new UserNotFoundException();
+            logger.error(String.format(COULD_NOT_FIND_USERS_ERROR_MESSAGE, unf.getMessage()));
+            throw unf;
+        }
+        logger.info(USERS_FOUND_MESSAGE);
+        return users.stream().map(ModelMapper::userToDTO).collect(Collectors.toList());
     }
 
     private String getAvatar(User user){
