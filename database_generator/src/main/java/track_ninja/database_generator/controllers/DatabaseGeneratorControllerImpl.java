@@ -31,6 +31,16 @@ public class DatabaseGeneratorControllerImpl {
         return service.saveTracks();
     }
 
+    @GetMapping("/tracksAreDownloaded")
+    public boolean tracksAreDownloaded() {
+        return service.tracksAreDownloaded();
+    }
+
+    @GetMapping("/genresAreDownloaded")
+    public boolean genresAreDownloaded() {
+        return service.genresAreDownloaded();
+    }
+
     @GetMapping("/synch/genres")
     public boolean synchronizeGenres(){
         return service.synchronizeGenres();
