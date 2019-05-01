@@ -53,6 +53,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private static final String USER_SUCCESSFULLY_EDITED_MESSAGE = "User successfully edited!";
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static final String UPLOADING_AVATAR_MESSAGE = "Uploading avatar...";
+    private static final String AVATAR_UPLOADED_MESSAGE = "Avatar uploaded!";
 
     private UserRepository userRepository;
     private AuthorityRepository authorityRepository;
@@ -201,8 +203,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public boolean avatarUpload(MultipartFile file, String username) throws IOException {
+        logger.info(UPLOADING_AVATAR_MESSAGE);
         UserDetails userDetails = userRepository.findByUsernameAndEnabledTrue(username).getUserDetail();
         userDetails.setAvatar(file.getBytes());
+        logger.info(AVATAR_UPLOADED_MESSAGE);
         return userDetailsRepository.save(userDetails) != null;
     }
 
