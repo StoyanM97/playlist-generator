@@ -43,7 +43,7 @@
       <a class="nav-link" [routerLink]="['/not-found', {message: 'Hello'}]">Not Found</a>
     </li> -->
 
-    <div class="right">      
+    <div *ngIf= "hasPlaylists" class="right">      
         <div class="input-group">
             <input id="txtSearch" type="text" class="form-control" placeholder="Search" value = "" #getInput />
                 <div ngbDropdown class="input-group-btn remove-margin">

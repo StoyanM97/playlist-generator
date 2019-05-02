@@ -4,7 +4,6 @@ import { PlaylistService } from '../services/playlist.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SearchService } from '../services/search.service';
-import { filter } from 'rxjs/operators';
 import { Filter } from '../models/Filter';
 
 @Component({
@@ -30,14 +29,27 @@ export class PlaylistsDashboardComponent implements OnInit {
   constructor(private playlistService: PlaylistService, private router: Router, private searchService: SearchService) {}
 
   ngOnInit() {
-    this.playlistService.getPlaylists().subscribe(data => {
+
+    this.playlistService.playlistsExistInDB().subscribe(data => {
       console.log(data);
-      this.playlistFullStack = data;
-  },error => {
+      this.hasPlaylists = data;
+      this.playlistService.setPlaylistExistValue(this.hasPlaylists);
+     },error => {
       console.log(error);
-    },() => { 
-       this.loadPlaylists();
-    });
+    },() => { });
+    
+    if(this.hasPlaylists){
+       
+      this.playlistService.getPlaylists().subscribe(data => {
+        console.log(data);
+        this.playlistFullStack = data;
+      },error => {
+        console.log(error);
+      },() => { 
+         this.loadPlaylists();
+      });
+    }
+  
    
   }
 
@@ -54,7 +66,6 @@ export class PlaylistsDashboardComponent implements OnInit {
 
   ngAfterViewInit(){
     this.subscriptions.add(this.searchService.filterObject.subscribe(filterObject =>{
-      console.log(filterObject);
       if(filterObject !== undefined && filterObject !== null){
         this.filter(filterObject);
       }
