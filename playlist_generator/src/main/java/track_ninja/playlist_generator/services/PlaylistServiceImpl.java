@@ -36,6 +36,11 @@ public class PlaylistServiceImpl implements PlaylistService{
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE = "Retrieving all playlists for duration around %d minutes...";
 
     private static final Logger logger = LoggerFactory.getLogger(PlaylistService.class);
+    private static final String LOOKING_FOR_PLAYLIST_WITH_ID_MESSAGE = "Looking for playlist with id %d...";
+    private static final String NO_PLAYLIST_WITH_THIS_ID_ERROR_MESSAGE = "No playlist with this id!";
+    private static final String PLAYLIST_FOUND_MESSAGE = "Playlist found!";
+    private static final String PLAYLIST_EDITED_MESSAGE = "Playlist edited!";
+    private static final String PLAYLIST_DELETED_MESSAGE = "Playlist deleted!";
 
     private PlaylistRepository playlistRepository;
     private GenreRepository genreRepository;
@@ -122,12 +127,12 @@ public class PlaylistServiceImpl implements PlaylistService{
 
     @Override
     public PlaylistDTO getById(int id) {
-        logger.info(String.format("Looking for playlist with id %d...", id));
+        logger.info(String.format(LOOKING_FOR_PLAYLIST_WITH_ID_MESSAGE, id));
         Playlist playlist = playlistRepository.findByIsDeletedFalseAndPlaylistId(id);
         if (playlist == null) {
-            handleNoGeneratedPlaylistsException("No playlist with this id!");
+            handleNoGeneratedPlaylistsException(NO_PLAYLIST_WITH_THIS_ID_ERROR_MESSAGE);
         }
-        logger.info("Playlist found!");
+        logger.info(PLAYLIST_FOUND_MESSAGE);
         return ModelMapper.playlistToDTO(playlist);
     }
 
@@ -136,11 +141,11 @@ public class PlaylistServiceImpl implements PlaylistService{
         logger.info(String.format("Editing playlist with id %d...", playListEditDTO.getPlaylistId()));
         Playlist playlist = playlistRepository.findByIsDeletedFalseAndPlaylistId(playListEditDTO.getPlaylistId());
         if (playlist == null) {
-            handleNoGeneratedPlaylistsException("No playlist with this id!");
+            handleNoGeneratedPlaylistsException(NO_PLAYLIST_WITH_THIS_ID_ERROR_MESSAGE);
         }
         playlist.setTitle(playListEditDTO.getTitle());
         playlistRepository.save(playlist);
-        logger.info("Playlist edited!");
+        logger.info(PLAYLIST_EDITED_MESSAGE);
         return true;
     }
 
@@ -149,11 +154,11 @@ public class PlaylistServiceImpl implements PlaylistService{
         logger.info(String.format("Deleting playlist with id %d...", id));
         Playlist playlist = playlistRepository.findByIsDeletedFalseAndPlaylistId(id);
         if (playlist == null) {
-            handleNoGeneratedPlaylistsException("No playlist with this id!");
+            handleNoGeneratedPlaylistsException(NO_PLAYLIST_WITH_THIS_ID_ERROR_MESSAGE);
         }
         playlist.setDeleted(true);
         playlistRepository.save(playlist);
-        logger.info("Playlist deleted!");
+        logger.info(PLAYLIST_DELETED_MESSAGE);
         return false;
     }
 
