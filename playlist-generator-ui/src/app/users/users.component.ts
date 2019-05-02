@@ -20,6 +20,7 @@ export class UsersComponent implements OnInit{
     users: User[];
     oldUsername: string;
     edditing: boolean = false;
+    selectedOption: string;
    
 
 
@@ -42,6 +43,8 @@ export class UsersComponent implements OnInit{
           this.searchByNameUser(word);
         }
       }));
+
+      
     }
 
     ngOnDestroy(){
@@ -55,37 +58,37 @@ export class UsersComponent implements OnInit{
         this.user = user;
        }
        else{
+        console.log(this.selectedOption);
         this.handleEdit(user);  
        }
           
     }
 
     handleEdit(oldUser: User){
-      this.users = this.users.map(u => {
-          if(u.username === oldUser.username){
-              u = Object.assign({}, u, this.user);
-          }
-          return u;
-      });
-
+     
       this.userService.editUserByAdmin(this.user, this.oldUsername).subscribe(data => {
             console.log(data);
         },error => {
             console.log(error);
           },
           () => {
-            this.authenticationService.saveEditUser(this.user);
+            this.users = this.users.map(u => {
+              if(u.username === oldUser.username){
+                  u = Object.assign({}, u, this.user);
+              }
+              return u; });
           });
     }
 
     delete(event){
-      this.users = this.users.filter((user: User) => user.username !== event.username );
-      this.userService.deleteUser(event.username).subscribe(data => {
+    this.userService.deleteUser(event.username).subscribe(data => {
         console.log(data);
     },error => {
         console.log(error);
       },
-      () => {});
+      () => {
+        this.users = this.users.filter((user: User) => user.username !== event.username );
+      });
     }
 
     onUsernameChange(value: string){
@@ -106,6 +109,7 @@ export class UsersComponent implements OnInit{
 
     onUserRoleChange(value: string){
       this.user.role = value.toUpperCase();
+      console.log(value);
     }
     
     //TODO add another array

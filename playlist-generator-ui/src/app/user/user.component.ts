@@ -85,6 +85,9 @@ doneEditting(){
       },
       () => {
         this.authenticationService.saveEditUser(this.user);
+        if(this.oldUsername !== this.user.username){
+        this.authenticationService.logout();
+        }   
       }
         );
     

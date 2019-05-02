@@ -14,6 +14,7 @@ import { AuthenticationService } from '../services/authentication.service';
 export class PlaylistComponent implements OnInit {
   
   theCheckbox = false;
+  loading = false;
   values: number[];
   playlistForm: FormGroup;
   
@@ -24,7 +25,7 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit() {
     this.playlistForm = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
       fromPoint: ['', Validators.required],
       toPoint: ['', Validators.required],
       popGenre: [false],
@@ -44,12 +45,15 @@ export class PlaylistComponent implements OnInit {
     cancel(){this.router.navigate(['/playlists-dashboard']);}
 
     generatePlaylist(playlistGenerator: PlaylistGenerator){
+      this.loading = !this.loading;
       this.playlistService.createPlaylist(playlistGenerator).subscribe(data => {
         console.log(data);
       },error => {
         console.log(error);
+        this.loading = !this.loading;
       },() => { 
         alert("Playlist created!");
+        this.loading = !this.loading;
         this.router.navigate(['/playlists-dashboard']);
       });
     }

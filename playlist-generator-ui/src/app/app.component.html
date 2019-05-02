@@ -43,7 +43,22 @@
       <a class="nav-link" [routerLink]="['/not-found', {message: 'Hello'}]">Not Found</a>
     </li> -->
 
-    <li *ngIf = "loggedUser" class="right">
+    <div class="right">      
+        <div class="input-group">
+            <input id="txtSearch" type="text" class="form-control" placeholder="Search" value = "" #getInput />
+                <div ngbDropdown class="input-group-btn remove-margin">
+                    <button class="btn btn-primary" ngbDropdownToggle><span class="fa fa-search"></span></button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button ngbDropdownItem (click) = filterByTitle(getInput.value)>By Title</button>
+                      <button ngbDropdownItem (click) = filterByGenre(getInput.value)>By Genre</button>
+                      <button ngbDropdownItem (click) = filterByUsername(getInput.value)>By Username</button>
+                      <button ngbDropdownItem (click) = filterByDuration(getInput.value)>By Duration(min)</button>
+                    </div>
+                  </div>
+          </div>
+    </div>
+
+    <!-- <li class="right">
         <div class="input-group">
               <input id="txtSearch" type="text" class="form-control" placeholder="Search" value = "" #getInput />
               <div class="input-group-btn">
@@ -52,7 +67,7 @@
                 </button>
               </div>
         </div>
-    </li>
+    </li> -->
   </ul>
  </div> 
 </nav>  

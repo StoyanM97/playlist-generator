@@ -17,7 +17,6 @@ import track_ninja.playlist_generator.repositories.TrackRepository;
 import track_ninja.playlist_generator.repositories.UserDetailsRepository;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class PlaylistGenerationServiceImpl implements PlaylistGenerationService {
@@ -56,7 +55,6 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
             logger.error(dtl.getMessage());
             throw dtl;
         }
-        List<String> genresDto = playlistGeneratorDTO.getGenres().stream().map(GenreDTO::getGenre).collect(Collectors.toList());
 
         Deque<Track> tracks = new ArrayDeque<>();
         Playlist generatedPlaylist = new Playlist();
@@ -65,8 +63,8 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
         generatedPlaylist.setDeleted(false);
         generatedPlaylist.setDuration(0L);
         List<Genre> genres = new ArrayList<>();
-        for (String genreName : genresDto) {
-            genres.add(genreRepository.findByName(genreName));
+        for (GenreDTO genre : playlistGeneratorDTO.getGenres()) {
+            genres.add(genreRepository.findByName(genre.getGenre()));
         }
         generatedPlaylist.setGenres(genres);
 

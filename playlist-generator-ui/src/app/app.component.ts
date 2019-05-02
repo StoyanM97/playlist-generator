@@ -4,6 +4,7 @@ import { User } from './models/user';
 import { AuthenticationService } from './services/authentication.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { SearchService } from './services/search.service';
+import { Filter } from './models/Filter';
 
 @Component({
   selector: 'app-root',
@@ -19,10 +20,34 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.authenticationService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
+
   }
 
   setSearchValue(value: string){
        this.searchService.setSearchWord(value);
+  }
+
+  filterByTitle(value: string){
+    this.getFilterObject("Title", value);
+  }
+
+  filterByGenre(value: string){
+    this.getFilterObject("Genre", value);
+  }
+
+  filterByUsername(value: string){
+    this.getFilterObject("Username", value);
+  }
+
+  filterByDuration(value: string){
+   this.getFilterObject("Duration", value);
+  }
+
+  getFilterObject(method: string, filterWord: string){
+    var filter = new Filter();
+    filter.method = method;
+    filter.filterWord = filterWord;
+    this.searchService.setFilterObject(filter);
   }
 
   lagout(){

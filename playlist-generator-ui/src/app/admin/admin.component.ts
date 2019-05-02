@@ -11,6 +11,7 @@ export class AdminComponent implements OnInit {
   genresExist: boolean = false;
   tracksExist: boolean = false;
   sync: boolean;
+  loading: boolean = false;
 
   constructor(private adminService: AdminService) { }
 
@@ -40,12 +41,14 @@ export class AdminComponent implements OnInit {
   }
 
   downloadGenres(){
-     
+     this.loading = !this.loading;
     this.adminService.downloadGenres().subscribe(data => {
       console.log(data);
   },error => {
+    this.loading = !this.loading;
       console.log(error);
     },() => { 
+      this.loading = !this.loading;
       alert("Genres were downloaded!");
       this.genresExist = true;
     });
@@ -53,12 +56,14 @@ export class AdminComponent implements OnInit {
   }
 
   downloadTracks(){
-    
+    this.loading = !this.loading;
     this.adminService.downloadTracks().subscribe(data => {
       console.log(data);
   },error => {
+      this.loading = !this.loading;
       console.log(error);
     },() => { 
+      this.loading = !this.loading;
       alert("Tracks were downloaded!");
       this.tracksExist = true;
     });
@@ -66,12 +71,15 @@ export class AdminComponent implements OnInit {
   }
 
   syncGenres(){
+    this.loading = !this.loading;
     this.adminService.syncGenres().subscribe(data => {
       console.log(data);
       this.sync = data;
   },error => {
+    this.loading = !this.loading;
       console.log(error);
     },() => { 
+      this.loading = !this.loading;
       alert(this.sync ? "Genres were sync!" :  "No new genres to be added!");
     });
   }

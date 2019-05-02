@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
  
-  registerForm: FormGroup;
+  loginForm: FormGroup;
 
   error = '';
   loading = false;
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
   });
@@ -28,11 +28,11 @@ export class LoginComponent implements OnInit {
   }
 
   // convenience getter for easy access to form fields
-  get field() { return this.registerForm.controls; }
+  get field() { return this.loginForm.controls; }
 
    onSubmit(event) {
        // stop here if form is invalid
-       if (this.registerForm.invalid) {
+       if (this.loginForm.invalid) {
            return;
        }
        this.loading = true;

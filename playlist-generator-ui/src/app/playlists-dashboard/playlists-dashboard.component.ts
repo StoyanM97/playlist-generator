@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Playlist } from '../models/playlist';
 import { PlaylistService } from '../services/playlist.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { SearchService } from '../services/search.service';
+import { filter } from 'rxjs/operators';
+import { Filter } from '../models/Filter';
 
 @Component({
   selector: 'playlists-dashboard',
@@ -9,7 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./playlists-dashboard.component.scss']
 })
 export class PlaylistsDashboardComponent implements OnInit {
- 
+  
+  subscriptions = new Subscription();
   playlistFullStack: Playlist[];
   playlists: Playlist[];
   
@@ -22,13 +27,7 @@ export class PlaylistsDashboardComponent implements OnInit {
   forwardDisabled: boolean;
   backwarDdisabled: boolean;
 
-  constructor(private playlistService: PlaylistService, private router: Router) {
-    this.trackList = 0;
-    this.nextStack = 3;
-    this.forward = false;
-    this.backward = false;
-
-   }
+  constructor(private playlistService: PlaylistService, private router: Router, private searchService: SearchService) {}
 
   ngOnInit() {
     this.playlistService.getPlaylists().subscribe(data => {
@@ -37,11 +36,35 @@ export class PlaylistsDashboardComponent implements OnInit {
   },error => {
       console.log(error);
     },() => { 
-      this.playlists = this.playlistFullStack.slice(this.trackList, this.trackList+=this.nextStack);
-      this.forwardDisabled = this.validateNext;
-      this.backwarDdisabled = true;
+       this.loadPlaylists();
     });
    
+  }
+
+  loadPlaylists(){
+    this.trackList = 0;
+    this.nextStack = 3;
+    this.forward = false;
+    this.backward = false;
+    this.playlists = this.playlistFullStack.slice(this.trackList, this.trackList+=this.nextStack);
+    this.forwardDisabled = this.validateNext;
+    this.backwarDdisabled = true;
+
+  }
+
+  ngAfterViewInit(){
+    this.subscriptions.add(this.searchService.filterObject.subscribe(filterObject =>{
+      console.log(filterObject);
+      if(filterObject !== undefined && filterObject !== null){
+        this.filter(filterObject);
+      }
+    }));
+
+    
+  }
+
+  ngOnDestroy(){
+      this.subscriptions.unsubscribe();
   }
 
   showPlaylistDetails(value: Playlist){
@@ -88,6 +111,78 @@ private get validateNext(): boolean{
 
 private get validatePrevious(): boolean{
   return this.playlists.length === undefined || this.playlists.length === 0 || this.trackList < 3;
+}
+
+filter(filter: Filter){
+   
+  switch(filter.method) { 
+    case "Title": { 
+       this.filterByTitle(filter.filterWord);
+       break; 
+    } 
+    case "Genre": { 
+       this.filterByGenre(filter.filterWord);
+       break; 
+    } 
+    case "Username": {
+       this.filterByUsername(filter.filterWord); 
+       break;    
+    } 
+    case "Duration": { 
+       this.filterByDuration(filter.filterWord);
+       break; 
+    }  
+    default: { 
+       console.log("Invalid method"); 
+       break;              
+    } 
+
+}
+}
+
+
+filterByTitle(value: string){
+  this.playlistService.getPlaylistsFiletByTitile(value).subscribe(data => {
+    console.log(data);
+    this.playlistFullStack = data;
+  },error => {
+    console.log(error);
+  },() => { 
+    this.loadPlaylists();
+  }); 
+}
+
+filterByGenre(value: string){
+  this.playlistService.getPlaylistsFiletrByGenre(value).subscribe(data => {
+    console.log(data);
+    this.playlistFullStack = data;
+  },error => {
+    console.log(error);
+  },() => { 
+    this.loadPlaylists();
+  }); 
+}
+
+filterByUsername(value: string){
+  this.playlistService.getPlaylistsFilterByUsername(value).subscribe(data => {
+    console.log(data);
+    this.playlistFullStack = data;
+  },error => {
+    console.log(error);
+  },() => { 
+    this.loadPlaylists();
+  }); 
+}
+
+filterByDuration(value: string){
+  this.playlistService.getPlaylistsFilterByDuration(+value).subscribe(data => {
+    console.log(data);
+    this.playlistFullStack = data;
+  },error => {
+    console.log(error);
+  },() => { 
+    this.loadPlaylists();
+  });  
 }
 
 }

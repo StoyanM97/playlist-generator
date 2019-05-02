@@ -2,7 +2,7 @@
 <div class="container center extention">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit(login)" #login="ngForm">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit(login)" #login="ngForm">
                     <div *ngIf="error" class="alert alert-danger">{{error}}</div>
                     <div class="form-group">
                         <label>Username</label>
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                     <div class="form-group">
-                        <button class="btn btn-primary">Login</button>
+                        <button class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
                         <img *ngIf="loading" class="pl-2" 
                         src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiY
                         oKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW

@@ -53,9 +53,10 @@
                     </div>
                     <div *ngIf="loggedUser && loggedUser.role==='ROLE_ADMIN'" class="form-group">
                             <label>User Role</label>
-                            <select class="form-control" formControlName="role"  [ngClass]="{ 'is-invalid': field.role.errors }">
-                                    <option [ngValue]="value">ROLE_USER</option>
-                                    <option [ngValue]="value">ROLE_ADMIN</option>
+                            <select class="form-control" formControlName="role" [ngClass]="{ 'is-invalid': field.role.errors &&
+                            (field.role.touched && !field.role.dirty)}">
+                                    <option value="ROLE_USER">User</option>
+                                    <option value="ROLE_ADMIN">Administrator</option>
                             </select>
                             <div *ngIf="field.role.errors" class="invalid-feedback">
                                 <div *ngIf="field.role.errors.required">User role is required</div>
@@ -84,7 +85,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+                        <button class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
                     </div>
                 </form>
             </div>
