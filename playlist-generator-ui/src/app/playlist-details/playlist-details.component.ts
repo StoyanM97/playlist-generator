@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Playlist } from '../models/playlist';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlaylistService } from '../services/playlist.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -12,7 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class PlaylistDetailsComponent implements OnInit {
   
 
-  editting: boolean = false;
+  edditing: boolean = false;
   playUrl: boolean = false;
   previewUrl: string;
   title: string;
@@ -20,7 +20,8 @@ export class PlaylistDetailsComponent implements OnInit {
   playlist: Playlist;
   playlistId: number;
 
-  constructor(private route: ActivatedRoute, private playlistService: PlaylistService, private domSanitizer: DomSanitizer) { }
+  constructor(private route: ActivatedRoute, private playlistService: PlaylistService, 
+    private domSanitizer: DomSanitizer, private router: Router) { }
 
   ngOnInit() {
     if(this.route.snapshot.paramMap.has("playlistId")){
@@ -58,7 +59,7 @@ handelStop(){
 }
 
 editPlaylist(){
-  this.editting = !this.editting;
+  this.edditing = !this.edditing;
   if(this.title !== undefined){
     this.playlistService.editPlaylist(this.title, this.playlistId).subscribe(data => {
       console.log(data);
@@ -79,6 +80,7 @@ deletePlaylist(){
     console.log(error);
   },() => { 
     this.playlistService.deletePlaylist(this.playlistId);
+    this.router.navigate(['/playlists-dashboard']);
   });
 }
 
