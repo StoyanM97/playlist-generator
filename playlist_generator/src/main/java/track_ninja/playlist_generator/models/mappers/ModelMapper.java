@@ -18,7 +18,11 @@ public class ModelMapper {
         trackDTO.setTrackId(track.getTrackId());
         trackDTO.setTitle(track.getTitle());
         trackDTO.setPreviewUrl(track.getPreviewUrl());
-        trackDTO.setDuration(track.getDuration());
+        long totalDuration = track.getDuration();
+        long minutes = totalDuration / 60;
+        long seconds = totalDuration % 60;
+        String formatedDuration = String.format("%02d:%02d", minutes, seconds);
+        trackDTO.setDuration(formatedDuration);
         trackDTO.setRank(track.getRank());
         trackDTO.setLink(track.getLink());
         trackDTO.setAlbumName(track.getAlbum().getTitle());
@@ -34,7 +38,14 @@ public class ModelMapper {
         //TODO: set url based on most used genre check if playlist is created throws null point exeption
         playlistDTO.setImageUrl(playlist.getTopGenre().getImageUrl());
         playlistDTO.setUsername(playlist.getUser().getUser().getUsername());
-        playlistDTO.setDuration(playlist.getDuration());
+        long totalDuration = playlist.getDuration();
+        boolean lengthIsUnderOneHour = totalDuration < 3600;
+        long hours = lengthIsUnderOneHour ? 0 : totalDuration / 3600;
+        long minutes = totalDuration < 60 ? 0 : (totalDuration % 3600) / 60;
+        long seconds = totalDuration % 60;
+        String formatedDuration = lengthIsUnderOneHour ? String.format("%02d:%02d", minutes, seconds):
+                String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        playlistDTO.setDuration(formatedDuration);
         playlistDTO.setAverageRank(playlist.getTracks().stream()
                 .mapToInt(Track::getRank)
                 .average()

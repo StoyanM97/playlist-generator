@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import track_ninja.playlist_generator.duration.generator.services.LocationService;
+import track_ninja.playlist_generator.exceptions.DurationTooShortException;
 import track_ninja.playlist_generator.models.*;
 import track_ninja.playlist_generator.models.dtos.GenreDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
@@ -51,10 +52,14 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
 
         long totalDuration = locationService.getTravelDuration(playlistGeneratorDTO.getTravelFrom(), playlistGeneratorDTO.getTravelTo()) * 60;
 
-        if (totalDuration > 580000) {
+        if (totalDuration > 500000) {
             DurationTooLongException dtl = new DurationTooLongException();
             logger.error(dtl.getMessage());
             throw dtl;
+        } else if (totalDuration < 300) {
+            DurationTooShortException dts = new DurationTooShortException();
+            logger.error(dts.getMessage());
+            throw dts;
         }
 
         Deque<Track> tracks = new ArrayDeque<>();

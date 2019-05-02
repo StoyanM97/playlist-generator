@@ -17,7 +17,7 @@ public class TrackDTO {
 
     private String previewUrl;
 
-    private int duration;
+    private String duration;
 
     private int rank;
 
