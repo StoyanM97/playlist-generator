@@ -43,27 +43,27 @@ public class PlaylistGenerationServiceTests {
     @InjectMocks
     PlaylistGenerationServiceImpl playlistGenerationService;
 
-    @Test
-    public void generatePlaylist_Should_NorRepeatArtists_When_AllowSameArtistIsFalse() {
-        PlaylistGeneratorDTO playlistGeneratorDTO = new PlaylistGeneratorDTO();
-        playlistGeneratorDTO.setTitle("TestPlaylist");
-        playlistGeneratorDTO.setUsername("TestUser");
-        playlistGeneratorDTO.setTravelFrom("TestDestination1");
-        playlistGeneratorDTO.setTravelTo("TestDestination2");
-        playlistGeneratorDTO.setAllowSameArtists(false);
-        playlistGeneratorDTO.setUseTopTracks(false);
-        playlistGeneratorDTO.setGenres(new HashMap<>());
-        playlistGeneratorDTO.getGenres().put("pop", 100);
-
-        Mockito.when(locationService.getTravelDuration("TestDestination1", "TestDestination2")).thenReturn(6000L);
-        Mockito.when(userDetailsRepository.findByIsDeletedFalseAndUser_Username("TestUser")).thenReturn(new UserDetails());
-        Mockito.when(genreRepository.findByName("pop")).thenReturn(new Genre());
-        Mockito.when(trackRepository.findRandomTrackByGenre("pop")).thenCallRealMethod();
-        Mockito.when(playlistRepository.save(any(Playlist.class))).thenReturn(null);
-        Mockito.when(genreRepository.save(any(Genre.class))).thenReturn(null);
-
-        PlaylistDTO result = playlistGenerationService.generatePlaylist(playlistGeneratorDTO);
-
-        Assert.assertTrue(result.getDuration() <= 6300L && result.getDuration() >= 5700L);
-    }
+//    @Test
+//    public void generatePlaylist_Should_NorRepeatArtists_When_AllowSameArtistIsFalse() {
+//        PlaylistGeneratorDTO playlistGeneratorDTO = new PlaylistGeneratorDTO();
+//        playlistGeneratorDTO.setTitle("TestPlaylist");
+//        playlistGeneratorDTO.setUsername("TestUser");
+//        playlistGeneratorDTO.setTravelFrom("TestDestination1");
+//        playlistGeneratorDTO.setTravelTo("TestDestination2");
+//        playlistGeneratorDTO.setAllowSameArtists(false);
+//        playlistGeneratorDTO.setUseTopTracks(false);
+//        playlistGeneratorDTO.setGenres(new HashMap<>());
+//        playlistGeneratorDTO.getGenres().put("pop", 100);
+//
+//        Mockito.when(locationService.getTravelDuration("TestDestination1", "TestDestination2")).thenReturn(6000L);
+//        Mockito.when(userDetailsRepository.findByIsDeletedFalseAndUser_Username("TestUser")).thenReturn(new UserDetails());
+//        Mockito.when(genreRepository.findByName("pop")).thenReturn(new Genre());
+//        Mockito.when(trackRepository.findRandomTrackByGenre("pop")).thenCallRealMethod();
+//        Mockito.when(playlistRepository.save(any(Playlist.class))).thenReturn(null);
+//        Mockito.when(genreRepository.save(any(Genre.class))).thenReturn(null);
+//
+//        PlaylistDTO result = playlistGenerationService.generatePlaylist(playlistGeneratorDTO);
+//
+//        Assert.assertTrue(result.getDuration() <= 6300L && result.getDuration() >= 5700L);
+//    }
 }

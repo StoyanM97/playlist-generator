@@ -17,6 +17,7 @@ import track_ninja.playlist_generator.repositories.TrackRepository;
 import track_ninja.playlist_generator.repositories.UserDetailsRepository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class PlaylistGenerationServiceImpl implements PlaylistGenerationService {
