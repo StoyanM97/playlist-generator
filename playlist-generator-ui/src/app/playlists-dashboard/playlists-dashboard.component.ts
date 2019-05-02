@@ -34,23 +34,22 @@ export class PlaylistsDashboardComponent implements OnInit {
       console.log(data);
       this.hasPlaylists = data;
       this.playlistService.setPlaylistExistValue(this.hasPlaylists);
+      if(this.hasPlaylists){
+       
+        this.playlistService.getPlaylists().subscribe(data => {
+          console.log(data);
+          this.playlistFullStack = data;
+        },error => {
+          console.log(error);
+        },() => { 
+           this.loadPlaylists();
+        });
+      }
+      
      },error => {
       console.log(error);
     },() => { });
-    
-    if(this.hasPlaylists){
-       
-      this.playlistService.getPlaylists().subscribe(data => {
-        console.log(data);
-        this.playlistFullStack = data;
-      },error => {
-        console.log(error);
-      },() => { 
-         this.loadPlaylists();
-      });
-    }
-  
-   
+     
   }
 
   loadPlaylists(){
