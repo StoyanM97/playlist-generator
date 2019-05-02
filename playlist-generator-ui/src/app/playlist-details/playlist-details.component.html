@@ -5,7 +5,7 @@
         <div>
         <div>
             <span class="title">Title:</span>
-            <span *ngIf = "!edditing"class="track-titles" *ngIf = "!edditing" >{{playlist?.title}}</span>
+            <span *ngIf = "!edditing"class="track-titles">{{playlist?.title}}</span>
              <input *ngIf = "edditing" type="text" [value] = "playlist?.title" (input) = "onTitleChange(title.value)" #title>
         </div>
 
