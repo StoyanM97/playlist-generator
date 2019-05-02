@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Playlist } from '../models/playlist';
 import { Track } from '../models/track';
 import { AuthenticationService } from './authentication.service';
@@ -10,12 +10,16 @@ import { PlaylistGenerator } from '../models/playlistGenerator';
 export class PlaylistService{
 
     playlists: Playlist[];
+
+    
+    playlistExistSubject: BehaviorSubject<boolean>;
+    playlistExist: Observable<boolean>;
     
     private readonly HOST = 'http://localhost:8080';
     private readonly PLAYLIST_URL = this.HOST + '/api/playlist';
 
     private readonly CREATE_PLAYLIST_URL = this.HOST + '/api/user/generate';
-    private readonly EXIST_PLAYLIST_URL = this.HOST + '/exist';
+    private readonly EXIST_PLAYLIST_URL = this.PLAYLIST_URL + '/exist';
     private readonly DELETE_PLAYLIST_URL = this.HOST + '/api/user/playlist/delete';
     private readonly EDIT_PLAYLIST_URL = this.HOST + '/api/user/playlist/edit';
 
@@ -28,15 +32,24 @@ export class PlaylistService{
         headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
 
-    constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService){}
+    constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService){
+      this.playlistExistSubject = new BehaviorSubject<any>(false);
+      this.playlistExist = this.playlistExistSubject.asObservable();
+    }
     
-
+    public get isPlaylistExist(): boolean {
+      return this.playlistExistSubject.value;
+    }
+  
+    setPlaylistExistValue(exist: boolean){
+      this.playlistExistSubject.next(exist);
+    }
     createPlaylist(playlist: PlaylistGenerator): Observable<Playlist> {
       const body = JSON.stringify(playlist); 
       return this.httpClient.post<Playlist>(this.CREATE_PLAYLIST_URL, body, { headers: this.authenticationService.getHeader()});
     }
 
-    playlistsExist(): Observable<boolean>{
+    playlistsExistInDB(): Observable<boolean>{
       return this.httpClient.get<boolean>(this.EXIST_PLAYLIST_URL,this.httpOptions);
     }
 

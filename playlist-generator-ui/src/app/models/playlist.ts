@@ -4,7 +4,7 @@ export class Playlist{
     playlistId: number;
     title: string;
     username: string;
-    duration: number;
+    duration: string;
     averageRank: number;
     imageUrl: string;
     genres: string[];

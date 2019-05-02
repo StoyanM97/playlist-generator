@@ -1,13 +1,12 @@
-<body class="bc-image">
+<div *ngIf="!hasPlaylists" class="center margin-top">
+    <h1 class="message" >Welcome to Playlist Generator!</h1>
+    <img class="logo" alt="Playlist Logo" src="../assets/playlist.png">
+    <h2 class="message">No Playlists created Yet! You can be the First One!</h2>
+    <h2 class="message">Just Register or Login!</h2>
+</div>
 
-<!-- <div class="container margin-top">
-    <h1>Welcome to {{ title }}!</h1>
-    <img width="500" alt="Playlist Logo" src="../assets/playlist.png">
-    <button (click)="showPlaylists()" type="button" class="btn btn-primary margin-right">Explorer Our Playlists</button>
-</div> -->
-
-
-    <div class="container-list">
+<body *ngIf="hasPlaylists" class="bc-image">
+    <div  class="container-list">
         <button (click)="previous()" type="button" class="arrows left-arrow"
         [disabled]="backwarDdisabled">
           <i class="fa fa-chevron-left"></i></button>

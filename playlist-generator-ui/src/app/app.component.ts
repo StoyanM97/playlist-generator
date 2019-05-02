@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { User } from './models/user';
 import { AuthenticationService } from './services/authentication.service';
-import { Observable, BehaviorSubject } from 'rxjs';
 import { SearchService } from './services/search.service';
 import { Filter } from './models/Filter';
+import { PlaylistService } from './services/playlist.service';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +14,14 @@ import { Filter } from './models/Filter';
 export class AppComponent implements OnInit {
   
   loggedUser: User;
+  hasPlaylists: boolean;
 
   constructor(private location: Location, private authenticationService: AuthenticationService,
-    private searchService: SearchService){}
+    private searchService: SearchService, private playlistService: PlaylistService){}
 
   ngOnInit(){
     this.authenticationService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
+    this.playlistService.playlistExist.subscribe(exist => this.hasPlaylists = exist);
 
   }
 
