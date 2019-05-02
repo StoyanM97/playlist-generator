@@ -244,7 +244,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (user.getPassword() == null) {
             user.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
         }
-        user.setAuthority(authorityRepository.findById(1).orElse(null));
+        if (user.getAuthority() == null) {
+            user.setAuthority(authorityRepository.findById(1).orElse(null));
+        }
         user.setEnabled(true);
     }
 
