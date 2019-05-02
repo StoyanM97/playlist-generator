@@ -15,7 +15,7 @@ public interface PlaylistService {
 
     List<PlaylistDTO> getByTitle(String title);
 
-    List<PlaylistDTO> getByDurationBetween(long minDurationMinutes, long maxDurationMinutes);
+    List<PlaylistDTO> getByDuration(long durationMinutes);
 
     boolean playlistsExist();
 

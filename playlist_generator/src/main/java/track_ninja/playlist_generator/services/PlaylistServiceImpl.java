@@ -33,7 +33,7 @@ public class PlaylistServiceImpl implements PlaylistService{
     private static final String COULD_NOT_RETRIEVE_PLAYLISTS_MESSAGE = "Could not retrieve playlists! %s";
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_USER_MESSAGE = "Retrieving all playlists for user %s...";
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_TITLE_MESSAGE = "Retrieving all playlists for title like %s...";
-    private static final String RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE = "Retrieving all playlists for duration between %d and %d minutes...";
+    private static final String RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE = "Retrieving all playlists for duration around %d minutes...";
 
     private static final Logger logger = LoggerFactory.getLogger(PlaylistService.class);
 
@@ -79,7 +79,7 @@ public class PlaylistServiceImpl implements PlaylistService{
     @Override
     public List<PlaylistDTO> getByUser(String username) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_USER_MESSAGE, username));
-        if (userRepository.existsByUsername(username)) {
+        if (!userRepository.existsByUsername(username)) {
             UserNotFoundException unf = new UserNotFoundException();
             logger.error(String.format(COULD_NOT_RETRIEVE_PLAYLISTS_MESSAGE, unf.getMessage()));
             throw unf;
@@ -95,7 +95,7 @@ public class PlaylistServiceImpl implements PlaylistService{
     @Override
     public List<PlaylistDTO> getByTitle(String title) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_TITLE_MESSAGE, title));
-        List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndTitleLike(title);
+        List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndTitleLike("%" + title + "%");
         if (playlists.isEmpty()) {
             handleNoGeneratedPlaylistsException(NO_PLAYLISTS_GENERATED_WITH_SUCH_TITLE_ERROR_MESSAGE);
         }
@@ -104,9 +104,10 @@ public class PlaylistServiceImpl implements PlaylistService{
     }
 
     @Override
-    public List<PlaylistDTO> getByDurationBetween(long minDurationMinutes, long maxDurationMinutes) {
-        logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE, minDurationMinutes, maxDurationMinutes));
-        List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndDurationBetween(minDurationMinutes * 60, maxDurationMinutes * 60);
+    public List<PlaylistDTO> getByDuration(long durationMinutes) {
+        logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE, durationMinutes));
+        long durationSeconds = durationMinutes * 60;
+        List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndDurationBetween(durationSeconds - 600, durationSeconds + 600);
         if (playlists.isEmpty()) {
             handleNoGeneratedPlaylistsException(NO_PLAYLISTS_WITH_DURATION_WITHIN_THIS_RANGE_ERROR_MESSAGE);
         }
