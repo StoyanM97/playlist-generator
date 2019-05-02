@@ -156,11 +156,18 @@ CREATE TABLE IF NOT EXISTS `playlist_generator_db`.`playlists` (
   `user_id` INT NOT NULL,
   `duration` INT NOT NULL,
   `is_deleted` TINYINT(1) NULL,
+  `top_genre_id` INT NOT NULL,
   PRIMARY KEY (`playlist_id`),
   INDEX `user_playlist_relation_idx` (`user_id` ASC) ,
+  INDEX `playlist_top_genre_relation_idx` (`top_genre_id` ASC) ,
   CONSTRAINT `user_playlist_relation`
     FOREIGN KEY (`user_id`)
     REFERENCES `playlist_generator_db`.`user_details` (`user_details_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+CONSTRAINT `playlist_top_genre_relation`
+    FOREIGN KEY (`top_genre_id`)
+    REFERENCES `playlist_generator_db`.`genres` (`genre_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

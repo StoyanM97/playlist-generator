@@ -56,9 +56,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     private static final String UPLOADING_AVATAR_MESSAGE = "Uploading avatar...";
     private static final String AVATAR_UPLOADED_MESSAGE = "Avatar uploaded!";
-    static final String LOOKING_FOR_USERS_MESSAGE = "Looking for user with username like %s";
-    static final String COULD_NOT_FIND_USERS_ERROR_MESSAGE = "Could not find users! %s";
-    static final String USERS_FOUND_MESSAGE = "User/s found!";
+    private static final String LOOKING_FOR_USERS_MESSAGE = "Looking for user with username like %s";
+    private static final String COULD_NOT_FIND_USERS_ERROR_MESSAGE = "Could not find users! %s";
+    private static final String USERS_FOUND_MESSAGE = "User/s found!";
 
     private UserRepository userRepository;
     private AuthorityRepository authorityRepository;
@@ -181,7 +181,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (user == null  || user.getUserDetail().isDeleted() || !user.isEnabled()) {
             return handleUsernameNotFoundException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
         }
-        UserDetails userDetails = userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getUsername());
+        UserDetails userDetails = userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getOldUsername());
         mapCreateEditAdminDTOtoUserDetails(userEditDTO, userDetails);
         mapCreateEditUserByAdminDTOtoUser(userEditDTO, userDetails, user);
         logger.info(USER_SUCCESSFULLY_EDITED_MESSAGE);
@@ -194,12 +194,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (!userEditDTO.getOldUsername().equals(userEditDTO.getUsername()) && userRepository.existsByUsername(userEditDTO.getUsername())) {
             return handleUsernameAlreadyExistsException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
         }
-        User user = userRepository.findByUsernameAndEnabledTrue(userEditDTO.getUsername());
+        User user = userRepository.findByUsernameAndEnabledTrue(userEditDTO.getOldUsername());
         if (user == null  || user.getUserDetail().isDeleted() || !user.isEnabled()) {
             handleUsernameNotFoundException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
         }
         mapRegistrationDTOToUser(userEditDTO, user);
-        UserDetails userDetails =userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getUsername());
+        UserDetails userDetails =userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getOldUsername());
         mapRegistrationDTOToUserDetails(userEditDTO, user, userDetails);
         logger.info(USER_SUCCESSFULLY_EDITED_MESSAGE);
         return userRepository.save(user) != null;

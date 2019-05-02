@@ -44,5 +44,9 @@ public class Genre {
             name = GENRE_PLAYLIST_RELATIONS,
             joinColumns = {@JoinColumn(name = GENRE_ID, referencedColumnName = GENRE_ID)},
             inverseJoinColumns = {@JoinColumn(name = PLAYLIST_ID, referencedColumnName = PLAYLIST_ID)})
-    private List<Playlist> playlists;
+    private Set<Playlist> playlists;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "topGenre")
+    private Set<Playlist> playlistsByTop;
 }

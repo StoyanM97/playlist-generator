@@ -79,7 +79,7 @@ public class PlaylistServiceImpl implements PlaylistService{
     @Override
     public List<PlaylistDTO> getByUser(String username) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_USER_MESSAGE, username));
-        if (userRepository.existsByUsername(username)) {
+        if (!userRepository.existsByUsername(username)) {
             UserNotFoundException unf = new UserNotFoundException();
             logger.error(String.format(COULD_NOT_RETRIEVE_PLAYLISTS_MESSAGE, unf.getMessage()));
             throw unf;
@@ -95,7 +95,7 @@ public class PlaylistServiceImpl implements PlaylistService{
     @Override
     public List<PlaylistDTO> getByTitle(String title) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_TITLE_MESSAGE, title));
-        List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndTitleLike(title);
+        List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndTitleLike("%" + title + "%");
         if (playlists.isEmpty()) {
             handleNoGeneratedPlaylistsException(NO_PLAYLISTS_GENERATED_WITH_SUCH_TITLE_ERROR_MESSAGE);
         }

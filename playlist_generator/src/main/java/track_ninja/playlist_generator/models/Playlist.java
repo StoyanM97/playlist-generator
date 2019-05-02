@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "playlists")
@@ -29,6 +30,7 @@ public class Playlist {
     private static final String TRACK_ID = "track_id";
     private static final String PLAYLIST_TRACK_RELATIONS = "playlist_track_relations";
     private static final String PLAYLISTS = "playlists";
+    private static final String DURATION = "duration";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,11 +53,16 @@ public class Playlist {
             name = PLAYLIST_TRACK_RELATIONS,
             joinColumns = {@JoinColumn(name = PLAYLIST_ID, referencedColumnName = PLAYLIST_ID)},
             inverseJoinColumns = {@JoinColumn(name = TRACK_ID, referencedColumnName = TRACK_ID)})
-    private List<Track> tracks;
+    private Set<Track> tracks;
 
     @JsonIgnore
     @ManyToMany(mappedBy = PLAYLISTS)
-    private List<Genre> genres;
+    private Set<Genre> genres;
 
+    @Column(name = DURATION)
     private Long duration;
+
+    @ManyToOne
+    @JoinColumn(name = "top_genre_id")
+    private Genre topGenre;
 }
