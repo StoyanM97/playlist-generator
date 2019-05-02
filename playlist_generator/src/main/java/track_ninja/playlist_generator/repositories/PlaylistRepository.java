@@ -20,6 +20,7 @@ public interface PlaylistRepository extends CrudRepository<Playlist, Integer> {
     @Query(value = "SELECT * FROM playlists p " +
             "JOIN playlist_track_relations ptr ON p.playlist_id = ptr.playlist_id " +
             "JOIN tracks t ON ptr.track_id = t.track_id " +
+            "WHERE p.is_deleted = 0 " +
             "GROUP BY p.playlist_id " +
             "ORDER BY AVG(t.rank) DESC", nativeQuery = true)
     List<Playlist> findAllByIsDeletedFalse();
