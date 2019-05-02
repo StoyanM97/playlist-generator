@@ -164,9 +164,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             handleUsernameAlreadyExistsException(UserServiceImpl.COULD_NOT_CREATE_USER_ERROR_MESSAGE);
         }
         UserDetails userDetails = new UserDetails();
-        mapCreateEditAdminDTOtoUserDetails(userRegistrationDTO, userDetails);
+        mapEditDTOtoUserDetails(userRegistrationDTO, userDetails);
         User user = new User();
-        mapCreateEditUserByAdminDTOtoUser(userRegistrationDTO, userDetails, user);
+        mapEditByAdminDTOtoUser(userRegistrationDTO, userDetails, user);
         logger.info(CREATION_SUCCESSFUL_MESSAGE);
         return userRepository.save(user) != null;
     }
@@ -182,8 +182,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             return handleUsernameNotFoundException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
         }
         UserDetails userDetails = userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getOldUsername());
-        mapCreateEditAdminDTOtoUserDetails(userEditDTO, userDetails);
-        mapCreateEditUserByAdminDTOtoUser(userEditDTO, userDetails, user);
+        mapEditDTOtoUserDetails(userEditDTO, userDetails);
+        mapEditByAdminDTOtoUser(userEditDTO, userDetails, user);
         logger.info(USER_SUCCESSFULLY_EDITED_MESSAGE);
         return userRepository.save(user) != null;
     }
@@ -198,7 +198,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (user == null  || user.getUserDetail().isDeleted() || !user.isEnabled()) {
             handleUsernameNotFoundException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
         }
-        mapRegistrationDTOToUser(userEditDTO, user);
         UserDetails userDetails =userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getOldUsername());
         mapRegistrationDTOToUserDetails(userEditDTO, user, userDetails);
         logger.info(USER_SUCCESSFULLY_EDITED_MESSAGE);
@@ -250,15 +249,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setEnabled(true);
     }
 
-    private void mapCreateEditUserByAdminDTOtoUser(UserRegistrationDTO userRegistrationDTO, UserDetails userDetails, User user) {
+    private void mapEditByAdminDTOtoUser(UserRegistrationDTO userRegistrationDTO, UserDetails userDetails, User user) {
         user.setUsername(userRegistrationDTO.getUsername());
-        user.setPassword(userRegistrationDTO.getPassword());
         user.setUserDetail(userDetails);
         user.setAuthority(authorityRepository.findByName(userRegistrationDTO.getRole()));
         user.setEnabled(true);
     }
-
-    private void mapCreateEditAdminDTOtoUserDetails(UserRegistrationDTO userRegistrationDTO, UserDetails userDetails) {
+    
+    private void mapEditDTOtoUserDetails(UserRegistrationDTO userRegistrationDTO, UserDetails userDetails) {
         userDetails.setFirstName(userRegistrationDTO.getFirstName());
         userDetails.setLastName(userRegistrationDTO.getLastName());
         userDetails.setEmail(userRegistrationDTO.getEmail());
