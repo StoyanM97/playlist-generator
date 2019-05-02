@@ -31,9 +31,7 @@ public class UserController {
     private boolean editUser(@Valid @RequestBody UserEditDTO userEditDTO){
         try {
             return userService.editUser(userEditDTO);
-        } catch (UserNotFoundException ex) {
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
-        } catch (UsernameAlreadyExistsException ex) {
+        } catch (UserNotFoundException | UsernameAlreadyExistsException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
         }
     }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import track_ninja.playlist_generator.exceptions.DurationToShortException;
 import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistGeneratorDTO;
 import track_ninja.playlist_generator.exceptions.DurationTooLongException;
@@ -26,7 +27,7 @@ public class PlaylistGenerationController {
     public PlaylistDTO generatePlaylist(@Valid @RequestBody PlaylistGeneratorDTO playlistGeneratorDTO){
         try {
             return playlistGenerationService.generatePlaylist(playlistGeneratorDTO);
-        } catch (DurationTooLongException ex) {
+        } catch (DurationTooLongException | DurationToShortException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
         }
     }

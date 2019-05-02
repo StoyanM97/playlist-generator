@@ -18,7 +18,11 @@ public class ModelMapper {
         trackDTO.setTrackId(track.getTrackId());
         trackDTO.setTitle(track.getTitle());
         trackDTO.setPreviewUrl(track.getPreviewUrl());
-        trackDTO.setDuration(track.getDuration());
+        long totalDuration = track.getDuration();
+        long minutes = totalDuration / 60;
+        long seconds = totalDuration % 60;
+        String formatedDuration = String.format("%02d:%02d", minutes, seconds);
+        trackDTO.setDuration(formatedDuration);
         trackDTO.setRank(track.getRank());
         trackDTO.setLink(track.getLink());
         trackDTO.setAlbumName(track.getAlbum().getTitle());
