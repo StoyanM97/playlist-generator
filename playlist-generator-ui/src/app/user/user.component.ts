@@ -15,7 +15,6 @@ export class UserComponent implements OnInit {
   oldUser: User;
   selectedFile: File = null;
   avatar: any;
-  oldUsername: string;
   edditing: boolean = false;
   hasImage: boolean = false;
 
@@ -29,7 +28,6 @@ export class UserComponent implements OnInit {
     this.authenticationService.currentUser.subscribe(currentUser => 
       {this.user = currentUser
        this.oldUser = this.getCloneUser(currentUser)});
-    this.oldUsername = this.user.username;
     if(this.user.avatar !== undefined && this.user.avatar !== null){
       this.hasImage = true;
     }
@@ -58,10 +56,6 @@ saveAvatar(avatarFile: File){
   reader.readAsDataURL(avatarFile);
 }
 
-onUsernameChange(value: string){
-  this.user.username = value;
-  
-}
 onFirstNameChange(value: string){
   this.user.firstName = value;
 }
@@ -77,7 +71,7 @@ onEmailChange(value: string){
 doneEditting(){
     if(this.edditing){
       
-    this.userService.editUser(this.user, this.oldUsername).subscribe(data => {
+    this.userService.editUser(this.user).subscribe(data => {
         console.log(data);
     },error => {
       this.authenticationService.saveEditUser(this.oldUser);
@@ -85,9 +79,6 @@ doneEditting(){
       },
       () => {
         this.authenticationService.saveEditUser(this.user);
-        if(this.oldUsername !== this.user.username){
-        this.authenticationService.logout();
-        }   
       }
         );
     

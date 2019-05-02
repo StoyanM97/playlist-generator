@@ -26,7 +26,6 @@
             <h6 class="form-inline">
               <span *ngIf = "!edditing" >Username:</span>
               <span *ngIf = "!edditing" >{{user?.username}}</span>
-              <input *ngIf = "edditing" type="text" [value] = "user.username" (input) = "onUsernameChange(name.value)" #name>
             </h6>
 
             <h6 class="form-inline">

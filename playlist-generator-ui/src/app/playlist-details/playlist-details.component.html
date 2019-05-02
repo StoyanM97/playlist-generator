@@ -5,7 +5,7 @@
         <div>
         <div>
             <span class="title">Title:</span>
-            <span class="track-titles" *ngIf = "!edditing" >{{playlist?.title}}</span>
+            <span *ngIf = "!edditing"class="track-titles" *ngIf = "!edditing" >{{playlist?.title}}</span>
              <input *ngIf = "edditing" type="text" [value] = "playlist?.title" (input) = "onTitleChange(title.value)" #title>
         </div>
 
@@ -24,7 +24,10 @@
                     <span style="padding-left:3px">{{genre}}</span>
                 </span>
                 </h6>
-                <button class="btn btn-primary" type="button" (click)="doneEditting()">{{ edditing ? "Done" : "Edit" }}</button>
+        </div>
+        <div class="form-inline">
+            <button class="btn btn-primary" type="button" (click)="editPlaylist()">{{ edditing ? "Done" : "Edit" }}</button>
+            <button class="btn btn-primary" type="button" (click)="deletePlaylist()">Delete</button>
         </div>
       </div>
         

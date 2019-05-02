@@ -37,13 +37,13 @@ export class UserService {
         return this.httpClient.post(this.UPLOAD_AVATAR, formdata);
     }
 
-    editUser(user: User, oldUsername: string): Observable<{}>{
+    editUser(user: User): Observable<{}>{
         const editUser = 
         {   username: user.username, 
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            oldUsername: oldUsername
+            oldUsername: user.username
         };
       return this.httpClient.put<User>(this.EDIT_USER, editUser, {headers: this.authenticationService.getHeader()});
     }

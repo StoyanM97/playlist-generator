@@ -2,7 +2,7 @@ export class Track {
     trackId: number;
     title: string;
     previewUrl: string;
-    duration: number;
+    duration: string;
     rank: number;
     link: string;
     albumName: string;

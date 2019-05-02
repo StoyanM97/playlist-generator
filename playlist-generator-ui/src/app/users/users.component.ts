@@ -72,11 +72,12 @@ export class UsersComponent implements OnInit{
             console.log(error);
           },
           () => {
-            this.users = this.users.map(u => {
-              if(u.username === oldUser.username){
-                  u = Object.assign({}, u, this.user);
+            this.users = this.users.map(user => {
+              if(user.username === oldUser.username){
+                  user = Object.assign({}, user, this.user);
               }
-              return u; });
+              return user; });
+                
           });
     }
 

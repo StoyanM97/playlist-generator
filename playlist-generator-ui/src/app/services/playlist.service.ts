@@ -67,12 +67,12 @@ export class PlaylistService{
       return this.httpClient.delete<boolean>(url, { headers: this.authenticationService.getHeader()});
     }
     
-    editPlaylist(playlist: Playlist): Observable<boolean>{
+    editPlaylist(title: string, playlistId: number): Observable<boolean>{
       const playlistToSave = {
-        playlistId: playlist.playlistId,
-        title: playlist.title
+        playlistId: playlistId,
+        title: title
     };
-      const url = `${this.EDIT_PLAYLIST_URL}/${playlist.playlistId}`;
+      const url = `${this.EDIT_PLAYLIST_URL}/${playlistId}`;
       return this.httpClient.put<boolean>(url, playlistToSave, { headers: this.authenticationService.getHeader()});
    }
 
@@ -99,6 +99,19 @@ export class PlaylistService{
 
   getPlaylistLocal(playlistId: number): Playlist{
     return this.playlists.filter(playlist => playlist.playlistId === playlistId)[0];
+  }
+
+  updatePlaylistLocal(playlistIn: Playlist){
+    this.playlists = this.playlists.map(playlist => {
+      if(playlist.playlistId === playlistIn.playlistId){
+          playlist = Object.assign({}, playlist, playlistIn);
+      }
+      return playlist; });
+  }
+
+  deletePlaylistLocal(playlistId: number){
+    this.playlists = this.playlists.filter(playlist => playlist.playlistId !== playlistId);
+      
   }
     
 }
