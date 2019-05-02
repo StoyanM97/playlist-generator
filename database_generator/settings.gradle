@@ -1,6 +1,0 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-    }
-}
-rootProject.name = 'database_generator'
