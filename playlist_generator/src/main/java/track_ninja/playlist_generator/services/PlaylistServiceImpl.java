@@ -122,7 +122,7 @@ public class PlaylistServiceImpl implements PlaylistService{
 
     @Override
     public boolean playlistsExist() {
-        return playlistRepository.existsByIsDeletedFalseAndPlaylistId(1);
+        return !getAll().isEmpty();
     }
 
     @Override

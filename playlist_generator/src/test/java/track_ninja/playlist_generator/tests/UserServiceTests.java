@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import track_ninja.playlist_generator.exceptions.NoUsersCreatedException;
+import track_ninja.playlist_generator.exceptions.UserNotFoundException;
 import track_ninja.playlist_generator.models.User;
 import track_ninja.playlist_generator.models.UserDetails;
 import track_ninja.playlist_generator.repositories.AuthorityRepository;
@@ -17,7 +18,6 @@ import track_ninja.playlist_generator.repositories.UserRepository;
 import track_ninja.playlist_generator.security.models.JwtTokenUtil;
 import track_ninja.playlist_generator.services.UserServiceImpl;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,5 +61,14 @@ public class UserServiceTests {
         Mockito.when(userRepository.findAll()).thenReturn(users);
 
         Assert.assertTrue("getAll returns users when they are deleted!", userService.getAll().isEmpty());
+    }
+
+    @Test(expected = UserNotFoundException.class)
+    public void getUser_Should_ThrowUserNotFoundException_When_UserDoesNotExist() {
+        String username = "testUser";
+
+        Mockito.when(userRepository.findByUsernameAndEnabledTrue(username)).thenReturn(null);
+
+        userService.getByUsername(username);
     }
 }
