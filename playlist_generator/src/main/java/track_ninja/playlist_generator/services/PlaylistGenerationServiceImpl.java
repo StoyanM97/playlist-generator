@@ -51,7 +51,7 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
 
         long totalDuration = locationService.getTravelDuration(playlistGeneratorDTO.getTravelFrom(), playlistGeneratorDTO.getTravelTo()) * 60;
 
-        if (totalDuration > 580000) {
+        if (totalDuration > 500000) {
             DurationTooLongException dtl = new DurationTooLongException();
             logger.error(dtl.getMessage());
             throw dtl;

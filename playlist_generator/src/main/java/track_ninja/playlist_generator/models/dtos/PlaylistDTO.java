@@ -20,7 +20,7 @@ public class PlaylistDTO {
 
     private String username;
 
-    private long duration;
+    private String duration;
 
     private double averageRank;
 
