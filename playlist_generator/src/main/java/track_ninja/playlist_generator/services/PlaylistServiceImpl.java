@@ -61,9 +61,6 @@ public class PlaylistServiceImpl implements PlaylistService{
     public List<PlaylistDTO> getAll() {
         logger.info(RETRIEVING_ALL_PLAYLISTS_MESSAGE);
         List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalse();
-        if (playlists.isEmpty()) {
-            handleNoGeneratedPlaylistsException(NO_PLAYLISTS_GENERATED_ERROR_MESSAGE);
-        }
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
         return mapListOfPlaylistToDTOs(playlists);
     }
