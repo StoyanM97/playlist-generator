@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Setter
 @Getter
@@ -18,9 +17,9 @@ public class PlayListEditDTO {
     private static final int TITLE_MAX_LENGTH = 20;
     private static final String TITLE_LENGTH_ERROR_MESSAGE = "Title length must be at least 3 and at most 20 characters long!";
 
-    int playlistId;
+    private int playlistId;
 
-    String username;
+    private String username;
 
     @Size(min = TITLE_MIN_LENGTH, max = TITLE_MAX_LENGTH, message = TITLE_LENGTH_ERROR_MESSAGE)
     private String title;

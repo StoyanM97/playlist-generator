@@ -1,0 +1,456 @@
+03-05-2019 16:40:19.273 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Starting PlaylistGeneratorApplication on DESKTOP-JCCDGG7 with PID 16996 (C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator\out\production\classes started by Predator in C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator)
+03-05-2019 16:40:19.276 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - No active profile set, falling back to default profiles: default
+03-05-2019 16:40:19.323 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03-05-2019 16:40:19.324 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03-05-2019 16:40:19.993 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+03-05-2019 16:40:20.087 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 87ms. Found 10 repository interfaces.
+03-05-2019 16:40:20.423 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5f8c53b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 16:40:20.448 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$9ea68d75] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 16:40:20.452 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 16:40:20.453 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4742b1c5' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 16:40:20.455 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$c37b3027] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 16:40:20.456 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 16:40:20.820 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+03-05-2019 16:40:20.833 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03-05-2019 16:40:20.839 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03-05-2019 16:40:20.839 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+03-05-2019 16:40:20.942 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03-05-2019 16:40:20.942 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1618 ms
+03-05-2019 16:40:21.043 [MLog-Init-Reporter] INFO  com.mchange.v2.log.MLog - MLog clients using slf4j logging.
+03-05-2019 16:40:21.074 [restartedMain] INFO  com.mchange.v2.c3p0.C3P0Registry - Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
+03-05-2019 16:40:21.282 [restartedMain] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 2tk05ha2yxtmtj17er9ji|42c488f3, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 2tk05ha2yxtmtj17er9ji|42c488f3, idleConnectionTestPeriod -> 0, initialPoolSize -> 5, jdbcUrl -> jdbc:mysql://localhost:3306/playlist_generator_db?serverTimezone=UTC, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 3000, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 20, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+03-05-2019 16:40:21.455 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+03-05-2019 16:40:21.544 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.9.Final}
+03-05-2019 16:40:21.546 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+03-05-2019 16:40:21.711 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+03-05-2019 16:40:21.873 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+03-05-2019 16:40:22.587 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+03-05-2019 16:40:23.261 [restartedMain] INFO  o.s.s.p.JdbcUserDetailsManager - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+03-05-2019 16:40:23.385 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7867eb18, org.springframework.security.web.context.SecurityContextPersistenceFilter@557d77a4, org.springframework.security.web.header.HeaderWriterFilter@3f2f4e08, org.springframework.web.filter.CorsFilter@552304c9, org.springframework.security.web.authentication.logout.LogoutFilter@714d0d05, track_ninja.playlist_generator.security.models.JwtAuthenticationFilter@4db4543a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@79a1313e, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@7d7e9aaf, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1edbc1fb, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1adc8a20, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@374ff7ee, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4d537135, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5ac5186f, org.springframework.security.web.session.SessionManagementFilter@19c464e4, org.springframework.security.web.access.ExceptionTranslationFilter@3908376, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3541d1f6]
+03-05-2019 16:40:23.455 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+03-05-2019 16:40:23.492 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+03-05-2019 16:40:23.656 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+03-05-2019 16:40:23.678 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03-05-2019 16:40:23.693 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+03-05-2019 16:40:23.696 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Started PlaylistGeneratorApplication in 4.806 seconds (JVM running for 5.592)
+03-05-2019 16:40:41.298 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03-05-2019 16:40:41.298 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+03-05-2019 16:40:41.307 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 9 ms
+03-05-2019 16:40:41.344 [http-nio-8080-exec-3] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 16:40:41.386 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Looking for playlist with id 2...
+03-05-2019 16:40:41.407 [http-nio-8080-exec-3] INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+03-05-2019 16:40:41.690 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Playlist found!
+03-05-2019 16:41:23.994 [http-nio-8080-exec-8] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 16:41:24.206 [http-nio-8080-exec-8] INFO  t.p.services.UserService - Logging user stoyan in...
+03-05-2019 16:41:24.491 [http-nio-8080-exec-8] INFO  t.p.services.UserService - Login successful!
+03-05-2019 16:41:24.552 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 16:41:24.552 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 16:41:24.648 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 16:41:24.669 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 16:41:24.670 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 16:41:24.738 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 16:41:26.588 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 16:41:26.589 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Looking for playlist with id 2...
+03-05-2019 16:41:26.656 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Playlist found!
+03-05-2019 16:41:32.890 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:10:22.960 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:10:22.961 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:10:23.017 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:10:23.034 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:10:23.035 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:10:23.102 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:10:29.452 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 17:10:29.453 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:10:29.508 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:10:29.519 [http-nio-8080-exec-5] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 17:10:29.520 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:10:29.572 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:11:03.136 [http-nio-8080-exec-8] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 17:11:03.201 [http-nio-8080-exec-8] INFO  t.p.services.UserService - Registering user vankata...
+03-05-2019 17:11:03.293 [http-nio-8080-exec-8] INFO  t.p.services.UserService - Registration successful!
+03-05-2019 17:11:14.622 [http-nio-8080-exec-7] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 17:11:14.704 [http-nio-8080-exec-7] INFO  t.p.services.UserService - Logging user stoyan in...
+03-05-2019 17:11:14.706 [http-nio-8080-exec-7] INFO  t.p.services.UserService - Login successful!
+03-05-2019 17:11:14.726 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:11:14.727 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:11:14.771 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:11:14.788 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:11:14.788 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:11:14.839 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:11:51.582 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:17:53.477 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:17:53.478 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:17:53.522 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:17:53.541 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:17:53.542 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:17:53.600 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:23:00.563 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:23:00.567 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Looking for playlist with id 2...
+03-05-2019 17:23:00.614 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Playlist found!
+03-05-2019 17:23:02.892 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:23:02.897 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Deleting playlist with id 2...
+03-05-2019 17:23:02.978 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Playlist deleted!
+03-05-2019 17:23:02.999 [http-nio-8080-exec-8] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:23:03.001 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:23:03.055 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:23:03.067 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:23:03.068 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:23:03.118 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:23:11.220 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:23:11.220 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Looking for playlist with id 4...
+03-05-2019 17:23:11.283 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Playlist found!
+03-05-2019 17:23:13.513 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:23:13.514 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:23:13.566 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:23:13.581 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+03-05-2019 17:23:13.582 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:23:13.640 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:23:30.854 [http-nio-8080-exec-8] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 17:23:30.931 [http-nio-8080-exec-8] INFO  t.p.services.UserService - Logging user vankata in...
+03-05-2019 17:23:30.932 [http-nio-8080-exec-8] INFO  t.p.services.UserService - Login successful!
+03-05-2019 17:23:30.953 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user vankata, setting security context
+03-05-2019 17:23:30.954 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:23:31.003 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:23:31.021 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user vankata, setting security context
+03-05-2019 17:23:31.022 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:23:31.081 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 17:23:34.148 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user vankata, setting security context
+03-05-2019 17:23:34.149 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Looking for playlist with id 4...
+03-05-2019 17:23:34.213 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Playlist found!
+03-05-2019 17:23:35.658 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user vankata, setting security context
+03-05-2019 17:23:35.659 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Deleting playlist with id 4...
+03-05-2019 17:23:35.722 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Playlist deleted!
+03-05-2019 17:23:35.742 [http-nio-8080-exec-8] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user vankata, setting security context
+03-05-2019 17:23:35.742 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 17:23:35.743 [http-nio-8080-exec-8] ERROR t.p.services.PlaylistService - Could not retrieve playlists! No playlists generated!
+03-05-2019 17:23:35.759 [http-nio-8080-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistsException: No playlists generated!] with root cause
+track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistsException: No playlists generated!
+	at track_ninja.playlist_generator.services.PlaylistServiceImpl.handleNoGeneratedPlaylistsException(PlaylistServiceImpl.java:166)
+	at track_ninja.playlist_generator.services.PlaylistServiceImpl.getAll(PlaylistServiceImpl.java:62)
+	at track_ninja.playlist_generator.services.PlaylistServiceImpl.playlistsExist(PlaylistServiceImpl.java:125)
+	at track_ninja.playlist_generator.controllers.PlaylistController.playlistsExist(PlaylistController.java:75)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:892)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:897)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:127)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:170)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:158)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter.doFilterInternal(DefaultLogoutPageGeneratingFilter.java:52)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter.doFilter(DefaultLoginPageGeneratingFilter.java:206)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at track_ninja.playlist_generator.security.models.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:63)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+03-05-2019 17:24:28.709 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Starting PlaylistGeneratorApplication on DESKTOP-JCCDGG7 with PID 6380 (C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator\out\production\classes started by Predator in C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator)
+03-05-2019 17:24:28.713 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - No active profile set, falling back to default profiles: default
+03-05-2019 17:24:28.757 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03-05-2019 17:24:28.757 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03-05-2019 17:24:29.293 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+03-05-2019 17:24:29.384 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 87ms. Found 10 repository interfaces.
+03-05-2019 17:24:29.736 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$67aff67f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 17:24:29.761 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$5dbeb9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 17:24:29.764 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 17:24:29.765 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@42d2237b' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 17:24:29.767 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$2532616b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 17:24:29.769 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 17:24:30.097 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+03-05-2019 17:24:30.109 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03-05-2019 17:24:30.115 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03-05-2019 17:24:30.115 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+03-05-2019 17:24:30.216 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03-05-2019 17:24:30.216 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1458 ms
+03-05-2019 17:24:30.298 [MLog-Init-Reporter] INFO  com.mchange.v2.log.MLog - MLog clients using slf4j logging.
+03-05-2019 17:24:30.323 [restartedMain] INFO  com.mchange.v2.c3p0.C3P0Registry - Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
+03-05-2019 17:24:30.510 [restartedMain] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 2tk05ha2yzeezv138qn0b|256d66a3, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 2tk05ha2yzeezv138qn0b|256d66a3, idleConnectionTestPeriod -> 0, initialPoolSize -> 5, jdbcUrl -> jdbc:mysql://localhost:3306/playlist_generator_db?serverTimezone=UTC, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 3000, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 20, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+03-05-2019 17:24:30.647 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+03-05-2019 17:24:30.733 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.9.Final}
+03-05-2019 17:24:30.735 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+03-05-2019 17:24:30.927 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+03-05-2019 17:24:31.089 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+03-05-2019 17:24:31.795 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+03-05-2019 17:24:32.352 [restartedMain] INFO  o.s.s.p.JdbcUserDetailsManager - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+03-05-2019 17:24:32.454 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7e2c0597, org.springframework.security.web.context.SecurityContextPersistenceFilter@24cc06f8, org.springframework.security.web.header.HeaderWriterFilter@b5495b3, org.springframework.web.filter.CorsFilter@109da9f6, org.springframework.security.web.authentication.logout.LogoutFilter@fcb1626, track_ninja.playlist_generator.security.models.JwtAuthenticationFilter@78b26ed4, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@30588c88, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@617b9bc7, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@31262fdb, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1a1c9681, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@303d1e78, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@48828fed, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5d86da37, org.springframework.security.web.session.SessionManagementFilter@292341f2, org.springframework.security.web.access.ExceptionTranslationFilter@7e308ce1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@220b18b8]
+03-05-2019 17:24:32.522 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+03-05-2019 17:24:32.549 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+03-05-2019 17:24:32.707 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+03-05-2019 17:24:32.730 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03-05-2019 17:24:32.745 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+03-05-2019 17:24:32.747 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Started PlaylistGeneratorApplication in 4.343 seconds (JVM running for 5.061)
+03-05-2019 17:24:48.345 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03-05-2019 17:24:48.346 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+03-05-2019 17:24:48.355 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 9 ms
+03-05-2019 17:24:48.602 [http-nio-8080-exec-2] INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+03-05-2019 17:24:48.750 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user vankata, setting security context
+03-05-2019 18:09:21.890 [main] INFO  t.p.services.PlaylistService - Editing playlist with id 0...
+03-05-2019 18:10:39.512 [main] INFO  t.p.services.PlaylistService - Editing playlist with id 0...
+03-05-2019 18:14:02.769 [main] INFO  t.p.services.PlaylistService - Editing playlist with id 0...
+03-05-2019 18:14:02.773 [main] ERROR t.p.services.PlaylistService - Playlist not generated by this user!
+03-05-2019 18:30:15.027 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Starting PlaylistGeneratorApplication on DESKTOP-JCCDGG7 with PID 20288 (C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator\out\production\classes started by Predator in C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator)
+03-05-2019 18:30:15.030 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - No active profile set, falling back to default profiles: default
+03-05-2019 18:30:15.071 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03-05-2019 18:30:15.071 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03-05-2019 18:30:15.602 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+03-05-2019 18:30:15.697 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 90ms. Found 10 repository interfaces.
+03-05-2019 18:30:16.029 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b6aae49b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 18:30:16.054 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$4f58acd5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 18:30:16.057 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 18:30:16.059 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@113977f9' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 18:30:16.060 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$742d4f87] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 18:30:16.062 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 18:30:16.338 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+03-05-2019 18:30:16.350 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03-05-2019 18:30:16.356 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03-05-2019 18:30:16.356 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+03-05-2019 18:30:16.458 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03-05-2019 18:30:16.458 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1387 ms
+03-05-2019 18:30:16.542 [MLog-Init-Reporter] INFO  com.mchange.v2.log.MLog - MLog clients using slf4j logging.
+03-05-2019 18:30:16.569 [restartedMain] INFO  com.mchange.v2.c3p0.C3P0Registry - Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
+03-05-2019 18:30:16.700 [restartedMain] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 2tk05ha2z1qzxutm4vov|18da387e, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 2tk05ha2z1qzxutm4vov|18da387e, idleConnectionTestPeriod -> 0, initialPoolSize -> 5, jdbcUrl -> jdbc:mysql://localhost:3306/playlist_generator_db?serverTimezone=UTC, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 3000, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 20, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+03-05-2019 18:30:16.890 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+03-05-2019 18:30:16.937 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.9.Final}
+03-05-2019 18:30:16.940 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+03-05-2019 18:30:17.038 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+03-05-2019 18:30:17.158 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+03-05-2019 18:30:17.805 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+03-05-2019 18:30:18.366 [restartedMain] INFO  o.s.s.p.JdbcUserDetailsManager - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+03-05-2019 18:30:18.451 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@63d17696, org.springframework.security.web.context.SecurityContextPersistenceFilter@39508a7b, org.springframework.security.web.header.HeaderWriterFilter@714d0d05, org.springframework.web.filter.CorsFilter@11dc714c, org.springframework.security.web.authentication.logout.LogoutFilter@14eddca5, track_ninja.playlist_generator.security.models.JwtAuthenticationFilter@5fe5d663, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@50755d26, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@19e76d8c, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@58a941fd, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1300f033, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1fb7f5cd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@40e9356b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@126c1a37, org.springframework.security.web.session.SessionManagementFilter@2666635c, org.springframework.security.web.access.ExceptionTranslationFilter@26924c9f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@239cf8cf]
+03-05-2019 18:30:18.513 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+03-05-2019 18:30:18.540 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+03-05-2019 18:30:18.699 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+03-05-2019 18:30:18.721 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03-05-2019 18:30:18.735 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+03-05-2019 18:30:18.737 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Started PlaylistGeneratorApplication in 3.97 seconds (JVM running for 4.725)
+03-05-2019 18:30:47.183 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03-05-2019 18:30:47.184 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+03-05-2019 18:30:47.197 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 13 ms
+03-05-2019 18:30:47.610 [http-nio-8080-exec-2] WARN  t.p.s.models.JwtAuthenticationFilter - The token is expired and not valid anymore
+io.jsonwebtoken.ExpiredJwtException: JWT expired at 2019-05-03T17:53:30Z. Current time: 2019-05-03T18:30:47Z, a difference of 2237605 milliseconds.  Allowed clock skew: 0 milliseconds.
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:385)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:481)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:541)
+	at track_ninja.playlist_generator.security.models.JwtTokenUtil.getAllClaimsFromToken(JwtTokenUtil.java:37)
+	at track_ninja.playlist_generator.security.models.JwtTokenUtil.getUsernameFromToken(JwtTokenUtil.java:22)
+	at track_ninja.playlist_generator.security.models.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:41)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+03-05-2019 18:30:47.628 [http-nio-8080-exec-6] WARN  t.p.s.models.JwtAuthenticationFilter - The token is expired and not valid anymore
+io.jsonwebtoken.ExpiredJwtException: JWT expired at 2019-05-03T17:53:30Z. Current time: 2019-05-03T18:30:47Z, a difference of 2237628 milliseconds.  Allowed clock skew: 0 milliseconds.
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:385)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:481)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:541)
+	at track_ninja.playlist_generator.security.models.JwtTokenUtil.getAllClaimsFromToken(JwtTokenUtil.java:37)
+	at track_ninja.playlist_generator.security.models.JwtTokenUtil.getUsernameFromToken(JwtTokenUtil.java:22)
+	at track_ninja.playlist_generator.security.models.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:41)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+03-05-2019 18:30:58.151 [http-nio-8080-exec-4] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 18:31:07.889 [http-nio-8080-exec-9] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 18:31:08.099 [http-nio-8080-exec-9] INFO  t.p.services.UserService - Logging user vankata in...
+03-05-2019 18:31:08.110 [http-nio-8080-exec-9] INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+03-05-2019 18:31:08.343 [http-nio-8080-exec-9] INFO  t.p.services.UserService - Login successful!
+03-05-2019 18:31:08.398 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user vankata, setting security context
+03-05-2019 18:31:21.353 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user vankata, setting security context
+03-05-2019 18:31:22.719 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user vankata, setting security context
+03-05-2019 18:31:22.722 [http-nio-8080-exec-8] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user vankata, setting security context
+03-05-2019 18:31:33.840 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user vankata, setting security context
+03-05-2019 18:31:33.847 [http-nio-8080-exec-7] INFO  t.p.services.UserService - Uploading avatar...
+03-05-2019 18:31:33.851 [http-nio-8080-exec-7] INFO  t.p.services.UserService - Avatar uploaded!

@@ -86,12 +86,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<UserDisplayDTO> getAll() {
         logger.info(RETRIEVING_ALL_USERS_MESSAGE);
         List<UserDisplayDTO> userDisplayDTOS = new ArrayList<>();
-        List<User> users = userRepository.findAll();
-        if (users.isEmpty()) {
-            NoUsersCreatedException nuc = new NoUsersCreatedException();
-            logger.error(String.format(COULD_NOT_RETRIEVE_USERS_ERROR_MESSAGE, nuc.getMessage()));
-            throw nuc;
-        }
+        List<User> users = userRepository.findAllByEnabledTrue();
         users.forEach(user -> {
             if(!user.getUserDetail().isDeleted()){
                 userDisplayDTOS.add(ModelMapper.userToDTO(user));
@@ -217,11 +212,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<UserDisplayDTO> findAllByUsernameLike(String username) {
         logger.info(String.format(LOOKING_FOR_USERS_MESSAGE, username));
         List<User> users = userRepository.findAllByEnabledTrueAndUsernameLike(username);
-        if (users.isEmpty()) {
-            UserNotFoundException unf = new UserNotFoundException();
-            logger.error(String.format(COULD_NOT_FIND_USERS_ERROR_MESSAGE, unf.getMessage()));
-            throw unf;
-        }
         logger.info(USERS_FOUND_MESSAGE);
         return users.stream().map(ModelMapper::userToDTO).collect(Collectors.toList());
     }
