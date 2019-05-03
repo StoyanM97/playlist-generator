@@ -3,6 +3,9 @@ HELP.md
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 
+### Log file ###
+app.log
+
 ### STS ###
 .apt_generated
 .classpath
@@ -28,3 +31,5 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+
+
