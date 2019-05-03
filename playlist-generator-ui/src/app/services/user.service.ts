@@ -66,10 +66,10 @@ export class UserService {
    return this.httpClient.put<User>(this.EDIT_USER_BY_ADMIN, editUser, {headers: this.authenticationService.getHeader()});
   }
 
-  createUserByAdmin(username: string, password: string, firstName: string, lastName: string, email: string, userRole: string,): Observable<{}>{
+  createUserByAdmin(username: string, password: string, firstName: string, lastName: string, email: string, userRole: string,): Observable<boolean>{
     const createUser = 
     { username: username, password: password, firstName: firstName, lastName: lastName, email: email, role: userRole };
-  return this.httpClient.post<User>(this.CREATE_USER_BY_ADMIN, createUser, {headers: this.authenticationService.getHeader()}); 
+  return this.httpClient.post<boolean>(this.CREATE_USER_BY_ADMIN, createUser, {headers: this.authenticationService.getHeader()}); 
   }
 
 }

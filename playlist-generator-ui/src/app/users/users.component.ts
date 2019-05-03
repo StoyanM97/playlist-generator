@@ -19,7 +19,6 @@ export class UsersComponent implements OnInit{
     user: User;
     users: User[];
     oldUsername: string;
-    username: string;
     edditing: boolean = false;
 
     constructor(private userService: UserService, private authenticationService: AuthenticationService,
@@ -54,7 +53,6 @@ export class UsersComponent implements OnInit{
        console.log(user)
        if(this.edditing){
         this.oldUsername = user.username;
-        this.username = user.username;
         this.user = user;
        }
        else{

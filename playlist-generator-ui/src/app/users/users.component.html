@@ -18,37 +18,37 @@
       <tbody>
         <tr *cdkVirtualFor="let user of users">
           
-            <td *ngIf = "!edditing || user.username !== username">{{user.firstName}}</td>
-            <td *ngIf = "edditing && user.username === username"> 
+            <td *ngIf = "!edditing || user.username !== oldUsername">{{user.firstName}}</td>
+            <td *ngIf = "edditing && user.username === oldUsername"> 
               <input type="text" [value] = "user.firstName" (input) = "onFirstNameChange(firstName.value)" #firstName>
             </td>
 
-            <td *ngIf = "!edditing || user.username !== username">{{user.lastName}}</td>
-            <td *ngIf = "edditing && user.username === username">
+            <td *ngIf = "!edditing || user.username !== oldUsername">{{user.lastName}}</td>
+            <td *ngIf = "edditing && user.username === oldUsername">
                <input type="text" [value] = "user.lastName" (input) = "onLastNameChange(lastName.value)" #lastName>
             </td>
 
-            <td *ngIf = "!edditing || user.username !== username">{{user.role}}</td>
-            <td *ngIf = "edditing && user.username === username">
+            <td *ngIf = "!edditing || user.username !== oldUsername">{{user.role}}</td>
+            <td *ngIf = "edditing && user.username === oldUsername">
                 <select (change)="onUserRoleChange($event.target.value)" #role>
                         <option value="ROLE_USER">User</option>
                         <option value="ROLE_ADMIN">Administrator</option>
                 </select>
             </td>
 
-            <td *ngIf = "!edditing || user.username !== username">{{user.username}}</td>
-            <td *ngIf = "edditing && user.username === username">
+            <td *ngIf = "!edditing || user.username !== oldUsername">{{user.username}}</td>
+            <td *ngIf = "edditing && user.username === oldUsername">
               <input type="text" [value] = "user.username" (input) = "onUsernameChange(name.value)" #name>
             </td>
 
-            <td *ngIf = "!edditing || user.username !== username">{{user.email}}</td>
-              <td *ngIf = "edditing && user.username === username">
+            <td *ngIf = "!edditing || user.username !== oldUsername">{{user.email}}</td>
+              <td *ngIf = "edditing && user.username === oldUsername">
                 <input type="text" [value] = "user.email" (input) = "onEmailChange(email.value)" #email>
             </td>
 
             <td>
-              <button class="btn btn-primary button-size" (click)= "editMode(user)" [disabled] = "edditing && user.username !== username" >{{edditing && user.username === username? "Done" : "Edit"}}</button>
-              <button class="btn btn-primary button-size " (click)= "delete(user)" [disabled] = "edditing && user.username !== username" >{{edditing && user.username === username? "Cancel" : "Delete"}}</button>
+              <button class="btn btn-primary button-size" (click)= "editMode(user)" [disabled] = "edditing && user.username !== oldUsername" >{{edditing && user.username === username? "Done" : "Edit"}}</button>
+              <button class="btn btn-primary button-size " (click)= "delete(user)" [disabled] = "edditing && user.username !== oldUsername" >{{edditing && user.username === username? "Cancel" : "Delete"}}</button>
             </td>
         </tr>
       </tbody>

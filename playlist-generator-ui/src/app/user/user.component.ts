@@ -36,6 +36,8 @@ export class UserComponent implements OnInit {
 onUploadAvatar(event){
     this.selectedFile = event.target.files[0];
     console.log(event);
+    console.log(event.target.files[0].type);
+    console.log(this.checkImageType(this.selectedFile));
     this.userService.uploadAvatar(this.user.username, this.selectedFile).subscribe(data => {
         console.log(data);
     },error => {
@@ -43,6 +45,10 @@ onUploadAvatar(event){
       },() => { 
         this.saveAvatar(this.selectedFile);
       });
+}
+
+checkImageType(file: File): boolean{
+ return file.type.split("/")[file.type.split("/").length-1] === "png";
 }
 
 saveAvatar(avatarFile: File){
