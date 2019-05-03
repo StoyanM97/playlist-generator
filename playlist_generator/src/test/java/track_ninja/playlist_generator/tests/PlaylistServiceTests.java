@@ -8,7 +8,13 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import track_ninja.playlist_generator.exceptions.GenreDoesNotExistException;
 import track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistsException;
+import track_ninja.playlist_generator.exceptions.PlaylistNotGeneretedByThisUserException;
 import track_ninja.playlist_generator.exceptions.UserNotFoundException;
+import track_ninja.playlist_generator.models.Authority;
+import track_ninja.playlist_generator.models.Playlist;
+import track_ninja.playlist_generator.models.User;
+import track_ninja.playlist_generator.models.UserDetails;
+import track_ninja.playlist_generator.models.commons.UserRole;
 import track_ninja.playlist_generator.models.dtos.PlayListEditDTO;
 import track_ninja.playlist_generator.repositories.GenreRepository;
 import track_ninja.playlist_generator.repositories.PlaylistRepository;
@@ -110,6 +116,28 @@ public class PlaylistServiceTests {
         playlistDTO.setPlaylistId(0);
 
         Mockito.when(playlistRepository.findByIsDeletedFalseAndPlaylistId(0)).thenReturn(null);
+
+        playlistService.editPlaylist(playlistDTO);
+    }
+
+    @Test(expected = PlaylistNotGeneretedByThisUserException.class)
+    public void editPlaylist_Should_ThrowPlaylistNotGeneratedByThisUserException_When_PlaylistNotCreatedByThisUser() {
+        PlayListEditDTO playlistDTO = new PlayListEditDTO();
+        playlistDTO.setPlaylistId(0);
+        playlistDTO.setUsername("testUser");
+
+        Authority authority = new Authority();
+        authority.setName(UserRole.ROLE_USER);
+        User user = new User();
+        user.setUsername("differentUser");
+        user.setAuthority(authority);
+        UserDetails userDetails = new UserDetails();
+        userDetails.setUser(user);
+        Playlist playlist = new Playlist();
+        playlist.setUser(userDetails);
+
+        Mockito.when(playlistRepository.findByIsDeletedFalseAndPlaylistId(0)).thenReturn(playlist);
+        Mockito.when(userRepository.findByUsernameAndEnabledTrue(playlistDTO.getUsername())).thenReturn(user);
 
         playlistService.editPlaylist(playlistDTO);
     }

@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<UserDisplayDTO> getAll() {
         logger.info(RETRIEVING_ALL_USERS_MESSAGE);
         List<UserDisplayDTO> userDisplayDTOS = new ArrayList<>();
-        List<User> users = userRepository.findAll();
+        List<User> users = userRepository.findAllByEnabledTrue();
         if (users.isEmpty()) {
             NoUsersCreatedException nuc = new NoUsersCreatedException();
             logger.error(String.format(COULD_NOT_RETRIEVE_USERS_ERROR_MESSAGE, nuc.getMessage()));

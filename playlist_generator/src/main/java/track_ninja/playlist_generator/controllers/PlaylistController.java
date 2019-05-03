@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import track_ninja.playlist_generator.exceptions.GenreDoesNotExistException;
+import track_ninja.playlist_generator.exceptions.PlaylistNotGeneretedByThisUserException;
 import track_ninja.playlist_generator.exceptions.UserNotFoundException;
 import track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistsException;
 import track_ninja.playlist_generator.models.dtos.PlayListEditDTO;
@@ -90,6 +91,8 @@ public class PlaylistController {
             return playlistService.editPlaylist(playListEditDTO);
         } catch (NoGeneratedPlaylistsException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+        } catch (PlaylistNotGeneretedByThisUserException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
         }
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
-    List<User> findAll();
+    List<User> findAllByEnabledTrue();
 
     boolean existsByUsername(String name);
 

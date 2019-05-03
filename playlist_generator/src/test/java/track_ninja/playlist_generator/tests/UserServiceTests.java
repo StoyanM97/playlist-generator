@@ -43,7 +43,7 @@ public class UserServiceTests {
 
     @Test(expected = NoUsersCreatedException.class)
     public void getAll_Should_ThrowNoUsersCreatedException_When_NoUsersCreated() {
-        Mockito.when(userRepository.findAll()).thenReturn(new ArrayList<>());
+        Mockito.when(userRepository.findAllByEnabledTrue()).thenReturn(new ArrayList<>());
 
         userService.getAll();
     }
@@ -58,7 +58,7 @@ public class UserServiceTests {
         List<User> users = new ArrayList<>();
         users.add(user);
 
-        Mockito.when(userRepository.findAll()).thenReturn(users);
+        Mockito.when(userRepository.findAllByEnabledTrue()).thenReturn(users);
 
         Assert.assertTrue("getAll returns users when they are deleted!", userService.getAll().isEmpty());
     }
