@@ -81,7 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/register").permitAll()
                 .antMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/api/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/admin/**").permitAll()
                 //.regexMatchers(HttpMethod.DELETE, "\\/api\\/admin\\/delete\\/user\\?username=[A-Za-z0-9]+").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()

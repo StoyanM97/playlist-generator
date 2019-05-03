@@ -54,7 +54,7 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/create/user/")
+    @PostMapping("/create/user")
     public boolean createUser(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO){
         try {
             return userService.createUser(userRegistrationDTO);

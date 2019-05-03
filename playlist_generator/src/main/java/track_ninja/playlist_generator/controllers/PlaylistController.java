@@ -63,7 +63,7 @@ public class PlaylistController {
     }
 
     @GetMapping("/playlist/filter/duration/{duration}")
-    public List<PlaylistDTO> getByDurationBetween(@PathVariable(name = "duration") long durationMinutes) {
+    public List<PlaylistDTO> getByDurationBetween(@PathVariable(name = "duration") double durationMinutes) {
         try {
             return playlistService.getByDuration(durationMinutes);
         } catch (NoGeneratedPlaylistsException ex) {
@@ -85,7 +85,7 @@ public class PlaylistController {
         }
     }
 
-    @PostMapping("/user/playlist/edit")
+    @PutMapping("/user/playlist/edit")
     public boolean editPlaylist(@RequestBody @Valid PlayListEditDTO playListEditDTO) {
         try{
             return playlistService.editPlaylist(playListEditDTO);

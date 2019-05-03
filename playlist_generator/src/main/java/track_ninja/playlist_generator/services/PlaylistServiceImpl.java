@@ -100,9 +100,10 @@ public class PlaylistServiceImpl implements PlaylistService{
     }
 
     @Override
-    public List<PlaylistDTO> getByDuration(long durationMinutes) {
-        logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE, durationMinutes));
-        long durationSeconds = durationMinutes * 60;
+    public List<PlaylistDTO> getByDuration(double durationMinutes) {
+        long durationMinutes1 = (long) Math.ceil(durationMinutes);
+        logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE, durationMinutes1));
+        long durationSeconds = durationMinutes1 * 60;
         List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndDurationBetween(durationSeconds - 600, durationSeconds + 600);
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
         return mapListOfPlaylistToDTOs(playlists);

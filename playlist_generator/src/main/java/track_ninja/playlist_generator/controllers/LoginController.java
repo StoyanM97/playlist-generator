@@ -27,6 +27,8 @@ public class LoginController {
         this.authenticationManager = authenticationManager;
 
     }
+
+    //TODO: Catch exception
     @PostMapping("/login")
     public ResponseEntity login(@Valid @RequestBody LoginUser loginUser){
         final Authentication authentication = authenticationManager.authenticate(

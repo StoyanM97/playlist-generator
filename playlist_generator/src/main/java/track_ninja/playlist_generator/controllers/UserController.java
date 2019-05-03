@@ -28,7 +28,7 @@ public class UserController {
 
 
     @PutMapping("/edit")
-    private boolean editUser(@Valid @RequestBody UserEditDTO userEditDTO){
+    public boolean editUser(@Valid @RequestBody UserEditDTO userEditDTO){
         try {
             return userService.editUser(userEditDTO);
         } catch (UserNotFoundException | UsernameAlreadyExistsException ex) {

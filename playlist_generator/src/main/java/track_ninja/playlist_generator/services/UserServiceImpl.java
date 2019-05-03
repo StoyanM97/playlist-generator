@@ -162,6 +162,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         mapEditDTOtoUserDetails(userRegistrationDTO, userDetails);
         User user = new User();
         mapEditByAdminDTOtoUser(userRegistrationDTO, userDetails, user);
+        System.out.println(user);
         logger.info(CREATION_SUCCESSFUL_MESSAGE);
         return userRepository.save(user) != null;
     }
@@ -239,9 +240,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setEnabled(true);
     }
 
+
     private void mapEditByAdminDTOtoUser(UserRegistrationDTO userRegistrationDTO, UserDetails userDetails, User user) {
         user.setUsername(userRegistrationDTO.getUsername());
+        if (userRegistrationDTO.getPassword() != null) {
+            user.setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
+        }
         user.setUserDetail(userDetails);
+        userDetails.setUser(user);
         user.setAuthority(authorityRepository.findByName(userRegistrationDTO.getRole()));
         user.setEnabled(true);
     }

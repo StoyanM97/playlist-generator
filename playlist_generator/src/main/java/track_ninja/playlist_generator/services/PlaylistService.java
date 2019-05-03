@@ -15,7 +15,7 @@ public interface PlaylistService {
 
     List<PlaylistDTO> getByTitle(String title);
 
-    List<PlaylistDTO> getByDuration(long durationMinutes);
+    List<PlaylistDTO> getByDuration(double durationMinutes);
 
     boolean playlistsExist();
 
