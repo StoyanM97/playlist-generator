@@ -60,7 +60,8 @@ handelStop(){
 
 editPlaylist(){
   this.edditing = !this.edditing;
-  if(this.title !== undefined){
+  if(this.title){
+    console.log("edit title");
     this.playlistService.editPlaylist(this.title, this.playlistId).subscribe(data => {
       console.log(data);
    },error => {

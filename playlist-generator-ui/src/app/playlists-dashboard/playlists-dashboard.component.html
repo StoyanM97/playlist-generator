@@ -5,7 +5,7 @@
     <h2 class="message">Just Register or Login!</h2>
 </div>
 
-<body *ngIf="hasPlaylists" class="bc-image">
+<div *ngIf="hasPlaylists" class="bc-image">
     <div  class="container-list">
         <button (click)="previous()" type="button" class="arrows left-arrow"
         [disabled]="backwarDdisabled">
@@ -25,4 +25,4 @@
           [disabled]="forwardDisabled">
           <i class="fa fa-chevron-right"></i></button>
     </div>
-</body>
+  </div>
