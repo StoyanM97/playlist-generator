@@ -741,3 +741,172 @@ io.jsonwebtoken.ExpiredJwtException: JWT expired at 2019-05-03T19:04:05Z. Curren
 03-05-2019 19:59:00.285 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
 03-05-2019 20:06:01.230 [Thread-22] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
 03-05-2019 20:06:01.233 [Thread-22] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+03-05-2019 21:38:52.554 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Starting PlaylistGeneratorApplication on Ventsislavs-MacBook-Pro.local with PID 1455 (/Users/ventsislavdraganov/Desktop/playlistgenerator/playlist_generator/out/production/classes started by ventsislavdraganov in /Users/ventsislavdraganov/Desktop/playlistgenerator/playlist_generator)
+03-05-2019 21:38:52.559 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - No active profile set, falling back to default profiles: default
+03-05-2019 21:38:52.744 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+03-05-2019 21:38:52.744 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+03-05-2019 21:38:54.159 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+03-05-2019 21:38:54.408 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 234ms. Found 10 repository interfaces.
+03-05-2019 21:38:55.057 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7cbaff32] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 21:38:55.096 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$1568c76c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 21:38:55.100 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 21:38:55.102 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@df0e04' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 21:38:55.103 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$3a3d6a1e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 21:38:55.107 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+03-05-2019 21:38:55.650 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+03-05-2019 21:38:55.666 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+03-05-2019 21:38:55.675 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+03-05-2019 21:38:55.675 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+03-05-2019 21:38:55.783 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+03-05-2019 21:38:55.784 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3040 ms
+03-05-2019 21:38:55.918 [MLog-Init-Reporter] INFO  com.mchange.v2.log.MLog - MLog clients using slf4j logging.
+03-05-2019 21:38:55.969 [restartedMain] INFO  com.mchange.v2.c3p0.C3P0Registry - Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
+03-05-2019 21:38:56.256 [restartedMain] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 2wvnqya2z8hm1e4ms8zp|697842a1, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 2wvnqya2z8hm1e4ms8zp|697842a1, idleConnectionTestPeriod -> 0, initialPoolSize -> 5, jdbcUrl -> jdbc:mysql://localhost:3306/playlist_generator_db?serverTimezone=UTC, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 3000, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 20, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+03-05-2019 21:38:56.669 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+03-05-2019 21:38:56.786 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.9.Final}
+03-05-2019 21:38:56.788 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+03-05-2019 21:38:57.051 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+03-05-2019 21:38:57.264 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+03-05-2019 21:38:58.418 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+03-05-2019 21:38:59.270 [restartedMain] INFO  o.s.s.p.JdbcUserDetailsManager - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+03-05-2019 21:38:59.446 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1af33f34, org.springframework.security.web.context.SecurityContextPersistenceFilter@270a8475, org.springframework.security.web.header.HeaderWriterFilter@5132f386, org.springframework.web.filter.CorsFilter@3092701d, org.springframework.security.web.authentication.logout.LogoutFilter@2d2e6afe, track_ninja.playlist_generator.security.models.JwtAuthenticationFilter@29f041c1, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@76f4fcd7, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4d89dab3, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@45071650, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3e7e5c15, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1365b0a8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@51d95f78, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3d4fe908, org.springframework.security.web.session.SessionManagementFilter@19ca43af, org.springframework.security.web.access.ExceptionTranslationFilter@4d365a1b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1d0b6aef]
+03-05-2019 21:38:59.561 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+03-05-2019 21:38:59.615 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+03-05-2019 21:39:00.003 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+03-05-2019 21:39:00.035 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+03-05-2019 21:39:00.068 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+03-05-2019 21:39:00.071 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Started PlaylistGeneratorApplication in 8.223 seconds (JVM running for 9.543)
+03-05-2019 21:39:10.224 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03-05-2019 21:39:10.225 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+03-05-2019 21:39:10.234 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 9 ms
+03-05-2019 21:39:10.276 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:10.529 [http-nio-8080-exec-3] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:10.530 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:10.588 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:12.816 [http-nio-8080-exec-4] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:12.875 [http-nio-8080-exec-5] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:12.877 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:12.922 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:17.592 [http-nio-8080-exec-7] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:17.640 [http-nio-8080-exec-9] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:17.641 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:17.676 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:18.349 [http-nio-8080-exec-10] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:18.351 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:18.352 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:18.411 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:19.015 [http-nio-8080-exec-2] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:19.676 [http-nio-8080-exec-4] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:19.677 [http-nio-8080-exec-3] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:19.678 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:19.740 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:20.339 [http-nio-8080-exec-5] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:22.223 [http-nio-8080-exec-7] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:22.224 [http-nio-8080-exec-6] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:22.225 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:22.276 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:22.877 [http-nio-8080-exec-9] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:28.693 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:28.694 [http-nio-8080-exec-2] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:28.695 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:28.751 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:29.352 [http-nio-8080-exec-4] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:30.207 [http-nio-8080-exec-6] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:30.207 [http-nio-8080-exec-7] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:30.209 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:30.253 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:30.863 [http-nio-8080-exec-8] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:32.724 [http-nio-8080-exec-10] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:32.724 [http-nio-8080-exec-9] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:32.725 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:32.769 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:33.375 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:38.061 [http-nio-8080-exec-2] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:38.061 [http-nio-8080-exec-3] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:38.062 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:38.110 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:38.728 [http-nio-8080-exec-5] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:39.556 [http-nio-8080-exec-8] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:39.556 [http-nio-8080-exec-7] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:39.557 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:39.595 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:40.200 [http-nio-8080-exec-10] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:43.922 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:43.922 [http-nio-8080-exec-9] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:43.923 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:43.958 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:44.568 [http-nio-8080-exec-3] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:46.272 [http-nio-8080-exec-6] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:46.272 [http-nio-8080-exec-5] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:46.273 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:46.317 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:46.927 [http-nio-8080-exec-7] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:54.219 [http-nio-8080-exec-8] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:54.219 [http-nio-8080-exec-10] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:39:54.220 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:39:54.258 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:39:54.892 [http-nio-8080-exec-9] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:34.683 [http-nio-8080-exec-6] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:34.684 [http-nio-8080-exec-7] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:34.686 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:41:34.712 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:41:35.520 [http-nio-8080-exec-10] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:37.349 [http-nio-8080-exec-2] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:37.350 [http-nio-8080-exec-9] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:37.350 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:41:37.410 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:41:38.024 [http-nio-8080-exec-3] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:39.266 [http-nio-8080-exec-5] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:39.266 [http-nio-8080-exec-4] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:39.267 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:41:39.310 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:41:39.906 [http-nio-8080-exec-6] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:46.471 [http-nio-8080-exec-7] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:46.471 [http-nio-8080-exec-8] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:46.472 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:41:46.522 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:41:47.513 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:47.552 [http-nio-8080-exec-2] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:47.553 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:41:47.577 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:41:53.237 [http-nio-8080-exec-5] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:53.237 [http-nio-8080-exec-3] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:53.238 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:41:53.279 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:41:53.871 [http-nio-8080-exec-6] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:54.783 [http-nio-8080-exec-10] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:54.783 [http-nio-8080-exec-7] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:54.784 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:41:54.825 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:41:55.430 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:56.681 [http-nio-8080-exec-9] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:56.681 [http-nio-8080-exec-2] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:56.682 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:41:56.728 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:41:57.334 [http-nio-8080-exec-5] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:58.243 [http-nio-8080-exec-4] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:58.243 [http-nio-8080-exec-3] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:41:58.244 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:41:58.283 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:41:58.892 [http-nio-8080-exec-8] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:42:52.812 [http-nio-8080-exec-2] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:42:52.813 [http-nio-8080-exec-5] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:42:52.814 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:42:52.906 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:42:53.759 [http-nio-8080-exec-4] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:42:55.026 [http-nio-8080-exec-8] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:42:55.026 [http-nio-8080-exec-10] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:42:55.027 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:42:55.066 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:42:55.659 [http-nio-8080-exec-7] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:42:57.006 [http-nio-8080-exec-9] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:42:57.007 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:42:57.010 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+03-05-2019 21:42:57.049 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 21:42:57.648 [http-nio-8080-exec-2] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:43:12.950 [http-nio-8080-exec-3] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:43:13.216 [http-nio-8080-exec-6] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+03-05-2019 21:43:51.838 [Thread-29] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+03-05-2019 21:43:51.843 [Thread-29] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'

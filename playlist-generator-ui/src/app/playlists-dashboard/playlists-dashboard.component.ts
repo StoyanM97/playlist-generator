@@ -23,10 +23,15 @@ export class PlaylistsDashboardComponent implements OnInit {
   trackList: number;
   nextStack: number;
   
+  loading: boolean;
+
   forwardDisabled: boolean;
   backwarDdisabled: boolean;
 
-  constructor(private playlistService: PlaylistService, private router: Router, private searchService: SearchService) {}
+  constructor(private playlistService: PlaylistService, private router: Router, private searchService: SearchService) {
+    this.loading =false;
+    this.hasPlaylists= false;
+  }
 
   ngOnInit() {
 
@@ -35,13 +40,14 @@ export class PlaylistsDashboardComponent implements OnInit {
       this.hasPlaylists = data;
       this.playlistService.setPlaylistExistValue(this.hasPlaylists);
       if(this.hasPlaylists){
-       
+        this.loading = !this.loading;
         this.playlistService.getPlaylists().subscribe(data => {
           console.log(data);
           this.playlistFullStack = data;
         },error => {
           console.log(error);
         },() => { 
+          this.loading = !this.loading;
            this.loadPlaylists();
         });
       }

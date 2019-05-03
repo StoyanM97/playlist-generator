@@ -51,6 +51,7 @@ export class PlaylistComponent implements OnInit {
       },error => {
         console.log(error);
         this.loading = !this.loading;
+        alert(error);
       },() => { 
         alert("Playlist created!");
         this.loading = !this.loading;
