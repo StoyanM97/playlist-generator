@@ -739,3 +739,5 @@ io.jsonwebtoken.ExpiredJwtException: JWT expired at 2019-05-03T19:04:05Z. Curren
 03-05-2019 19:59:00.247 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
 03-05-2019 19:59:00.248 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
 03-05-2019 19:59:00.285 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+03-05-2019 20:06:01.230 [Thread-22] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+03-05-2019 20:06:01.233 [Thread-22] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
