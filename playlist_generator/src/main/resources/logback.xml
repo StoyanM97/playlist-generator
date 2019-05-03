@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <appender class="ch.qos.logback.core.ConsoleAppender" name="STDOUT">
+        <encoder>
+
+            <pattern>%date{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+
+        </encoder>
+
+    </appender>
+    <appender class="ch.qos.logback.core.FileAppender" name="FILE">
+
+        <file>app.log</file>
+
+        <append>true</append>
+        <encoder>
+
+            <pattern>%date{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+
+        </encoder>
+
+    </appender>
+
+    <logger name="logback" level="INFO"/>
+    <logger name="logback.tests" level="WARN">
+
+        <appender-ref ref="FILE"/>
+
+    </logger>
+    <root level="INFO">
+
+        <!--If you want to see the info on the console too, decomment the following line-->
+
+
+        <appender-ref ref="STDOUT"/>
+
+        <appender-ref ref="FILE"/>
+
+    </root>
+
+</configuration>

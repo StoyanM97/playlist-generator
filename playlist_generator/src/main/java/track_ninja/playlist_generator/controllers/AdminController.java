@@ -28,7 +28,7 @@ public class AdminController {
     }
 
     @GetMapping("/users")
-    private List<UserDisplayDTO> getAll(){
+    public List<UserDisplayDTO> getAll(){
         try {
             return userService.getAll();
         } catch (NoUsersCreatedException ex) {
@@ -37,7 +37,7 @@ public class AdminController {
     }
 
     @GetMapping("/users/{username}")
-    private List<UserDisplayDTO> getByUsername(@PathVariable String username) {
+    public List<UserDisplayDTO> getByUsername(@PathVariable String username) {
         try {
             return userService.findAllByUsernameLike(username);
         } catch (UserNotFoundException ex) {
@@ -46,7 +46,7 @@ public class AdminController {
     }
 
     @GetMapping("/users/filter/{username}")
-    private UserDisplayDTO getUser(@PathVariable String username){
+    public UserDisplayDTO getUser(@PathVariable String username){
         try {
             return userService.getUser(username);
         } catch (UserNotFoundException ex) {
@@ -55,7 +55,7 @@ public class AdminController {
     }
 
     @PostMapping("/create/user/")
-    private boolean createUser(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO){
+    public boolean createUser(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO){
         try {
             return userService.createUser(userRegistrationDTO);
         } catch (UsernameAlreadyExistsException ex) {
@@ -64,7 +64,7 @@ public class AdminController {
     }
 
     @PutMapping("/edit/user")
-    private boolean editUserByAdmin(@Valid @RequestBody UserEditDTO userEditDTO){
+    public boolean editUserByAdmin(@Valid @RequestBody UserEditDTO userEditDTO){
         try {
             return userService.editUserByAdmin(userEditDTO);
         } catch (UserNotFoundException ex) {
@@ -75,7 +75,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/user/{username}")
-    private boolean deleteUser(@PathVariable String username) {
+    public boolean deleteUser(@PathVariable String username) {
         try {
             return userService.deleteUser(username);
         } catch (UserNotFoundException ex) {
