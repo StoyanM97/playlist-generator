@@ -3,6 +3,8 @@ import { Playlist } from '../models/playlist';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PlaylistService } from '../services/playlist.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { User } from '../models/user';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'playlist-details',
@@ -14,14 +16,19 @@ export class PlaylistDetailsComponent implements OnInit {
 
   edditing: boolean = false;
   playUrl: boolean = false;
+  editButtonDisabled: boolean = true;
   previewUrl: string;
   title: string;
 
   playlist: Playlist;
   playlistId: number;
 
+  loggedUser: User;
+
   constructor(private route: ActivatedRoute, private playlistService: PlaylistService, 
-    private domSanitizer: DomSanitizer, private router: Router) { }
+    private domSanitizer: DomSanitizer, private router: Router, private authenticationService: AuthenticationService) { 
+      this.authenticationService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
+    }
 
   ngOnInit() {
     if(this.route.snapshot.paramMap.has("playlistId")){
@@ -37,7 +44,11 @@ export class PlaylistDetailsComponent implements OnInit {
       this.playlist = data;
    },error => {
       console.log(error);
-    },() => { });
+    },() => {
+        if(this.playlist.username === this.loggedUser.username || this.loggedUser.role === 'ROLE_ADMIN'){
+          this.editButtonDisabled = false;
+        }
+     });
   }
   onTitleChange(value: string){
         this.title = value;
@@ -62,7 +73,7 @@ editPlaylist(){
   this.edditing = !this.edditing;
   if(this.title){
     console.log("edit title");
-    this.playlistService.editPlaylist(this.title, this.playlistId).subscribe(data => {
+    this.playlistService.editPlaylist(this.title, this.playlistId, this.loggedUser.username).subscribe(data => {
       console.log(data);
    },error => {
       console.log(error);

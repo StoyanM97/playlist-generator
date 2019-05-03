@@ -45,6 +45,10 @@ export class AppComponent implements OnInit {
    this.getFilterObject("Duration", value);
   }
 
+  refresh(){
+    this.getFilterObject("Refresh", null);
+  }
+
   getFilterObject(method: string, filterWord: string){
     var filter = new Filter();
     filter.method = method;

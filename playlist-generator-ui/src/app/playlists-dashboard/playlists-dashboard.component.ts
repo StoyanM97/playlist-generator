@@ -141,7 +141,11 @@ filter(filter: Filter){
     case "Duration": { 
        this.filterByDuration(filter.filterWord);
        break; 
-    }  
+    }
+    case "Refresh": { 
+      this.ngOnInit();
+      break; 
+   }  
     default: { 
        console.log("Invalid method"); 
        break;              

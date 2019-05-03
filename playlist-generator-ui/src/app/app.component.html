@@ -55,8 +55,11 @@
                       <button ngbDropdownItem (click) = filterByDuration(getInput.value)>By Duration(min)</button>
                     </div>
                   </div>
+                  <button *ngIf= "hasPlaylists" class="btn btn-primary left-margin" type="button"  (click) =refresh()>Refresh</button>
           </div>
+          
     </div>
+    
 
     <!-- <li class="right">
         <div class="input-group">

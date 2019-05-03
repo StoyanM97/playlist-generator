@@ -26,8 +26,8 @@
                 </h6>
         </div>
         <div class="form-inline">
-            <button class="btn btn-primary" type="button" (click)="editPlaylist()">{{ edditing ? "Done" : "Edit" }}</button>
-            <button class="btn btn-primary" type="button" (click)="deletePlaylist()">Delete</button>
+            <button class="btn btn-primary" type="button" (click)="editPlaylist()" [disabled]="editButtonDisabled">{{ edditing ? "Done" : "Edit" }}</button>
+            <button class="btn btn-primary" type="button" (click)="deletePlaylist()" [disabled]="editButtonDisabled">Delete</button>
         </div>
       </div>
         

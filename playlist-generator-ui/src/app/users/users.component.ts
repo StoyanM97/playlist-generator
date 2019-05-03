@@ -19,10 +19,8 @@ export class UsersComponent implements OnInit{
     user: User;
     users: User[];
     oldUsername: string;
+    username: string;
     edditing: boolean = false;
-    selectedOption: string;
-   
-
 
     constructor(private userService: UserService, private authenticationService: AuthenticationService,
       private searchService: SearchService){
@@ -30,10 +28,9 @@ export class UsersComponent implements OnInit{
     }
      
     ngOnInit(){
-        this.users = test;
-        // this.subscriptions.add(this.userService.getUsers().subscribe(data => {
-        //             this.users = data.filter(user => user.username !== this.authenticationService.currentUserValue.username );
-        // }));   
+        this.subscriptions.add(this.userService.getUsers().subscribe(data => {
+                    this.users = data.filter(user => user.username !== this.authenticationService.currentUserValue.username );
+        }));   
     }
 
     ngAfterViewInit(){
@@ -53,12 +50,14 @@ export class UsersComponent implements OnInit{
 
     editMode(user){
        this.edditing = !this.edditing;
+      
+       console.log(user)
        if(this.edditing){
-        this.oldUsername = this.user.username;
+        this.oldUsername = user.username;
+        this.username = user.username;
         this.user = user;
        }
        else{
-        console.log(this.selectedOption);
         this.handleEdit(user);  
        }
           
@@ -82,7 +81,11 @@ export class UsersComponent implements OnInit{
     }
 
     delete(event){
-    this.userService.deleteUser(event.username).subscribe(data => {
+    if(this.edditing){
+      this.edditing = !this.edditing;
+    }
+    else{
+      this.userService.deleteUser(event.username).subscribe(data => {
         console.log(data);
     },error => {
         console.log(error);
@@ -90,6 +93,8 @@ export class UsersComponent implements OnInit{
       () => {
         this.users = this.users.filter((user: User) => user.username !== event.username );
       });
+    }
+    
     }
 
     onUsernameChange(value: string){
@@ -109,8 +114,7 @@ export class UsersComponent implements OnInit{
     }
 
     onUserRoleChange(value: string){
-      this.user.role = value.toUpperCase();
-      console.log(value);
+     this.user.role = value;
     }
     
     //TODO add another array

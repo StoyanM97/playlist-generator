@@ -67,13 +67,14 @@ export class PlaylistService{
       return this.httpClient.delete<boolean>(url, { headers: this.authenticationService.getHeader()});
     }
     
-    editPlaylist(title: string, playlistId: number): Observable<boolean>{
+    editPlaylist(title: string, playlistId: number, username: string): Observable<boolean>{
       const playlistToSave = {
         playlistId: playlistId,
-        title: title
+        title: title,
+        username: username
     };
-      const url = `${this.EDIT_PLAYLIST_URL}/${playlistId}`;
-      return this.httpClient.put<boolean>(url, playlistToSave, { headers: this.authenticationService.getHeader()});
+     
+      return this.httpClient.put<boolean>(this.EDIT_PLAYLIST_URL, playlistToSave, { headers: this.authenticationService.getHeader()});
    }
 
    getPlaylistsFiletrByGenre(genre: string): Observable<Playlist[]> {

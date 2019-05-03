@@ -51,7 +51,7 @@ export class RegistrationComponent implements OnInit {
       if(this.loggedUser && this.loggedUser.role === "ROLE_ADMIN"){
         
           this.userService.createUserByAdmin(event.value.username,event.value.password, 
-            event.value.email, event.value.firstName, event.value.lastName, event.value.role).subscribe(
+            event.value.firstName, event.value.lastName, event.value.email, event.value.role).subscribe(
             data=>{
                console.log(data);
             },
@@ -70,7 +70,7 @@ export class RegistrationComponent implements OnInit {
           event.value.email, event.value.firstName, event.value.lastName).subscribe(
           data=>{
              console.log(data);
-          },
+          }, 
           error=>{
             console.log("This is the error " + error);
           },
