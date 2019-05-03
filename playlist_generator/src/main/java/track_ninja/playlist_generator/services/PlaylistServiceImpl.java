@@ -74,9 +74,6 @@ public class PlaylistServiceImpl implements PlaylistService{
             throw gdne;
         }
         List<Playlist> playlists = playlistRepository.findPlaylistsByIsDeletedFalseAndGenresContaining_Name(genre);
-        if (playlists.isEmpty()) {
-            handleNoGeneratedPlaylistsException(NO_PLAYLISTS_GENERATED_FOR_THIS_GENRE_ERROR_MESSAGE);
-        }
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
         return mapListOfPlaylistToDTOs(playlists);
     }
@@ -90,9 +87,6 @@ public class PlaylistServiceImpl implements PlaylistService{
             throw unf;
         }
         List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndUser_User_Username(username);
-        if (playlists.isEmpty()) {
-            handleNoGeneratedPlaylistsException(NO_PLAYLISTS_GENERATED_BY_THIS_USER_ERROR_MESSAGE);
-        }
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
         return mapListOfPlaylistToDTOs(playlists);
     }
@@ -101,9 +95,6 @@ public class PlaylistServiceImpl implements PlaylistService{
     public List<PlaylistDTO> getByTitle(String title) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_TITLE_MESSAGE, title));
         List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndTitleLike("%" + title + "%");
-        if (playlists.isEmpty()) {
-            handleNoGeneratedPlaylistsException(NO_PLAYLISTS_GENERATED_WITH_SUCH_TITLE_ERROR_MESSAGE);
-        }
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
         return mapListOfPlaylistToDTOs(playlists);
     }
@@ -113,9 +104,6 @@ public class PlaylistServiceImpl implements PlaylistService{
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE, durationMinutes));
         long durationSeconds = durationMinutes * 60;
         List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndDurationBetween(durationSeconds - 600, durationSeconds + 600);
-        if (playlists.isEmpty()) {
-            handleNoGeneratedPlaylistsException(NO_PLAYLISTS_WITH_DURATION_WITHIN_THIS_RANGE_ERROR_MESSAGE);
-        }
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
         return mapListOfPlaylistToDTOs(playlists);
     }
