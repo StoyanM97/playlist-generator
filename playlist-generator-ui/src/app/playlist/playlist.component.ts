@@ -49,9 +49,8 @@ export class PlaylistComponent implements OnInit {
       this.playlistService.createPlaylist(playlistGenerator).subscribe(data => {
         console.log(data);
       },error => {
-        console.log(error);
         this.loading = !this.loading;
-        alert(error);
+        alert("Error: "+ error);
       },() => { 
         alert("Playlist created!");
         this.loading = !this.loading;
@@ -60,19 +59,6 @@ export class PlaylistComponent implements OnInit {
     }
 
     onGeneratePlaylist(event){
-
-      console.log(event.value.title);
-      console.log(event.value.fromPoint);
-      console.log(event.value.toPoint);
-      console.log("Pop "+ event.value.popGenre);
-      console.log("Pop %"+ event.value.popGenrePercentage);
-      console.log("Dance "+event.value.danceGenre);
-      console.log("Dance %"+event.value.danceGenrePercentage);
-      console.log("Rock "+event.value.rockGenre);
-      console.log("Rock %"+event.value.rockGenrePercentage);
-      console.log("Top Tracks "+event.value.useTopTracks);
-      console.log("Same artists "+event.value.allowSameArtists);
-
     if (this.playlistForm.invalid) {
       return;
     }

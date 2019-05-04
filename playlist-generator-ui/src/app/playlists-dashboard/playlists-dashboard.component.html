@@ -1,12 +1,12 @@
-<div *ngIf="!hasPlaylists" class="center margin-top">
+<div *ngIf="noPlaylists" class="center margin-top">
     <h1 class="message" >Welcome to Playlist Generator!</h1>
     <img class="logo" alt="Playlist Logo" src="../assets/playlist.png">
     <h2 class="message">No Playlists created Yet! You can be the First One!</h2>
     <h2 class="message">Just Register or Login!</h2>
 </div>
 
-<div *ngIf="hasPlaylists" class="bc-image">
-    <div  class="container-list">
+<div class="bc-image">
+    <div  *ngIf="playlists" class="container-list">
         <button (click)="previous()" type="button" class="arrows left-arrow"
         [disabled]="backwarDdisabled">
           <i class="fa fa-chevron-left"></i></button>
@@ -16,7 +16,7 @@
                 [ngStyle]= "playlist.hoverActive ? {} : {'background-image': 'url('+playlist.imageUrl+')', 'background-repeat': 'no-repeat', 'background-size': 'cover'}">
                 <i class="fa fa-music"><span class="title">{{playlist.title}}</span></i></div>
                 <div class="content"> 
-                <h6>Duration: {{playlist.duration}}</h6>
+                <h6 class ="details">Duration: {{playlist.duration}}</h6>
                 <button (click)="showPlaylistDetails(playlist)" type="button" class="btn btn-primary btn-xs">Playlist</button>
               </div>
             </li>
@@ -25,4 +25,11 @@
           [disabled]="forwardDisabled">
           <i class="fa fa-chevron-right"></i></button>
     </div>
-  </div>
+       <div *ngIf="loading" class="loading-animation center-loading">
+          <div class="loader"></div>
+          <div class="loaderbefore"></div>
+          <div class="circular"></div>
+          <div class="circular another"></div>
+          <div class="text">Loading...</div>
+      </div>
+</div>

@@ -1,9 +1,19 @@
-
-.margin-top{
-    margin-top: 55px;
+.player{
+    background-color: black;
+    width: 400px;
+    height: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
-.player{
-    width: 400px;
-    height: 200px;
+.box{
+    background:black;
+    border-radius: 2%;
+    width: 450px;
+    height:150px; 
+}
+.close-button{
+    margin-left: 40%;
 }

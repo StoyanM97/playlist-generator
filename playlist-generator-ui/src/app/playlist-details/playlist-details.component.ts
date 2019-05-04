@@ -5,6 +5,7 @@ import { PlaylistService } from '../services/playlist.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { User } from '../models/user';
 import { AuthenticationService } from '../services/authentication.service';
+import { ConfirmationService } from '../confirmation-dialog/confirmation.service';
 
 @Component({
   selector: 'playlist-details',
@@ -13,55 +14,51 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class PlaylistDetailsComponent implements OnInit {
   
+  edditing: boolean;
+  playUrl: boolean;
+  editDeleteButtonsDisabled: boolean;
 
-  edditing: boolean = false;
-  playUrl: boolean = false;
-  editButtonDisabled: boolean = true;
   previewUrl: string;
   title: string;
 
+  loggedUser: User;
   playlist: Playlist;
   playlistId: number;
 
-  loggedUser: User;
-
   constructor(private route: ActivatedRoute, private playlistService: PlaylistService, 
-    private domSanitizer: DomSanitizer, private router: Router, private authenticationService: AuthenticationService) { 
+    private domSanitizer: DomSanitizer, private router: Router, private authenticationService: AuthenticationService,
+    private confirmationService: ConfirmationService) { 
       this.authenticationService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
+      this.edditing = false;
+      this.playUrl = false;
+      this.editDeleteButtonsDisabled = true;
     }
 
   ngOnInit() {
     if(this.route.snapshot.paramMap.has("playlistId")){
-      console.log(true);
-    this.playlistId = +this.route.snapshot.paramMap.get("playlistId");
-    this.setPlaylist(this.playlistId);
+       this.playlistId = +this.route.snapshot.paramMap.get("playlistId");
+       this.displayPlaylist(this.playlistId);
     }
   }
 
-  setPlaylist(playlistId: number){
+  displayPlaylist(playlistId: number){
   this.playlistService.getPlaylist(playlistId).subscribe(data => {
-      console.log(data);
       this.playlist = data;
    },error => {
-      console.log(error);
+    alert("Error: " +error);
     },() => {
         if(this.playlist.username === this.loggedUser.username || this.loggedUser.role === 'ROLE_ADMIN'){
-          this.editButtonDisabled = false;
+          this.editDeleteButtonsDisabled = false;
         }
      });
   }
+
   onTitleChange(value: string){
         this.title = value;
   }
 
-  getFilter(value: string) {
-    return JSON.stringify(value);
-   
-}
-
 play(value: string){
   this.playUrl = !this.playUrl;
-  console.log(value);
   this.previewUrl = value;
 }
 
@@ -72,11 +69,9 @@ handelStop(){
 editPlaylist(){
   this.edditing = !this.edditing;
   if(this.title){
-    console.log("edit title");
     this.playlistService.editPlaylist(this.title, this.playlistId, this.loggedUser.username).subscribe(data => {
-      console.log(data);
    },error => {
-      console.log(error);
+      alert("Error: " +error);
     },() => { 
        this.playlist.title = this.title;
        this.playlistService.updatePlaylistLocal(this.playlist);
@@ -85,15 +80,31 @@ editPlaylist(){
 }
 
 deletePlaylist(){
-  this.playlistService.deletePlaylist(this.playlistId).subscribe(data => {
-    console.log(data);
+  
+  if(this.edditing){
+    this.edditing = !this.edditing;
+  }
+  else{
+    this.openConfirmationDialog();
+  }
+}
+
+openConfirmationDialog() {
+  this.confirmationService.confirm('Please confirm!', 'Do you really want to delete this playlist?')
+  .then((confirmed) => {
     
-  },error => {
-    console.log(error);
-  },() => { 
-    this.playlistService.deletePlaylist(this.playlistId);
-    this.router.navigate(['/playlists-dashboard']);
-  });
+    if(confirmed){
+      this.playlistService.deletePlaylist(this.playlistId).subscribe(data => {
+        
+      },error => {
+        alert("Error: " +error);
+      },() => { 
+        this.playlistService.deletePlaylist(this.playlistId);
+        this.router.navigate(['/playlists-dashboard']);
+      });
+    }
+  })
+  .catch(() => console.log('Dialog closed'));
 }
 
 }

@@ -6,8 +6,10 @@
     opacity: 0.9;
   }
 
-  .text{
-    color: white;
+  .text-labels{
+    font-family: Arial;
+    text-transform: uppercase;
+    animation: opaa 10s infinite;
   }
 
   .container{
@@ -22,14 +24,9 @@
     width: 960px;
   }
   .button-size{
-    width: 100px;
-   
+    width: 80px;
   }
-  .margin-left{
-    margin-left: 30px;
-  }
-  .margin-left-title{
-    margin-left: 100px;
-  }
+  
+
 
 

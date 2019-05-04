@@ -11,18 +11,12 @@ export class NotFoundComponent implements OnInit {
   
   private defaultMessage: string;
   private message: string;
-  //set a message when navigating to this page
-  //this.router.navigate(['/not-found','your message here']);
+
   constructor(private route: ActivatedRoute, private confirmationService: ConfirmationService) {
     this.defaultMessage = "The page you are looking for was not found!";
    }
 
-  ngOnInit() {
-    this.message = this.route.snapshot.paramMap.get("message");
-    if(this.message !== undefined && this.message !== null){
-      this.defaultMessage = this.message;
-    }
-  }
+  ngOnInit() {}
 
   openConfirmationDialog() {
     this.confirmationService.confirm('Please confirm..', 'Do you really want to ... ?')

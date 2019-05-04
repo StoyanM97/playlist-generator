@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../models/user';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({ providedIn: 'root' })
@@ -24,11 +24,27 @@ export class UserService {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
 
-    constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService){}
+    onUsersComponentSubject: BehaviorSubject<boolean>;
+    onUsersComponent: Observable<boolean>;
+
+    constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService){
+      this.onUsersComponentSubject = new BehaviorSubject<any>(false);
+      this.onUsersComponent = this.onUsersComponentSubject.asObservable();
+
+    }
+
+    public get isOnUsersComponent(): boolean {
+      return this.onUsersComponentSubject.value;
+    }
+  
+    setOnUsersComponent(onComponent: boolean){
+      this.onUsersComponentSubject.next(onComponent);
+    }
     
     getUsers(): Observable<User[]> {
       return this.httpClient.get<User[]>(this.GET_USERS, {headers: this.authenticationService.getHeader()});
-  }
+    }
+
     uploadAvatar(username: string, avatar: File): Observable<{}>{
         const formdata: FormData = new FormData();
         formdata.append('file', avatar);

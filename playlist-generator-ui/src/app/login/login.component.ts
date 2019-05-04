@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit {
  
   loginForm: FormGroup;
 
-  error = '';
-  loading = false;
+  error: string;
+  loading: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authenticationService: AuthenticationService) { }
 
@@ -36,20 +36,13 @@ export class LoginComponent implements OnInit {
            return;
        }
        this.loading = true;
-       console.log(event.value.username);
-       console.log(event.value.password);
        this.authenticationService.login(event.value.username, event.value.password)
-            .pipe()
-            .subscribe(
-                data => {
-                    console.log(data);
-                    this.router.navigate(['/playlists-dashboard']);
-                },
-                error => {
-                    console.log(error);
+       .subscribe(
+        data => { console.log(data);},
+        error => {console.log(error);
                     this.error = error;
-                    this.loading = false;
-                });
+                    this.loading = false;},
+        ()=>{ this.router.navigate(['/playlists-dashboard']);}
+        );
    }
-
 }

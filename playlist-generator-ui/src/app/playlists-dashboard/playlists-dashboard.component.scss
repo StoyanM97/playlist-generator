@@ -69,23 +69,26 @@
   font-size: 15pt;
 }
 .container-list .wrapper .box .icon .title{
-  padding: 5px;
+  padding: 10px;
   font-size: 35pt;
   white-space: nowrap;
 }
 
 .container-list .wrapper .box:hover .icon .title{
-  padding: 3px;
+  padding: 5px;
   font-size: 15pt;
   white-space: nowrap;
 }
 
 .container-list .wrapper .box .content{
-  
   text-align: center;
-  padding: 20px;
   color: white;
 }
+
+.container-list .wrapper .box .content .details{
+margin-bottom: 15px;
+}
+
 
 .arrows{
   font-size: 50px;
@@ -119,3 +122,8 @@
   text-align: center;
   margin-left: 70px;
 }
+.center-loading{
+  margin-left: 20px;
+  margin-top: 80px;
+}
+

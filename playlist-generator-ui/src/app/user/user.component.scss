@@ -11,9 +11,7 @@
   border-radius: 1%;
   padding:5%;
 }
-.container .img{
-  text-align:center;
-}
+
 .container .details{
   border-left:3px solid white;
 }
@@ -31,18 +29,20 @@
     height: 200px;
   }
 
-  .container .imgage-size{
+  
+
+  .container .img-center{
+    text-align: center;
+  }
+
+  .image img {
+    object-fit: contain;
     height: 200px;
     width: 200px;
   }
  
-  [span],[input]{
-    color: white;
-    margin-left: 10px;
-  }
-
-  .button-bc{
-    background-color: grey;
+  .span-margin{
+    margin-left: 15px;
   }
 
   .form-inline { 
@@ -51,3 +51,18 @@
     flex-flow: row wrap;
     align-items: center;
   }
+
+  .buttons{
+    margin-top: 20px;
+  }
+
+  .button-edit{
+    width: 100px;
+  }
+
+  .button-cansel{
+    margin-left: 20px;
+    width: 100px;
+  }
+
+ 

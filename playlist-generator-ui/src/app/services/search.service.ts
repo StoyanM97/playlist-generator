@@ -6,6 +6,10 @@ import { Filter } from '../models/Filter';
 @Injectable({ providedIn: 'root' })
 export class SearchService {
 
+refreshStatus:string;
+refreshStatusSubject: BehaviorSubject<any>;
+refreshStatusObservable: Observable<any>; 
+
 word:string;
 searchSubject: BehaviorSubject<any>;
 searchWord: Observable<any>;
@@ -20,6 +24,14 @@ constructor(){
 
     this.filterSubject = new BehaviorSubject<any>(this.filter);
     this.filterObject = this.filterSubject.asObservable();
+
+    this.refreshStatusSubject = new BehaviorSubject<any>(false);
+    this.refreshStatusObservable = this.refreshStatusSubject.asObservable();
+}
+
+
+setRefreshStatus(status: boolean){
+   this.refreshStatusSubject.next(status);
 }
 
 

@@ -13,6 +13,7 @@ export class UserComponent implements OnInit {
 
   user: User;
   oldUser: User;
+  role: string;
   selectedFile: File = null;
   avatar: any;
   edditing: boolean = false;
@@ -26,8 +27,10 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     
     this.authenticationService.currentUser.subscribe(currentUser => 
-      {this.user = currentUser
-       this.oldUser = this.getCloneUser(currentUser)});
+      { this.user = currentUser
+       this.oldUser = this.getCloneUser(currentUser)
+       this.displayRole(this.user.role);
+      });
     if(this.user.avatar !== undefined && this.user.avatar !== null){
       this.hasImage = true;
     }
@@ -35,16 +38,19 @@ export class UserComponent implements OnInit {
 
 onUploadAvatar(event){
     this.selectedFile = event.target.files[0];
-    console.log(event);
-    console.log(event.target.files[0].type);
-    console.log(this.checkImageType(this.selectedFile));
-    this.userService.uploadAvatar(this.user.username, this.selectedFile).subscribe(data => {
+    if(this.checkImageType(this.selectedFile)){
+      this.userService.uploadAvatar(this.user.username, this.selectedFile).subscribe(data => {
         console.log(data);
     },error => {
-        console.log(error);
+      alert("Error: "+ error);
       },() => { 
         this.saveAvatar(this.selectedFile);
       });
+    }
+    else{
+      alert("Image must be a png format!");
+    }
+   
 }
 
 checkImageType(file: File): boolean{
@@ -76,21 +82,39 @@ onEmailChange(value: string){
 
 doneEditting(){
     if(this.edditing){
-      
     this.userService.editUser(this.user).subscribe(data => {
         console.log(data);
     },error => {
       this.authenticationService.saveEditUser(this.oldUser);
-      alert('Your profile has not been updated!\n'+ error);
+      alert("Error: "+ error);
       },
       () => {
         this.authenticationService.saveEditUser(this.user);
-      }
-        );
+      });
     
     }
   
   this.edditing = !this.edditing;
+}
+
+cansel(){
+  this.edditing = !this.edditing;
+}
+
+displayRole(roleIn: string){
+   switch(roleIn){
+      case "ROLE_USER":{
+        this.role = "User";
+        break; 
+      }
+      case "ROLE_ADMIN":{
+        this.role = "Administrator"
+        break;
+      }
+      default:{
+         this.role = "No role"
+      }
+   }
 }
 
 getCloneUser(userIn: User): User{

@@ -1,21 +1,19 @@
 <div class="bc-image"></div>
   <div class="container center">
    <cdk-virtual-scroll-viewport class="viewport" itemSize="20">
-    <table class="table table-hover margin_top text">
-      <thead>
+    <table class="table table-hover margin_top" style="color: white">
+      <thead class="text-labels">
         <tr>
-            <th class="margin-left">FirstName</th>
+            <th>FirstName</th>
             <th>LastName</th>
             <th>User Role</th>
             <th>UserName</th>
             <th>Email</th>
-            <th>
-              <span>Edit</span>
-              <span class="margin-left-title" >Delete</span>
-            </th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody >
         <tr *cdkVirtualFor="let user of users">
           
             <td *ngIf = "!edditing || user.username !== oldUsername">{{user.firstName}}</td>
@@ -47,8 +45,10 @@
             </td>
 
             <td>
-              <button class="btn btn-primary button-size" (click)= "editMode(user)" [disabled] = "edditing && user.username !== oldUsername" >{{edditing && user.username === username? "Done" : "Edit"}}</button>
-              <button class="btn btn-primary button-size " (click)= "delete(user)" [disabled] = "edditing && user.username !== oldUsername" >{{edditing && user.username === username? "Cancel" : "Delete"}}</button>
+              <button class="btn btn-primary button-size" (click)= "editMode(user)"   *ngIf="!(edditing && user.username !== oldUsername)" >{{edditing || user.username === username? "Done" : "Edit"}}</button>
+            </td>
+            <td>
+                <button class="btn btn-primary button-size " (click)= "delete(user)"  *ngIf="!(edditing && user.username !== oldUsername)" >{{edditing || user.username === username? "Cancel" : "Delete"}}</button>
             </td>
         </tr>
       </tbody>

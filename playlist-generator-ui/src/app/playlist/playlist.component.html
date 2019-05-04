@@ -6,11 +6,11 @@
                     
                     <div class="form-group">
                             <label class="label-from">Title</label>
-                            <input type="text" formControlName="title" class="input form-control"
+                            <input type="text" formControlName="title" class="input-field form-control"
                             [ngClass]="{ 'is-invalid': field.title.errors && 
                             (field.title.touched || field.title.dirty)}"/>
-                            <div *ngIf="field.title.errors" class="invalid-feedback">
-                                <div class="error-message" *ngIf="field.title.errors.required">Title is required</div>
+                            <div *ngIf="field.title.errors" class="invalid-feedback error">
+                                <div  *ngIf="field.title.errors.required">Title is required</div>
                                 <div *ngIf="field.title.errors.minlength || field.title.errors.maxlength">
                                     Title must be at least 3 characters and maximum 10 characters long
                                 </div>
@@ -19,20 +19,20 @@
                    
                     <div class="form-group">
                              <label class="label-from">Travel From</label>
-                             <input type="text" formControlName="fromPoint" class="input form-control"
+                             <input type="text" formControlName="fromPoint" class="input-field form-control"
                              [ngClass]="{ 'is-invalid': field.fromPoint.errors && 
                             (field.fromPoint.touched || field.fromPoint.dirty)}"/>
-                            <div *ngIf="field.fromPoint.errors" class="invalid-feedback group">
-                                <div class="error-message" *ngIf="field.fromPoint.errors.required">Travel from is required</div>
+                            <div *ngIf="field.fromPoint.errors" class="invalid-feedback group error">
+                                <div *ngIf="field.fromPoint.errors.required">Travel from is required</div>
                              </div>
                     </div>
                      <div class="form-group">
                              <label class="label-to">Travel To</label>
-                            <input type="text" formControlName="toPoint" class="input form-control" 
+                            <input type="text" formControlName="toPoint" class="input-field form-control" 
                              [ngClass]="{ 'is-invalid': field.toPoint.errors && 
                             (field.toPoint.touched || field.toPoint.dirty)}" />
-                            <div *ngIf="field.toPoint.errors" class="invalid-feedback">
-                                 <div class="error-message" *ngIf="field.toPoint.errors.required">Travel to is required</div>
+                            <div *ngIf="field.toPoint.errors" class="invalid-feedback error">
+                                 <div *ngIf="field.toPoint.errors.required">Travel to is required</div>
                              </div>
                      </div>
                     </div>
@@ -63,7 +63,7 @@
                         <button class="btn btn-primary left-side" [disabled]="playlistForm.invalid">Generate</button>
                         <button class="btn btn-primary right-side" type="button" (click)="cancel()">Cancel</button>
                     </div>
-                    <div *ngIf="loading" class="wrap">
+                    <div *ngIf="loading" class="loading-animation">
                                 <div class="loader"></div>
                                 <div class="loaderbefore"></div>
                                 <div class="circular"></div>

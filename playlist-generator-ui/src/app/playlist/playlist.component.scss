@@ -21,11 +21,8 @@
   margin-top: 30px;
   margin-bottom: 30px;
 }
-.input-container {
-  display: flex;
-  }
     
-  .input {
+.input-field {
     margin-left: 150px;
     margin-right: 25px;
     width: 58%;
@@ -35,8 +32,11 @@
     }
   }
 
+.error{
+  margin-left: 150px;
+}
 .label-from{
-    width: 85px;;
+    width: 90px;;
 }
 
 .label-to{

@@ -4,6 +4,7 @@ import { User, test} from '../models/user';
 import { AuthenticationService } from '../services/authentication.service';
 import { SearchService } from '../services/search.service';
 import { Subscription } from 'rxjs';
+import { ConfirmationService } from '../confirmation-dialog/confirmation.service';
 
 @Component({ 
     selector: 'users',
@@ -19,16 +20,17 @@ export class UsersComponent implements OnInit{
     user: User;
     users: User[];
     oldUsername: string;
-    edditing: boolean = false;
+    edditing: boolean;
 
     constructor(private userService: UserService, private authenticationService: AuthenticationService,
-      private searchService: SearchService){
-     
+      private searchService: SearchService, private confirmationService: ConfirmationService){
+       this.edditing = false;
+       this.userService.setOnUsersComponent(true);
     }
      
     ngOnInit(){
         this.subscriptions.add(this.userService.getUsers().subscribe(data => {
-                    this.users = data.filter(user => user.username !== this.authenticationService.currentUserValue.username );
+          this.users = data.filter(user => user.username !== this.authenticationService.currentUserValue.username );
         }));   
     }
 
@@ -40,10 +42,16 @@ export class UsersComponent implements OnInit{
         }
       }));
 
-      
+      this.subscriptions.add(this.searchService.refreshStatusObservable.subscribe(status => {
+        if(status){
+              this.searchService.setRefreshStatus(false);
+              this.ngOnInit();
+        }
+      } ));
     }
 
     ngOnDestroy(){
+        this.userService.setOnUsersComponent(false);
         this.subscriptions.unsubscribe();
     }
 
@@ -64,9 +72,8 @@ export class UsersComponent implements OnInit{
     handleEdit(oldUser: User){
      
       this.userService.editUserByAdmin(this.user, this.oldUsername).subscribe(data => {
-            console.log(data);
         },error => {
-            console.log(error);
+          alert("Error: "+ error);
           },
           () => {
             this.users = this.users.map(user => {
@@ -83,14 +90,7 @@ export class UsersComponent implements OnInit{
       this.edditing = !this.edditing;
     }
     else{
-      this.userService.deleteUser(event.username).subscribe(data => {
-        console.log(data);
-    },error => {
-        console.log(error);
-      },
-      () => {
-        this.users = this.users.filter((user: User) => user.username !== event.username );
-      });
+       this.openConfirmationDialog(event.username);
     }
     
     }
@@ -115,9 +115,25 @@ export class UsersComponent implements OnInit{
      this.user.role = value;
     }
     
-    //TODO add another array
     searchByNameUser(name: string){
       this.users = this.users.filter(user => user.username.toUpperCase() === name.toUpperCase());
     }
+
+    openConfirmationDialog(username: string) {
+      this.confirmationService.confirm('Please confirm!', 'Do you really want to delete the this user!')
+      .then(confirmed => {
+        if(confirmed){
+          this.userService.deleteUser(username).subscribe(data => {
+          },error => {
+            alert("Error: "+ error);
+          },
+          () => {
+            this.users = this.users.filter((user: User) => user.username !== username );
+          });
+        }
+      })
+      .catch(() => console.log('Dialog closed'));
+    }
+  
     
 }

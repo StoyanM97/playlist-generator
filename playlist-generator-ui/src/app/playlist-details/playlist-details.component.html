@@ -10,24 +10,25 @@
         </div>
 
         <div class="container-image" [ngStyle]= "{'background-image': 'url('+playlist?.imageUrl+')' , 'background-repeat': 'no-repeat', 'background-size': 'cover'}">
-          
-                <h6 class="form-inline">Duration:
-                    <span >{{playlist?.duration}}</span>
-                </h6>
-        
-                <h6 class="form-inline">User Created it:
-                  <span >{{playlist?.username}}</span>
-                </h6>
-                
-                <h6 class="form-inline">Genres:
-                <span *ngFor="let genre of playlist?.genres">
-                    <span style="padding-left:3px">{{genre}}</span>
-                </span>
-                </h6>
+                <div class="playlist-details">
+                    <h5 class="form-inline">Duration:
+                        <span class="indent" >{{playlist?.duration}}s</span>
+                    </h5>
+            
+                    <h5 class="form-inline">Created By:
+                      <span class="indent" >{{playlist?.username}}</span>
+                    </h5>
+                    
+                    <h5 class="form-inline">Genres:
+                    <span class="indent" *ngFor="let genre of playlist?.genres">
+                        <span>{{genre}}</span>
+                    </span>
+                    </h5>
+                </div>      
         </div>
         <div class="form-inline">
-            <button class="btn btn-primary" type="button" (click)="editPlaylist()" [disabled]="editButtonDisabled">{{ edditing ? "Done" : "Edit" }}</button>
-            <button class="btn btn-primary" type="button" (click)="deletePlaylist()" [disabled]="editButtonDisabled">Delete</button>
+            <button class="btn btn-primary edit-button" type="button" (click)="editPlaylist()" *ngIf="!editDeleteButtonsDisabled">{{ edditing ? "Done" : "Edit" }}</button>
+            <button class="btn btn-primary delete-button" type="button" (click)="deletePlaylist()" *ngIf="!editDeleteButtonsDisabled">{{ edditing ? "Cancel" : "Delete" }}</button>
         </div>
       </div>
         
@@ -45,12 +46,14 @@
             <cdk-virtual-scroll-viewport itemSize="20" class="track-container" >
                 <div class="form-inline" *cdkVirtualFor="let track of playlist?.tracks">
                     <button class="btn btn-primary play-button" (click)= "play(track.previewUrl)"><i class="fa fa-play-circle play-icon"></i></button>
-                    <span class="indent">{{track?.title}},</span>
+                    <div class="track-details">
+                    <span >{{track?.title}},</span>
                     <span class="indent">{{track?.duration}},</span>
                     <span class="indent">{{track?.artistName}},</span>
                     <span class="indent">{{track?.albumName}},</span>
                     <span class="indent">{{track?.genreName}},</span>
                     <span class="indent">{{track?.rank}}</span>
+                  </div>
                 </div>
               </cdk-virtual-scroll-viewport>
            </div>

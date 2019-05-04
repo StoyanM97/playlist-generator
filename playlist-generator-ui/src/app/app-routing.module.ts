@@ -11,6 +11,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { PlaylistDetailsComponent } from './playlist-details/playlist-details.component';
 import { AdminComponent } from './admin/admin.component';
 import { PlayerComponent } from './playlist-details/player/player.component';
+import { AdminGuard } from './auth/admin.guard';
 
 const routes: Routes = [
 { path: '', redirectTo: '/playlists-dashboard', pathMatch: 'full' },
@@ -20,15 +21,11 @@ const routes: Routes = [
 { path: 'not-found', component: NotFoundComponent},
 { path: 'playlist-details/:playlistId' , component: PlaylistDetailsComponent},
 { path: 'player' , component: PlayerComponent},
-{ path: 'playlist', component: PlaylistComponent},
-{ path: 'user', component: UserComponent},
-{ path: 'users', component: UsersComponent},
-{ path: 'admin', component: AdminComponent},
+{ path: 'playlist', component: PlaylistComponent, canActivate: [AuthGuard]},
+{ path: 'user', component: UserComponent, canActivate: [AuthGuard]},
+{ path: 'users', component: UsersComponent, canActivate: [AdminGuard]},
+{ path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
 { path: '**', redirectTo: '/not-found'}
-// { path: 'admin', component: AdminComponent,canActivate: [AuthGuard]},
-// { path: 'playlist', component: PlaylistComponent,canActivate: [AuthGuard]},
-// { path: 'user', component: UserComponent, canActivate: [AuthGuard]},
-// { path: 'users', component: UsersComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

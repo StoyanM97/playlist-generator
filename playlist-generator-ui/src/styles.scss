@@ -35,8 +35,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
  
   //loading animation
-  .wrap {
-    width: 150px;
+  .loading-animation {
+    width: 120px;
     margin: 0;
     position: absolute;
     top: 50%;
@@ -151,6 +151,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   @keyframes poofity {
     0% {transform: scale(1,1) rotate(90deg); opacity: 0.1;}
     50% {transform: scale(4,4) rotate(-360deg); opacity: 0;}
+  }
+  .text {
+    position: absolute;
+    top: 95px;
+    left: 0;
+    font-family: Arial;
+    text-transform: uppercase;
+    color: rgb(0, 0, 0);
+    animation: opaa 10s infinite;
   }
   
   @keyframes opaa {

@@ -9,8 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PlayerComponent implements OnInit {
 
-  iframe: any;
-  previewUrl: string;
+  previewUrl: any;
 
   @Input()
   url: string;
@@ -21,7 +20,7 @@ export class PlayerComponent implements OnInit {
   constructor(private domSanitizer: DomSanitizer, private route: ActivatedRoute) { }
   
   ngOnInit() {
-    this.iframe = this.domSanitizer.bypassSecurityTrustResourceUrl(this.url);
+    this.previewUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
   stopPlaying(){
     this.stop.emit();

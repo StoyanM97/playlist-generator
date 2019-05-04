@@ -16,46 +16,36 @@ export class PlaylistsDashboardComponent implements OnInit {
   subscriptions = new Subscription();
   playlistFullStack: Playlist[];
   playlists: Playlist[];
-  
-  hasPlaylists: boolean;
+
+  loading: boolean;
+  noPlaylists: boolean;
+
   forward: boolean;
   backward: boolean;
-  trackList: number;
-  nextStack: number;
-  
-  loading: boolean;
-
   forwardDisabled: boolean;
   backwarDdisabled: boolean;
 
+  trackList: number;
+  nextStack: number;
+
   constructor(private playlistService: PlaylistService, private router: Router, private searchService: SearchService) {
-    this.loading =false;
-    this.hasPlaylists= false;
+    this.loading = true;
+    this.noPlaylists = false;
+    this.playlistService.setPlaylistExistValue(true);
   }
 
-  ngOnInit() {
+  ngOnInit() { 
 
-    this.playlistService.playlistsExistInDB().subscribe(data => {
-      console.log(data);
-      this.hasPlaylists = data;
-      this.playlistService.setPlaylistExistValue(this.hasPlaylists);
-      if(this.hasPlaylists){
-        this.loading = !this.loading;
-        this.playlistService.getPlaylists().subscribe(data => {
-          console.log(data);
-          this.playlistFullStack = data;
-        },error => {
-          console.log(error);
-        },() => { 
-          this.loading = !this.loading;
-           this.loadPlaylists();
-        });
-      }
-      
-     },error => {
-      console.log(error);
-    },() => { });
-     
+    this.playlistService.getPlaylists().subscribe(data => {
+      this.playlistFullStack = data;
+    },error => {
+      alert("Error: " + error);
+      this.noPlaylists = ! this.noPlaylists;
+    },() => { 
+       this.loading = !this.loading;
+       this.noPlaylists = this.playlistFullStack.length === 0;
+       this.loadPlaylists();
+    });
   }
 
   loadPlaylists(){
@@ -75,12 +65,11 @@ export class PlaylistsDashboardComponent implements OnInit {
         this.filter(filterObject);
       }
     }));
-
-    
   }
 
   ngOnDestroy(){
-      this.subscriptions.unsubscribe();
+    this.playlistService.setPlaylistExistValue(false);
+    this.subscriptions.unsubscribe();
   }
 
   showPlaylistDetails(value: Playlist){
@@ -88,7 +77,6 @@ export class PlaylistsDashboardComponent implements OnInit {
   }
 
   next(){
-     console.log(this.playlists.length);
      this.forward = true;
      if(this.backward){
       this.trackList+=this.nextStack;
@@ -105,7 +93,6 @@ export class PlaylistsDashboardComponent implements OnInit {
   }
 
   previous(){
-    console.log(this.trackList);
     this.backward = true;
     if(this.forward){
       this.trackList-=this.nextStack;
@@ -129,6 +116,7 @@ private get validatePrevious(): boolean{
   return this.playlists.length === undefined || this.playlists.length === 0 || this.trackList < 3;
 }
 
+
 filter(filter: Filter){
    
   switch(filter.method) { 
@@ -149,6 +137,8 @@ filter(filter: Filter){
        break; 
     }
     case "Refresh": { 
+      this.loading = true;
+      this.noPlaylists = false;
       this.ngOnInit();
       break; 
    }  

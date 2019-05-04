@@ -8,13 +8,7 @@ import { PlaylistGenerator } from '../models/playlistGenerator';
 
 @Injectable({ providedIn: 'root' })
 export class PlaylistService{
-
-    playlists: Playlist[];
-
-    
-    playlistExistSubject: BehaviorSubject<boolean>;
-    playlistExist: Observable<boolean>;
-    
+  
     private readonly HOST = 'http://localhost:8080';
     private readonly PLAYLIST_URL = this.HOST + '/api/playlist';
 
@@ -31,6 +25,11 @@ export class PlaylistService{
     httpOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
+
+    playlists: Playlist[];
+
+    playlistExistSubject: BehaviorSubject<boolean>;
+    playlistExist: Observable<boolean>;
 
     constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService){
       this.playlistExistSubject = new BehaviorSubject<any>(false);

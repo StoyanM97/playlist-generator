@@ -22,31 +22,28 @@ export class AdminComponent implements OnInit {
 
   checkIfTrackExist(){
     this.adminService.trackExist().subscribe(data => {
-      console.log(data);
       this.tracksExist = data;
     },error => {
-      console.log(error);
+      alert("Error: "+ error);
     },() => {});
   
   }
 
   checkGenresExist(){
     this.adminService.genresExist().subscribe(data => {
-      console.log(data);
       this.genresExist= data;
-   },error => {
-      console.log(error);
+    },error => {
+      alert("Error: "+ error);
     },() => { });
   
   }
 
   downloadGenres(){
-     this.loading = !this.loading;
-    this.adminService.downloadGenres().subscribe(data => {
-      console.log(data);
-  },error => {
     this.loading = !this.loading;
-      console.log(error);
+    this.adminService.downloadGenres().subscribe(data => {
+    },error => {
+    this.loading = !this.loading;
+    alert("Error: "+ error);
     },() => { 
       this.loading = !this.loading;
       alert("Genres were downloaded!");
@@ -57,11 +54,10 @@ export class AdminComponent implements OnInit {
 
   downloadTracks(){
     this.loading = !this.loading;
-    this.adminService.downloadTracks().subscribe(data => {
-      console.log(data);
-  },error => {
+    this.adminService.downloadTracks().subscribe(data => { 
+    },error => {
       this.loading = !this.loading;
-      console.log(error);
+      alert("Error: "+ error);
     },() => { 
       this.loading = !this.loading;
       alert("Tracks were downloaded!");
@@ -73,11 +69,10 @@ export class AdminComponent implements OnInit {
   syncGenres(){
     this.loading = !this.loading;
     this.adminService.syncGenres().subscribe(data => {
-      console.log(data);
       this.sync = data;
-  },error => {
+    },error => {
     this.loading = !this.loading;
-      console.log(error);
+    alert("Error: "+ error);
     },() => { 
       this.loading = !this.loading;
       alert(this.sync ? "Genres were sync!" :  "No new genres to be added!");
