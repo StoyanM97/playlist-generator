@@ -19,6 +19,7 @@ export class PlaylistsDashboardComponent implements OnInit {
 
   loading: boolean;
   noPlaylists: boolean;
+  noResult: boolean;
 
   forward: boolean;
   backward: boolean;
@@ -29,18 +30,22 @@ export class PlaylistsDashboardComponent implements OnInit {
   nextStack: number;
 
   constructor(private playlistService: PlaylistService, private router: Router, private searchService: SearchService) {
-    this.loading = true;
-    this.noPlaylists = false;
     this.playlistService.setPlaylistExistValue(true);
+    this.searchService.setPlaceholderValue("Search Playlist");
+  
   }
 
   ngOnInit() { 
+    
+    this.loading = true;
+    this.noPlaylists = false;
+    this.noResult = false;
 
     this.playlistService.getPlaylists().subscribe(data => {
       this.playlistFullStack = data;
     },error => {
       alert("Error: " + error);
-      this.noPlaylists = ! this.noPlaylists;
+      this.loading = !this.loading;
     },() => { 
        this.loading = !this.loading;
        this.noPlaylists = this.playlistFullStack.length === 0;
@@ -137,8 +142,7 @@ filter(filter: Filter){
        break; 
     }
     case "Refresh": { 
-      this.loading = true;
-      this.noPlaylists = false;
+      this.searchService.setSearchValue("");
       this.ngOnInit();
       break; 
    }  
@@ -152,47 +156,57 @@ filter(filter: Filter){
 
 
 filterByTitle(value: string){
+  this.loading = true;
   this.playlistService.getPlaylistsFiletByTitile(value).subscribe(data => {
-    console.log(data);
     this.playlistFullStack = data;
   },error => {
-    console.log(error);
+    this.loading = !this.loading;
+    alert(error);
   },() => { 
-    this.loadPlaylists();
+    this.setupView();
   }); 
 }
 
 filterByGenre(value: string){
+  this.loading = true;
   this.playlistService.getPlaylistsFiletrByGenre(value).subscribe(data => {
-    console.log(data);
     this.playlistFullStack = data;
   },error => {
-    console.log(error);
+    this.loading = !this.loading;
+    alert(error);
   },() => { 
-    this.loadPlaylists();
+    this.setupView();
   }); 
 }
 
 filterByUsername(value: string){
+  this.loading = true;
   this.playlistService.getPlaylistsFilterByUsername(value).subscribe(data => {
-    console.log(data);
     this.playlistFullStack = data;
   },error => {
-    console.log(error);
+    this.loading = !this.loading;
+    alert(error);
   },() => { 
-    this.loadPlaylists();
+    this.setupView();
   }); 
 }
 
 filterByDuration(value: string){
+  this.loading = true;
   this.playlistService.getPlaylistsFilterByDuration(+value).subscribe(data => {
-    console.log(data);
     this.playlistFullStack = data;
-  },error => {
-    console.log(error);
+  },error => { 
+    this.loading = !this.loading;
+    alert(error);
   },() => { 
-    this.loadPlaylists();
+    this.setupView();
   });  
+}
+
+setupView(){
+  this.loading = !this.loading;
+  this.noResult = this.playlistFullStack.length === 0;
+  this.loadPlaylists();
 }
 
 }

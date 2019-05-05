@@ -1,6 +1,6 @@
 
 <div class="bc-image">
-  <div class="container-playlist center">
+  <div *ngIf="!loading" class="container-playlist center">
       <div class="row">
         <div>
         <div>
@@ -12,7 +12,7 @@
         <div class="container-image" [ngStyle]= "{'background-image': 'url('+playlist?.imageUrl+')' , 'background-repeat': 'no-repeat', 'background-size': 'cover'}">
                 <div class="playlist-details">
                     <h5 class="form-inline">Duration:
-                        <span class="indent" >{{playlist?.duration}}s</span>
+                        <span class="indent" >{{playlist?.duration}}</span>
                     </h5>
             
                     <h5 class="form-inline">Created By:
@@ -61,4 +61,10 @@
       </div>
     </div>
     <player *ngIf="playUrl" [url]="previewUrl" (stop) ="handelStop($event)"></player>
+    <div *ngIf="loading" class="loading-animation center-loading">
+      <div class="loader"></div>
+      <div class="loaderbefore"></div>
+      <div class="circular"></div>
+      <div class="circular another"></div>
+  </div>
   </div>

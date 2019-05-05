@@ -6,22 +6,25 @@
     opacity: 0.9;
   }
 
-  .text-labels{
-    font-family: Arial;
-    text-transform: uppercase;
-    animation: opaa 10s infinite;
-  }
-
-  .container{
+  .container-user{
     background-color: rgba(50, 55, 62, 0.7);
     border: 0.5px solid white;
     border-radius: 1%;
     padding:5%;
   }
 
+  .text-labels{
+    text-transform: uppercase;
+    animation: opaa 10s infinite;
+     
+    &.no-animation{
+      animation: none;
+    }
+  }
+
   .viewport {
     height: 420px;
-    width: 960px;
+    width: 1200px;
   }
   .button-size{
     width: 80px;

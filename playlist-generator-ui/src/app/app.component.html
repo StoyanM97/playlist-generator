@@ -41,7 +41,7 @@
 
     <div *ngIf= "hasPlaylists" class="right">      
         <div class="input-group">
-            <input id="txtSearch" type="text" class="form-control" placeholder="Search" value = "" #getInput />
+            <input id="txtSearch" type="text" class="form-control" placeholder="{{placeholder}}" [(ngModel)]="search" #getInput />
                 <div ngbDropdown class="input-group-btn remove-margin">
                     <button class="btn btn-primary" ngbDropdownToggle><span class="fa fa-search"></span></button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -57,7 +57,7 @@
     
      <div *ngIf="onUsersComponent" class="right">
         <div class="input-group">
-              <input id="txtSearch" type="text" class="form-control" placeholder="Search" value = "" #getInput />
+              <input id="txtSearch" type="text" class="form-control" placeholder="{{placeholder}}" [(ngModel)]= "search" #getInput />
               <div class="input-group-btn">
                 <button class="btn btn-primary" (click)="setSearchValue(getInput.value)">
                   <span class="fa fa-search"></span>

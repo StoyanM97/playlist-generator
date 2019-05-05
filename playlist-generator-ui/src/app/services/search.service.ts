@@ -8,7 +8,15 @@ export class SearchService {
 
 refreshStatus:string;
 refreshStatusSubject: BehaviorSubject<any>;
-refreshStatusObservable: Observable<any>; 
+refreshStatusObservable: Observable<any>;
+
+placeholderValue:string;
+placeholderValueSubject: BehaviorSubject<any>;
+placeholderValueObservable: Observable<any>; 
+
+searchValue:string;
+searchValueSubject: BehaviorSubject<any>;
+searchValueObservable: Observable<any>; 
 
 word:string;
 searchSubject: BehaviorSubject<any>;
@@ -19,6 +27,13 @@ filterSubject: BehaviorSubject<any>;
 filterObject: Observable<any>;
 
 constructor(){
+    
+    this.placeholderValueSubject = new BehaviorSubject<any>(this.placeholderValue);
+    this.placeholderValueObservable = this.placeholderValueSubject.asObservable();
+
+    this.searchValueSubject = new BehaviorSubject<any>(this.searchValue);
+    this.searchValueObservable = this.searchValueSubject.asObservable();
+
     this.searchSubject = new BehaviorSubject<any>(this.word);
     this.searchWord = this.searchSubject.asObservable();
 
@@ -30,10 +45,17 @@ constructor(){
 }
 
 
+setPlaceholderValue(value: string){
+    this.placeholderValueSubject.next(value);
+ }
+
+setSearchValue(value: string){
+   this.searchValueSubject.next(value);
+}
+
 setRefreshStatus(status: boolean){
    this.refreshStatusSubject.next(status);
 }
-
 
 public get getSearchWord(): string {
     return this.searchSubject.value;

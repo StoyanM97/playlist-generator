@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { User } from '../models/user';
 import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'user',
@@ -20,7 +21,7 @@ export class UserComponent implements OnInit {
   hasImage: boolean = false;
 
   constructor(private authenticationService: AuthenticationService, private userService: UserService,
-              private domSanitizer: DomSanitizer) { 
+    private router: Router, private domSanitizer: DomSanitizer) { 
 
   }
 
@@ -98,7 +99,12 @@ doneEditting(){
 }
 
 cansel(){
-  this.edditing = !this.edditing;
+  if(this.edditing){
+    this.edditing = !this.edditing;
+  }else{
+    this.router.navigate(['/playlists-dashboard']);
+  }
+ 
 }
 
 displayRole(roleIn: string){

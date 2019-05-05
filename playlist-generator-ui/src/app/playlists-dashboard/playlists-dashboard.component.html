@@ -5,8 +5,8 @@
     <h2 class="message">Just Register or Login!</h2>
 </div>
 
-<div class="bc-image">
-    <div  *ngIf="playlists" class="container-list">
+<div *ngIf="!noPlaylists" class="bc-image">
+    <div  *ngIf="playlistFullStack" class="container-list">
         <button (click)="previous()" type="button" class="arrows left-arrow"
         [disabled]="backwarDdisabled">
           <i class="fa fa-chevron-left"></i></button>
@@ -24,6 +24,9 @@
           <button (click)="next()" type="button" class="arrows right-arrow" 
           [disabled]="forwardDisabled">
           <i class="fa fa-chevron-right"></i></button>
+    </div>
+    <div *ngIf="noResult"  >
+      <h1 class="info">No Playlists to display!</h1>
     </div>
        <div *ngIf="loading" class="loading-animation center-loading">
           <div class="loader"></div>

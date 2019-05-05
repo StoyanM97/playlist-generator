@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
   loggedUser: User;
   hasPlaylists: boolean;
   onUsersComponent: boolean;
+  search: string;
+  placeholder: string;
 
   constructor(private location: Location, private authenticationService: AuthenticationService,
     private searchService: SearchService, private playlistService: PlaylistService,
@@ -26,6 +28,8 @@ export class AppComponent implements OnInit {
     this.authenticationService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
     this.playlistService.playlistExist.subscribe(exist => this.hasPlaylists = exist);
     this.userService.onUsersComponent.subscribe(onComponent => this.onUsersComponent = onComponent);
+    this.searchService.searchValueObservable.subscribe(value => this.search = value);
+    this.searchService.placeholderValueObservable.subscribe(value => this.placeholder = value);
   }
 
   setSearchValue(value: string){

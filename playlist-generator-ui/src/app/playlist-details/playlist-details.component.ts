@@ -16,6 +16,7 @@ export class PlaylistDetailsComponent implements OnInit {
   
   edditing: boolean;
   playUrl: boolean;
+  loading: boolean;
   editDeleteButtonsDisabled: boolean;
 
   previewUrl: string;
@@ -31,6 +32,7 @@ export class PlaylistDetailsComponent implements OnInit {
       this.authenticationService.currentUser.subscribe(currentUser => this.loggedUser = currentUser);
       this.edditing = false;
       this.playUrl = false;
+      this.loading = true;
       this.editDeleteButtonsDisabled = true;
     }
 
@@ -50,6 +52,7 @@ export class PlaylistDetailsComponent implements OnInit {
         if(this.playlist.username === this.loggedUser.username || this.loggedUser.role === 'ROLE_ADMIN'){
           this.editDeleteButtonsDisabled = false;
         }
+        this.loading = !this.loading;
      });
   }
 

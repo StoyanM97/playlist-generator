@@ -26,6 +26,7 @@ export class UsersComponent implements OnInit{
       private searchService: SearchService, private confirmationService: ConfirmationService){
        this.edditing = false;
        this.userService.setOnUsersComponent(true);
+       this.searchService.setPlaceholderValue("Search By Username");
     }
      
     ngOnInit(){
@@ -36,7 +37,6 @@ export class UsersComponent implements OnInit{
 
     ngAfterViewInit(){
       this.subscriptions.add(this.searchService.searchWord.subscribe(word =>{
-        console.log(word);
         if(word !== undefined && word !== null && this.users !== undefined && this.users !== null){
           this.searchByNameUser(word);
         }
@@ -45,6 +45,7 @@ export class UsersComponent implements OnInit{
       this.subscriptions.add(this.searchService.refreshStatusObservable.subscribe(status => {
         if(status){
               this.searchService.setRefreshStatus(false);
+              this.searchService.setSearchValue("");
               this.ngOnInit();
         }
       } ));
@@ -133,7 +134,6 @@ export class UsersComponent implements OnInit{
         }
       })
       .catch(() => console.log('Dialog closed'));
-    }
-  
+    }  
     
 }

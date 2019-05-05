@@ -37,7 +37,7 @@
              
             <div class="buttons">
                 <button class="btn btn-primary button-edit" type="button" (click)="doneEditting()">{{edditing? "Done" : "Edit"}}</button>
-                <button *ngIf="edditing" class="btn btn-primary button-cansel" type="button" (click)="cansel()">Cansel</button>
+                <button class="btn btn-primary button-cansel" type="button" (click)="cansel()">{{edditing? "Cansel" : "Back"}}</button>
             </div>
            
           </div>
