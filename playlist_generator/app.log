@@ -35341,3 +35341,678 @@ io.jsonwebtoken.ExpiredJwtException: JWT expired at 2019-05-05T01:43:24Z. Curren
 05-05-2019 02:25:39.611 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
 05-05-2019 02:30:18.248 [Thread-23] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
 05-05-2019 02:30:18.252 [Thread-23] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+05-05-2019 08:10:08.798 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Starting PlaylistGeneratorApplication on ventsislavs-mbp with PID 3629 (/Users/ventsislavdraganov/Desktop/playlistgenerator/playlist_generator/out/production/classes started by ventsislavdraganov in /Users/ventsislavdraganov/Desktop/playlistgenerator/playlist_generator)
+05-05-2019 08:10:08.807 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - No active profile set, falling back to default profiles: default
+05-05-2019 08:10:08.909 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+05-05-2019 08:10:08.909 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+05-05-2019 08:10:09.712 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+05-05-2019 08:10:09.855 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 115ms. Found 10 repository interfaces.
+05-05-2019 08:10:10.380 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a370e675] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+05-05-2019 08:10:10.416 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$3c1eaeaf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+05-05-2019 08:10:10.421 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+05-05-2019 08:10:10.422 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@459a2b25' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+05-05-2019 08:10:10.423 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$60f35161] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+05-05-2019 08:10:10.427 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+05-05-2019 08:10:10.923 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+05-05-2019 08:10:10.944 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+05-05-2019 08:10:10.954 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+05-05-2019 08:10:10.954 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+05-05-2019 08:10:11.052 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+05-05-2019 08:10:11.053 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2143 ms
+05-05-2019 08:10:11.219 [MLog-Init-Reporter] INFO  com.mchange.v2.log.MLog - MLog clients using slf4j logging.
+05-05-2019 08:10:11.261 [restartedMain] INFO  com.mchange.v2.c3p0.C3P0Registry - Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
+05-05-2019 08:10:11.571 [restartedMain] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1hge137a211ah9gv1jivbfz|33007f91, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hge137a211ah9gv1jivbfz|33007f91, idleConnectionTestPeriod -> 0, initialPoolSize -> 5, jdbcUrl -> jdbc:mysql://localhost:3306/playlist_generator_db?serverTimezone=UTC, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 3000, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 20, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+05-05-2019 08:10:12.023 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+05-05-2019 08:10:12.132 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.9.Final}
+05-05-2019 08:10:12.133 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+05-05-2019 08:10:12.385 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+05-05-2019 08:10:12.574 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+05-05-2019 08:10:13.632 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+05-05-2019 08:10:14.475 [restartedMain] INFO  o.s.s.p.JdbcUserDetailsManager - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+05-05-2019 08:10:14.661 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@43f14eb9, org.springframework.security.web.context.SecurityContextPersistenceFilter@64660495, org.springframework.security.web.header.HeaderWriterFilter@29aa57fa, org.springframework.web.filter.CorsFilter@1a23165b, org.springframework.security.web.authentication.logout.LogoutFilter@202e7ffc, track_ninja.playlist_generator.security.models.JwtAuthenticationFilter@38c5c6fd, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@335e17df, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@2ebb230a, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@fee6847, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6f66d3b3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@17f32527, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21ba5a7a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6a066b8b, org.springframework.security.web.session.SessionManagementFilter@13874576, org.springframework.security.web.access.ExceptionTranslationFilter@181a5af6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3b219d1f]
+05-05-2019 08:10:14.777 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+05-05-2019 08:10:14.993 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+05-05-2019 08:10:15.205 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+05-05-2019 08:10:15.244 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+05-05-2019 08:10:15.276 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+05-05-2019 08:10:15.279 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Started PlaylistGeneratorApplication in 7.115 seconds (JVM running for 8.84)
+05-05-2019 08:10:27.724 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+05-05-2019 08:10:27.724 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+05-05-2019 08:10:27.739 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 15 ms
+05-05-2019 08:10:27.809 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+05-05-2019 08:10:27.830 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:10:31.387 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:11:46.760 [Thread-26] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+05-05-2019 08:11:46.763 [Thread-26] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+05-05-2019 08:11:52.438 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Starting PlaylistGeneratorApplication on ventsislavs-mbp with PID 3662 (/Users/ventsislavdraganov/Desktop/playlistgenerator/playlist_generator/out/production/classes started by ventsislavdraganov in /Users/ventsislavdraganov/Desktop/playlistgenerator/playlist_generator)
+05-05-2019 08:11:52.447 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - No active profile set, falling back to default profiles: default
+05-05-2019 08:11:52.547 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+05-05-2019 08:11:52.548 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+05-05-2019 08:11:53.487 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+05-05-2019 08:11:53.569 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77ms. Found 10 repository interfaces.
+05-05-2019 08:11:53.943 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5c8124b8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+05-05-2019 08:11:53.970 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$f52eecf2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+05-05-2019 08:11:53.974 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+05-05-2019 08:11:53.975 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@418c6e56' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+05-05-2019 08:11:53.978 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$1a038fa4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+05-05-2019 08:11:53.980 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+05-05-2019 08:11:54.279 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+05-05-2019 08:11:54.291 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+05-05-2019 08:11:54.297 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+05-05-2019 08:11:54.297 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+05-05-2019 08:11:54.360 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+05-05-2019 08:11:54.361 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1813 ms
+05-05-2019 08:11:54.437 [MLog-Init-Reporter] INFO  com.mchange.v2.log.MLog - MLog clients using slf4j logging.
+05-05-2019 08:11:54.459 [restartedMain] INFO  com.mchange.v2.c3p0.C3P0Registry - Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
+05-05-2019 08:11:54.706 [restartedMain] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 1hge137a211ajh3qoi5ijh|44b1856, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 1hge137a211ajh3qoi5ijh|44b1856, idleConnectionTestPeriod -> 0, initialPoolSize -> 5, jdbcUrl -> jdbc:mysql://localhost:3306/playlist_generator_db?serverTimezone=UTC, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 3000, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 20, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+05-05-2019 08:11:54.974 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+05-05-2019 08:11:55.012 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.9.Final}
+05-05-2019 08:11:55.013 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+05-05-2019 08:11:55.100 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+05-05-2019 08:11:55.210 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+05-05-2019 08:11:55.914 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+05-05-2019 08:11:56.505 [restartedMain] INFO  o.s.s.p.JdbcUserDetailsManager - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+05-05-2019 08:11:56.594 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@b9c74bd, org.springframework.security.web.context.SecurityContextPersistenceFilter@3442895c, org.springframework.security.web.header.HeaderWriterFilter@f3d6a93, org.springframework.web.filter.CorsFilter@7e8fda1c, org.springframework.security.web.authentication.logout.LogoutFilter@4d1f903, track_ninja.playlist_generator.security.models.JwtAuthenticationFilter@f104e16, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@350c2262, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@19ca43af, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@118635bc, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5a872372, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2d7dbc62, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5132f386, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@32b1a268, org.springframework.security.web.session.SessionManagementFilter@57891dfc, org.springframework.security.web.access.ExceptionTranslationFilter@13dc6a39, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@213bcf89]
+05-05-2019 08:11:56.666 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+05-05-2019 08:11:56.851 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+05-05-2019 08:11:57.013 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+05-05-2019 08:11:57.040 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+05-05-2019 08:11:57.072 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+05-05-2019 08:11:57.075 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Started PlaylistGeneratorApplication in 5.004 seconds (JVM running for 6.035)
+05-05-2019 08:12:42.775 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+05-05-2019 08:12:42.775 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+05-05-2019 08:12:42.783 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+05-05-2019 08:12:42.808 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+05-05-2019 08:12:42.826 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:12:42.879 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:12:43.487 [http-nio-8080-exec-3] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+05-05-2019 08:12:43.488 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:12:43.491 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:15:26.665 [http-nio-8080-exec-7] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+05-05-2019 08:15:26.956 [http-nio-8080-exec-7] INFO  t.p.services.UserService - Logging user ventsi in...
+05-05-2019 08:15:26.972 [http-nio-8080-exec-7] INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+05-05-2019 08:15:27.161 [http-nio-8080-exec-7] INFO  t.p.services.UserService - Login successful!
+05-05-2019 08:15:27.330 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:15:27.331 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:15:27.335 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:15:45.102 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:15:45.103 [http-nio-8080-exec-3] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:15:52.332 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:15:54.428 [http-nio-8080-exec-4] INFO  t.p.d.s.DatabaseGeneratorService - Genres were loaded
+05-05-2019 08:16:11.464 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:16:11.825 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Downloaded first 25 Playlists from Deezer Api for genre Pop
+05-05-2019 08:16:12.182 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Downloaded next 25 Playlists from Deezer Api for genre Pop
+05-05-2019 08:16:12.182 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Total playlists for genre Pop: 50
+05-05-2019 08:16:32.789 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Tracks were downloaded for genre Pop
+05-05-2019 08:16:32.791 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Number of tracks downloaded for genre Pop: 3293
+05-05-2019 08:16:38.162 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Downloaded first 25 Playlists from Deezer Api for genre Rock
+05-05-2019 08:16:38.527 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Downloaded next 25 Playlists from Deezer Api for genre Rock
+05-05-2019 08:16:38.527 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Total playlists for genre Rock: 50
+05-05-2019 08:17:01.599 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Tracks were downloaded for genre Rock
+05-05-2019 08:17:01.599 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Number of tracks downloaded for genre Rock: 3868
+05-05-2019 08:17:07.628 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Downloaded first 25 Playlists from Deezer Api for genre Dance
+05-05-2019 08:17:07.927 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Downloaded next 25 Playlists from Deezer Api for genre Dance
+05-05-2019 08:17:07.927 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Total playlists for genre Dance: 50
+05-05-2019 08:17:28.322 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Tracks were downloaded for genre Dance
+05-05-2019 08:17:28.323 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Number of tracks downloaded for genre Dance: 2714
+05-05-2019 08:17:33.327 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Total tracks after removing the duplicate tracks: 7289
+05-05-2019 08:39:55.171 [http-nio-8080-exec-7] INFO  t.p.d.s.DatabaseGeneratorService - Saving tracts to database finished
+05-05-2019 08:40:32.166 [http-nio-8080-exec-9] WARN  t.p.s.models.JwtAuthenticationFilter - The token is expired and not valid anymore
+io.jsonwebtoken.ExpiredJwtException: JWT expired at 2019-05-04T23:49:39Z. Current time: 2019-05-05T08:40:32Z, a difference of 31853153 milliseconds.  Allowed clock skew: 0 milliseconds.
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:385)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:481)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:541)
+	at track_ninja.playlist_generator.security.models.JwtTokenUtil.getAllClaimsFromToken(JwtTokenUtil.java:37)
+	at track_ninja.playlist_generator.security.models.JwtTokenUtil.getUsernameFromToken(JwtTokenUtil.java:22)
+	at track_ninja.playlist_generator.security.models.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:41)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+05-05-2019 08:40:32.166 [http-nio-8080-exec-10] WARN  t.p.s.models.JwtAuthenticationFilter - The token is expired and not valid anymore
+io.jsonwebtoken.ExpiredJwtException: JWT expired at 2019-05-04T23:49:39Z. Current time: 2019-05-05T08:40:32Z, a difference of 31853155 milliseconds.  Allowed clock skew: 0 milliseconds.
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:385)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:481)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:541)
+	at track_ninja.playlist_generator.security.models.JwtTokenUtil.getAllClaimsFromToken(JwtTokenUtil.java:37)
+	at track_ninja.playlist_generator.security.models.JwtTokenUtil.getUsernameFromToken(JwtTokenUtil.java:22)
+	at track_ninja.playlist_generator.security.models.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:41)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+05-05-2019 08:40:33.539 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:40:33.541 [http-nio-8080-exec-3] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:41:02.137 [http-nio-8080-exec-6] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+05-05-2019 08:41:02.138 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:41:02.140 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:41:15.231 [http-nio-8080-exec-10] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+05-05-2019 08:41:15.322 [http-nio-8080-exec-10] INFO  t.p.services.UserService - Logging user ventsi in...
+05-05-2019 08:41:15.328 [http-nio-8080-exec-10] INFO  t.p.services.UserService - Login successful!
+05-05-2019 08:41:15.364 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:41:15.365 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:41:15.366 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:41:19.699 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:41:19.705 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:41:22.758 [http-nio-8080-exec-8] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:41:24.189 [http-nio-8080-exec-8] INFO  t.p.d.s.DatabaseGeneratorService - No new genres added
+05-05-2019 08:41:58.639 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:41:58.658 [http-nio-8080-exec-1] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: Maina; travelFrom: Sofia; travelTo: Plovdiv; genres: (Pop-20.0%, Dance-80.0%, null-0.0%, ); allowSameArtists: false; useTopTracks: false; user: ventsi
+05-05-2019 08:41:59.267 [http-nio-8080-exec-1] INFO  t.p.d.g.services.LocationService - Query URL: http://dev.virtualearth.net/REST/v1/Locations/Sofia?key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:41:59.267 [http-nio-8080-exec-1] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:41:59.419 [http-nio-8080-exec-1] INFO  t.p.d.g.services.LocationService - Query URL: http://dev.virtualearth.net/REST/v1/Locations/Plovdiv?key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:41:59.420 [http-nio-8080-exec-1] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:41:59.742 [http-nio-8080-exec-1] INFO  t.p.d.g.services.LocationService - Query URL: https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins=42.697181701660156,23.324310302734375&destinations=42.135929107666016,24.749040603637695&travelMode=driving&key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:41:59.743 [http-nio-8080-exec-1] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:42:00.003 [http-nio-8080-exec-1] INFO  t.p.s.PlaylistGenerationService - playlist successfully saved! Total duration: 5336 seconds; Total number of tracks: 25
+05-05-2019 08:42:00.016 [http-nio-8080-exec-1] INFO  t.p.s.PlaylistGenerationService - playlist successfully added to all of it's genres!
+05-05-2019 08:42:02.698 [http-nio-8080-exec-3] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:42:02.700 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:42:02.747 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:42:06.245 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:42:06.253 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Looking for playlist with id 1...
+05-05-2019 08:42:06.295 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 08:42:56.684 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:42:56.689 [http-nio-8080-exec-7] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: First Trip; travelFrom: Sofia; travelTo: Gabrovo; genres: (null-0.0%, null-0.0%, Rock-100.0%, ); allowSameArtists: true; useTopTracks: false; user: ventsi
+05-05-2019 08:42:56.891 [http-nio-8080-exec-7] INFO  t.p.d.g.services.LocationService - Query URL: http://dev.virtualearth.net/REST/v1/Locations/Sofia?key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:42:56.891 [http-nio-8080-exec-7] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:42:57.034 [http-nio-8080-exec-7] INFO  t.p.d.g.services.LocationService - Query URL: http://dev.virtualearth.net/REST/v1/Locations/Gabrovo?key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:42:57.034 [http-nio-8080-exec-7] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:42:57.363 [http-nio-8080-exec-7] INFO  t.p.d.g.services.LocationService - Query URL: https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins=42.697181701660156,23.324310302734375&destinations=42.88779830932617,25.32056999206543&travelMode=driving&key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:42:57.363 [http-nio-8080-exec-7] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:42:57.690 [http-nio-8080-exec-7] INFO  t.p.s.PlaylistGenerationService - playlist successfully saved! Total duration: 9520 seconds; Total number of tracks: 41
+05-05-2019 08:42:57.693 [http-nio-8080-exec-7] INFO  t.p.s.PlaylistGenerationService - playlist successfully added to all of it's genres!
+05-05-2019 08:42:59.530 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:42:59.532 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:42:59.614 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:43:06.538 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:43:06.539 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Looking for playlist with id 2...
+05-05-2019 08:43:06.573 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 08:43:18.761 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:43:18.776 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Editing playlist with id 2...
+05-05-2019 08:43:18.812 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Playlist edited!
+05-05-2019 08:44:02.285 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:44:02.315 [http-nio-8080-exec-6] INFO  t.p.services.UserService - Creating user rosen...
+05-05-2019 08:44:02.413 [http-nio-8080-exec-6] INFO  t.p.services.UserService - Creation successful!
+05-05-2019 08:44:04.673 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:44:04.674 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:44:04.749 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:44:11.418 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:44:11.419 [http-nio-8080-exec-9] INFO  t.p.services.UserService - Retrieving all users...
+05-05-2019 08:44:11.428 [http-nio-8080-exec-9] INFO  t.p.services.UserService - Retrieved users!
+05-05-2019 08:44:29.798 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:44:29.802 [http-nio-8080-exec-2] INFO  t.p.services.UserService - Retrieving all users...
+05-05-2019 08:44:29.807 [http-nio-8080-exec-2] INFO  t.p.services.UserService - Retrieved users!
+05-05-2019 08:44:41.155 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:44:41.163 [http-nio-8080-exec-5] INFO  t.p.services.UserService - Uploading avatar...
+05-05-2019 08:44:41.169 [http-nio-8080-exec-5] INFO  t.p.services.UserService - Avatar uploaded!
+05-05-2019 08:44:46.153 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:44:46.154 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:44:46.341 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:45:32.900 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:45:32.902 [http-nio-8080-exec-7] INFO  t.p.services.UserService - Creating user mirela...
+05-05-2019 08:45:32.988 [http-nio-8080-exec-7] INFO  t.p.services.UserService - Creation successful!
+05-05-2019 08:45:35.123 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:45:35.124 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:45:35.334 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:45:40.126 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:45:40.128 [http-nio-8080-exec-2] INFO  t.p.services.UserService - Retrieving all users...
+05-05-2019 08:45:40.145 [http-nio-8080-exec-2] INFO  t.p.services.UserService - Retrieved users!
+05-05-2019 08:46:12.206 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:46:12.210 [http-nio-8080-exec-5] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: Varna; travelFrom: Varna; travelTo: Sofia; genres: (Pop-33.333333333333336%, Dance-33.333333333333336%, Rock-33.333333333333336%, ); allowSameArtists: false; useTopTracks: false; user: ventsi
+05-05-2019 08:46:13.223 [http-nio-8080-exec-5] INFO  t.p.d.g.services.LocationService - Query URL: http://dev.virtualearth.net/REST/v1/Locations/Varna?key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:46:13.223 [http-nio-8080-exec-5] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:46:13.346 [http-nio-8080-exec-5] INFO  t.p.d.g.services.LocationService - Query URL: http://dev.virtualearth.net/REST/v1/Locations/Sofia?key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:46:13.347 [http-nio-8080-exec-5] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:46:13.590 [http-nio-8080-exec-5] INFO  t.p.d.g.services.LocationService - Query URL: https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins=43.2063102722168,27.925220489501953&destinations=42.697181701660156,23.324310302734375&travelMode=driving&key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:46:13.590 [http-nio-8080-exec-5] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:46:14.212 [http-nio-8080-exec-5] INFO  t.p.s.PlaylistGenerationService - playlist successfully saved! Total duration: 19842 seconds; Total number of tracks: 89
+05-05-2019 08:46:14.228 [http-nio-8080-exec-5] INFO  t.p.s.PlaylistGenerationService - playlist successfully added to all of it's genres!
+05-05-2019 08:46:16.216 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:46:16.216 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:46:16.674 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:46:29.369 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:46:29.372 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists for title like varna...
+05-05-2019 08:46:29.825 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:46:34.369 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:46:34.369 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:46:34.815 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:46:43.798 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:46:43.800 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists for genre rock...
+05-05-2019 08:46:44.239 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:47:05.679 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:47:05.679 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:47:05.681 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:47:05.682 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieving all playlists for genre rock...
+05-05-2019 08:47:06.436 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:47:06.438 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:48:16.119 [http-nio-8080-exec-9] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+05-05-2019 08:48:16.122 [http-nio-8080-exec-9] INFO  t.p.services.UserService - Registering user kristina...
+05-05-2019 08:48:16.217 [http-nio-8080-exec-9] INFO  t.p.services.UserService - Registration successful!
+05-05-2019 08:48:34.306 [http-nio-8080-exec-2] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+05-05-2019 08:48:34.393 [http-nio-8080-exec-2] INFO  t.p.services.UserService - Logging user mirela in...
+05-05-2019 08:48:34.395 [http-nio-8080-exec-2] INFO  t.p.services.UserService - Login successful!
+05-05-2019 08:48:34.425 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:48:34.426 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:48:34.426 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:48:34.427 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieving all playlists for genre rock...
+05-05-2019 08:48:35.009 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:48:35.013 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:48:53.890 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:48:53.891 [http-nio-8080-exec-7] INFO  t.p.services.UserService - Uploading avatar...
+05-05-2019 08:48:53.894 [http-nio-8080-exec-7] INFO  t.p.services.UserService - Avatar uploaded!
+05-05-2019 08:49:05.701 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:49:05.715 [http-nio-8080-exec-9] INFO  t.p.services.UserService - Editing user mirela...
+05-05-2019 08:49:05.720 [http-nio-8080-exec-9] INFO  t.p.services.UserService - User successfully edited!
+05-05-2019 08:49:08.433 [http-nio-8080-exec-3] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:49:08.433 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:49:08.433 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:49:08.434 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists for genre rock...
+05-05-2019 08:49:08.953 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:49:08.963 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:49:31.191 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:49:31.194 [http-nio-8080-exec-6] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: Zagreb; travelFrom: Zagreb; travelTo: Sofia; genres: (null-0.0%, Dance-100.0%, null-0.0%, ); allowSameArtists: false; useTopTracks: false; user: mirela
+05-05-2019 08:49:33.210 [http-nio-8080-exec-6] INFO  t.p.d.g.services.LocationService - Query URL: http://dev.virtualearth.net/REST/v1/Locations/Zagreb?key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:49:33.210 [http-nio-8080-exec-6] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:49:33.332 [http-nio-8080-exec-6] INFO  t.p.d.g.services.LocationService - Query URL: http://dev.virtualearth.net/REST/v1/Locations/Sofia?key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:49:33.332 [http-nio-8080-exec-6] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:49:33.577 [http-nio-8080-exec-6] INFO  t.p.d.g.services.LocationService - Query URL: https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins=45.8072395324707,15.967570304870605&destinations=42.697181701660156,23.324310302734375&travelMode=driving&key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:49:33.577 [http-nio-8080-exec-6] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:49:34.265 [http-nio-8080-exec-6] INFO  t.p.s.PlaylistGenerationService - playlist successfully saved! Total duration: 28648 seconds; Total number of tracks: 114
+05-05-2019 08:49:34.274 [http-nio-8080-exec-6] INFO  t.p.s.PlaylistGenerationService - playlist successfully added to all of it's genres!
+05-05-2019 08:49:36.109 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:49:36.110 [http-nio-8080-exec-10] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:49:36.111 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieving all playlists for genre rock...
+05-05-2019 08:49:36.111 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:49:36.697 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:49:36.698 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:49:45.733 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+05-05-2019 08:49:45.734 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:49:46.327 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:49:47.154 [http-nio-8080-exec-3] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:49:47.155 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:49:47.645 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:49:49.378 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:49:49.380 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Looking for playlist with id 4...
+05-05-2019 08:49:49.994 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 08:50:04.715 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:50:04.715 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:50:05.182 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:50:15.255 [http-nio-8080-exec-10] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user mirela, setting security context
+05-05-2019 08:50:15.256 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieving all playlists for user ventsi...
+05-05-2019 08:50:15.821 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:50:38.264 [http-nio-8080-exec-2] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+05-05-2019 08:50:38.349 [http-nio-8080-exec-2] INFO  t.p.services.UserService - Logging user ventsi in...
+05-05-2019 08:50:38.356 [http-nio-8080-exec-2] INFO  t.p.services.UserService - Login successful!
+05-05-2019 08:50:38.395 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:50:38.396 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:50:38.398 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:50:38.399 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieving all playlists for user ventsi...
+05-05-2019 08:50:39.004 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:50:39.155 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:50:42.535 [http-nio-8080-exec-8] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:50:42.537 [http-nio-8080-exec-8] INFO  t.p.services.UserService - Retrieving all users...
+05-05-2019 08:50:42.552 [http-nio-8080-exec-8] INFO  t.p.services.UserService - Retrieved users!
+05-05-2019 08:51:06.325 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:51:06.327 [http-nio-8080-exec-1] INFO  t.p.services.UserService - Editing user mirela...
+05-05-2019 08:51:06.327 [http-nio-8080-exec-1] INFO  t.p.services.UserService - Retrieving user by username...
+05-05-2019 08:51:06.332 [http-nio-8080-exec-1] INFO  t.p.services.UserService - Retrieved user!
+05-05-2019 08:51:06.335 [http-nio-8080-exec-1] INFO  t.p.services.UserService - User successfully edited!
+05-05-2019 08:51:22.684 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:51:22.687 [http-nio-8080-exec-4] INFO  t.p.services.UserService - Deleting user mirela...
+05-05-2019 08:51:22.690 [http-nio-8080-exec-4] INFO  t.p.services.UserService - Deletion successful!
+05-05-2019 08:51:30.932 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:51:30.932 [http-nio-8080-exec-8] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:51:30.933 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:51:30.933 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists for user ventsi...
+05-05-2019 08:51:31.497 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:51:31.658 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:51:35.892 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:51:35.895 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Looking for playlist with id 1...
+05-05-2019 08:51:36.493 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 08:51:42.394 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:51:42.397 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Deleting playlist with id 1...
+05-05-2019 08:51:42.887 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Playlist deleted!
+05-05-2019 08:51:42.917 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:51:42.917 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:51:42.918 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:51:42.918 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieving all playlists for user ventsi...
+05-05-2019 08:51:43.465 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:51:43.467 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:51:45.257 [http-nio-8080-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.NullPointerException: null
+	at track_ninja.playlist_generator.security.models.JwtTokenUtil.validateToken(JwtTokenUtil.java:66)
+	at track_ninja.playlist_generator.security.models.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+05-05-2019 08:51:46.241 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:51:46.243 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:51:46.736 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:52:09.125 [http-nio-8080-exec-9] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+05-05-2019 08:52:09.211 [http-nio-8080-exec-9] INFO  t.p.services.UserService - Logging user rosen in...
+05-05-2019 08:52:09.215 [http-nio-8080-exec-9] INFO  t.p.services.UserService - Login successful!
+05-05-2019 08:52:09.244 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user rosen, setting security context
+05-05-2019 08:52:09.245 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:52:09.744 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:52:26.676 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user rosen, setting security context
+05-05-2019 08:52:26.678 [http-nio-8080-exec-6] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: Pleven; travelFrom: Pleven; travelTo: Sofia; genres: (Dance-100.0%, ); allowSameArtists: false; useTopTracks: false; user: rosen
+05-05-2019 08:52:27.189 [http-nio-8080-exec-6] INFO  t.p.d.g.services.LocationService - Query URL: http://dev.virtualearth.net/REST/v1/Locations/Pleven?key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:52:27.189 [http-nio-8080-exec-6] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:52:27.326 [http-nio-8080-exec-6] INFO  t.p.d.g.services.LocationService - Query URL: http://dev.virtualearth.net/REST/v1/Locations/Sofia?key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:52:27.326 [http-nio-8080-exec-6] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:52:27.577 [http-nio-8080-exec-6] INFO  t.p.d.g.services.LocationService - Query URL: https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins=43.407508850097656,24.62105941772461&destinations=42.697181701660156,23.324310302734375&travelMode=driving&key=AhkpmnOX3icFulvHmEd1Tv6KKc3wdYq1dlSXOfHnp_ywjE9oi9hpbZitX98kZZzG
+05-05-2019 08:52:27.577 [http-nio-8080-exec-6] INFO  t.p.d.g.services.LocationService - Response: 200 OK
+05-05-2019 08:52:27.804 [http-nio-8080-exec-6] INFO  t.p.s.PlaylistGenerationService - playlist successfully saved! Total duration: 7571 seconds; Total number of tracks: 32
+05-05-2019 08:52:27.811 [http-nio-8080-exec-6] INFO  t.p.s.PlaylistGenerationService - playlist successfully added to all of it's genres!
+05-05-2019 08:52:29.859 [http-nio-8080-exec-8] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user rosen, setting security context
+05-05-2019 08:52:29.861 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:52:30.342 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:52:39.500 [http-nio-8080-exec-10] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user rosen, setting security context
+05-05-2019 08:52:39.501 [http-nio-8080-exec-10] INFO  t.p.services.UserService - Uploading avatar...
+05-05-2019 08:52:39.504 [http-nio-8080-exec-10] INFO  t.p.services.UserService - Avatar uploaded!
+05-05-2019 08:52:42.209 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user rosen, setting security context
+05-05-2019 08:52:42.210 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:52:42.674 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:53:43.306 [http-nio-8080-exec-6] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+05-05-2019 08:53:43.401 [http-nio-8080-exec-6] INFO  t.p.services.UserService - Logging user ventsi in...
+05-05-2019 08:53:43.405 [http-nio-8080-exec-6] INFO  t.p.services.UserService - Login successful!
+05-05-2019 08:53:43.432 [http-nio-8080-exec-8] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:53:43.433 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:53:43.844 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:53:53.141 [http-nio-8080-exec-10] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:53:53.143 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieving all playlists for title like Pleven...
+05-05-2019 08:53:53.643 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:53:55.867 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:53:55.867 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:53:56.260 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:54:04.113 [http-nio-8080-exec-3] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:54:04.113 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Looking for playlist with id 3...
+05-05-2019 08:54:04.509 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 08:54:24.031 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:54:24.032 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Editing playlist with id 3...
+05-05-2019 08:54:24.409 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Playlist edited!
+05-05-2019 08:54:26.828 [http-nio-8080-exec-8] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:54:26.828 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:54:27.232 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:55:43.935 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:55:43.938 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Looking for playlist with id 3...
+05-05-2019 08:55:44.329 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 08:55:52.088 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:55:52.089 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:55:52.491 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:57:48.465 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:57:48.466 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:57:49.347 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:57:50.040 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:57:50.041 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:57:50.668 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:57:52.328 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:57:52.329 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Looking for playlist with id 3...
+05-05-2019 08:57:52.896 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 08:58:00.768 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:58:00.774 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:58:01.204 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:58:06.779 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:58:06.780 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Looking for playlist with id 3...
+05-05-2019 08:58:07.198 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 08:58:19.167 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:58:19.168 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:58:19.589 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:58:32.909 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:58:32.910 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists for title like pleven...
+05-05-2019 08:58:33.412 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:58:34.849 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:58:34.850 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:58:35.241 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 08:58:38.225 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:58:38.226 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Looking for playlist with id 5...
+05-05-2019 08:58:38.743 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 08:58:40.535 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 08:58:40.536 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 08:58:40.931 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:00:44.174 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:00:44.175 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:00:44.684 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:00:45.365 [http-nio-8080-exec-8] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:00:45.366 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:00:46.040 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:00:50.675 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:00:50.676 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:00:51.605 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:00:52.091 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:00:52.092 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:00:52.844 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:01:07.778 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:01:07.781 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists for title like pleven...
+05-05-2019 09:01:08.317 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:01:11.571 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:01:11.572 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:01:11.983 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:01:17.172 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:01:17.173 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Looking for playlist with id 5...
+05-05-2019 09:01:17.699 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 09:01:25.818 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:01:25.820 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:01:26.238 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:02:36.479 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:02:36.480 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:02:37.043 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:02:37.310 [http-nio-8080-exec-3] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:02:37.311 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:02:37.802 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:02:41.467 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:02:41.468 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Looking for playlist with id 5...
+05-05-2019 09:02:42.004 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 09:02:45.365 [http-nio-8080-exec-8] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:02:45.367 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:02:45.786 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:02:49.306 [http-nio-8080-exec-10] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:02:49.307 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Looking for playlist with id 5...
+05-05-2019 09:02:49.833 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 09:02:57.665 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:02:57.666 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:02:58.068 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:03:06.926 [http-nio-8080-exec-3] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:03:06.929 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieving all playlists for title like pleven...
+05-05-2019 09:03:07.467 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:03:09.054 [http-nio-8080-exec-6] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:03:09.055 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:03:09.462 [http-nio-8080-exec-6] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:03:14.149 [http-nio-8080-exec-8] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:03:14.150 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Looking for playlist with id 5...
+05-05-2019 09:03:14.692 [http-nio-8080-exec-8] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 09:03:16.909 [http-nio-8080-exec-10] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:03:16.911 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:03:17.342 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:03:24.660 [http-nio-8080-exec-1] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:03:24.661 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:03:25.075 [http-nio-8080-exec-1] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:03:40.971 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:03:40.973 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieving all playlists for title like pleven...
+05-05-2019 09:03:41.532 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:03:43.694 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:03:43.695 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:03:44.135 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:03:48.322 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:03:48.322 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Looking for playlist with id 5...
+05-05-2019 09:03:48.871 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 09:03:52.719 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:03:52.719 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:03:53.165 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:05:35.342 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:05:35.349 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:05:36.366 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:05:36.701 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:05:36.702 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:05:37.317 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:05:44.880 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:05:44.884 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists for title like pleven...
+05-05-2019 09:05:45.431 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:05:47.069 [http-nio-8080-exec-7] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:05:47.070 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:05:47.483 [http-nio-8080-exec-7] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:05:50.425 [http-nio-8080-exec-9] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:05:50.426 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Looking for playlist with id 5...
+05-05-2019 09:05:50.964 [http-nio-8080-exec-9] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 09:05:57.888 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:05:57.890 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:05:58.301 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+05-05-2019 09:06:05.414 [http-nio-8080-exec-4] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:06:05.417 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Looking for playlist with id 5...
+05-05-2019 09:06:05.934 [http-nio-8080-exec-4] INFO  t.p.services.PlaylistService - Playlist found!
+05-05-2019 09:06:07.763 [http-nio-8080-exec-5] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user ventsi, setting security context
+05-05-2019 09:06:07.764 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+05-05-2019 09:06:08.169 [http-nio-8080-exec-5] INFO  t.p.services.PlaylistService - Retrieved playlists!

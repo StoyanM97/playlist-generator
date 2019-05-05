@@ -45,9 +45,10 @@ export class PlaylistsDashboardComponent implements OnInit {
       this.playlistFullStack = data;
     },error => {
       alert("Error: " + error);
-      this.loading = !this.loading;
+      this.loading = false;
     },() => { 
-       this.loading = !this.loading;
+      console.log("Here");
+       this.loading = false;
        this.noPlaylists = this.playlistFullStack.length === 0;
        this.loadPlaylists();
     });
@@ -73,11 +74,13 @@ export class PlaylistsDashboardComponent implements OnInit {
   }
 
   ngOnDestroy(){
+    this.loading = false;
     this.playlistService.setPlaylistExistValue(false);
     this.subscriptions.unsubscribe();
   }
 
   showPlaylistDetails(value: Playlist){
+    this.loading = false;
     this.router.navigate(['/playlist-details', value.playlistId]);
   }
 
@@ -204,7 +207,7 @@ filterByDuration(value: string){
 }
 
 setupView(){
-  this.loading = !this.loading;
+  this.loading = false;
   this.noResult = this.playlistFullStack.length === 0;
   this.loadPlaylists();
 }
