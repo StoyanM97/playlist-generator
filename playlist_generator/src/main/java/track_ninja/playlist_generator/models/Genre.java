@@ -23,6 +23,7 @@ public class Genre {
     private static final String GENRE = "genre";
     private static final String PLAYLIST_ID = "playlist_id";
     private static final String GENRE_PLAYLIST_RELATIONS = "genre_playlist_relations";
+    private static final String TOP_GENRE = "topGenre";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,6 +48,6 @@ public class Genre {
     private Set<Playlist> playlists;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "topGenre")
+    @OneToMany(mappedBy = TOP_GENRE)
     private Set<Playlist> playlistsByTop;
 }

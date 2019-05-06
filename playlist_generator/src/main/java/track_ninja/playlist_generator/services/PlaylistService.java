@@ -1,6 +1,4 @@
 package track_ninja.playlist_generator.services;
-
-import track_ninja.playlist_generator.models.Playlist;
 import track_ninja.playlist_generator.models.dtos.PlayListEditDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 
@@ -16,8 +14,6 @@ public interface PlaylistService {
     List<PlaylistDTO> getByTitle(String title);
 
     List<PlaylistDTO> getByDuration(double durationMinutes);
-
-    boolean playlistsExist();
 
     PlaylistDTO getById(int id);
 

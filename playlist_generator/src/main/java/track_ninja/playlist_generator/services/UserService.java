@@ -25,8 +25,6 @@ public interface UserService {
 
     boolean createUser(UserRegistrationDTO userRegistrationDTO);
 
-    boolean editUserByAdmin(UserEditDTO userEditDTO);
-
     boolean deleteUser(String username);
 
     boolean editUser(UserEditDTO userEditDTO);

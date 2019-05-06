@@ -66,7 +66,7 @@ public class AdminController {
     @PutMapping("/edit/user")
     public boolean editUserByAdmin(@Valid @RequestBody UserEditDTO userEditDTO){
         try {
-            return userService.editUserByAdmin(userEditDTO);
+            return userService.editUser(userEditDTO);
         } catch (UserNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }  catch (UsernameAlreadyExistsException ex) {

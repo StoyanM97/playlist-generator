@@ -21,7 +21,6 @@ import track_ninja.playlist_generator.repositories.PlaylistRepository;
 import track_ninja.playlist_generator.repositories.UserRepository;
 import track_ninja.playlist_generator.services.PlaylistServiceImpl;
 
-import java.util.ArrayList;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlaylistServiceTests {

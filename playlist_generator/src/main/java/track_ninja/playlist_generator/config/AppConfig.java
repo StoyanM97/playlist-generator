@@ -15,14 +15,11 @@ import java.beans.PropertyVetoException;
 @Configuration
 @PropertySource("classpath:application.properties")
 public class AppConfig {
-    // Load config file
     @Autowired
     private Environment env;
 
-    // Create security datasource
     @Bean
     public DataSource securityDataSource() {
-        // Datasource w/ connection pooling
         ComboPooledDataSource securityDataSource = new ComboPooledDataSource();
 
         try {
@@ -30,7 +27,6 @@ public class AppConfig {
         } catch (PropertyVetoException e) {
             throw new RuntimeException(e);
         }
-        // Use data from application.properties in classpath
         securityDataSource.setJdbcUrl(env.getProperty("database.url"));
         securityDataSource.setUser(env.getProperty("database.username"));
         securityDataSource.setPassword(env.getProperty("database.password"));

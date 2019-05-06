@@ -31,6 +31,7 @@ public class Playlist {
     private static final String PLAYLIST_TRACK_RELATIONS = "playlist_track_relations";
     private static final String PLAYLISTS = "playlists";
     private static final String DURATION = "duration";
+    private static final String TOP_GENRE_ID = "top_genre_id";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,6 +64,6 @@ public class Playlist {
     private Long duration;
 
     @ManyToOne
-    @JoinColumn(name = "top_genre_id")
+    @JoinColumn(name = TOP_GENRE_ID)
     private Genre topGenre;
 }

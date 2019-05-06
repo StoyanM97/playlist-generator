@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import track_ninja.playlist_generator.models.User;
 import track_ninja.playlist_generator.models.UserDetails;
 import track_ninja.playlist_generator.models.dtos.*;
-import track_ninja.playlist_generator.exceptions.NoUsersCreatedException;
 import track_ninja.playlist_generator.exceptions.UserNotFoundException;
 import track_ninja.playlist_generator.exceptions.UsernameAlreadyExistsException;
 import track_ninja.playlist_generator.models.mappers.ModelMapper;
@@ -32,7 +31,6 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private static final String RETRIEVING_ALL_USERS_MESSAGE = "Retrieving all users...";
-    private static final String COULD_NOT_RETRIEVE_USERS_ERROR_MESSAGE = "Could not retrieve users! %s";
     private static final String RETRIEVED_USERS_MESSAGE = "Retrieved users!";
     private static final String RETRIEVING_USER_BY_USERNAME_MESSAGE = "Retrieving user by username...";
     private static final String COULD_NOT_RETRIEVE_USER_ERROR_MESSAGE = "Could not retrieve user! %s";
@@ -57,7 +55,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private static final String UPLOADING_AVATAR_MESSAGE = "Uploading avatar...";
     private static final String AVATAR_UPLOADED_MESSAGE = "Avatar uploaded!";
     private static final String LOOKING_FOR_USERS_MESSAGE = "Looking for user with username like %s";
-    private static final String COULD_NOT_FIND_USERS_ERROR_MESSAGE = "Could not find users! %s";
     private static final String USERS_FOUND_MESSAGE = "User/s found!";
 
     private UserRepository userRepository;
@@ -88,7 +85,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         List<UserDisplayDTO> userDisplayDTOS = new ArrayList<>();
         List<User> users = userRepository.findAllByEnabledTrue();
         users.forEach(user -> {
-            if(!user.getUserDetail().isDeleted()){
+            if (!user.getUserDetail().isDeleted()) {
                 userDisplayDTOS.add(ModelMapper.userToDTO(user));
             }
         });
@@ -105,7 +102,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public User getByUsername(String username) {
         logger.info(RETRIEVING_USER_BY_USERNAME_MESSAGE);
         User user = userRepository.findByUsernameAndEnabledTrue(username);
-        if (user == null || user.getUserDetail().isDeleted() || !user.isEnabled()) {
+        if (user == null || !user.isEnabled() || user.getUserDetail().isDeleted()) {
             handleUsernameNotFoundException(COULD_NOT_RETRIEVE_USER_ERROR_MESSAGE);
         }
         logger.info(RETRIEVED_USER_MESSAGE);
@@ -113,10 +110,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public ResponseEntity getLoggedUser(LoginUser loginUser){
+    public ResponseEntity getLoggedUser(LoginUser loginUser) {
         logger.info(String.format(LOGGING_USER_IN_MESSAGE, loginUser.getUsername()));
         final User user = userRepository.findByUsernameAndEnabledTrue((loginUser.getUsername()));
-        if (user == null || user.getUserDetail().isDeleted() || !user.isEnabled()) {
+        if (user == null || !user.isEnabled() || user.getUserDetail().isDeleted()) {
             handleUsernameNotFoundException(COULD_NOT_LOG_USER_IN_ERROR_MESSAGE);
         }
         final String token = jwtTokenUtil.generateToken(user);
@@ -143,7 +140,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean deleteUser(String username) {
         logger.info(String.format(DELETING_USER_MESSAGE, username));
         User user = userRepository.findByUsernameAndEnabledTrue(username);
-        if (user == null || user.getUserDetail().isDeleted() || !user.isEnabled()) {
+        if (user == null || !user.isEnabled() || user.getUserDetail().isDeleted()) {
             handleUsernameNotFoundException(COULD_NOT_DELETE_USER_ERROR_MESSAGE);
         }
         user.setEnabled(false);
@@ -168,33 +165,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public boolean editUserByAdmin(UserEditDTO userEditDTO) {
-        logger.info(String.format(EDITING_USER_MESSAGE, userEditDTO.getUsername()));
-        if (!userEditDTO.getOldUsername().equals(userEditDTO.getUsername()) && userRepository.existsByUsername(userEditDTO.getUsername())) {
-            handleUsernameAlreadyExistsException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
-        }
-        User user = getByUsername(userEditDTO.getOldUsername());
-        if (user == null  || user.getUserDetail().isDeleted() || !user.isEnabled()) {
-            return handleUsernameNotFoundException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
-        }
-        UserDetails userDetails = userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getOldUsername());
-        mapEditDTOtoUserDetails(userEditDTO, userDetails);
-        mapEditByAdminDTOtoUser(userEditDTO, userDetails, user);
-        logger.info(USER_SUCCESSFULLY_EDITED_MESSAGE);
-        return userRepository.save(user) != null;
-    }
-
-    @Override
     public boolean editUser(UserEditDTO userEditDTO) {
         logger.info(String.format(EDITING_USER_MESSAGE, userEditDTO.getUsername()));
         if (!userEditDTO.getOldUsername().equals(userEditDTO.getUsername()) && userRepository.existsByUsername(userEditDTO.getUsername())) {
             return handleUsernameAlreadyExistsException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
         }
         User user = userRepository.findByUsernameAndEnabledTrue(userEditDTO.getOldUsername());
-        if (user == null  || user.getUserDetail().isDeleted() || !user.isEnabled()) {
+        if (user == null || !user.isEnabled() || user.getUserDetail().isDeleted()) {
             handleUsernameNotFoundException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
         }
-        UserDetails userDetails =userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getOldUsername());
+        UserDetails userDetails = userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getOldUsername());
         mapRegistrationDTOToUserDetails(userEditDTO, user, userDetails);
         logger.info(USER_SUCCESSFULLY_EDITED_MESSAGE);
         return userRepository.save(user) != null;
@@ -217,8 +197,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return users.stream().map(ModelMapper::userToDTO).collect(Collectors.toList());
     }
 
-    private String getAvatar(User user){
-        return user.getUserDetail().getAvatar()==null? null : new String(Base64.encodeBase64(user.getUserDetail().getAvatar()));
+    private String getAvatar(User user) {
+        return user.getUserDetail().getAvatar() == null ? null : new String(Base64.encodeBase64(user.getUserDetail().getAvatar()));
     }
 
     private void mapRegistrationDTOToUserDetails(UserRegistrationDTO registrationUser, User user, UserDetails userDetails) {
@@ -251,7 +231,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setAuthority(authorityRepository.findByName(userRegistrationDTO.getRole()));
         user.setEnabled(true);
     }
-    
+
     private void mapEditDTOtoUserDetails(UserRegistrationDTO userRegistrationDTO, UserDetails userDetails) {
         userDetails.setFirstName(userRegistrationDTO.getFirstName());
         userDetails.setLastName(userRegistrationDTO.getLastName());
