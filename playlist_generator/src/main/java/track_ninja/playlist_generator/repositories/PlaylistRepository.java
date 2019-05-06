@@ -31,7 +31,5 @@ public interface PlaylistRepository extends CrudRepository<Playlist, Integer> {
 
     List<Playlist> findAllByIsDeletedFalseAndDurationBetween(long start, long end);
 
-    boolean existsByIsDeletedFalseAndPlaylistId(int id);
-
     Playlist findByIsDeletedFalseAndPlaylistId(int id);
 }

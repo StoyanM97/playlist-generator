@@ -26,11 +26,6 @@ public class JwtTokenUtil implements Serializable {
         return getAllClaimsFromToken(token).getExpiration();
     }
 
-    public  Object getClaimFromToken(String token, Function claimsResolver) {
-        final Claims claims = getAllClaimsFromToken(token);
-        return claimsResolver.apply(claims);
-    }
-
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser()
                 .setSigningKey(SIGNING_KEY)
@@ -60,7 +55,7 @@ public class JwtTokenUtil implements Serializable {
                 .compact();
     }
 
-    public Boolean validateToken(String token, UserDetails userDetails) {
+    Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (
                 username.equals(userDetails.getUsername())

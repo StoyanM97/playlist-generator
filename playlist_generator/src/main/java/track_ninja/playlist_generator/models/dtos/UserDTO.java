@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+class UserDTO {
 
     private static final int USER_NAME_MIN_LENGTH = 5;
     private static final int USER_NAME_MAX_LENGTH = 10;

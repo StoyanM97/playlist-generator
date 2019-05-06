@@ -71,11 +71,6 @@ public class PlaylistController {
         }
     }
 
-    @GetMapping("/playlist/exist")
-    public boolean playlistsExist() {
-        return playlistService.playlistsExist();
-    }
-
     @GetMapping("/playlist/{id}")
     public PlaylistDTO getById(@PathVariable int id) {
         try{
