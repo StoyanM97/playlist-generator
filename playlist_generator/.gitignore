@@ -4,7 +4,7 @@ HELP.md
 !gradle/wrapper/gradle-wrapper.jar
 
 ### Log file ###
-app.log
+.app.log
 
 ### STS ###
 .apt_generated
