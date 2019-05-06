@@ -107,6 +107,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
         config.addAllowedHeader("Authorization");
         config.addAllowedHeader("Content-type");
         config.addAllowedOrigin("http://localhost:4200");
+        config.addAllowedOrigin("http://playlistgeneratorprod.s3-website.us-east-2.amazonaws.com");
         config.addAllowedMethod("*");
 
         source.registerCorsConfiguration("/**", config);
