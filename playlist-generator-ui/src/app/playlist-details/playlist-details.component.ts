@@ -49,7 +49,7 @@ export class PlaylistDetailsComponent implements OnInit {
    },error => {
     alert("Error: " +error);
     },() => {
-        if(this.loggedUser === null) {
+        if(!this.loggedUser) {
           this.editDeleteButtonsDisabled = true;
         }
         else if(this.playlist.username === this.loggedUser.username || this.loggedUser.role === 'ROLE_ADMIN'){

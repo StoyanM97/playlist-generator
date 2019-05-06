@@ -37464,3 +37464,6 @@ io.jsonwebtoken.ExpiredJwtException: JWT expired at 2019-05-05T18:23:44Z. Curren
 06-05-2019 12:51:01.098 [http-nio-8080-exec-10] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
 06-05-2019 12:51:01.098 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieving all playlists...
 06-05-2019 12:51:01.586 [http-nio-8080-exec-10] INFO  t.p.services.PlaylistService - Retrieved playlists!
+06-05-2019 12:53:32.040 [http-nio-8080-exec-3] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+06-05-2019 12:53:32.043 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+06-05-2019 12:53:32.539 [http-nio-8080-exec-3] INFO  t.p.services.PlaylistService - Retrieved playlists!
