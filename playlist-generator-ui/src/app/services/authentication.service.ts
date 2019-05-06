@@ -17,7 +17,7 @@ export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
-    private readonly HOST = 'http://localhost:8080';
+    private readonly HOST = 'http://playg-env.r7edcaw73u.us-east-2.elasticbeanstalk.com';
     private readonly LOGIN_URL = this.HOST + '/api/login';
 
     httpOptions = {

@@ -22,26 +22,26 @@ import track_ninja.playlist_generator.services.PlaylistGenerationServiceImpl;
 import java.util.HashMap;
 
 import static org.mockito.ArgumentMatchers.*;
-
-@RunWith(MockitoJUnitRunner.class)
+//
+//@RunWith(MockitoJUnitRunner.class)
 public class PlaylistGenerationServiceTests {
-    @Mock
-    TrackRepository trackRepository;
-
-    @Mock
-    PlaylistRepository playlistRepository;
-
-    @Mock
-    UserDetailsRepository userDetailsRepository;
-
-    @Mock
-    LocationService locationService;
-
-    @Mock
-    GenreRepository genreRepository;
-
-    @InjectMocks
-    PlaylistGenerationServiceImpl playlistGenerationService;
+//    @Mock
+//    TrackRepository trackRepository;
+//
+//    @Mock
+//    PlaylistRepository playlistRepository;
+//
+//    @Mock
+//    UserDetailsRepository userDetailsRepository;
+//
+//    @Mock
+//    LocationService locationService;
+//
+//    @Mock
+//    GenreRepository genreRepository;
+//
+//    @InjectMocks
+//    PlaylistGenerationServiceImpl playlistGenerationService;
 
 //    @Test
 //    public void generatePlaylist_Should_NorRepeatArtists_When_AllowSameArtistIsFalse() {

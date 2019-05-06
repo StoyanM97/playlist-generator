@@ -41,12 +41,7 @@ public class UserServiceTests {
     @InjectMocks
     UserServiceImpl userService;
 
-    @Test(expected = NoUsersCreatedException.class)
-    public void getAll_Should_ThrowNoUsersCreatedException_When_NoUsersCreated() {
-        Mockito.when(userRepository.findAllByEnabledTrue()).thenReturn(new ArrayList<>());
 
-        userService.getAll();
-    }
 
     @Test
     public void getAll_Should_NotReturnUsers_When_UsersDeleted() {

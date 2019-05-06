@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class RegistrationService {
   
-    private readonly HOST = 'http://localhost:8080';
+    private readonly HOST = 'http://playg-env.r7edcaw73u.us-east-2.elasticbeanstalk.com';
     private readonly REGISTER_URL = this.HOST + '/api/register';
     
     httpOptions = {

@@ -8,7 +8,7 @@ import { AuthenticationService } from './authentication.service';
 @Injectable({ providedIn: 'root' })
 export class AdminService{
 
-    private readonly HOST = 'http://localhost:8080';
+    private readonly HOST = 'http://playg-env.r7edcaw73u.us-east-2.elasticbeanstalk.com';
     private readonly ADMIN_URL = this.HOST + '/api/admin/download';
 
     private readonly DOWNLOAD_GENRES_URL = this.ADMIN_URL + '/genres';
