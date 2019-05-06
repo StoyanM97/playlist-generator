@@ -9,7 +9,7 @@ import { PlaylistGenerator } from '../models/playlistGenerator';
 @Injectable({ providedIn: 'root' })
 export class PlaylistService{
   
-    private readonly HOST = 'http://localhost:8080';
+    private readonly HOST = 'http://playg-env.r7edcaw73u.us-east-2.elasticbeanstalk.com';
     private readonly PLAYLIST_URL = this.HOST + '/api/playlist';
 
     private readonly CREATE_PLAYLIST_URL = this.HOST + '/api/user/generate';
