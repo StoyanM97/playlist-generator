@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from '../services/admin.servvice';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'admin',

@@ -30,9 +30,6 @@
     </logger>
     <root level="INFO">
 
-        <!--If you want to see the info on the console too, decomment the following line-->
-
-
         <appender-ref ref="STDOUT"/>
 
         <appender-ref ref="FILE"/>

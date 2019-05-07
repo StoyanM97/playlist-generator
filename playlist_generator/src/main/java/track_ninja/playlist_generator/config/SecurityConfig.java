@@ -102,7 +102,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
         config.addAllowedHeader("Access-Control-Allow-Origin");
         config.addAllowedHeader("Authorization");
         config.addAllowedHeader("Content-type");
+        config.addAllowedOrigin("*");
+        config.addAllowedOrigin("https://d17l5zogyqerg8.cloudfront.net");
+        config.addAllowedOrigin("playlistfortravel.eu");
         config.addAllowedOrigin("http://localhost:4200");
+        config.addAllowedOrigin("https://d17l5zogyqerg8.cloudfront.net/playlists-dashboard");
         config.addAllowedOrigin("http://playlistgeneratorprod.s3-website.us-east-2.amazonaws.com");
         config.addAllowedMethod("*");
 
