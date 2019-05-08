@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import track_ninja.playlist_generator.exceptions.UserNotFoundException;
 import track_ninja.playlist_generator.exceptions.UsernameAlreadyExistsException;
 import track_ninja.playlist_generator.models.User;
@@ -79,7 +80,7 @@ public class UserServiceTests {
         userService.getByUsername(username);
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test(expected = UsernameNotFoundException.class)
     public void getLoggedUser_Should_ThrowUserNotFoundException_When_UserDoesNotExist() {
         LoginUser loginUser = new LoginUser();
         loginUser.setUsername("testUser");
@@ -89,7 +90,7 @@ public class UserServiceTests {
         userService.getLoggedUser(loginUser);
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test(expected = UsernameNotFoundException.class)
     public void getLoggedUser_Should_ThrowUserNotFoundException_When_UserIsNotEnabled() {
         LoginUser loginUser = new LoginUser();
         loginUser.setUsername("testUser");
@@ -101,7 +102,7 @@ public class UserServiceTests {
         userService.getLoggedUser(loginUser);
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test(expected = UsernameNotFoundException.class)
     public void getLoggedUser_Should_ThrowUserNotFoundException_When_UserIsDeleted() {
         LoginUser loginUser = new LoginUser();
         loginUser.setUsername("testUser");

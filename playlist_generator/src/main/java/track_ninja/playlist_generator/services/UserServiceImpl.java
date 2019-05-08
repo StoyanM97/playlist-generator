@@ -33,16 +33,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private static final String RETRIEVING_ALL_USERS_MESSAGE = "Retrieving all users...";
     private static final String RETRIEVED_USERS_MESSAGE = "Retrieved users!";
     private static final String RETRIEVING_USER_BY_USERNAME_MESSAGE = "Retrieving user by username...";
-    private static final String COULD_NOT_RETRIEVE_USER_ERROR_MESSAGE = "Could not retrieve user! %s";
     private static final String RETRIEVED_USER_MESSAGE = "Retrieved user!";
     private static final String LOGGING_USER_IN_MESSAGE = "Logging user %s in...";
     private static final String COULD_NOT_LOG_USER_IN_ERROR_MESSAGE = "Could not log user in! %s";
     private static final String LOGIN_SUCCESSFUL_MESSAGE = "Login successful!";
     private static final String REGISTERING_USER_MESSAGE = "Registering user %s...";
-    private static final String COULD_NOT_REGISTER_USER_ERROR_MESSAGE = "Could not register user! %s";
     private static final String REGISTRATION_SUCCESSFUL_MESSAGE = "Registration successful!";
     private static final String DELETING_USER_MESSAGE = "Deleting user %s...";
-    private static final String COULD_NOT_DELETE_USER_ERROR_MESSAGE = "Could not delete user ! %s";
     private static final String DELETION_SUCCESSFUL_MESSAGE = "Deletion successful!";
     private static final String CREATING_USER_MESSAGE = "Creating user %s...";
     private static final String CREATION_SUCCESSFUL_MESSAGE = "Creation successful!";
@@ -102,7 +99,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         logger.info(RETRIEVING_USER_BY_USERNAME_MESSAGE);
         User user = userRepository.findByUsernameAndEnabledTrue(username);
         if (user == null || !user.isEnabled() || user.getUserDetail().isDeleted()) {
-            throw new UsernameNotFoundException(COULD_NOT_RETRIEVE_USER_ERROR_MESSAGE);
+            throw new UserNotFoundException();
         }
         logger.info(RETRIEVED_USER_MESSAGE);
         return user;
@@ -125,7 +122,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean register(UserRegistrationDTO registrationUser) {
         logger.info(String.format(REGISTERING_USER_MESSAGE, registrationUser.getUsername()));
         if (userRepository.existsByUsername(registrationUser.getUsername())) {
-            throw new UsernameNotFoundException(COULD_NOT_REGISTER_USER_ERROR_MESSAGE);
+            throw new UsernameAlreadyExistsException();
         }
         User user = new User();
         mapRegistrationDTOToUser(registrationUser, user);
@@ -140,7 +137,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         logger.info(String.format(DELETING_USER_MESSAGE, username));
         User user = userRepository.findByUsernameAndEnabledTrue(username);
         if (user == null || !user.isEnabled() || user.getUserDetail().isDeleted()) {
-            throw new UsernameNotFoundException(COULD_NOT_DELETE_USER_ERROR_MESSAGE);
+            throw new UserNotFoundException();
         }
         user.setEnabled(false);
         logger.info(DELETION_SUCCESSFUL_MESSAGE);

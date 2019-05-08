@@ -8,9 +8,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import track_ninja.playlist_generator.duration.generator.services.LocationService;
+import track_ninja.playlist_generator.exceptions.DurationTooLongException;
+import track_ninja.playlist_generator.exceptions.DurationTooShortException;
 import track_ninja.playlist_generator.models.Genre;
 import track_ninja.playlist_generator.models.Playlist;
 import track_ninja.playlist_generator.models.UserDetails;
+import track_ninja.playlist_generator.models.dtos.GenreDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistGeneratorDTO;
 import track_ninja.playlist_generator.repositories.GenreRepository;
@@ -19,51 +22,61 @@ import track_ninja.playlist_generator.repositories.TrackRepository;
 import track_ninja.playlist_generator.repositories.UserDetailsRepository;
 import track_ninja.playlist_generator.services.PlaylistGenerationServiceImpl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.mockito.ArgumentMatchers.*;
-//
-//@RunWith(MockitoJUnitRunner.class)
-public class PlaylistGenerationServiceTests {
-//    @Mock
-//    TrackRepository trackRepository;
-//
-//    @Mock
-//    PlaylistRepository playlistRepository;
-//
-//    @Mock
-//    UserDetailsRepository userDetailsRepository;
-//
-//    @Mock
-//    LocationService locationService;
-//
-//    @Mock
-//    GenreRepository genreRepository;
-//
-//    @InjectMocks
-//    PlaylistGenerationServiceImpl playlistGenerationService;
 
-//    @Test
-//    public void generatePlaylist_Should_NorRepeatArtists_When_AllowSameArtistIsFalse() {
-//        PlaylistGeneratorDTO playlistGeneratorDTO = new PlaylistGeneratorDTO();
-//        playlistGeneratorDTO.setTitle("TestPlaylist");
-//        playlistGeneratorDTO.setUsername("TestUser");
-//        playlistGeneratorDTO.setTravelFrom("TestDestination1");
-//        playlistGeneratorDTO.setTravelTo("TestDestination2");
-//        playlistGeneratorDTO.setAllowSameArtists(false);
-//        playlistGeneratorDTO.setUseTopTracks(false);
-//        playlistGeneratorDTO.setGenres(new HashMap<>());
-//        playlistGeneratorDTO.getGenres().put("pop", 100);
-//
-//        Mockito.when(locationService.getTravelDuration("TestDestination1", "TestDestination2")).thenReturn(6000L);
-//        Mockito.when(userDetailsRepository.findByIsDeletedFalseAndUser_Username("TestUser")).thenReturn(new UserDetails());
-//        Mockito.when(genreRepository.findByName("pop")).thenReturn(new Genre());
-//        Mockito.when(trackRepository.findRandomTrackByGenre("pop")).thenCallRealMethod();
-//        Mockito.when(playlistRepository.save(any(Playlist.class))).thenReturn(null);
-//        Mockito.when(genreRepository.save(any(Genre.class))).thenReturn(null);
-//
-//        PlaylistDTO result = playlistGenerationService.generatePlaylist(playlistGeneratorDTO);
-//
-//        Assert.assertTrue(result.getDuration() <= 6300L && result.getDuration() >= 5700L);
-//    }
+@RunWith(MockitoJUnitRunner.class)
+public class PlaylistGenerationServiceTests {
+    @Mock
+    TrackRepository trackRepository;
+
+    @Mock
+    PlaylistRepository playlistRepository;
+
+    @Mock
+    UserDetailsRepository userDetailsRepository;
+
+    @Mock
+    LocationService locationService;
+
+    @Mock
+    GenreRepository genreRepository;
+
+    @InjectMocks
+    PlaylistGenerationServiceImpl playlistGenerationService;
+
+    @Test(expected = DurationTooLongException.class)
+    public void generatePlaylist_Should_ThrowDurationTooLongException_When_DurationOverMaxDuration() {
+        String start = "testStart";
+        String end = "testEnd";
+        GenreDTO testGenre = new GenreDTO();
+        PlaylistGeneratorDTO playlistGeneratorDTO = new PlaylistGeneratorDTO();
+        playlistGeneratorDTO.setTravelFrom(start);
+        playlistGeneratorDTO.setTravelTo(end);
+        playlistGeneratorDTO.setGenres(new ArrayList<>());
+        playlistGeneratorDTO.getGenres().add(testGenre);
+
+        Mockito.when(locationService.getTravelDuration(start, end)).thenReturn(100000L);
+
+        playlistGenerationService.generatePlaylist(playlistGeneratorDTO);
+    }
+
+    @Test(expected = DurationTooShortException.class)
+    public void generatePlaylist_Should_ThrowDurationTooShortException_When_DurationUnder5minutes() {
+        String start = "testStart";
+        String end = "testEnd";
+        GenreDTO testGenre = new GenreDTO();
+        PlaylistGeneratorDTO playlistGeneratorDTO = new PlaylistGeneratorDTO();
+        playlistGeneratorDTO.setTravelFrom(start);
+        playlistGeneratorDTO.setTravelTo(end);
+        playlistGeneratorDTO.setGenres(new ArrayList<>());
+        playlistGeneratorDTO.getGenres().add(testGenre);
+
+        Mockito.when(locationService.getTravelDuration(start, end)).thenReturn(4L);
+
+        playlistGenerationService.generatePlaylist(playlistGeneratorDTO);
+    }
+
 }

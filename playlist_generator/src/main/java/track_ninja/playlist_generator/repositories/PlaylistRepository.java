@@ -25,7 +25,7 @@ public interface PlaylistRepository extends CrudRepository<Playlist, Integer> {
             "ORDER BY AVG(t.rank) DESC", nativeQuery = true)
     List<Playlist> findAllByIsDeletedFalse();
 
-    List<Playlist> findAllByIsDeletedFalseAndUser_User_Username(String username);
+    List<Playlist> findAllByIsDeletedFalseAndUser_User_UsernameLike(String username);
 
     List<Playlist> findAllByIsDeletedFalseAndTitleLike(String title);
 

@@ -29,7 +29,6 @@ public class PlaylistServiceImpl implements PlaylistService{
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_TITLE_MESSAGE = "Retrieving all playlists for title like %s...";
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE = "Retrieving all playlists for duration around %d minutes...";
 
-    private static final Logger logger = LoggerFactory.getLogger(PlaylistService.class);
     private static final String LOOKING_FOR_PLAYLIST_WITH_ID_MESSAGE = "Looking for playlist with id %d...";
     private static final String PLAYLIST_FOUND_MESSAGE = "Playlist found!";
     private static final String PLAYLIST_EDITED_MESSAGE = "Playlist edited!";
@@ -38,6 +37,8 @@ public class PlaylistServiceImpl implements PlaylistService{
     private static final String DELETING_PLAYLIST_MESSAGE = "Deleting playlist with id %d...";
     private static final String MATCHER = "%";
     private static final String ROLE_ADMIN = "ROLE_ADMIN";
+
+    private static final Logger logger = LoggerFactory.getLogger(PlaylistService.class);
 
     private PlaylistRepository playlistRepository;
     private GenreRepository genreRepository;
@@ -76,7 +77,7 @@ public class PlaylistServiceImpl implements PlaylistService{
         if (!userRepository.existsByUsername(username)) {
             throw new UserNotFoundException();
         }
-        List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndUser_User_Username(username);
+        List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndUser_User_UsernameLike(MATCHER + username + MATCHER);
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
         return mapListOfPlaylistToDTOs(playlists);
     }

@@ -28,6 +28,9 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
     private static final String PLAYLIST_ADDED_TO_GENRES_MESSAGE = "playlist successfully added to all of it's genres!";
 
     private static final Logger logger = LoggerFactory.getLogger(PlaylistGenerationService.class);
+    private static final int MAX_DURATION = 500000;
+    private static final int FIVE_MINUTES_AS_SECONDS = 300;
+    private static final int ONE_MINUTE_AS_SECONDS = 60;
 
     private TrackRepository trackRepository;
     private PlaylistRepository playlistRepository;
@@ -50,11 +53,11 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
     public PlaylistDTO generatePlaylist(PlaylistGeneratorDTO playlistGeneratorDTO) {
         logger.info(String.format(INITIATED_PLAYLIST_GENERATION_MESSAGE, playlistGeneratorDTO.toString()));
 
-        long totalDuration = locationService.getTravelDuration(playlistGeneratorDTO.getTravelFrom(), playlistGeneratorDTO.getTravelTo()) * 60;
+        long totalDuration = locationService.getTravelDuration(playlistGeneratorDTO.getTravelFrom(), playlistGeneratorDTO.getTravelTo()) * ONE_MINUTE_AS_SECONDS;
 
-        if (totalDuration > 500000) {
+        if (totalDuration > MAX_DURATION) {
             throw new DurationTooLongException();
-        } else if (totalDuration < 300) {
+        } else if (totalDuration < FIVE_MINUTES_AS_SECONDS) {
             throw new DurationTooShortException();
         }
 
@@ -69,7 +72,7 @@ public class PlaylistGenerationServiceImpl implements PlaylistGenerationService 
             genres.add(genreRepository.findByName(genre.getGenre()));
         }
         generatedPlaylist.setGenres(genres.stream().filter(Objects::nonNull).collect(Collectors.toSet()));
-        int errorMargin = 300 / generatedPlaylist.getGenres().size();
+        int errorMargin = FIVE_MINUTES_AS_SECONDS / generatedPlaylist.getGenres().size();
         long topGenreDuration = 0L;
         String topGenre = "";
         if (playlistGeneratorDTO.isAllowSameArtists()) {

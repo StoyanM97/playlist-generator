@@ -40,9 +40,9 @@ public class LocationServiceImpl implements LocationService{
     private static final String RESPONSE = "Response: ";
     private static final String URL_INFO = "Query URL: ";
     private static final String LOCATION_NOT_FOUND = "Location \"%s\" not found.";
-    private RestTemplate restTemplate;
+    private static final Logger LOGGER = LoggerFactory.getLogger(LocationService.class);
 
-    private static final Logger log = LoggerFactory.getLogger(LocationService.class);
+    private RestTemplate restTemplate;
 
     @Autowired
     public LocationServiceImpl(RestTemplate restTemplate) {
@@ -65,8 +65,8 @@ public class LocationServiceImpl implements LocationService{
 
             if(response.getStatusCode() == HttpStatus.OK) {
 
-                log.info(URL_INFO + url);
-                log.info(RESPONSE + response.getStatusCode());
+                LOGGER.info(URL_INFO + url);
+                LOGGER.info(RESPONSE + response.getStatusCode());
 
                 try {
                     JsonNode rootNode = objectMapper.readTree(response.getBody());
@@ -77,14 +77,14 @@ public class LocationServiceImpl implements LocationService{
 
 
                 } catch (IOException e) {
-                    log.error(ERROR_DURING_PARSING_THE_JSON_OBJECT);
+                    LOGGER.error(ERROR_DURING_PARSING_THE_JSON_OBJECT);
                 }
 
             }
 
         }
         catch (NoSuchFieldException e){
-            log.error(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
 
         return travelDuration[0];
@@ -101,8 +101,8 @@ public class LocationServiceImpl implements LocationService{
 
         if(response.getStatusCode() == HttpStatus.OK) {
 
-            log.info(URL_INFO + url);
-            log.info(RESPONSE + response.getStatusCode());
+            LOGGER.info(URL_INFO + url);
+            LOGGER.info(RESPONSE + response.getStatusCode());
 
             try {
                 JsonNode rootNode = objectMapper.readTree(response.getBody());
@@ -130,7 +130,7 @@ public class LocationServiceImpl implements LocationService{
 
 
             } catch (IOException e) {
-                log.error(ERROR_DURING_PARSING_THE_JSON_OBJECT);
+                LOGGER.error(ERROR_DURING_PARSING_THE_JSON_OBJECT);
             }
         }
 

@@ -37989,5 +37989,311 @@ Consider defining a bean named 'UserServiceImpl' in your configuration.
 06-05-2019 23:15:13.570 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 06-05-2019 23:15:13.570 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 06-05-2019 23:15:13.614 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 44 ms
-06-05-2019 23:15:13.642 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
-06-05-2019 23:15:13.671 [http-nio-8080-exec-2] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+06-05-2019 23:15:13.642 [http-nio-8080-exec-1] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.08-05-2019 13:20:42.587 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Starting PlaylistGeneratorApplication on DESKTOP-JCCDGG7 with PID 28756 (C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator\out\production\classes started by Predator in C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator)
+08-05-2019 13:20:42.591 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - No active profile set, falling back to default profiles: default
+08-05-2019 13:20:42.657 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+08-05-2019 13:20:42.658 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+08-05-2019 13:20:43.309 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+08-05-2019 13:20:43.413 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 99ms. Found 10 repository interfaces.
+08-05-2019 13:20:43.808 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d58e9d13] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 13:20:43.856 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$6e3c654d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 13:20:43.859 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 13:20:43.861 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@10c3f1be' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 13:20:43.863 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$931107ff] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 13:20:43.868 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 13:20:44.276 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+08-05-2019 13:20:44.288 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+08-05-2019 13:20:44.295 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+08-05-2019 13:20:44.295 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+08-05-2019 13:20:44.407 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+08-05-2019 13:20:44.407 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1749 ms
+08-05-2019 13:20:44.504 [MLog-Init-Reporter] INFO  com.mchange.v2.log.MLog - MLog clients using slf4j logging.
+08-05-2019 13:20:44.529 [restartedMain] INFO  com.mchange.v2.c3p0.C3P0Registry - Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
+08-05-2019 13:20:45.049 [restartedMain] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 2tk05ha215vw6zuaqlie2|7f5d0d59, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 2tk05ha215vw6zuaqlie2|7f5d0d59, idleConnectionTestPeriod -> 0, initialPoolSize -> 5, jdbcUrl -> jdbc:mysql://pg.cmo6jf0xtgtn.us-east-2.rds.amazonaws.com:3306/playlist_generator_db, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 3000, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 20, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+08-05-2019 13:20:47.305 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+08-05-2019 13:20:47.412 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.9.Final}
+08-05-2019 13:20:47.413 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+08-05-2019 13:20:47.611 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+08-05-2019 13:20:47.796 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+08-05-2019 13:20:48.553 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+08-05-2019 13:20:49.146 [restartedMain] INFO  o.s.s.p.JdbcUserDetailsManager - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+08-05-2019 13:20:49.258 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7ec404de, org.springframework.security.web.context.SecurityContextPersistenceFilter@1a091e4d, org.springframework.security.web.header.HeaderWriterFilter@68c2ee9e, org.springframework.web.filter.CorsFilter@22c3dd20, org.springframework.security.web.authentication.logout.LogoutFilter@5b535164, track_ninja.playlist_generator.security.models.JwtAuthenticationFilter@a23e019, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1c8d01c7, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@7213a0e0, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1981bf87, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7f63de53, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2091ca7b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@149147c1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e31f5db, org.springframework.security.web.session.SessionManagementFilter@14efde01, org.springframework.security.web.access.ExceptionTranslationFilter@16954527, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6e3e2802]
+08-05-2019 13:20:49.352 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+08-05-2019 13:20:49.577 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+08-05-2019 13:20:49.737 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+08-05-2019 13:20:49.759 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+08-05-2019 13:20:49.774 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+08-05-2019 13:20:49.776 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Started PlaylistGeneratorApplication in 7.488 seconds (JVM running for 8.24)
+08-05-2019 13:20:56.877 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+08-05-2019 13:20:56.878 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+08-05-2019 13:20:56.885 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+08-05-2019 13:20:57.006 [http-nio-8080-exec-2] INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+08-05-2019 13:20:57.847 [http-nio-8080-exec-2] INFO  t.p.s.models.JwtAuthenticationFilter - Authenticated user stoyan, setting security context
+08-05-2019 13:20:57.866 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieving all playlists...
+08-05-2019 13:24:34.376 [http-nio-8080-exec-2] INFO  t.p.services.PlaylistService - Retrieved playlists!
+08-05-2019 14:05:07.351 [Thread-24] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+08-05-2019 14:05:07.352 [Thread-24] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+08-05-2019 14:05:07.597 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Starting PlaylistGeneratorApplication on DESKTOP-JCCDGG7 with PID 28756 (C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator\out\production\classes started by Predator in C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator)
+08-05-2019 14:05:07.598 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - No active profile set, falling back to default profiles: default
+08-05-2019 14:05:07.956 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+08-05-2019 14:05:08.027 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 71ms. Found 10 repository interfaces.
+08-05-2019 14:05:08.163 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d58e9d13] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:05:08.168 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$6e3c654d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:05:08.169 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:05:08.170 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4413845' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:05:08.172 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$931107ff] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:05:08.173 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:05:08.369 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+08-05-2019 14:05:08.370 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+08-05-2019 14:05:08.371 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+08-05-2019 14:05:08.371 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+08-05-2019 14:05:08.396 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+08-05-2019 14:05:08.396 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 796 ms
+08-05-2019 14:05:08.526 [restartedMain] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 2tk05ha215vw6zuaqlie2|12390763, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 2tk05ha215vw6zuaqlie2|12390763, idleConnectionTestPeriod -> 0, initialPoolSize -> 5, jdbcUrl -> jdbc:mysql://pg.cmo6jf0xtgtn.us-east-2.rds.amazonaws.com:3306/playlist_generator_db, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 3000, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 20, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+08-05-2019 14:05:10.444 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+08-05-2019 14:05:10.481 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+08-05-2019 14:05:10.694 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+08-05-2019 14:05:11.007 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'playlistGenerationController' defined in file [C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator\out\production\classes\track_ninja\playlist_generator\controllers\PlaylistGenerationController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'track_ninja.playlist_generator.services.PlaylistGenerationService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+08-05-2019 14:05:11.008 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+08-05-2019 14:05:11.010 [restartedMain] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+08-05-2019 14:05:11.013 [restartedMain] WARN  o.a.c.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [C3P0PooledConnectionPoolManager[identityToken->2tk05ha215vw6zuaqlie2|12390763]-HelperThread-#0] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.net.SocketInputStream.socketRead0(Native Method)
+ java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+ java.net.SocketInputStream.read(SocketInputStream.java:171)
+ java.net.SocketInputStream.read(SocketInputStream.java:141)
+ sun.security.ssl.InputRecord.readFully(InputRecord.java:465)
+ sun.security.ssl.InputRecord.read(InputRecord.java:503)
+ sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:975)
+ sun.security.ssl.SSLSocketImpl.readDataRecord(SSLSocketImpl.java:933)
+ sun.security.ssl.AppInputStream.read(AppInputStream.java:105)
+ java.io.FilterInputStream.read(FilterInputStream.java:133)
+ com.mysql.cj.protocol.FullReadInputStream.readFully(FullReadInputStream.java:64)
+ com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:63)
+ com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:45)
+ com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:556)
+ com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:732)
+ com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:709)
+ com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:132)
+ com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:540)
+ com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:202)
+ com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1449)
+ com.mysql.cj.NativeSession.connect(NativeSession.java:165)
+ com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:955)
+ com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+ com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:455)
+ com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:240)
+ com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:199)
+ com.mchange.v2.c3p0.DriverManagerDataSource.getConnection(DriverManagerDataSource.java:175)
+ com.mchange.v2.c3p0.WrapperConnectionPoolDataSource.getPooledConnection(WrapperConnectionPoolDataSource.java:220)
+ com.mchange.v2.c3p0.WrapperConnectionPoolDataSource.getPooledConnection(WrapperConnectionPoolDataSource.java:206)
+ com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:203)
+ com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1176)
+ com.mchange.v2.resourcepool.BasicResourcePool.doAcquireAndDecrementPendingAcquiresWithinLockOnSuccess(BasicResourcePool.java:1163)
+ com.mchange.v2.resourcepool.BasicResourcePool.access$700(BasicResourcePool.java:44)
+ com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1908)
+ com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:696)
+08-05-2019 14:05:11.014 [restartedMain] WARN  o.a.c.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [C3P0PooledConnectionPoolManager[identityToken->2tk05ha215vw6zuaqlie2|12390763]-HelperThread-#2] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.net.SocketInputStream.socketRead0(Native Method)
+ java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+ java.net.SocketInputStream.read(SocketInputStream.java:171)
+ java.net.SocketInputStream.read(SocketInputStream.java:141)
+ sun.security.ssl.InputRecord.readFully(InputRecord.java:465)
+ sun.security.ssl.InputRecord.read(InputRecord.java:503)
+ sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:975)
+ sun.security.ssl.SSLSocketImpl.readDataRecord(SSLSocketImpl.java:933)
+ sun.security.ssl.AppInputStream.read(AppInputStream.java:105)
+ java.io.FilterInputStream.read(FilterInputStream.java:133)
+ com.mysql.cj.protocol.FullReadInputStream.readFully(FullReadInputStream.java:64)
+ com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:63)
+ com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:45)
+ com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:556)
+ com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:732)
+ com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:709)
+ com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:132)
+ com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:540)
+ com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:202)
+ com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1449)
+ com.mysql.cj.NativeSession.connect(NativeSession.java:165)
+ com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:955)
+ com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+ com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:455)
+ com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:240)
+ com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:199)
+ com.mchange.v2.c3p0.DriverManagerDataSource.getConnection(DriverManagerDataSource.java:175)
+ com.mchange.v2.c3p0.WrapperConnectionPoolDataSource.getPooledConnection(WrapperConnectionPoolDataSource.java:220)
+ com.mchange.v2.c3p0.WrapperConnectionPoolDataSource.getPooledConnection(WrapperConnectionPoolDataSource.java:206)
+ com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:203)
+ com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1176)
+ com.mchange.v2.resourcepool.BasicResourcePool.doAcquireAndDecrementPendingAcquiresWithinLockOnSuccess(BasicResourcePool.java:1163)
+ com.mchange.v2.resourcepool.BasicResourcePool.access$700(BasicResourcePool.java:44)
+ com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1908)
+ com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:696)
+08-05-2019 14:05:11.018 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+08-05-2019 14:05:11.171 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in track_ninja.playlist_generator.controllers.PlaylistGenerationController required a bean of type 'track_ninja.playlist_generator.services.PlaylistGenerationService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'track_ninja.playlist_generator.services.PlaylistGenerationService' in your configuration.
+
+08-05-2019 14:07:34.392 [main] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: null; travelFrom: testStart; travelTo: testEnd; genres: (null-0.0%, ); allowSameArtists: false; useTopTracks: false; user: null
+08-05-2019 14:10:42.857 [main] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: null; travelFrom: testStart; travelTo: testEnd; genres: (null-0.0%, ); allowSameArtists: false; useTopTracks: false; user: null
+08-05-2019 14:11:20.254 [main] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: null; travelFrom: testStart; travelTo: testEnd; genres: (null-0.0%, ); allowSameArtists: false; useTopTracks: false; user: null
+08-05-2019 14:12:48.234 [main] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: null; travelFrom: testStart; travelTo: testEnd; genres: (null-0.0%, ); allowSameArtists: false; useTopTracks: false; user: null
+08-05-2019 14:14:04.439 [main] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: null; travelFrom: testStart; travelTo: testEnd; genres: (null-0.0%, ); allowSameArtists: false; useTopTracks: false; user: null
+08-05-2019 14:14:33.255 [main] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: null; travelFrom: testStart; travelTo: testEnd; genres: (null-0.0%, ); allowSameArtists: false; useTopTracks: false; user: null
+08-05-2019 14:15:07.129 [main] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: null; travelFrom: testStart; travelTo: testEnd; genres: (null-0.0%, ); allowSameArtists: false; useTopTracks: false; user: null
+08-05-2019 14:15:07.135 [main] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: null; travelFrom: testStart; travelTo: testEnd; genres: (null-0.0%, ); allowSameArtists: false; useTopTracks: false; user: null
+08-05-2019 14:15:07.157 [main] INFO  t.p.services.PlaylistService - Retrieving all playlists for genre testGenre...
+08-05-2019 14:15:07.159 [main] INFO  t.p.services.PlaylistService - Deleting playlist with id 0...
+08-05-2019 14:15:07.160 [main] INFO  t.p.services.PlaylistService - Retrieving all playlists for user testUser...
+08-05-2019 14:15:07.162 [main] INFO  t.p.services.PlaylistService - Looking for playlist with id 0...
+08-05-2019 14:15:07.166 [main] INFO  t.p.services.PlaylistService - Editing playlist with id 0...
+08-05-2019 14:15:07.167 [main] INFO  t.p.services.PlaylistService - Editing playlist with id 0...
+08-05-2019 14:15:07.173 [main] INFO  t.p.services.UserService - Creating user testUser...
+08-05-2019 14:15:07.174 [main] INFO  t.p.services.UserService - Editing user testUserNew...
+08-05-2019 14:15:07.176 [main] INFO  t.p.services.UserService - Deleting user testUser...
+08-05-2019 14:15:07.184 [main] INFO  t.p.services.UserService - Logging user testUser in...
+08-05-2019 14:15:07.185 [main] INFO  t.p.services.UserService - Editing user testUserNew...
+08-05-2019 14:15:07.186 [main] INFO  t.p.services.UserService - Deleting user testUser...
+08-05-2019 14:15:07.187 [main] INFO  t.p.services.UserService - Registering user testUser...
+08-05-2019 14:15:07.189 [main] INFO  t.p.services.UserService - Editing user testUserNew...
+08-05-2019 14:15:07.190 [main] INFO  t.p.services.UserService - Editing user testUserNew...
+08-05-2019 14:15:07.191 [main] INFO  t.p.services.UserService - Logging user testUser in...
+08-05-2019 14:15:07.192 [main] INFO  t.p.services.UserService - Deleting user testUser...
+08-05-2019 14:15:07.194 [main] INFO  t.p.services.UserService - Retrieving all users...
+08-05-2019 14:15:07.227 [main] INFO  t.p.services.UserService - Retrieved users!
+08-05-2019 14:15:07.227 [main] INFO  t.p.services.UserService - Retrieving user by username...
+08-05-2019 14:15:07.229 [main] INFO  t.p.services.UserService - Logging user testUser in...
+08-05-2019 14:15:07.230 [main] INFO  t.p.services.UserService - Retrieving user by username...
+08-05-2019 14:15:07.232 [main] INFO  t.p.services.UserService - Retrieving user by username...
+08-05-2019 14:19:02.996 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Starting PlaylistGeneratorApplication on DESKTOP-JCCDGG7 with PID 28756 (C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator\out\production\classes started by Predator in C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator)
+08-05-2019 14:19:02.997 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - No active profile set, falling back to default profiles: default
+08-05-2019 14:19:03.256 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+08-05-2019 14:19:03.322 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 66ms. Found 10 repository interfaces.
+08-05-2019 14:19:03.422 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d58e9d13] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:19:03.424 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$6e3c654d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:19:03.426 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:19:03.426 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@152bb397' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:19:03.428 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$931107ff] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:19:03.428 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:19:03.561 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+08-05-2019 14:19:03.562 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+08-05-2019 14:19:03.562 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+08-05-2019 14:19:03.562 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+08-05-2019 14:19:03.578 [restartedMain] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+08-05-2019 14:19:03.579 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 580 ms
+08-05-2019 14:19:03.676 [restartedMain] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 2tk05ha215vw6zuaqlie2|1cfa35af, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 2tk05ha215vw6zuaqlie2|1cfa35af, idleConnectionTestPeriod -> 0, initialPoolSize -> 5, jdbcUrl -> jdbc:mysql://pg.cmo6jf0xtgtn.us-east-2.rds.amazonaws.com:3306/playlist_generator_db, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 3000, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 20, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+08-05-2019 14:19:05.321 [main] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: null; travelFrom: testStart; travelTo: testEnd; genres: (null-0.0%, ); allowSameArtists: false; useTopTracks: false; user: null
+08-05-2019 14:19:05.328 [main] INFO  t.p.s.PlaylistGenerationService - Initiated playlist generation. Parameters: title: null; travelFrom: testStart; travelTo: testEnd; genres: (null-0.0%, ); allowSameArtists: false; useTopTracks: false; user: null
+08-05-2019 14:19:05.352 [main] INFO  t.p.services.PlaylistService - Retrieving all playlists for genre testGenre...
+08-05-2019 14:19:05.353 [main] INFO  t.p.services.PlaylistService - Deleting playlist with id 0...
+08-05-2019 14:19:05.355 [main] INFO  t.p.services.PlaylistService - Retrieving all playlists for user testUser...
+08-05-2019 14:19:05.357 [main] INFO  t.p.services.PlaylistService - Looking for playlist with id 0...
+08-05-2019 14:19:05.363 [main] INFO  t.p.services.PlaylistService - Editing playlist with id 0...
+08-05-2019 14:19:05.366 [main] INFO  t.p.services.PlaylistService - Editing playlist with id 0...
+08-05-2019 14:19:05.372 [main] INFO  t.p.services.UserService - Creating user testUser...
+08-05-2019 14:19:05.373 [main] INFO  t.p.services.UserService - Editing user testUserNew...
+08-05-2019 14:19:05.375 [main] INFO  t.p.services.UserService - Deleting user testUser...
+08-05-2019 14:19:05.377 [main] INFO  t.p.services.UserService - Logging user testUser in...
+08-05-2019 14:19:05.385 [main] INFO  t.p.services.UserService - Editing user testUserNew...
+08-05-2019 14:19:05.387 [main] INFO  t.p.services.UserService - Deleting user testUser...
+08-05-2019 14:19:05.388 [main] INFO  t.p.services.UserService - Registering user testUser...
+08-05-2019 14:19:05.390 [main] INFO  t.p.services.UserService - Editing user testUserNew...
+08-05-2019 14:19:05.392 [main] INFO  t.p.services.UserService - Editing user testUserNew...
+08-05-2019 14:19:05.393 [main] INFO  t.p.services.UserService - Logging user testUser in...
+08-05-2019 14:19:05.395 [main] INFO  t.p.services.UserService - Deleting user testUser...
+08-05-2019 14:19:05.396 [main] INFO  t.p.services.UserService - Retrieving all users...
+08-05-2019 14:19:05.444 [main] INFO  t.p.services.UserService - Retrieved users!
+08-05-2019 14:19:05.445 [main] INFO  t.p.services.UserService - Retrieving user by username...
+08-05-2019 14:19:05.446 [main] INFO  t.p.services.UserService - Logging user testUser in...
+08-05-2019 14:19:05.447 [main] INFO  t.p.services.UserService - Retrieving user by username...
+08-05-2019 14:19:05.449 [main] INFO  t.p.services.UserService - Retrieving user by username...
+08-05-2019 14:19:05.606 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+08-05-2019 14:19:05.631 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+08-05-2019 14:19:05.728 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+08-05-2019 14:19:05.989 [restartedMain] INFO  o.s.s.p.JdbcUserDetailsManager - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+08-05-2019 14:19:06.014 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@27c9e4a0, org.springframework.security.web.context.SecurityContextPersistenceFilter@3a026869, org.springframework.security.web.header.HeaderWriterFilter@5b65f4c2, org.springframework.web.filter.CorsFilter@71715da7, org.springframework.security.web.authentication.logout.LogoutFilter@5d8bad1f, track_ninja.playlist_generator.security.models.JwtAuthenticationFilter@7974175f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4f333bad, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@7463d2da, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@3a34f729, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7fd9ffe6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@72c4068d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f32ff3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@a220946, org.springframework.security.web.session.SessionManagementFilter@1c9dcff8, org.springframework.security.web.access.ExceptionTranslationFilter@4f70efd3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2eb4471]
+08-05-2019 14:19:06.046 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+08-05-2019 14:19:06.054 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+08-05-2019 14:19:06.158 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+08-05-2019 14:19:06.174 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+08-05-2019 14:19:06.177 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+08-05-2019 14:19:06.178 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Started PlaylistGeneratorApplication in 3.211 seconds (JVM running for 3504.642)
+08-05-2019 14:19:06.180 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+08-05-2019 14:20:26.570 [main] INFO  t.p.services.UserService - Creating user testUser...
+08-05-2019 14:20:26.577 [main] INFO  t.p.services.UserService - Editing user testUserNew...
+08-05-2019 14:20:26.578 [main] INFO  t.p.services.UserService - Deleting user testUser...
+08-05-2019 14:20:26.580 [main] INFO  t.p.services.UserService - Logging user testUser in...
+08-05-2019 14:20:26.582 [main] INFO  t.p.services.UserService - Editing user testUserNew...
+08-05-2019 14:20:26.583 [main] INFO  t.p.services.UserService - Deleting user testUser...
+08-05-2019 14:20:26.584 [main] INFO  t.p.services.UserService - Registering user testUser...
+08-05-2019 14:20:26.585 [main] INFO  t.p.services.UserService - Editing user testUserNew...
+08-05-2019 14:20:26.586 [main] INFO  t.p.services.UserService - Editing user testUserNew...
+08-05-2019 14:20:26.587 [main] INFO  t.p.services.UserService - Logging user testUser in...
+08-05-2019 14:20:26.588 [main] INFO  t.p.services.UserService - Deleting user testUser...
+08-05-2019 14:20:26.589 [main] INFO  t.p.services.UserService - Retrieving all users...
+08-05-2019 14:20:26.628 [main] INFO  t.p.services.UserService - Retrieved users!
+08-05-2019 14:20:26.629 [main] INFO  t.p.services.UserService - Retrieving user by username...
+08-05-2019 14:20:26.631 [main] INFO  t.p.services.UserService - Logging user testUser in...
+08-05-2019 14:20:26.632 [main] INFO  t.p.services.UserService - Retrieving user by username...
+08-05-2019 14:20:26.634 [main] INFO  t.p.services.UserService - Retrieving user by username...
+08-05-2019 14:21:05.071 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Starting PlaylistGeneratorApplication on DESKTOP-JCCDGG7 with PID 32500 (C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator\out\production\classes started by Predator in C:\Users\Predator\Projects\FinalProject\playlistgenerator\playlist_generator)
+08-05-2019 14:21:05.073 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - No active profile set, falling back to default profiles: default
+08-05-2019 14:21:05.113 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+08-05-2019 14:21:05.113 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+08-05-2019 14:21:05.653 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+08-05-2019 14:21:05.742 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 84ms. Found 10 repository interfaces.
+08-05-2019 14:21:06.075 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4882c4c9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:21:06.099 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$e1308d03] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:21:06.102 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:21:06.103 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@5bfef37a' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:21:06.105 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$6052fb5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:21:06.107 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-05-2019 14:21:06.435 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+08-05-2019 14:21:06.447 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+08-05-2019 14:21:06.453 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+08-05-2019 14:21:06.453 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+08-05-2019 14:21:06.555 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+08-05-2019 14:21:06.555 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1442 ms
+08-05-2019 14:21:06.635 [MLog-Init-Reporter] INFO  com.mchange.v2.log.MLog - MLog clients using slf4j logging.
+08-05-2019 14:21:06.658 [restartedMain] INFO  com.mchange.v2.c3p0.C3P0Registry - Initializing c3p0-0.9.5.4 [built 23-March-2019 23:00:48 -0700; debug? true; trace: 10]
+08-05-2019 14:21:06.873 [restartedMain] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, dataSourceName -> 2tk05ha215y1tukcses8s|1891053b, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, extensions -> {}, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, forceUseNamedDriverClass -> false, identityToken -> 2tk05ha215y1tukcses8s|1891053b, idleConnectionTestPeriod -> 0, initialPoolSize -> 5, jdbcUrl -> jdbc:mysql://localhost:3306/playlist_generator_db?serverTimezone=UTC, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 3000, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 20, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 5, numHelperThreads -> 3, preferredTestQuery -> null, privilegeSpawnedThreads -> false, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+08-05-2019 14:21:07.003 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+08-05-2019 14:21:07.093 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.9.Final}
+08-05-2019 14:21:07.094 [restartedMain] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+08-05-2019 14:21:07.208 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+08-05-2019 14:21:07.361 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+08-05-2019 14:21:08.022 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+08-05-2019 14:21:08.569 [restartedMain] INFO  o.s.s.p.JdbcUserDetailsManager - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+08-05-2019 14:21:08.657 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@374ff7ee, org.springframework.security.web.context.SecurityContextPersistenceFilter@7293a44e, org.springframework.security.web.header.HeaderWriterFilter@2be3736b, org.springframework.web.filter.CorsFilter@1e24e7fd, org.springframework.security.web.authentication.logout.LogoutFilter@4bec9112, track_ninja.playlist_generator.security.models.JwtAuthenticationFilter@50c5f575, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6185d3c5, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@44d88bb4, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@205a73ca, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3f2f4e08, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@73bcb9b4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2480c928, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1ffccf8c, org.springframework.security.web.session.SessionManagementFilter@30133916, org.springframework.security.web.access.ExceptionTranslationFilter@5c9725c3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7be9801d]
+08-05-2019 14:21:08.723 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+08-05-2019 14:21:08.752 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+08-05-2019 14:21:08.923 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+08-05-2019 14:21:08.944 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+08-05-2019 14:21:08.959 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+08-05-2019 14:21:08.960 [restartedMain] INFO  t.p.PlaylistGeneratorApplication - Started PlaylistGeneratorApplication in 4.138 seconds (JVM running for 4.823)
+08-05-2019 14:21:20.531 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+08-05-2019 14:21:20.531 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+08-05-2019 14:21:20.536 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+08-05-2019 14:21:20.562 [http-nio-8080-exec-4] WARN  t.p.s.models.JwtAuthenticationFilter - Couldn't find bearer string, will ignore the header.
+08-05-2019 14:21:20.807 [http-nio-8080-exec-4] ERROR t.p.controllers.LoginController - Bad credentials
+08-05-2019 14:21:20.808 [http-nio-8080-exec-4] WARN  o.s.w.s.m.a.ResponseStatusExceptionResolver - Resolved [org.springframework.web.server.ResponseStatusException: 406 NOT_ACCEPTABLE "Bad credentials"]
