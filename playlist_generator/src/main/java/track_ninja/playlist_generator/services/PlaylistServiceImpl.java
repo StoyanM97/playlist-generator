@@ -8,7 +8,7 @@ import track_ninja.playlist_generator.exceptions.GenreDoesNotExistException;
 import track_ninja.playlist_generator.exceptions.PlaylistNotGeneretedByThisUserException;
 import track_ninja.playlist_generator.exceptions.UserNotFoundException;
 import track_ninja.playlist_generator.models.Playlist;
-import track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistsException;
+import track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistException;
 import track_ninja.playlist_generator.models.dtos.PlayListEditDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.models.mappers.ModelMapper;
@@ -25,19 +25,19 @@ public class PlaylistServiceImpl implements PlaylistService{
     private static final String RETRIEVING_ALL_PLAYLISTS_MESSAGE = "Retrieving all playlists...";
     private static final String RETRIEVED_PLAYLISTS_MESSAGE = "Retrieved playlists!";
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_GENRE_MESSAGE = "Retrieving all playlists for genre %s...";
-    private static final String COULD_NOT_RETRIEVE_PLAYLISTS_MESSAGE = "Could not retrieve playlists! %s";
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_USER_MESSAGE = "Retrieving all playlists for user %s...";
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_TITLE_MESSAGE = "Retrieving all playlists for title like %s...";
     private static final String RETRIEVING_ALL_PLAYLISTS_FOR_DURATION_MESSAGE = "Retrieving all playlists for duration around %d minutes...";
 
     private static final Logger logger = LoggerFactory.getLogger(PlaylistService.class);
     private static final String LOOKING_FOR_PLAYLIST_WITH_ID_MESSAGE = "Looking for playlist with id %d...";
-    private static final String NO_PLAYLIST_WITH_THIS_ID_ERROR_MESSAGE = "No playlist with this id!";
     private static final String PLAYLIST_FOUND_MESSAGE = "Playlist found!";
     private static final String PLAYLIST_EDITED_MESSAGE = "Playlist edited!";
     private static final String PLAYLIST_DELETED_MESSAGE = "Playlist deleted!";
     private static final String EDITING_PLAYLIST_MESSAGE = "Editing playlist with id %d...";
     private static final String DELETING_PLAYLIST_MESSAGE = "Deleting playlist with id %d...";
+    private static final String MATCHER = "%";
+    private static final String ROLE_ADMIN = "ROLE_ADMIN";
 
     private PlaylistRepository playlistRepository;
     private GenreRepository genreRepository;
@@ -63,9 +63,7 @@ public class PlaylistServiceImpl implements PlaylistService{
     public List<PlaylistDTO> getByGenre(String genre) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_GENRE_MESSAGE, genre));
         if (!genreRepository.existsByName(genre)) {
-            GenreDoesNotExistException gdne = new GenreDoesNotExistException();
-            logger.error(String.format(COULD_NOT_RETRIEVE_PLAYLISTS_MESSAGE, gdne.getMessage()));
-            throw gdne;
+            throw new GenreDoesNotExistException();
         }
         List<Playlist> playlists = playlistRepository.findPlaylistsByIsDeletedFalseAndGenresContaining_Name(genre);
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
@@ -76,9 +74,7 @@ public class PlaylistServiceImpl implements PlaylistService{
     public List<PlaylistDTO> getByUser(String username) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_USER_MESSAGE, username));
         if (!userRepository.existsByUsername(username)) {
-            UserNotFoundException unf = new UserNotFoundException();
-            logger.error(String.format(COULD_NOT_RETRIEVE_PLAYLISTS_MESSAGE, unf.getMessage()));
-            throw unf;
+            throw new UserNotFoundException();
         }
         List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndUser_User_Username(username);
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
@@ -88,7 +84,7 @@ public class PlaylistServiceImpl implements PlaylistService{
     @Override
     public List<PlaylistDTO> getByTitle(String title) {
         logger.info(String.format(RETRIEVING_ALL_PLAYLISTS_FOR_TITLE_MESSAGE, title));
-        List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndTitleLike("%" + title + "%");
+        List<Playlist> playlists = playlistRepository.findAllByIsDeletedFalseAndTitleLike(MATCHER + title + MATCHER);
         logger.info(RETRIEVED_PLAYLISTS_MESSAGE);
         return mapListOfPlaylistToDTOs(playlists);
     }
@@ -108,7 +104,7 @@ public class PlaylistServiceImpl implements PlaylistService{
         logger.info(String.format(LOOKING_FOR_PLAYLIST_WITH_ID_MESSAGE, id));
         Playlist playlist = playlistRepository.findByIsDeletedFalseAndPlaylistId(id);
         if (playlist == null) {
-            handleNoGeneratedPlaylistsException();
+            throw new NoGeneratedPlaylistException();
         }
         logger.info(PLAYLIST_FOUND_MESSAGE);
         return ModelMapper.playlistToDTO(playlist);
@@ -119,12 +115,10 @@ public class PlaylistServiceImpl implements PlaylistService{
         logger.info(String.format(EDITING_PLAYLIST_MESSAGE, playListEditDTO.getPlaylistId()));
         Playlist playlist = playlistRepository.findByIsDeletedFalseAndPlaylistId(playListEditDTO.getPlaylistId());
         if (playlist == null) {
-            handleNoGeneratedPlaylistsException();
+            throw new NoGeneratedPlaylistException();
         } if (!playListEditDTO.getUsername().equals(playlist.getUser().getUser().getUsername()) &&
-                !userRepository.findByUsernameAndEnabledTrue(playListEditDTO.getUsername()).getAuthority().getName().toString().equals("ROLE_ADMIN")) {
-            PlaylistNotGeneretedByThisUserException pngtu = new PlaylistNotGeneretedByThisUserException();
-            logger.error(pngtu.getMessage());
-            throw pngtu;
+                !userRepository.findByUsernameAndEnabledTrue(playListEditDTO.getUsername()).getAuthority().getName().toString().equals(ROLE_ADMIN)) {
+            throw new PlaylistNotGeneretedByThisUserException();
         }
         playlist.setTitle(playListEditDTO.getTitle());
         playlistRepository.save(playlist);
@@ -137,18 +131,12 @@ public class PlaylistServiceImpl implements PlaylistService{
         logger.info(String.format(DELETING_PLAYLIST_MESSAGE, id));
         Playlist playlist = playlistRepository.findByIsDeletedFalseAndPlaylistId(id);
         if (playlist == null) {
-            handleNoGeneratedPlaylistsException();
+            throw new NoGeneratedPlaylistException();
         }
         playlist.setDeleted(true);
         playlistRepository.save(playlist);
         logger.info(PLAYLIST_DELETED_MESSAGE);
         return false;
-    }
-
-    private void handleNoGeneratedPlaylistsException() {
-        NoGeneratedPlaylistsException ngp = new NoGeneratedPlaylistsException(PlaylistServiceImpl.NO_PLAYLIST_WITH_THIS_ID_ERROR_MESSAGE);
-        logger.error(String.format(COULD_NOT_RETRIEVE_PLAYLISTS_MESSAGE, ngp.getMessage()));
-        throw ngp;
     }
 
     private List<PlaylistDTO> mapListOfPlaylistToDTOs(List<Playlist> playlists) {

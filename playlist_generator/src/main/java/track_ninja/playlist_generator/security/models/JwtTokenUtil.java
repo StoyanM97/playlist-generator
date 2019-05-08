@@ -11,14 +11,17 @@ import track_ninja.playlist_generator.models.User;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
-import java.util.function.Function;
-
-import static track_ninja.playlist_generator.security.Constants.ACCESS_TOKEN_VALIDITY_SECONDS;
-import static track_ninja.playlist_generator.security.Constants.SIGNING_KEY;
 
 @Component
 public class JwtTokenUtil implements Serializable {
-    public String getUsernameFromToken(String token) {
+
+    private static final long ACCESS_TOKEN_VALIDITY_SECONDS = 1000*60*30; //30 mins
+    private static final String SIGNING_KEY = "e5xJujg9qc5HCOnbBKHgfP2WmhrgIDYLblMoAvReSqKR2x3jq3fOoBgOK8zaKWM6";
+
+    private static final String ISSUER = "http://devglan.com";
+    private static final String SCOPES = "scopes";
+
+    String getUsernameFromToken(String token) {
         return getAllClaimsFromToken(token).getSubject();
     }
 
@@ -44,11 +47,11 @@ public class JwtTokenUtil implements Serializable {
 
     private String doGenerateToken(String subject, Authority role) {
         Claims claims = Jwts.claims().setSubject(subject);
-        claims.put("scopes", Collections.singletonList(role.getName().toString()));
+        claims.put(SCOPES, Collections.singletonList(role.getName().toString()));
 
         return Jwts.builder()
                 .setClaims(claims)
-                .setIssuer("http://devglan.com")
+                .setIssuer(ISSUER)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_VALIDITY_SECONDS))
                 .signWith(SignatureAlgorithm.HS256, SIGNING_KEY)

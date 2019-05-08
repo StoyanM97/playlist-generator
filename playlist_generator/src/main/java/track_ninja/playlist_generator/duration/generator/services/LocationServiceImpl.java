@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import track_ninja.playlist_generator.exceptions.LocationNotFoundException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class LocationServiceImpl implements LocationService{
 
     private static final String RESPONSE = "Response: ";
     private static final String URL_INFO = "Query URL: ";
+    private static final String LOCATION_NOT_FOUND = "Location \"%s\" not found.";
     private RestTemplate restTemplate;
 
     private static final Logger log = LoggerFactory.getLogger(LocationService.class);
@@ -106,6 +108,10 @@ public class LocationServiceImpl implements LocationService{
                 JsonNode rootNode = objectMapper.readTree(response.getBody());
 
                 List<JsonNode> points = rootNode.findValues(GEOCODE_POINTS_JSON_FIELD_NAME);
+
+                if (points.isEmpty()) {
+                    throw new LocationNotFoundException(String.format(LOCATION_NOT_FOUND, location));
+                }
 
                 if (points.get(0).size() > 1) {
                     points.get(0).forEach(jsonNode ->

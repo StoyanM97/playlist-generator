@@ -1,5 +1,7 @@
 package track_ninja.playlist_generator.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import javax.validation.Valid;
 @RequestMapping("/api/register")
 public class RegistrationController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(RegistrationController.class);
+
     private UserService userService;
 
     @Autowired
@@ -27,6 +31,7 @@ public class RegistrationController {
         try {
             return userService.register(registrationUser);
         } catch (UsernameAlreadyExistsException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
         }
     }

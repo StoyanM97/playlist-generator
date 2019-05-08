@@ -40,7 +40,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private static final String LOGIN_SUCCESSFUL_MESSAGE = "Login successful!";
     private static final String REGISTERING_USER_MESSAGE = "Registering user %s...";
     private static final String COULD_NOT_REGISTER_USER_ERROR_MESSAGE = "Could not register user! %s";
-    private static final String COULD_NOT_CREATE_USER_ERROR_MESSAGE = "Could not create user! %s";
     private static final String REGISTRATION_SUCCESSFUL_MESSAGE = "Registration successful!";
     private static final String DELETING_USER_MESSAGE = "Deleting user %s...";
     private static final String COULD_NOT_DELETE_USER_ERROR_MESSAGE = "Could not delete user ! %s";
@@ -48,7 +47,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private static final String CREATING_USER_MESSAGE = "Creating user %s...";
     private static final String CREATION_SUCCESSFUL_MESSAGE = "Creation successful!";
     private static final String EDITING_USER_MESSAGE = "Editing user %s...";
-    private static final String COULD_NOT_EDIT_USER_ERROR_MESSAGE = "Could not edit user! %s";
     private static final String USER_SUCCESSFULLY_EDITED_MESSAGE = "User successfully edited!";
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
@@ -56,6 +54,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private static final String AVATAR_UPLOADED_MESSAGE = "Avatar uploaded!";
     private static final String LOOKING_FOR_USERS_MESSAGE = "Looking for user with username like %s";
     private static final String USERS_FOUND_MESSAGE = "User/s found!";
+    private static final String MATCHER = "%";
 
     private UserRepository userRepository;
     private AuthorityRepository authorityRepository;
@@ -103,7 +102,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         logger.info(RETRIEVING_USER_BY_USERNAME_MESSAGE);
         User user = userRepository.findByUsernameAndEnabledTrue(username);
         if (user == null || !user.isEnabled() || user.getUserDetail().isDeleted()) {
-            handleUsernameNotFoundException(COULD_NOT_RETRIEVE_USER_ERROR_MESSAGE);
+            throw new UsernameNotFoundException(COULD_NOT_RETRIEVE_USER_ERROR_MESSAGE);
         }
         logger.info(RETRIEVED_USER_MESSAGE);
         return user;
@@ -114,7 +113,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         logger.info(String.format(LOGGING_USER_IN_MESSAGE, loginUser.getUsername()));
         final User user = userRepository.findByUsernameAndEnabledTrue((loginUser.getUsername()));
         if (user == null || !user.isEnabled() || user.getUserDetail().isDeleted()) {
-            handleUsernameNotFoundException(COULD_NOT_LOG_USER_IN_ERROR_MESSAGE);
+            throw new UsernameNotFoundException(COULD_NOT_LOG_USER_IN_ERROR_MESSAGE);
         }
         final String token = jwtTokenUtil.generateToken(user);
         UserLoginDTO loginDTO = mapUserToUserLoginDTO(user, token);
@@ -126,7 +125,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean register(UserRegistrationDTO registrationUser) {
         logger.info(String.format(REGISTERING_USER_MESSAGE, registrationUser.getUsername()));
         if (userRepository.existsByUsername(registrationUser.getUsername())) {
-            handleUsernameAlreadyExistsException(COULD_NOT_REGISTER_USER_ERROR_MESSAGE);
+            throw new UsernameNotFoundException(COULD_NOT_REGISTER_USER_ERROR_MESSAGE);
         }
         User user = new User();
         mapRegistrationDTOToUser(registrationUser, user);
@@ -141,7 +140,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         logger.info(String.format(DELETING_USER_MESSAGE, username));
         User user = userRepository.findByUsernameAndEnabledTrue(username);
         if (user == null || !user.isEnabled() || user.getUserDetail().isDeleted()) {
-            handleUsernameNotFoundException(COULD_NOT_DELETE_USER_ERROR_MESSAGE);
+            throw new UsernameNotFoundException(COULD_NOT_DELETE_USER_ERROR_MESSAGE);
         }
         user.setEnabled(false);
         logger.info(DELETION_SUCCESSFUL_MESSAGE);
@@ -153,7 +152,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean createUser(UserRegistrationDTO userRegistrationDTO) {
         logger.info(String.format(CREATING_USER_MESSAGE, userRegistrationDTO.getUsername()));
         if (userRepository.existsByUsername(userRegistrationDTO.getUsername())) {
-            handleUsernameAlreadyExistsException(UserServiceImpl.COULD_NOT_CREATE_USER_ERROR_MESSAGE);
+            throw new UsernameAlreadyExistsException();
         }
         UserDetails userDetails = new UserDetails();
         mapEditDTOtoUserDetails(userRegistrationDTO, userDetails);
@@ -168,11 +167,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean editUser(UserEditDTO userEditDTO) {
         logger.info(String.format(EDITING_USER_MESSAGE, userEditDTO.getUsername()));
         if (!userEditDTO.getOldUsername().equals(userEditDTO.getUsername()) && userRepository.existsByUsername(userEditDTO.getUsername())) {
-            return handleUsernameAlreadyExistsException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
+            throw new UsernameAlreadyExistsException();
         }
         User user = userRepository.findByUsernameAndEnabledTrue(userEditDTO.getOldUsername());
         if (user == null || !user.isEnabled() || user.getUserDetail().isDeleted()) {
-            handleUsernameNotFoundException(COULD_NOT_EDIT_USER_ERROR_MESSAGE);
+            throw new UserNotFoundException();
         }
         UserDetails userDetails = userDetailsRepository.findByIsDeletedFalseAndUser_Username(userEditDTO.getOldUsername());
         mapRegistrationDTOToUserDetails(userEditDTO, user, userDetails);
@@ -192,7 +191,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public List<UserDisplayDTO> findAllByUsernameLike(String username) {
         logger.info(String.format(LOOKING_FOR_USERS_MESSAGE, username));
-        List<User> users = userRepository.findAllByEnabledTrueAndUsernameLike(username);
+        List<User> users = userRepository.findAllByEnabledTrueAndUsernameLike(MATCHER + username + MATCHER);
         logger.info(USERS_FOUND_MESSAGE);
         return users.stream().map(ModelMapper::userToDTO).collect(Collectors.toList());
     }
@@ -249,17 +248,5 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         loginDTO.setAvatar(getAvatar(user));
         loginDTO.setToken(token);
         return loginDTO;
-    }
-
-    private boolean handleUsernameNotFoundException(String s) {
-        UserNotFoundException unf = new UserNotFoundException();
-        logger.error(String.format(s, unf.getMessage()));
-        throw unf;
-    }
-
-    private boolean handleUsernameAlreadyExistsException(String s) {
-        UsernameAlreadyExistsException uae = new UsernameAlreadyExistsException();
-        logger.error(String.format(s, uae.getMessage()));
-        throw uae;
     }
 }

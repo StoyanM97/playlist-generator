@@ -1,5 +1,7 @@
 package track_ninja.playlist_generator.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,8 @@ import java.util.List;
 @RequestMapping("/api/admin")
 public class AdminController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(AdminController.class);
+
     private UserService userService;
 
     @Autowired
@@ -32,6 +36,7 @@ public class AdminController {
         try {
             return userService.getAll();
         } catch (NoUsersCreatedException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NO_CONTENT, ex.getMessage());
         }
     }
@@ -41,6 +46,7 @@ public class AdminController {
         try {
             return userService.findAllByUsernameLike(username);
         } catch (UserNotFoundException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
     }
@@ -50,6 +56,7 @@ public class AdminController {
         try {
             return userService.getUser(username);
         } catch (UserNotFoundException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
     }
@@ -59,6 +66,7 @@ public class AdminController {
         try {
             return userService.createUser(userRegistrationDTO);
         } catch (UsernameAlreadyExistsException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
         }
     }
@@ -68,8 +76,10 @@ public class AdminController {
         try {
             return userService.editUser(userEditDTO);
         } catch (UserNotFoundException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }  catch (UsernameAlreadyExistsException ex) {
+            LOGGER.error(ex.getMessage());
         throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
     }
     }
@@ -79,6 +89,7 @@ public class AdminController {
         try {
             return userService.deleteUser(username);
         } catch (UserNotFoundException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
     }

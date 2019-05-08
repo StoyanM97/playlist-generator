@@ -8,7 +8,7 @@ import { AuthenticationService } from './authentication.service';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   
-    private readonly HOST = 'http://playg-env.r7edcaw73u.us-east-2.elasticbeanstalk.com';
+    private readonly HOST = 'http://localhost:8080';
     private readonly USER_URL = this.HOST + '/api/user';
     private readonly ADMIN_URL = this.HOST + '/api/admin';
 

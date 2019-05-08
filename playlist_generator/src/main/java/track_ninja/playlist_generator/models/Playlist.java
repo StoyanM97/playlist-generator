@@ -20,7 +20,7 @@ import java.util.Set;
 public class Playlist {
 
     private static final int TITLE_MIN_LENGTH = 3;
-    private static final int TITLE_MAX_LENGTH = 20;
+    private static final int TITLE_MAX_LENGTH = 10;
     private static final String TITLE_LENGTH_ERROR_MESSAGE = "Title length must be at least 3 and at most 20 characters long!";
 
     private static final String TITLE = "title";

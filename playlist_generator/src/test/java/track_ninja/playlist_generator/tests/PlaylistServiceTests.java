@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import track_ninja.playlist_generator.exceptions.GenreDoesNotExistException;
-import track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistsException;
+import track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistException;
 import track_ninja.playlist_generator.exceptions.PlaylistNotGeneretedByThisUserException;
 import track_ninja.playlist_generator.exceptions.UserNotFoundException;
 import track_ninja.playlist_generator.models.Authority;
@@ -59,7 +59,7 @@ public class PlaylistServiceTests {
 
 
 
-    @Test(expected = NoGeneratedPlaylistsException.class)
+    @Test(expected = NoGeneratedPlaylistException.class)
     public void getById_Should_ThrowNoGeneratedPlaylistsException_When_NoPlaylistsWithThisId() {
         int id = 0;
 
@@ -68,7 +68,7 @@ public class PlaylistServiceTests {
         playlistService.getById(0);
     }
 
-    @Test(expected = NoGeneratedPlaylistsException.class)
+    @Test(expected = NoGeneratedPlaylistException.class)
     public void editPlaylist_Should_ThrowNoGeneratedPlaylistsException_When_NoPlaylistsWithThisId() {
         PlayListEditDTO playlistDTO = new PlayListEditDTO();
         playlistDTO.setPlaylistId(0);
@@ -100,7 +100,7 @@ public class PlaylistServiceTests {
         playlistService.editPlaylist(playlistDTO);
     }
 
-    @Test(expected = NoGeneratedPlaylistsException.class)
+    @Test(expected = NoGeneratedPlaylistException.class)
     public void deletePlaylist_Should_ThrowNoGeneratedPlaylistsException_When_NoPlaylistsWithThisId() {
         int id = 0;
 

@@ -17,11 +17,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static track_ninja.playlist_generator.security.Constants.HEADER_STRING;
-import static track_ninja.playlist_generator.security.Constants.TOKEN_PREFIX;
-
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    @Resource(name = "UserServiceImpl")
+    private static final String ERROR_GETTING_USERNAME_FROM_TOKEN_ERROR_MESSAGE = "An error occurred while getting username from token.";
+    private static final String TOKEN_EXPIRED_ERROR_MESSAGE = "The token is expired and not valid anymore";
+    private static final String AUTHENTICATION_FAILED_ERROR_MESSAGE = "Authentication failed. Username or password not valid.";
+    private static final String COULDNT_FIND_BEARER_STRING_WILL_IGNORE_THE_HEADER_WARNING = "Couldn't find bearer string, will ignore the header.";
+    private static final String AUTHENTICATED_USER_MESSAGE = "Authenticated user %s, setting security context";
+
+    private static final String USER_SERVICE = "UserServiceImpl";
+
+    private static final String TOKEN_PREFIX = "Bearer ";
+    private static final String HEADER_STRING = "Authorization";
+    private static final String DELIMITER = "";
+
+    @Resource(name = USER_SERVICE)
     private UserDetailsService userDetailsService;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -36,18 +45,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String authToken = null;
 
         if (header != null && header.startsWith(TOKEN_PREFIX)) {
-            authToken = header.replace(TOKEN_PREFIX, "");
+            authToken = header.replace(TOKEN_PREFIX, DELIMITER);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(authToken);
             } catch (IllegalArgumentException e) {
-                logger.error("An error occurred while getting username from token.", e);
+                logger.error(ERROR_GETTING_USERNAME_FROM_TOKEN_ERROR_MESSAGE, e);
            } catch (ExpiredJwtException e) {
-                logger.warn("The token is expired and not valid anymore", e);
+                logger.warn(TOKEN_EXPIRED_ERROR_MESSAGE, e);
             } catch (SignatureException e) {
-               logger.error("Authentication failed. Username or password not valid.");
+               logger.error(AUTHENTICATION_FAILED_ERROR_MESSAGE);
             }
         } else {
-            logger.warn("Couldn't find bearer string, will ignore the header.");
+            logger.warn(COULDNT_FIND_BEARER_STRING_WILL_IGNORE_THE_HEADER_WARNING);
         }
 
         if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null){
@@ -55,7 +64,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if(jwtTokenUtil.validateToken(authToken, userDetails)){
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                logger.info("Authenticated user "+username+", setting security context");
+                logger.info(String.format(AUTHENTICATED_USER_MESSAGE, username));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }

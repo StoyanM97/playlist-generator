@@ -1,5 +1,7 @@
 package track_ninja.playlist_generator.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -7,7 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import track_ninja.playlist_generator.exceptions.GenreDoesNotExistException;
 import track_ninja.playlist_generator.exceptions.PlaylistNotGeneretedByThisUserException;
 import track_ninja.playlist_generator.exceptions.UserNotFoundException;
-import track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistsException;
+import track_ninja.playlist_generator.exceptions.NoGeneratedPlaylistException;
 import track_ninja.playlist_generator.models.dtos.PlayListEditDTO;
 import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.services.PlaylistService;
@@ -20,6 +22,8 @@ import java.util.List;
 @RequestMapping("/api")
 public class PlaylistController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(PlaylistController.class);
+
     private PlaylistService playlistService;
 
     @Autowired
@@ -31,7 +35,8 @@ public class PlaylistController {
     public List<PlaylistDTO> getAll() {
         try {
             return playlistService.getAll();
-        } catch (NoGeneratedPlaylistsException ex) {
+        } catch (NoGeneratedPlaylistException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NO_CONTENT, ex.getMessage());
         }
     }
@@ -40,7 +45,7 @@ public class PlaylistController {
     public List<PlaylistDTO> getByGenre(@PathVariable String genre) {
         try {
             return playlistService.getByGenre(genre);
-        } catch (NoGeneratedPlaylistsException | GenreDoesNotExistException ex) {
+        } catch (NoGeneratedPlaylistException | GenreDoesNotExistException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
     }
@@ -48,7 +53,8 @@ public class PlaylistController {
     public List<PlaylistDTO> getByUser(@PathVariable String username) {
         try {
             return playlistService.getByUser(username);
-        } catch (NoGeneratedPlaylistsException | UserNotFoundException ex) {
+        } catch (NoGeneratedPlaylistException | UserNotFoundException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
     }
@@ -57,7 +63,8 @@ public class PlaylistController {
     public List<PlaylistDTO> getByTitle(@PathVariable String title) {
         try {
             return playlistService.getByTitle(title);
-        } catch (NoGeneratedPlaylistsException ex) {
+        } catch (NoGeneratedPlaylistException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
     }
@@ -66,7 +73,8 @@ public class PlaylistController {
     public List<PlaylistDTO> getByDurationBetween(@PathVariable(name = "duration") double durationMinutes) {
         try {
             return playlistService.getByDuration(durationMinutes);
-        } catch (NoGeneratedPlaylistsException ex) {
+        } catch (NoGeneratedPlaylistException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
     }
@@ -75,7 +83,8 @@ public class PlaylistController {
     public PlaylistDTO getById(@PathVariable int id) {
         try{
             return playlistService.getById(id);
-        } catch (NoGeneratedPlaylistsException ex) {
+        } catch (NoGeneratedPlaylistException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
     }
@@ -84,9 +93,11 @@ public class PlaylistController {
     public boolean editPlaylist(@RequestBody @Valid PlayListEditDTO playListEditDTO) {
         try{
             return playlistService.editPlaylist(playListEditDTO);
-        } catch (NoGeneratedPlaylistsException ex) {
+        } catch (NoGeneratedPlaylistException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         } catch (PlaylistNotGeneretedByThisUserException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
         }
     }
@@ -95,7 +106,8 @@ public class PlaylistController {
     public boolean deletePlaylist(@PathVariable int id) {
         try{
             return playlistService.deletePlaylist(id);
-        } catch (NoGeneratedPlaylistsException ex) {
+        } catch (NoGeneratedPlaylistException ex) {
+            LOGGER.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
     }
