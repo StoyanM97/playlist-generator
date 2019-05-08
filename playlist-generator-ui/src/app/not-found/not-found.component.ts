@@ -9,8 +9,7 @@ import { ConfirmationService } from '../confirmation-dialog/confirmation.service
 })
 export class NotFoundComponent implements OnInit {
   
-  private defaultMessage: string;
-  private message: string;
+  defaultMessage: string;
 
   constructor(private route: ActivatedRoute, private confirmationService: ConfirmationService) {
     this.defaultMessage = "The page you are looking for was not found!";
