@@ -23,7 +23,7 @@ public interface TrackRepository extends CrudRepository<Track, Integer> {
     List<Track> findTopGenre(String genre, long count);
 
     @Query(value = "select * from tracks join genres g on tracks.genre_id = g.genre_id where g.name = ?1 and track_id not in ?2 order by RAND() LIMIT 1", nativeQuery = true)
-    Track findRandomTrackByGenreAndTrackNotInSet(String genre, Deque<Long> tracksChecked);
+    Track findRandomTrackByGenreAndTrackNotInSet(String genre, Deque<Integer> tracksChecked);
 
     @Query(value = "SELECT * FROM tracks t JOIN genres g ON t.genre_id = g.genre_id WHERE g.name = ?1 ORDER BY rank LIMIT 1", nativeQuery = true)
     Track findTopTrackByGenre(String genre);
@@ -32,5 +32,5 @@ public interface TrackRepository extends CrudRepository<Track, Integer> {
     Track findTopTrackByGenreAndArtistNotIn(String genre, Deque<Integer> artistsChecked);
 
     @Query(value = "SELECT * FROM tracks t JOIN genres g ON t.genre_id = g.genre_id WHERE g.name = ?1 AND track_id NOT IN ?2 ORDER BY rank DESC LIMIT 1", nativeQuery = true)
-    Track findTopTrackByGenreAndTrackNotIn(String genre, Deque<Long> tracksChecked);
+    Track findTopTrackByGenreAndTrackNotIn(String genre, Deque<Integer> tracksChecked);
 }

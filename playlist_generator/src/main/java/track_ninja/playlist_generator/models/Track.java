@@ -31,7 +31,7 @@ public class Track {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = TRACK_ID)
-    private Long trackId;
+    private int trackId;
 
     @Column(name = TITLE)
     private String title;

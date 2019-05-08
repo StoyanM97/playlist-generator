@@ -237,11 +237,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     private UserLoginDTO mapUserToUserLoginDTO(User user, String token) {
         UserLoginDTO loginDTO = new UserLoginDTO();
-        loginDTO.setUsername(user.getUsername());
-        loginDTO.setRole(user.getAuthority().getName().toString());
-        loginDTO.setFirstName(user.getUserDetail().getFirstName());
-        loginDTO.setLastName(user.getUserDetail().getLastName());
-        loginDTO.setEmail(user.getUserDetail().getEmail());
+        ModelMapper.setDetailsForUserDisplayDTO(user, loginDTO);
         loginDTO.setAvatar(getAvatar(user));
         loginDTO.setToken(token);
         return loginDTO;

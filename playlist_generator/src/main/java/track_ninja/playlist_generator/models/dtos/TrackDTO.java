@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TrackDTO {
 
-    private Long trackId;
+    private int trackId;
 
     private String title;
 

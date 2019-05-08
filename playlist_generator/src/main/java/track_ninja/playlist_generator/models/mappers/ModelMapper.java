@@ -9,7 +9,6 @@ import track_ninja.playlist_generator.models.dtos.PlaylistDTO;
 import track_ninja.playlist_generator.models.dtos.TrackDTO;
 import track_ninja.playlist_generator.models.dtos.UserDisplayDTO;
 
-import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class ModelMapper {
@@ -43,15 +42,19 @@ public class ModelMapper {
 
     public static UserDisplayDTO userToDTO(User user) {
         UserDisplayDTO userDisplayDTO = new UserDisplayDTO();
+        setDetailsForUserDisplayDTO(user, userDisplayDTO);
+        if(user.getUserDetail().getAvatar() != null){
+            userDisplayDTO.setAvatar(new String(Base64.encodeBase64(user.getUserDetail().getAvatar())));
+        }
+        return userDisplayDTO;
+    }
+
+    public static void setDetailsForUserDisplayDTO(User user, UserDisplayDTO userDisplayDTO) {
         userDisplayDTO.setUsername(user.getUsername());
         userDisplayDTO.setRole(user.getAuthority().getName().toString());
         userDisplayDTO.setFirstName(user.getUserDetail().getFirstName());
         userDisplayDTO.setLastName(user.getUserDetail().getLastName());
         userDisplayDTO.setEmail(user.getUserDetail().getEmail());
-        if(user.getUserDetail().getAvatar() != null){
-            userDisplayDTO.setAvatar(new String(Base64.encodeBase64(user.getUserDetail().getAvatar())));
-        }
-        return userDisplayDTO;
     }
 
     private static TrackDTO trackToDTO(Track track) {
